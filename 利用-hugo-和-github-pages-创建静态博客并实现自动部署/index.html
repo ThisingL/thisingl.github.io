@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  3247 ,
+                        }],"genre": "posts","keywords": "编程","wordcount":  3262 ,
         "url": "https:\/\/example.com\/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2\/","datePublished": "2025-06-25T23:12:30+08:00","dateModified": "2025-06-25T23:12:30+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">利用 Hugo 和 Github Pages 创建静态博客并实现自动部署</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-25">2025-06-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3247 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-25">2025-06-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3262 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/" class="leancloud_visitors" data-flag-title="利用 Hugo 和 Github Pages 创建静态博客并实现自动部署">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -283,16 +283,23 @@
 <p>打开Github网页，点击右上角个人头像，进入<code>Settings</code>界面，点击设置列表中的<code>Developer settings</code></p>
 <img src="images/image-20250625234612169.png" alt="image-20250625234612169" style="zoom: 50%;" />
 <p>点击<code>Personal access tokens</code>下的<code>Tokens(classic)</code>，然后点击<code>Generate new token</code>下的<code>Generate new token(classic)</code></p>
-<img src="images/image-20250625234708833.png" alt="image-20250625234708833"  />
-<p>生成access token时，勾选<code>workflow</code></p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626000346319.png"
-        data-srcset="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626000346319.png, /%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626000346319.png 1.5x, /%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626000346319.png 2x"
+        data-src="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626001837636.png"
+        data-srcset="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626001837636.png, /%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626001837636.png 1.5x, /%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626001837636.png 2x"
         data-sizes="auto"
-        alt="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626000346319.png"
-        title="image-20250626000346319" width="2013" height="1032" /></p>
+        alt="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626001837636.png"
+        title="image-20250626001837636" width="2020" height="384" /></p>
+<p>生成access token时，勾选<code>workflow</code>，同时把 <code>Expiration</code> 的时间设置为永不过期</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626002003275.png"
+        data-srcset="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626002003275.png, /%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626002003275.png 1.5x, /%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626002003275.png 2x"
+        data-sizes="auto"
+        alt="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/images/image-20250626002003275.png"
+        title="image-20250626002003275" width="2025" height="1026" /></p>
 <p>最后点击页面下方的<code>Generate token</code>按钮即可。生成完成后如下图，将生成的<code>access token</code>复制下来，以后这个<code>aceess token</code>将不可见。</p>
 <img src="images/image-20250625234829616.png" alt="image-20250625234829616"  />
 <h5 id="422-创建actions-secret">4.2.2 创建Actions Secret</h5>

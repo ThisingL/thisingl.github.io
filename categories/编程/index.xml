@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>编程 - 分类 - Thising Blog</title>
+        <title>编程 - 分类 - DeepThought | 科学空间</title>
         <link>https://example.com/categories/%E7%BC%96%E7%A8%8B/</link>
-        <description>编程 - 分类 - Thising Blog</description>
+        <description>编程 - 分类 - DeepThought | 科学空间</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 25 Apr 2025 13:11:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
     <title>vscode缺少module解决方法</title>
     <link>https://example.com/vscode%E7%BC%BA%E5%B0%91module%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>

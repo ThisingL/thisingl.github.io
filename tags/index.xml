@@ -1,0 +1,79 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - 标签 - Thising Blog</title>
+        <link>https://example.com/tags/</link>
+        <description>Tags - 标签 - Thising Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 Jun 2025 23:40:14 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>RL</title>
+    <link>https://example.com/tags/rl/</link>
+    <pubDate>Wed, 18 Jun 2025 23:40:14 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/rl/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>数学</title>
+    <link>https://example.com/tags/%E6%95%B0%E5%AD%A6/</link>
+    <pubDate>Wed, 18 Jun 2025 23:40:14 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/%E6%95%B0%E5%AD%A6/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>编程</title>
+    <link>https://example.com/tags/%E7%BC%96%E7%A8%8B/</link>
+    <pubDate>Fri, 25 Apr 2025 13:11:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/%E7%BC%96%E7%A8%8B/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>健身</title>
+    <link>https://example.com/tags/%E5%81%A5%E8%BA%AB/</link>
+    <pubDate>Tue, 07 Jan 2025 22:58:10 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/%E5%81%A5%E8%BA%AB/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>算法</title>
+    <link>https://example.com/tags/%E7%AE%97%E6%B3%95/</link>
+    <pubDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/%E7%AE%97%E6%B3%95/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>专注力</title>
+    <link>https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/</link>
+    <pubDate>Sat, 26 Oct 2024 10:40:14 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>安装</title>
+    <link>https://example.com/tags/installation/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/installation/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>内容</title>
+    <link>https://example.com/tags/content/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/content/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>配置</title>
+    <link>https://example.com/tags/configuration/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/configuration/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

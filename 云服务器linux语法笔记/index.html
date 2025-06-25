@@ -6,18 +6,24 @@
         <meta name="robots" content="noodp" />
         <title>云服务器&amp;&amp;Linux语法笔记 - Thising Blog</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="thisingl.github.io/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8linux%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/">
   <meta property="og:site_name" content="Thising Blog">
-  <meta property="og:title" content="云服务器&amp;&amp;Linux语法笔记">
-  <meta property="og:description" content="云服务器笔记 阿里云地址 创建工作用户并赋予sudo权限 登录到新服务器。打开Terminal，然后： 1 ssh user@hostname // 例如：ssh lx@66.166.166.166 user: 用户名(如root)">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:title" content="云服务器&&Linux语法笔记">
+  <meta property="og:description" content="云服务器笔记 阿里云地址
+创建工作用户并赋予sudo权限 登录到新服务器。打开Terminal，然后：
+1 ssh user@hostname // 例如：ssh lx@66.166.166.166 user: 用户名(如root) hostname: IP地址或域名(如xxx.xxx.xxx.xxx) 第一次登录时会提示：">
+  <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
-  <meta property="article:section" content="posts">
+    <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-11-12T19:16:22+08:00">
     <meta property="article:modified_time" content="2024-11-12T19:16:22+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="/images/logo.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="/images/logo.png"><meta name="twitter:title" content="云服务器&amp;&amp;Linux语法笔记">
-<meta name="twitter:description" content="云服务器笔记 阿里云地址 创建工作用户并赋予sudo权限 登录到新服务器。打开Terminal，然后： 1 ssh user@hostname // 例如：ssh lx@66.166.166.166 user: 用户名(如root)">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="/images/logo.png">
+  <meta name="twitter:title" content="云服务器&&Linux语法笔记">
+  <meta name="twitter:description" content="云服务器笔记 阿里云地址
+创建工作用户并赋予sudo权限 登录到新服务器。打开Terminal，然后：
+1 ssh user@hostname // 例如：ssh lx@66.166.166.166 user: 用户名(如root) hostname: IP地址或域名(如xxx.xxx.xxx.xxx) 第一次登录时会提示：">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -196,8 +202,7 @@
 <li><code>hostname</code>: IP地址或域名(如xxx.xxx.xxx.xxx)</li>
 </ul>
 <blockquote>
-<p>第一次登录时会提示：</p>
-</blockquote>
+<p>第一次登录时会提示：</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -311,8 +316,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>不出意外会看到很多类似如下的日志</p>
-</blockquote>
+<p>不出意外会看到很多类似如下的日志</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -430,8 +434,7 @@
 </div>
 </div><p>打开tmux。(养成好习惯，所有工作都在tmux里进行，防止意外关闭终端后，工作进度丢失)</p>
 <blockquote>
-<p>tmux操作小tips：按住shift就可以选择文本，然后Ctrl-insert进行复制，Shift-insert进行粘贴</p>
-</blockquote>
+<p>tmux操作小tips：按住shift就可以选择文本，然后Ctrl-insert进行复制，Shift-insert进行粘贴</p></blockquote>
 <p>然后在tmux中根据<a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="noopener noreffer ">docker安装教程</a>安装docker即可。</p>
 <h5 id="将当前用户添加到docker用户组">将当前用户添加到<code>docker</code>用户组</h5>
 <p>为了避免每次使用<code>docker</code>命令都需要加上<code>sudo</code>权限，可以将当前用户加入安装中自动创建的<code>docker</code>用户组(可以参考[官方文档](<a href="https://docs.docker.com/engine/install/linux-postinstall/" target="_blank" rel="noopener noreffer ">Post-installation steps | Docker Docs</a>))：</p>
@@ -672,8 +675,7 @@
 </div>
 </div><h5 id="配置nginx">配置Nginx</h5>
 <blockquote>
-<p>！！！避雷：y总的那个docker镜像有毒，里面搭好的nginx有问题，需要卸载重新安装就好了，我三天一直在找这个问题，一直报错502，结果偶然看到acwing里一个交流贴提一嘴这个nginx有问题，总算大功告成</p>
-</blockquote>
+<p>！！！避雷：y总的那个docker镜像有毒，里面搭好的nginx有问题，需要卸载重新安装就好了，我三天一直在找这个问题，一直报错502，结果偶然看到acwing里一个交流贴提一嘴这个nginx有问题，总算大功告成</p></blockquote>
 <p>修改<code>/etc/nginx/nginx.conf</code>内容</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -856,8 +858,7 @@ session 2
 (1) 复制：Ctrl+Insert
 (2) 粘贴：Shift+Insert</p>
 <blockquote>
-<p>有时候会突然遇到屏幕被限制在了一个很小的范围内，其他的地方全部变成了点 “.”,这是因为用不同的电脑或者终端打开过同一窗口，导致分辨率不一致，可以通过命令<code>tmux a -d -t [YOUR TMUX NAME]</code>来进入tmux</p>
-</blockquote>
+<p>有时候会突然遇到屏幕被限制在了一个很小的范围内，其他的地方全部变成了点 “.”,这是因为用不同的电脑或者终端打开过同一窗口，导致分辨率不一致，可以通过命令<code>tmux a -d -t [YOUR TMUX NAME]</code>来进入tmux</p></blockquote>
 <hr>
 <h4 id="vim语法">vim语法</h4>
 <p>功能：
@@ -951,7 +952,7 @@ session 2
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.125.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.145.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

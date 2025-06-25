@@ -53,15 +53,7 @@
             <loc>https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/</loc><lastmod>2024-10-26T10:40:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://example.com/categories/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</loc><lastmod>2024-10-26T10:40:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://example.com/makedown%E8%AF%AD%E6%B3%95/</loc><lastmod>2024-10-25T14:40:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://example.com/about/</loc><lastmod>2019-08-02T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://example.com/en/about/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://example.com/about/"
-                    /></url><url>
+            <loc>https://example.com/about/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://example.com/tags/installation/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://example.com/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://example.com/tags/configuration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

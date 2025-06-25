@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>算法 - 标签 - Thising Blog</title>
+        <link>thisingl.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+        <description>算法 - 标签 - Thising Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</lastBuildDate><atom:link href="thisingl.github.io/tags/%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+    <title>算法学习自用板子</title>
+    <link>thisingl.github.io/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</link>
+    <pubDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</guid>
+    <description><![CDATA[注意：有三级标题的知识点说明已经学完，如果只有二级标题说明这个知识点还未收录经典题目进行整理学习，敬请期待&hellip; 题目格式模板： AcWing 题]]></description>
+</item>
+</channel>
+</rss>

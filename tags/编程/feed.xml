@@ -1,0 +1,79 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>编程 - 标签 - Thising Blog</title>
+        <link>thisingl.github.io/tags/%E7%BC%96%E7%A8%8B/</link>
+        <description>编程 - 标签 - Thising Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 25 Apr 2025 13:11:20 &#43;0800</lastBuildDate><atom:link href="thisingl.github.io/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>vscode缺少module解决方法</title>
+    <link>thisingl.github.io/vscode%E7%BC%BA%E5%B0%91module%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Fri, 25 Apr 2025 13:11:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/vscode%E7%BC%BA%E5%B0%91module%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[问题定位： 1 2 3 4 5 PS C:\Users\god&gt; python -u &#34;c:\Users\god\Desktop\gold.py&#34; Traceback (most recent call last): File &#34;c:\Users\god\Desktop\gold.py&#34;, line 1, in &lt;module&gt; import requests ModuleNotFoundError: No module named &#39;requests&#39; 明明已经在conda中安装了 requests，却依旧报错找不到，下面给出解]]></description>
+</item>
+<item>
+    <title>期末复习针对pdf提问prompt</title>
+    <link>thisingl.github.io/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E9%92%88%E5%AF%B9pdf%E6%8F%90%E9%97%AEprompt/</link>
+    <pubDate>Sat, 21 Dec 2024 09:36:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E9%92%88%E5%AF%B9pdf%E6%8F%90%E9%97%AEprompt/</guid>
+    <description><![CDATA[期末复习针对pdf提问prompt 由于12月22号就要开始考信息安全，本人12月21号才开始学习，直接看别人整理好的笔记复习感觉知识点不是很]]></description>
+</item>
+<item>
+    <title>常用配置文件config汇总</title>
+    <link>thisingl.github.io/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</link>
+    <pubDate>Thu, 19 Dec 2024 16:15:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</guid>
+    <description><![CDATA[.tmux.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 # 基本设置 set-option -g history-limit 100000 # 提高历史记录限制，适]]></description>
+</item>
+<item>
+    <title>Git常用命令</title>
+    <link>thisingl.github.io/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Sat, 14 Dec 2024 15:15:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[git pull --rebase：用于 GitHub 上有多余的提交没有被本地同步，而本地又有了新的commit，此时直接 git pull 会导致 git merge 导致历史树过于复杂。而 git pull &ndash;rebase 则]]></description>
+</item>
+<item>
+    <title>算法学习自用板子</title>
+    <link>thisingl.github.io/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</link>
+    <pubDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</guid>
+    <description><![CDATA[注意：有三级标题的知识点说明已经学完，如果只有二级标题说明这个知识点还未收录经典题目进行整理学习，敬请期待&hellip; 题目格式模板： AcWing 题]]></description>
+</item>
+<item>
+    <title>云服务器&amp;&amp;Linux语法笔记</title>
+    <link>thisingl.github.io/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8linux%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Tue, 12 Nov 2024 19:16:22 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8linux%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[云服务器笔记 阿里云地址 创建工作用户并赋予sudo权限 登录到新服务器。打开Terminal，然后： 1 ssh user@hostname // 例如：ssh lx@66.166.166.166 user: 用户名(如root)]]></description>
+</item>
+<item>
+    <title>conda机器学习常用命令</title>
+    <link>thisingl.github.io/conda%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8C%85%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Wed, 30 Oct 2024 18:25:36 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/conda%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8C%85%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[机器学习常用命令 使用conda作为包管理器 环境管理 1.conda env list：列出所有环境 2.conda activate &lt;环境名称&gt;：激活该环境 3.conda create -n &lt;环境名称&]]></description>
+</item>
+<item>
+    <title>y总acwing网站markdown渲染样式</title>
+    <link>thisingl.github.io/y%E6%80%BBacwing%E7%BD%91%E7%AB%99markdown%E6%B8%B2%E6%9F%93%E6%A0%B7%E5%BC%8F/</link>
+    <pubDate>Mon, 28 Oct 2024 16:15:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/y%E6%80%BBacwing%E7%BD%91%E7%AB%99markdown%E6%B8%B2%E6%9F%93%E6%A0%B7%E5%BC%8F/</guid>
+    <description><![CDATA[找到正在使用的主题CSS文件（例如 gitHub.css),下面是我从acwing网站上源代码分析爬取下来的关于单行代码渲染的css样式，直接]]></description>
+</item>
+<item>
+    <title>Makedown语法</title>
+    <link>thisingl.github.io/makedown%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Fri, 25 Oct 2024 14:40:14 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>thisingl.github.io/makedown%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[Makedown语法 1.标题 # +一级标题：#后要有空格 ## + 二级标题 2.代码段 ` `：反引号（`）中插入一行代码 ``` ```：三个反引号（）中插入一]]></description>
+</item>
+</channel>
+</rss>

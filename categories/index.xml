@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Categories - 分类 - DeepThought | 科学空间</title>
+        <title>Categories - 分类 - DeepThought | 自学空间</title>
         <link>https://example.com/categories/</link>
-        <description>Categories - 分类 - DeepThought | 科学空间</description>
+        <description>Categories - 分类 - DeepThought | 自学空间</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 25 Jun 2025 23:12:30 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/" rel="self" type="application/rss+xml" /><item>
     <title>编程</title>
     <link>https://example.com/categories/%E7%BC%96%E7%A8%8B/</link>

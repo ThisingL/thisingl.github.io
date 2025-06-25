@@ -1,7 +1,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Tags - Tag - DeepThought | 科学空间</title>
+        <title>Tags - Tag - DeepThought | 自学空间</title>
         <link>https://example.com/en/tags/</link>
-        <description>Tags - Tag - DeepThought | 科学空间</description>
+        <description>Tags - Tag - DeepThought | 自学空间</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://example.com/en/tags/" rel="self" type="application/rss+xml" /></channel>
 </rss>

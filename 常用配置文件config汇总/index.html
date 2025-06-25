@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>常用配置文件config汇总 - DeepThought | 科学空间</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/">
-  <meta property="og:site_name" content="DeepThought | 科学空间">
+        <title>常用配置文件config汇总 - DeepThought | 自学空间</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/">
+  <meta property="og:site_name" content="DeepThought | 自学空间">
   <meta property="og:title" content="常用配置文件config汇总">
   <meta property="og:description" content=".tmux.conf
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 # 基本设置 set-option -g history-limit 100000 # 提高历史记录限制，适合查看长时间的输出 set-option -g mouse on # 启用鼠标支持 #set-option -g default-shell /usr/bin/bash # 默认使用 Bash，视情况而定 set-option -g prefix C-a # 更改前缀键为 Ctrl &#43; a (如不习惯可改回 C-b) unbind C-b # 取消 Ctrl &#43; b 作为前缀键 bind C-a send-prefix # 保留 Ctrl &#43; a 为前缀键 # 窗格管理 bind &#39;&#34;&#39; split-window -v # 快速切换窗格 bind h select-pane -L # 切换到左侧窗格 bind j select-pane -D # 切换到下方窗格 bind k select-pane -U # 切换到上方窗格 bind l select-pane -R # 切换到右侧窗格 # 更改窗格大小 bind -r H resize-pane -L 5 # 左调整窗格大小 bind -r J resize-pane -D 5 # 下调整窗格大小 bind -r K resize-pane -U 5 # 上调整窗格大小 bind -r L resize-pane -R 5 # 右调整窗格大小 # 鼠标滚轮绑定 bind -n WheelUpPane if-shell -F &#39;#{pane_in_mode}&#39; &#39;send-keys -M&#39; &#39;copy-mode -e&#39; # 鼠标滚轮向上时进入复制模式 bind -n WheelDownPane send-keys -M # 鼠标滚轮向下时退出复制模式 # 复制模式和粘贴 unbind -T copy-mode-vi v # 取消 vi 风格的视觉模式 bind -T copy-mode-vi v send -X begin-selection # 按 v 开始选择 bind -T copy-mode-vi y send -X copy-selection # 按 y 复制内容 bind p paste-buffer # 前缀键 &#43; p 粘贴内容 # 状态栏优化 set-option -g status-interval 2 # 每 2 秒刷新状态栏 set-option -g status-left &#34;#[fg=green](#S) &#34; # 显示会话名 set-option -g status-right &#34;&#34; # 不显示时间 # 改进外观 set-option -g status-bg black # 状态栏背景色 set-option -g status-fg green # 状态栏前景色 set-window-option -g window-status-current-style bg=blue,fg=white # 当前窗口的状态栏样式 # 快速重载配置文件 bind r source-file ~/.tmux.conf \; display-message &#34;Tmux 配置已重载&#34; # 前缀键 &#43; r 重载配置 .vimrc">
@@ -53,7 +53,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="DeepThought | 科学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+            <a href="/" title="DeepThought | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/thisingl/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -79,7 +79,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="DeepThought | 科学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+                <a href="/" title="DeepThought | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>

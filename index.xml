@@ -3,9 +3,34 @@
         <title>DeepThought | 自学空间</title>
         <link>https://example.com/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 25 Jun 2025 23:12:30 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 26 Jun 2025 11:27:04 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Index</title>
+    <link>https://example.com/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Thu, 26 Jun 2025 11:27:04 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[<h1 id="形式化方法">形式化方法</h1>
+<h3 id="数理逻辑谓词逻辑">数理逻辑（谓词逻辑）</h3>
+<h5 id="the-syntax">The Syntax:</h5>
+<p>$$
+\begin{aligned}
+E &amp;::= x \mid c \mid f(E,\dots,E) \
+R &amp;::= r(E,\dots,E) \
+P &amp;::= R  \
+&amp;\phantom{::} \mid \top \  % 用 \phantom 占位 ::= 的空格
+&amp;\phantom{::} \mid \bot \
+&amp;\phantom{::} \mid P \lor P \
+&amp;\phantom{::} \mid P \land P \
+&amp;\phantom{::} \mid P \rightarrow P \
+&amp;\phantom{::} \mid \neg P \
+&amp;\phantom{::} \mid \forall x, P \
+&amp;\phantom{::} \mid \exists x, P \
+\end{aligned}
+$$</p>]]></description>
+</item>
+<item>
     <title>利用 Hugo 和 Github Pages 创建静态博客并实现自动部署</title>
     <link>https://example.com/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</link>
     <pubDate>Wed, 25 Jun 2025 23:12:30 &#43;0800</pubDate>
@@ -278,26 +303,6 @@
 </ul>
 <blockquote>
 <p>第一次登录时会提示：</p>]]></description>
-</item>
-<item>
-    <title>conda机器学习常用命令</title>
-    <link>https://example.com/conda%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8C%85%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
-    <pubDate>Wed, 30 Oct 2024 18:25:36 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/conda%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8C%85%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-    <description><![CDATA[<h2 id="机器学习常用命令">机器学习常用命令</h2>
-<h4 id="使用conda作为包管理器">使用<code>conda</code>作为包管理器</h4>
-<hr>
-<h4 id="环境管理">环境管理</h4>
-<h5 id="1conda-env-list列出所有环境">1.<code>conda env list</code>：列出所有环境</h5>
-<h5 id="2conda-activate-环境名称激活该环境">2.<code>conda activate &lt;环境名称&gt;</code>：激活该环境</h5>
-<h5 id="3conda-create--n-环境名称-python版本创建新环境">3.<code>conda create -n &lt;环境名称&gt; python=&lt;版本&gt;</code>：创建新环境</h5>
-<hr>
-<h4 id="包管理">包管理</h4>
-<h5 id="1condalist列出环境中的所有包">1.<code>conda list</code>：列出环境中的所有包</h5>
-<h5 id="2condainstall包名安装包">2.<code>conda install &lt;包名&gt;</code>：安装包</h5>
-<h5 id="3conda-update包名更新包">3.<code>conda update &lt;包名&gt;</code>：更新包</h5>
-<h5 id="4condaremove包名删除包">4.<code>conda remove &lt;包名&gt;</code>：删除包</h5>]]></description>
 </item>
 </channel>
 </rss>

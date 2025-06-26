@@ -6,29 +6,12 @@
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 26 Jun 2025 11:27:04 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Index</title>
+    <title>形式化方法</title>
     <link>https://example.com/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/</link>
     <pubDate>Thu, 26 Jun 2025 11:27:04 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/</guid>
-    <description><![CDATA[<h1 id="形式化方法">形式化方法</h1>
-<h3 id="数理逻辑谓词逻辑">数理逻辑（谓词逻辑）</h3>
-<h5 id="the-syntax">The Syntax:</h5>
-<p>$$
-\begin{aligned}
-E &amp;::= x \mid c \mid f(E,\dots,E) \
-R &amp;::= r(E,\dots,E) \
-P &amp;::= R  \
-&amp;\phantom{::} \mid \top \  % 用 \phantom 占位 ::= 的空格
-&amp;\phantom{::} \mid \bot \
-&amp;\phantom{::} \mid P \lor P \
-&amp;\phantom{::} \mid P \land P \
-&amp;\phantom{::} \mid P \rightarrow P \
-&amp;\phantom{::} \mid \neg P \
-&amp;\phantom{::} \mid \forall x, P \
-&amp;\phantom{::} \mid \exists x, P \
-\end{aligned}
-$$</p>]]></description>
+    <description><![CDATA[形式化方法是一门研究如何用数学语言来描述和分析计算机系统的学科。它的目标是找到一种数学语言，能够描述计算机系统的所有方面，包括算法、数据结构、程序设计等。形式化方法的研究成果已经在计算机科学、人工智能、软件工程等领域得到了广泛应用。]]></description>
 </item>
 <item>
     <title>利用 Hugo 和 Github Pages 创建静态博客并实现自动部署</title>

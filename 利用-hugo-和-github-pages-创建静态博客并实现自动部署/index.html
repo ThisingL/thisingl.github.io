@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  3542 ,
+                        }],"genre": "posts","keywords": "编程","wordcount":  3817 ,
         "url": "https:\/\/example.com\/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2\/","datePublished": "2025-06-25T23:12:30+08:00","dateModified": "2025-06-25T23:12:30+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">利用 Hugo 和 Github Pages 创建静态博客并实现自动部署</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-25">2025-06-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3542 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-25">2025-06-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3817 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/" class="leancloud_visitors" data-flag-title="利用 Hugo 和 Github Pages 创建静态博客并实现自动部署">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -428,7 +428,31 @@
 <p>提交到Github上后，稍等一会儿，打开<code>&lt;username&gt;.github.io</code>就可以看到更新后的网站了。</p>
 <h3 id="5-日常使用流程">5. 日常使用流程</h3>
 <ol>
-<li>使用命令<code>hugo new posts/新笔记/index.md</code>, 在 <code>content\posts\</code>目录下新建文件夹 <code>新笔记</code>，文件夹下新建 <code>index.md</code>文件，文件图片放在 <code>新笔记\images\</code> 文件夹下，这样在typora中设置图片位置为 <code>./images</code>即可。这里还需要创建一个新笔记<code>posts/新笔记/新笔记.md</code>，由于 Hugo 在渲染 Markdown 文档时会根据 <code>_</code>/<code>*</code>/<code>&gt;&gt;</code> 之类的语法生成 HTML 文档, 并且有些转义字符形式的文本内容 (如 <code>\(</code>/<code>\)</code>/<code>\[</code>/<code>\]</code>/<code>\\</code>) 会自动进行转义处理, 因此需要对这些地方进行额外的转义字符表达来实现自动渲染。所以一个<strong>好的解决方法</strong>是：多行公式前使用<code>&lt;div&gt;</code>标签，但是这个就会带来一个新问题：Typora中不好看公式了。因此就可以每次在<code>posts/新笔记/新笔记.md</code>中进行笔记书写，然后复制到<code>posts/新笔记/index.md</code>中将行间公式前统一加上 <code>&lt;div&gt;</code>标签。</li>
+<li>使用命令<code>hugo new posts/新笔记/新笔记.md</code>, 在 <code>content\posts\</code>目录下新建文件夹 <code>新笔记</code>，文件夹下新建 <code>新笔记.md</code>文件，文件图片放在 <code>新笔记\images\</code> 文件夹下，这样在typora中设置图片位置为 <code>./images</code>即可。这里还需要创建一个新笔记<code>posts/新笔记/新笔记.md</code>，由于 Hugo 在渲染 Markdown 文档时会根据 <code>_</code>/<code>*</code>/<code>&gt;&gt;</code> 之类的语法生成 HTML 文档, 并且有些转义字符形式的文本内容 (如 <code>\(</code>/<code>\)</code>/<code>\[</code>/<code>\]</code>/<code>\\</code>) 会自动进行转义处理, 因此需要对这些地方进行额外的转义字符表达来实现自动渲染。所以一个<strong>好的解决方法</strong>是：多行公式前使用<code>&lt;div&gt;</code>标签，但是这个就会带来一个新问题：Typora中不好看公式了。因此就可以每次在<code>posts/新笔记/新笔记.md</code>中进行笔记书写，然后使用我下面提供的shell脚本来将<code>新笔记.md</code>复制到<code>posts/新笔记/index.md</code>中将行间公式前统一加上 <code>&lt;div&gt;</code>标签。</li>
+<li>这里我写了一个<strong>单行</strong>shell脚本,可以一件把将<code>新笔记.md</code>生成符合hugo要求的<code>index.md</code>,直接复制到<code>bash</code>里运行就可以了</li>
+</ol>
+<img src="images/image-20250627161644775.png" alt="image-20250627161644775" style="zoom: 67%;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">find . -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*.md&#34;</span> ! -name <span class="s2">&#34;index.md&#34;</span> -print &gt; tmp_list <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">file_count</span><span class="o">=</span><span class="k">$(</span>wc -l &lt; tmp_list<span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$file_count</span><span class="s2">&#34;</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&#34;错误：未找到任何非index.md的.md文件&#34;</span> <span class="o">&amp;&amp;</span> rm tmp_list<span class="p">;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="k">elif</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$file_count</span><span class="s2">&#34;</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&#34;错误：找到多个非index.md的.md文件：&#34;</span> <span class="o">&amp;&amp;</span> cat tmp_list <span class="o">&amp;&amp;</span> rm tmp_list<span class="p">;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="k">else</span> <span class="nv">target_file</span><span class="o">=</span><span class="k">$(</span>head -n1 tmp_list<span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;正在处理文件: </span><span class="nv">$target_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>awk <span class="s1">&#39;BEGIN {in_math=0} {line=$0; output=&#34;&#34;; while(match(line, /\$\$/)) {pre=substr(line,1,RSTART-1); rest=substr(line,RSTART); if(in_math==0) {output=output pre &#34;&lt;div&gt;$$&#34;; in_math=1} else {output=output pre &#34;$$&#34;; in_math=0} line=substr(rest,3)} output=output line; print output}&#39;</span> <span class="s2">&#34;</span><span class="nv">$target_file</span><span class="s2">&#34;</span> &gt; index.md <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nb">echo</span> <span class="s2">&#34;已将处理后的内容写入 index.md&#34;</span> <span class="o">&amp;&amp;</span> rm tmp_list<span class="p">;</span> <span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
 <li>将更新 <code>git push</code> 到<code>hugo-blog</code>仓库中，网站便更新完毕。</li>
 </ol>
 <blockquote>

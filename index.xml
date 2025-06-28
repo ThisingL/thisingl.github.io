@@ -3,9 +3,17 @@
         <title>DeepThought | 自学空间</title>
         <link>https://example.com/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 25 Jun 2025 23:12:30 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 28 Jun 2025 16:56:53 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>程序员延寿指南</title>
+    <link>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BB%B6%E5%AF%BF%E6%8C%87%E5%8D%97/</link>
+    <pubDate>Sat, 28 Jun 2025 16:56:53 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BB%B6%E5%AF%BF%E6%8C%87%E5%8D%97/</guid>
+    <description><![CDATA[介绍一些有趣的东西来帮助程序员延长自身寿命]]></description>
+</item>
+<item>
     <title>利用 Hugo 和 Github Pages 创建静态博客并实现自动部署</title>
     <link>https://example.com/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</link>
     <pubDate>Wed, 25 Jun 2025 23:12:30 &#43;0800</pubDate>
@@ -260,32 +268,6 @@
 <blockquote>
 <h3 id="1064-小国王">1064. 小国王</h3>
 <p>xxx</p>]]></description>
-</item>
-<item>
-    <title>云服务器&amp;&amp;Linux语法笔记</title>
-    <link>https://example.com/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8linux%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
-    <pubDate>Tue, 12 Nov 2024 19:16:22 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8linux%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[<h2 id="云服务器笔记">云服务器笔记</h2>
-<p><a href="https://www.aliyun.com/" target="_blank" rel="noopener noreffer ">阿里云地址</a></p>
-<hr>
-<h4 id="创建工作用户并赋予sudo权限">创建工作用户并赋予<code>sudo</code>权限</h4>
-<p>登录到新服务器。打开Terminal，然后：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh user@hostname        // 例如：ssh lx@66.166.166.166
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><code>user</code>: 用户名(如root)</li>
-<li><code>hostname</code>: IP地址或域名(如xxx.xxx.xxx.xxx)</li>
-</ul>
-<blockquote>
-<p>第一次登录时会提示：</p>]]></description>
 </item>
 </channel>
 </rss>

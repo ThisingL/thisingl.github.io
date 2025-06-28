@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-06-12T17:04:29+08:00">
-    <meta property="article:modified_time" content="2025-06-12T17:04:29+08:00">
+    <meta property="article:modified_time" content="2025-06-28T11:48:02+08:00">
     <meta property="article:tag" content="Cs课程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "cs课程","wordcount":  2312 ,
-        "url": "https:\/\/example.com\/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95\/","datePublished": "2025-06-12T17:04:29+08:00","dateModified": "2025-06-12T17:04:29+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "cs课程","wordcount":  3025 ,
+        "url": "https:\/\/example.com\/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95\/","datePublished": "2025-06-12T17:04:29+08:00","dateModified": "2025-06-28T11:48:02+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">形式化方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AF%BE%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>课程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2312 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/" class="leancloud_visitors" data-flag-title="形式化方法">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3025 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/" class="leancloud_visitors" data-flag-title="形式化方法">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -136,6 +136,7 @@
         <li><a href="#结构化归纳法">结构化归纳法</a></li>
       </ul>
     </li>
+    <li><a href="#命题逻辑">命题逻辑</a></li>
     <li><a href="#数理逻辑谓词逻辑">数理逻辑（谓词逻辑）</a>
       <ul>
         <li>
@@ -194,13 +195,15 @@
 <p>下面我们来分析什么是上下文无关：</p>
 <p>假设我们有产生式 $\text{S} \to \text{a} \mid \text{b}$,那么如果我们遇到式子 $\text{aS}$,那么可以替换为 $\text{aS} \to \text{aa} \mid \text{ab}$,同理当我们遇到式子 $Sb$ 时，可以替换为 $\text{Sb}\to\text{ab}\mid\text{bb}$。所以在上下文无关文法中，我们遇到 $\text{S}$ 时，我们无需去关心 $\text{S}$ 的左边和右边是什么符号（这里的a、b其实就是所谓的上下文），直接根据产生式去替换就行。</p>
 <p>但是如果我们还有产生式 $\text{aS}\to aa$,那么下次当我们遇到式子 $\text{aS}$ 时，不能直接去替换 $\text{S}$，还得去研究 $\text{S}$ 的上下文。这时候就是上下文有关了。</p>
-<p><strong>例1</strong>  给定文法G</p>
+<blockquote>
+<p><strong>例1.1</strong>  给定文法G</p>
 <p>​	$E ::= E + E \mid E - E \mid E * E \mid E / E \mid (E) \mid n$</p>
-<p>其中，终结符 $T$ 的集合为 ${+,-,*,/,n,()}$,</p>
-<p>并且符号 $n$ 表示整数； 非终结符 $N$ 的集合为 ${E}$；</p>
+<p>其中，终结符 $T$ 的集合为 $\lbrace +,-,*,/,n,()\rbrace$,</p>
+<p>并且符号 $n$ 表示整数； 非终结符 $N$ 的集合为 $\lbrace E \rbrace$；</p></blockquote>
 <p><em>解：</em> 上面其实就是一个标准的上下文无关文法，他包含了我们之前说的四元组：G = {N、 T、 S、 P}，通常我们使用<strong>大写字母</strong>表示非终结符，<strong>小写字母</strong>表示终结符。这里的 $E$ 其实充当开始符号S的作用，不必拘泥于字母表示。</p>
 <p>这个文法G可表示的集合为整数域上加减乘除的表达式</p>
-<p><em>Q1</em> 判断表达式 $1+2*3$ 是否是文法G的元素？</p>
+<blockquote>
+<p><em>Q1：</em> 判断表达式 $1+2*3$ 是否是文法G的元素？</p></blockquote>
 <div>$$
 \begin{aligned}
 E &\to E + E \\
@@ -212,7 +215,8 @@ $$
 当然由于我们的文法G的规则不够完善，还未支持四则运算的优先级，所以上面的推导过程不是唯一的。
 <p>我们还可以用推导树来表示刚刚的推导过程：</p>
 <img src="images/image-20250628021844434.png" alt="image-20250628021844434" style="zoom: 50%;" />
-<p><em>Q2</em> 怎么修改文法G的规则使得可以支持四则运算的优先级？</p>
+<blockquote>
+<p><em>Q2：</em> 怎么修改文法G的规则使得可以支持四则运算的优先级？</p></blockquote>
 <div>$$
 \begin{aligned}
 E &::= E + T \mid E - T \mid T \\
@@ -222,6 +226,37 @@ F &::= (E) \mid n \\
 $$
 在《形式化方法》这门课中，上下文无关文法只是我们用来表达命题逻辑、谓词逻辑等等的一个最基本的表达形式，所以了解到这里就已经够了，如果想要更深入的进行学习，可以学习另一门课程《编译原理》。
 <h3 id="结构化归纳法">结构化归纳法</h3>
+<p>归纳法(Induction)是一个非常强大的数学工具。</p>
+<ul>
+<li>数学归纳法(Mathematical induction)：我们在高中阶段就已经学过了，他其实是建立在natural number上的一套普适原则。在高中阶段我们并没有研究数学归纳法的证明，其实这个涉及到了什么是natural number?我们需要使用纯数中的皮亚诺公理系统（Piano number)来证明这个定理。</li>
+<li>结构化归纳法(Structural induction)：Do induction on any recursive defined structures。</li>
+<li>良基归纳(Well-founded induction)：是基于 $2^{nd}$ 数学归纳法而推广到任意线性序的归纳法。</li>
+</ul>
+<p>下面我们给出对于结构化归纳法的定义：</p>
+<p>对于产生式：</p>
+<div>$$
+A ::= \alpha_1 \mid \dots \mid \alpha_m \mid \beta_1 A \gamma_1 \mid \dots \mid \beta_n A \gamma_n
+$$
+其中非终结符A在 $\alpha_i、1 \leq i \leq m$ 中不出现。要证明某个命题P(A)成立，只要证明如下两个步骤：
+<ol>
+<li>基础步：证明命题 P 对 $\alpha_i、1 \leq i \leq m$ 都成立；</li>
+<li>归纳步：分别假设命题 P 对 $\beta_i A \gamma_i、1 \leq i \leq n$ 中的A成立，分别证明 $P(\beta_i A \gamma_i)$ 成立。</li>
+</ol>
+<p>综合上述两个步骤，可证明命题P(A)成立。</p>
+<blockquote>
+<p><strong>例1.2</strong>  证明例1.1给定文法表示的集合A，左括号和右括号的数量相等</p></blockquote>
+<p>证明：设用符号(L(A))和(R(A))分别来表示集合A的左括号和右括号的数量。</p>
+<p>归纳基础：首先对集合A的元素进行证明，可得 $L(n) = R(n) = 0$，成立。</p>
+<p>归纳推理：设 $L(E) = R(E)$ 成立，则：</p>
+<div>$$
+L(E{+}E) = L(E) + L(+) + L(E) = R(E) + R(+) + R(E) = R(E{+}E),
+$$
+成立，同理可证 $E - E、E * E、E / E$ 成立；对 $(E)$ 进行验证，可得：
+<div>$$
+L((E)) = 1 + L(E) = R(E) + 1 = R((E)),
+$$
+成立。所以，我们可以得出对于例（1.2）给定文法所表示的集合，具有左括号等于右括号的性质。证毕。
+<h2 id="命题逻辑">命题逻辑</h2>
 <h2 id="数理逻辑谓词逻辑">数理逻辑（谓词逻辑）</h2>
 <h4 id="the-syntax">The Syntax:</h4>
 <div>$$
@@ -303,7 +338,7 @@ $$
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-06-12</span>
+                <span>更新于 2025-06-28</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

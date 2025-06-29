@@ -43,24 +43,7 @@
     <pubDate>Fri, 25 Apr 2025 13:11:20 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/vscode%E7%BC%BA%E5%B0%91module%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
-    <description><![CDATA[<p>问题定位：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">PS C:<span class="se">\U</span>sers<span class="se">\g</span>od&gt; python -u <span class="s2">&#34;c:\Users\god\Desktop\gold.py&#34;</span>
-</span></span><span class="line"><span class="cl">Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-</span></span><span class="line"><span class="cl">  File <span class="s2">&#34;c:\Users\god\Desktop\gold.py&#34;</span>, line 1, in &lt;module&gt;
-</span></span><span class="line"><span class="cl">    import requests
-</span></span><span class="line"><span class="cl">ModuleNotFoundError: No module named <span class="s1">&#39;requests&#39;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>明明已经在conda中安装了 <code>requests</code>，却依旧报错找不到，下面给出解决方案：</p>]]></description>
+    <description><![CDATA[经常遇到的module缺少问题的一个有效的解决方案]]></description>
 </item>
 <item>
     <title>自用健身计划</title>
@@ -68,60 +51,7 @@
     <pubDate>Tue, 07 Jan 2025 22:58:10 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/%E8%87%AA%E7%94%A8%E5%81%A5%E8%BA%AB%E8%AE%A1%E5%88%92/</guid>
-    <description><![CDATA[<table>
-  <thead>
-      <tr>
-          <th>腿+肩</th>
-          <th></th>
-          <th>背+二头</th>
-          <th></th>
-          <th>胸+三头+腹</th>
-          <th></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>史密斯推肩</td>
-          <td>单侧15~17.5kg</td>
-          <td>高位下拉</td>
-          <td>递减组</td>
-          <td>平板卧推</td>
-          <td>单侧20kg触胸一次</td>
-      </tr>
-      <tr>
-          <td>蝴蝶机方向飞鸟</td>
-          <td>32kg</td>
-          <td>划船</td>
-          <td></td>
-          <td>上斜卧推</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>绳索侧拉</td>
-          <td>只能上两格重量</td>
-          <td></td>
-          <td></td>
-          <td>绳索下拉</td>
-          <td>递减组</td>
-      </tr>
-      <tr>
-          <td>绳索面拉</td>
-          <td>40kg</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-  </tbody>
-</table>]]></description>
+    <description><![CDATA[研一上的日常健身计划]]></description>
 </item>
 <item>
     <title>期末复习针对pdf提问prompt</title>
@@ -129,8 +59,7 @@
     <pubDate>Sat, 21 Dec 2024 09:36:20 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E9%92%88%E5%AF%B9pdf%E6%8F%90%E9%97%AEprompt/</guid>
-    <description><![CDATA[<h2 id="期末复习针对pdf提问prompt">期末复习针对pdf提问prompt</h2>
-<p>由于12月22号就要开始考信息安全，本人12月21号才开始学习，直接看别人整理好的笔记复习感觉知识点不是很进脑子，于是想到了之前似乎也看到过一个类似的B站视频有人想做一个自我学习提升的gpt应用：</p>]]></description>
+    <description><![CDATA[针对期末pdf复习的提示词]]></description>
 </item>
 <item>
     <title>常用配置文件config汇总</title>
@@ -138,112 +67,7 @@
     <pubDate>Thu, 19 Dec 2024 16:15:20 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</guid>
-    <description><![CDATA[<p><code>.tmux.conf</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 基本设置</span>
-</span></span><span class="line"><span class="cl">set-option -g history-limit <span class="m">100000</span>  <span class="c1"># 提高历史记录限制，适合查看长时间的输出</span>
-</span></span><span class="line"><span class="cl">set-option -g mouse on  <span class="c1"># 启用鼠标支持</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#set-option -g default-shell /usr/bin/bash  # 默认使用 Bash，视情况而定</span>
-</span></span><span class="line"><span class="cl">set-option -g prefix C-a  <span class="c1"># 更改前缀键为 Ctrl + a (如不习惯可改回 C-b)</span>
-</span></span><span class="line"><span class="cl">unbind C-b  <span class="c1"># 取消 Ctrl + b 作为前缀键</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-a send-prefix  <span class="c1"># 保留 Ctrl + a 为前缀键</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 窗格管理</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> <span class="s1">&#39;&#34;&#39;</span> split-window -v
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 快速切换窗格</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> h <span class="k">select</span>-pane -L  <span class="c1"># 切换到左侧窗格</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> j <span class="k">select</span>-pane -D  <span class="c1"># 切换到下方窗格</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> k <span class="k">select</span>-pane -U  <span class="c1"># 切换到上方窗格</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> l <span class="k">select</span>-pane -R  <span class="c1"># 切换到右侧窗格</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 更改窗格大小</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r H resize-pane -L <span class="m">5</span>  <span class="c1"># 左调整窗格大小</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r J resize-pane -D <span class="m">5</span>  <span class="c1"># 下调整窗格大小</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r K resize-pane -U <span class="m">5</span>  <span class="c1"># 上调整窗格大小</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r L resize-pane -R <span class="m">5</span>  <span class="c1"># 右调整窗格大小</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 鼠标滚轮绑定</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n WheelUpPane <span class="k">if</span>-shell -F <span class="s1">&#39;#{pane_in_mode}&#39;</span> <span class="s1">&#39;send-keys -M&#39;</span> <span class="s1">&#39;copy-mode -e&#39;</span>  <span class="c1"># 鼠标滚轮向上时进入复制模式</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n WheelDownPane send-keys -M  <span class="c1"># 鼠标滚轮向下时退出复制模式</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 复制模式和粘贴</span>
-</span></span><span class="line"><span class="cl">unbind -T copy-mode-vi v  <span class="c1"># 取消 vi 风格的视觉模式</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -T copy-mode-vi v send -X begin-selection  <span class="c1"># 按 v 开始选择</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -T copy-mode-vi y send -X copy-selection  <span class="c1"># 按 y 复制内容</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> p paste-buffer  <span class="c1"># 前缀键 + p 粘贴内容</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 状态栏优化</span>
-</span></span><span class="line"><span class="cl">set-option -g status-interval <span class="m">2</span>  <span class="c1"># 每 2 秒刷新状态栏</span>
-</span></span><span class="line"><span class="cl">set-option -g status-left <span class="s2">&#34;#[fg=green](#S) &#34;</span>  <span class="c1"># 显示会话名</span>
-</span></span><span class="line"><span class="cl">set-option -g status-right <span class="s2">&#34;&#34;</span>  <span class="c1"># 不显示时间</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 改进外观</span>
-</span></span><span class="line"><span class="cl">set-option -g status-bg black  <span class="c1"># 状态栏背景色</span>
-</span></span><span class="line"><span class="cl">set-option -g status-fg green  <span class="c1"># 状态栏前景色</span>
-</span></span><span class="line"><span class="cl">set-window-option -g window-status-current-style <span class="nv">bg</span><span class="o">=</span>blue,fg<span class="o">=</span>white  <span class="c1"># 当前窗口的状态栏样式</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 快速重载配置文件</span>
-</span></span><span class="line"><span class="cl"><span class="nb">bind</span> r source-file ~/.tmux.conf <span class="se">\;</span> display-message <span class="s2">&#34;Tmux 配置已重载&#34;</span>  <span class="c1"># 前缀键 + r 重载配置</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>.vimrc</code></p>]]></description>
+    <description><![CDATA[配置文件：.tmux.conf、.vimrc]]></description>
 </item>
 <item>
     <title>Git常用命令</title>
@@ -251,9 +75,7 @@
     <pubDate>Sat, 14 Dec 2024 15:15:20 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-    <description><![CDATA[<ol>
-<li>
-<p><code>git pull --rebase</code>：用于 GitHub 上有多余的提交没有被本地同步，而本地又有了新的commit，此时直接 git pull 会导致 git merge 导致历史树过于复杂。而 git pull &ndash;rebase 则可以将历史树变成线性的。</p>]]></description>
+    <description><![CDATA[列举一些Git常用命令]]></description>
 </item>
 <item>
     <title>算法学习自用板子</title>
@@ -261,13 +83,7 @@
     <pubDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</guid>
-    <description><![CDATA[<p><strong>注意</strong>：有三级标题的知识点说明已经学完，如果只有二级标题说明这个知识点还未收录经典题目进行整理学习，敬请期待&hellip;</p>
-<p>题目格式模板：</p>
-<h3 id="acwing">AcWing</h3>
-<h4 id="题目描述">题目描述</h4>
-<blockquote>
-<h3 id="1064-小国王">1064. 小国王</h3>
-<p>xxx</p>]]></description>
+    <description><![CDATA[根据y总算法基础课、算法提高课、Leetcode整理出来的算法模板，还在不断更新中&hellip;]]></description>
 </item>
 </channel>
 </rss>

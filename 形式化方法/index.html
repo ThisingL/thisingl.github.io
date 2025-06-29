@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "cs课程","wordcount":  3027 ,
+                        }],"genre": "posts","keywords": "cs课程","wordcount":  3275 ,
         "url": "https:\/\/example.com\/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95\/","datePublished": "2025-06-12T17:04:29+08:00","dateModified": "2025-06-28T11:48:02+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">形式化方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AF%BE%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>课程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3027 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3275 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;
     
 
@@ -148,14 +148,25 @@
         <li><a href="#结构化归纳法">结构化归纳法</a></li>
       </ul>
     </li>
-    <li><a href="#命题逻辑">命题逻辑</a></li>
-    <li><a href="#数理逻辑谓词逻辑">数理逻辑（谓词逻辑）</a>
+    <li><a href="#命题逻辑">命题逻辑</a>
+      <ul>
+        <li><a href="#证明系统">证明系统</a></li>
+        <li><a href="#推导规则">推导规则</a></li>
+        <li><a href="#语义系统">语义系统</a></li>
+      </ul>
+    </li>
+    <li><a href="#谓词逻辑">谓词逻辑</a>
       <ul>
         <li>
           <ul>
             <li><a href="#the-syntax">The Syntax:</a></li>
             <li><a href="#intuition">Intuition:</a></li>
+          </ul>
+        </li>
+        <li><a href="#推导规则-1">推导规则</a>
+          <ul>
             <li><a href="#bound-free-variables">Bound free variables</a></li>
+            <li><a href="#alpha---重命名">$\alpha$ - 重命名</a></li>
             <li><a href="#sat">SAT</a></li>
             <li><a href="#theory">theory</a></li>
             <li><a href="#smt">SMT</a></li>
@@ -275,7 +286,39 @@ L((E)) = 1 + L(E) = R(E) + 1 = R((E)),
 $$
 成立。所以，我们可以得出对于例（1.2）给定文法所表示的集合，具有左括号等于右括号的性质。证毕。
 <h2 id="命题逻辑">命题逻辑</h2>
-<h2 id="数理逻辑谓词逻辑">数理逻辑（谓词逻辑）</h2>
+<h3 id="证明系统">证明系统</h3>
+<h3 id="推导规则">推导规则</h3>
+<div>$$
+\frac{}{\Gamma, P \vdash P} \ (\mathrm{Var}) \quad\quad\quad\quad\quad\quad \frac{}{\Gamma \vdash \top} \ (T1)
+$$
+<div>$$
+\frac{\Gamma \vdash \bot}{\Gamma \vdash P} \ (\bot E) \quad\quad\quad\quad\quad\quad \frac{\Gamma \vdash P \quad\quad \Gamma \vdash Q}{\Gamma \vdash P \land Q} \ (\land I)
+$$
+<div>$$
+\frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \ (\land E1) \quad\quad\quad\quad\quad\quad \frac{\Gamma \vdash P \land Q}{\Gamma \vdash Q} \ (\land E2)
+$$
+<div>$$
+\frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q} (\lor I1)
+\quad\quad\quad\quad\quad\quad
+\frac{\Gamma \vdash Q}{\Gamma \vdash P \lor Q} (\lor I2)
+$$
+<div>$$
+\frac{\Gamma, P \vdash Q}{\Gamma \vdash P \to Q} (\to I)
+\quad\quad\quad\quad
+\frac{\Gamma \vdash P \to Q \quad\quad \Gamma \vdash P}{\Gamma \vdash Q} (\to E)
+$$
+<div>$$
+\frac{\Gamma, P \vdash \perp}{\Gamma \vdash \neg P} (\neg I)
+\quad\quad\quad\quad\quad\quad\quad
+\frac{\Gamma \vdash P \quad\quad \Gamma \vdash \neg P}{\Gamma \vdash \perp} (\neg E)
+$$
+<div>$$
+\frac{\Gamma \vdash P \lor Q \quad\quad \Gamma, P \vdash R \quad\quad \Gamma, Q \vdash R}{\Gamma \vdash R} (\lor E)
+\quad\quad\quad
+\frac{\Gamma \vdash \neg \neg P}{\Gamma \vdash P} (\neg\neg E)
+$$
+<h3 id="语义系统">语义系统</h3>
+<h2 id="谓词逻辑">谓词逻辑</h2>
 <h4 id="the-syntax">The Syntax:</h4>
 <div>$$
 \begin{aligned}
@@ -317,6 +360,17 @@ P &::= R \\
 $$
 很明显：上面这套谓词逻辑是数论的一种抽象，这种Syntax是由逻辑学派创建出来的。逻辑学已经有2000多年的历史了，最终确定下来这种形式，其实是对其中的抽象性和具体性的一种平衡。如果太讲究抽象性，那么就无法得出什么meaningful的结论，但如果太讲究具体性，就有可能会偏向于某一理论。
 <p>谓词逻辑其实就是从数论、集合论、矩阵理论等等中抽象出了一个共性语法规则，他的好处就是如果能正面共性成立，就无需去将每一个底层理论继续证明，就比如哥德尔不完备性定理就是在数理逻辑框架下证明，所以对于任意框架都成立。</p>
+<h3 id="推导规则-1">推导规则</h3>
+<div>$$
+\frac{\Gamma, x \vdash P}{\Gamma \vdash \forall x. P} \ (\forall I)
+\quad \quad \quad \quad \quad\quad \quad\quad
+\frac{\Gamma \vdash \forall x. P}{\Gamma \vdash P[x \mapsto E]} \ (\forall E)
+$$
+<div>$$
+\frac{\Gamma \vdash P[x \mapsto E]}{\Gamma \vdash \exists x. P} \ (\exists I)
+\quad \quad \quad
+\frac{\Gamma \vdash \exists x. P \quad\quad \Gamma, x, P \vdash Q}{\Gamma \vdash Q} \ (\exists E)
+$$
 <h4 id="bound-free-variables">Bound free variables</h4>
 <p>Bound variables （绑定变量）：默认只绑定最近的一个命题</p>
 <p>Free variables （自由变量）</p>
@@ -336,7 +390,8 @@ $$
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="sat">SAT</h4>
+</div><h4 id="alpha---重命名">$\alpha$ - 重命名</h4>
+<h4 id="sat">SAT</h4>
 <p>SAT（可满足性理论）：given a proposition P, is it satisfiable?</p>
 <p>SAT for 命题逻辑:</p>
 <ul>
@@ -345,7 +400,7 @@ $$
 <p>SAT for 谓词逻辑:</p>
 <ul>
 <li>不可判定/理论上证明不可能有算法可以在合理时间求解/不可解</li>
-<li>这就引导我们去思考：有没有可能通过我们使用一些特殊的子集，对这个子集进行求解仍然是可解的呢？其实这就是下面我们要讲的 <strong>theory</strong></li>
+<li>这就引导我们去思考：有没有可能通过我们使用一些特殊的子集，对这个子集进行求解仍然是可解的呢？其实这就是下面我们要讲的<strong>theory</strong></li>
 </ul>
 <h4 id="theory">theory</h4>
 <h4 id="smt">SMT</h4>

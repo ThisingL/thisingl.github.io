@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "cs课程","wordcount":  3275 ,
+                        }],"genre": "posts","keywords": "cs课程","wordcount":  5224 ,
         "url": "https:\/\/example.com\/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95\/","datePublished": "2025-06-12T17:04:29+08:00","dateModified": "2025-06-28T11:48:02+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">形式化方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AF%BE%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>课程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3275 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5224 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;
     
 
     
@@ -152,9 +152,17 @@
         </li>
         <li><a href="#命题逻辑">命题逻辑</a>
           <ul>
+            <li><a href="#语法规则">语法规则</a></li>
             <li><a href="#证明系统">证明系统</a></li>
             <li><a href="#推导规则">推导规则</a></li>
-            <li><a href="#语义系统">语义系统</a></li>
+            <li><a href="#sat问题">SAT问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#构造逻辑">构造逻辑</a>
+          <ul>
+            <li><a href="#语法规则-1">语法规则</a></li>
+            <li><a href="#证明系统-1">证明系统</a></li>
+            <li><a href="#推导系统">推导系统</a></li>
           </ul>
         </li>
         <li><a href="#谓词逻辑">谓词逻辑</a>
@@ -211,7 +219,7 @@
 <p>研究的是哪些问题是可以被计算机计算的：</p>
 <ul>
 <li>P问题：存在<em>多项式时间复杂度</em>解法的问题（比如大家常刷的LeetCode算法题）</li>
-<li>NP问题：<strong>不确定</strong>能否找到多项式时间复杂度解法，但是<em>有多项式时间复杂度的方法来验证答案是否正确</em>的问题(就比如Q:打印出集合$A$的所有子集，现有方法似乎只有穷举法，$2^n$ 的时间复杂度，但是验证某个集合是否是集合$A$的子集可以很快判定出来，因此人们不禁乐观的想(<em>^_^</em>)是否只是人们没有发现多项式的解法，而非数学意义上完全不存在这样的多项式时间算法来求解这样的NP问题)</li>
+<li>NP问题：<strong>不确定</strong>能否找到多项式时间复杂度解法，但是<em>有多项式时间复杂度的方法来验证答案是否正确</em>的问题(就比如Q:打印出集合$A$的所有子集，现有方法似乎只有穷举法，$2^n$ 的时间复杂度，但是验证某个集合是否是集合$A$的子集可以很快判定出来，因此人们不禁乐观的想(^_^)是否只是人们没有发现多项式的解法，而非数学意义上完全不存在这样的多项式时间算法来求解这样的NP问题)</li>
 <li>NPC问题：NPC完全问题。NPC问题 $\subseteq$ NP问题,而且对于任何 $\forall x \in $ NP问题,都可以在<em>多项式时间</em>内转换或归约成某一个NPC问题。</li>
 </ul>
 <p>NPC问题是最近几十年对P?=NP问题比较大的理论突破。人们乐观的认为，只需要解决一个NPC问题，也就可以解决所有的NP问题。但是可惜的是，直到现在，人们还是没有解决出一个NPC问题。所以慢慢的更多的人感觉用永远也无法找到了。</p>
@@ -290,10 +298,57 @@ L((E)) = 1 + L(E) = R(E) + 1 = R((E)),
 $$
 成立。所以，我们可以得出对于例（1.2）给定文法所表示的集合，具有左括号等于右括号的性质。证毕。
 <h2 id="命题逻辑">命题逻辑</h2>
-<h3 id="证明系统">证明系统</h3>
-<h3 id="推导规则">推导规则</h3>
+<h3 id="语法规则">语法规则</h3>
+<p>首先我们用之前学到的上下文无关文法，给出命题逻辑的语法规则：</p>
 <div>$$
-\frac{}{\Gamma, P \vdash P} \ (\mathrm{Var}) \quad\quad\quad\quad\quad\quad \frac{}{\Gamma \vdash \top} \ (T1)
+P ::= \top \mid \bot \mid x \mid P \land P \mid P \lor P \mid P \to P \mid \lnot P
+$$
+符号 $\top , \bot , x$ 分别表示逻辑常量“真”，逻辑常量“假”，和原子命题变量。这三种语法形式都是基本的，因此我们可称它们为原子命题（其实就是上面的*终结符*）。
+<p>后面4个是通过连接词连接子命题，而构成复合命题。</p>
+<h3 id="证明系统">证明系统</h3>
+<p>我们使用<strong>自然演绎系统</strong>这种形式化的逻辑证明方式系统来作为命题逻辑的证明系统。</p>
+<p>首先我们需要先确定一些假定的推理规则，然后利用这些规则，在假定的一个真前提下，得出真结论。这里<em>假定的真前提</em>就是所谓的环境。（我们不关心这些前提实际的真假，只是在推理过程中假定他们为真）</p>
+<p>定义 $2.1$（环境） 环境 $\Gamma$ 是由$n，n\ge 0$，个命题构成的命题列表</p>
+<div>$$
+\Gamma = P_1, \ldots, P_n
+$$
+特别的，若 $n=0$,我们称 $\Gamma$ 为空环境。
+<p>定义 $2.2$(断言) 断言是由环境 $\Gamma$，和命题 $P$ 构成的元组</p>
+<div>$$
+\Gamma \vdash P
+$$
+$\vdash $ 是推导符号，也即环境 $\Gamma$ 为真可以断言得到命题 $P$ 为真。
+<p>定义 $2.3$(证明规则) 证明规则是形如</p>
+<div>$$
+\frac{\Gamma_1 \vdash P_1 \quad \dots \quad \Gamma_n \vdash P_n}{\Gamma \vdash P} \ \ \ \ (\text{Rule-Name})
+$$
+的一条公式，其中 $n \ge 0$。
+<p>证明规则由三部分组成：</p>
+<ul>
+<li>规则的前提：横线上方的 $n$ 条断言</li>
+<li>规则的结论：横线下方唯一的断言</li>
+<li>Rule-Name：规则的名字，唯一的表示了该规则</li>
+</ul>
+<h3 id="推导规则">推导规则</h3>
+<p>首先我们来看看最简单的变量规则，它是一条公理，也就是这个规则结论的推出是不需要前提的：</p>
+<div>$$
+\frac{}{\Gamma, P \vdash P} \ (\mathrm{Var})
+$$
+显然如果命题$P$在环境中出现，根据定义就可以推出$P$成立。
+<p>下面是真引入规则：</p>
+<div>$$
+\frac{}{\Gamma \vdash \top} \ (\top I)
+$$
+它也是一条公理，表示在任意环境 $\Gamma$ 中，命题 $\top$ 都无条件成立。
+<p>接下来我们来看看假消除规则：</p>
+<div>$$
+\frac{\Gamma \vdash \bot}{\Gamma \vdash P} \ (\bot E)
+$$
+可以理解为环境 $\Gamma$ 能推出 “假”，即 $\Gamma$ 中包含矛盾（比如同时有 $A$ 和 $\neg A$），那么环境 $\Gamma$ 能推出**任意命题** $P$（无论 $P$ 本身是否合理）。
+<p>逻辑意义：维护 “无矛盾则有效” 的体系，它揭示了 <strong>“矛盾会摧毁推理有效性”</strong> 这一本质，迫使使用者必须保证前提的一致性，否则推理将失去意义。</p>
+<p>其他的规则我们也就不一一讲解了，下面给出完整的最基础的$14$条命题逻辑的推理规则：</p>
+<div>$$
+\frac{}{\Gamma, P \vdash P} \ (\mathrm{Var}) \quad\quad\quad\quad\quad\quad \frac{}{\Gamma \vdash \top} \ (\top I)
 $$
 <div>$$
 \frac{\Gamma \vdash \bot}{\Gamma \vdash P} \ (\bot E) \quad\quad\quad\quad\quad\quad \frac{\Gamma \vdash P \quad\quad \Gamma \vdash Q}{\Gamma \vdash P \land Q} \ (\land I)
@@ -321,7 +376,161 @@ $$
 \quad\quad\quad
 \frac{\Gamma \vdash \neg \neg P}{\Gamma \vdash P} (\neg\neg E)
 $$
-<h3 id="语义系统">语义系统</h3>
+<blockquote>
+<p>例2.1 根据上面的推导规则，画出命题 $\vdash P \to \neg \neg P$ 的证明树</p></blockquote>
+<p>从下往上根据上面的14条推理规则去找匹配的进行推导就行，最后推导到公理即可：</p>
+<div>$$
+\begin{prooftree}
+% 最上层的两个Var规则
+\AxiomC{}
+\RightLabel{(Var)}
+\UnaryInfC{$P, \neg P \vdash P$}
+\AxiomC{}
+\RightLabel{(Var)}
+\UnaryInfC{$P, \neg P \vdash \neg P$}
+% 使用¬E规则组合
+\RightLabel{$(\neg E)$}
+\BinaryInfC{$P, \neg P \vdash \bot$}
+% 使用¬I规则
+\RightLabel{$(\neg I)$}
+\UnaryInfC{$P \vdash \neg \neg P$}
+% 使用→I规则
+\RightLabel{$(\to I)$}
+\UnaryInfC{$\vdash P \to \neg \neg P$}
+\end{prooftree}
+$$
+<h3 id="sat问题">SAT问题</h3>
+<p>SAT（布尔可满足性理论）：given a proposition P, is it satisfiable?</p>
+<p><strong>第一个NPC问题</strong>(Cook-Levin, 1971)</p>
+<p>显然我们可以通过画真值表的方式来得到答案，但是时间复杂度是$O(2^n)$。</p>
+<p>那么有没有更快一点的方式让计算机来解决SAT问题呢？</p>
+<p>有的有的兄弟，那就是就是<strong>DPLL算法</strong>：</p>
+<ul>
+<li>CNF（合取范式）</li>
+<li>解析与传播
+<ul>
+<li>解析：决策</li>
+<li>传播：布尔约束传播（BCP）</li>
+</ul>
+</li>
+</ul>
+<p>所有命题公式都可以转换成 CNF 的等价公式。在布尔逻辑中，如果一个公式公式(数理逻辑)是子句的，那么它是<strong>合取范式</strong>（CNF）的。作为规范形式，它在自动定理证明中有用。</p>
+<p>例如，下列所有公式都是CNF:</p>
+<div>$$
+\begin{aligned}
+& A \land B \\
+& \neg A \land (B \lor C) \\
+& (A \lor B) \land (\neg B \lor C \lor \neg D) \land (D \lor \neg E) \\
+& (\neg B \lor C) \\
+\end{aligned}
+$$
+<p>而下列不是:</p>
+<div>$$
+\begin{aligned}
+& \neg (B \lor C) \\
+& (A \land B) \lor C \\
+& A \land (B \lor (D \land E)) \\
+\end{aligned}
+$$
+<p>上述三个公式分别等价于合取范式的下列三个公式:</p>
+<div>$$
+\begin{aligned}
+& \neg B \land \neg C \\
+& (A \lor C) \land (B \lor C) \\
+& A \land (B \lor D) \land (B \lor E) \\
+\end{aligned}
+$$
+<p>等价转换公式：</p>
+<div>$$
+\begin{aligned}
+\mathcal{E}(\top) &= \top \\
+\mathcal{E}(\bot) &= \bot \\
+\mathcal{E}(p) &= p \\
+\mathcal{E}(P \land Q) &= \mathcal{E}(P) \land \mathcal{E}(Q) \\
+\mathcal{E}(P \lor Q) &= \mathcal{E}(P) \lor \mathcal{E}(Q) \\
+\mathcal{E}(P \to Q) &= \mathcal{E}(\neg P) \lor \mathcal{E}(Q) \\
+\mathcal{E}(\neg P) &= \neg \mathcal{E}(P) \\
+\end{aligned}
+$$
+<div>$$
+\begin{aligned}
+\mathcal{N}(\top) &= \top \\
+\mathcal{N}(\bot) &= \bot \\
+\mathcal{N}(p) &= p \\
+\mathcal{N}(\neg P) &= \neg \mathcal{N}(P) \\
+\mathcal{N}(\neg \neg P) &= \mathcal{N}(P) \\
+\mathcal{N}(P \land Q) &= \mathcal{N}(P) \land \mathcal{N}(Q) \\
+\mathcal{N}(P \lor Q) &= \mathcal{N}(P) \lor \mathcal{N}(Q) \\
+\mathcal{N}(\neg (P \land Q)) &= \mathcal{N}(\neg P) \lor \mathcal{N}(\neg Q) \\
+\mathcal{N}(\neg (P \lor Q)) &= \mathcal{N}(\neg P) \land \mathcal{N}(\neg Q) \\
+\end{aligned}
+$$
+<div>$$
+\begin{aligned}
+\mathcal{C}(\top) &= \top \\
+\mathcal{C}(\bot) &= \bot \\
+\mathcal{C}(p) &= p \\
+\mathcal{C}(\neg p) &= \neg \mathcal{C}(p) \\
+\mathcal{C}(P \land Q) &= \mathcal{C}(P) \land \mathcal{C}(Q) \\
+\mathcal{C}(P \lor Q) &= \mathcal{D}\bigl(\mathcal{C}(P), \mathcal{C}(Q)\bigr) \\
+\mathcal{D}(P_1 \land P_2, Q) &= \mathcal{D}(P_1, Q) \land \mathcal{D}(P_2, Q) \\
+\mathcal{D}(P, Q_1 \land Q_2) &= \mathcal{D}(P, Q_1) \land \mathcal{D}(P, Q_2) \\
+\mathcal{D}(P, Q) &= P \lor Q \\
+\end{aligned}
+$$
+<blockquote>
+<p>例2.2 转换命题</p>
+<div>$$
+(p_1 \land \neg \neg p_2) \lor (\neg q_1 \to q_2)
+$$
+为CNF命题。</blockquote>
+<ol>
+<li>消去蕴含。</li>
+</ol>
+<div>$$
+\begin{aligned}
+\mathcal{E}\bigl(((p_1 \land \neg \neg p_2) \lor (\neg q_1 \to q_2))\bigr) 
+&= \mathcal{E}(p_1 \land \neg \neg p_2) \lor \mathcal{E}(\neg q_1 \to q_2) \\
+&= \bigl(\mathcal{E}(p_1) \land \mathcal{E}(\neg \neg p_2)\bigr) \lor \bigl(\mathcal{E}(\neg q_1) \lor \mathcal{E}(q_2)\bigr) \\
+&= (p_1 \land \neg \neg p_2) \lor (\neg \neg q_1 \lor q_2) \\
+\end{aligned}
+$$
+<ol start="2">
+<li>转换为NNF。</li>
+</ol>
+<div>$$
+\begin{aligned}
+\mathcal{N}\bigl(((p_1 \land \neg \neg p_2) \lor (\neg \neg q_1 \lor q_2))\bigr) 
+&= \mathcal{N}(p_1 \land \neg \neg p_2) \lor \mathcal{N}(\neg \neg q_1 \lor q_2) \\
+&= \bigl(\mathcal{N}(p_1) \land \mathcal{N}(\neg \neg p_2)\bigr) \lor \bigl(\mathcal{N}(\neg \neg q_1) \lor \mathcal{N}(q_2)\bigr) \\
+&= (p_1 \land p_2) \lor (q_1 \lor q_2) \\
+\end{aligned}
+$$
+<ol start="3">
+<li>等价转换为CNF</li>
+</ol>
+<div>$$
+\begin{aligned}
+\mathcal{C}\bigl(((p_1 \land p_2) \lor (q_1 \lor q_2))\bigr) 
+&= \mathcal{D}\bigl(\mathcal{C}(p_1 \land p_2), \mathcal{C}(q_1 \lor q_2)\bigr) \\
+&= \mathcal{D}(p_1 \land p_2, \mathcal{D}(q_1, q_2)) \\
+&= \mathcal{D}\bigl(p_1, \mathcal{D}(q_1, q_2)\bigr) \land \mathcal{D}\bigl(p_2, \mathcal{D}(q_1, q_2)\bigr) \\
+&= \mathcal{D}\bigl(p_1, q_1 \lor q_2\bigr) \land \mathcal{D}\bigl(q_2, q_1 \lor q_2\bigr) \\
+&= (p_1 \lor q_1 \lor q_2) \land (p_2 \lor q_1 \lor q_2) \\
+\end{aligned}
+$$
+<h2 id="构造逻辑">构造逻辑</h2>
+<p>与经典命题逻辑的区别：是否接受排中律 $\vdash P \lor \neg P$ ?</p>
+<p>也就会导致我们无法使用反证法来证明命题成立。也就是我们再也无法通过证明 $\neg P$ 成立来证明 $P$ 不成立。</p>
+<h3 id="语法规则-1">语法规则</h3>
+<div>$$
+P ::= p \mid \top \mid \bot \mid x \mid P \land P \mid P \lor P \mid P \to P
+$$
+<p>$\neg P$ 被替换为 $p \to \bot$，而不再出现。</p>
+<h3 id="证明系统-1">证明系统</h3>
+<p>同命题逻辑。</p>
+<h3 id="推导系统">推导系统</h3>
+<p>剔除了双重否定律以及$\neg$的引入和消去规则，其他都同命题逻辑。</p>
 <h2 id="谓词逻辑">谓词逻辑</h2>
 <h4 id="the-syntax">The Syntax:</h4>
 <div>$$

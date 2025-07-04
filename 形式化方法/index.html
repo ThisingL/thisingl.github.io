@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "cs课程","wordcount":  5224 ,
+                        }],"genre": "posts","keywords": "cs课程","wordcount":  5186 ,
         "url": "https:\/\/example.com\/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95\/","datePublished": "2025-06-12T17:04:29+08:00","dateModified": "2025-06-28T11:48:02+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">形式化方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AF%BE%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>课程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5224 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5186 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;
     
 
@@ -380,24 +380,17 @@ $$
 <p>例2.1 根据上面的推导规则，画出命题 $\vdash P \to \neg \neg P$ 的证明树</p></blockquote>
 <p>从下往上根据上面的14条推理规则去找匹配的进行推导就行，最后推导到公理即可：</p>
 <div>$$
-\begin{prooftree}
-% 最上层的两个Var规则
-\AxiomC{}
-\RightLabel{(Var)}
-\UnaryInfC{$P, \neg P \vdash P$}
-\AxiomC{}
-\RightLabel{(Var)}
-\UnaryInfC{$P, \neg P \vdash \neg P$}
-% 使用¬E规则组合
-\RightLabel{$(\neg E)$}
-\BinaryInfC{$P, \neg P \vdash \bot$}
-% 使用¬I规则
-\RightLabel{$(\neg I)$}
-\UnaryInfC{$P \vdash \neg \neg P$}
-% 使用→I规则
-\RightLabel{$(\to I)$}
-\UnaryInfC{$\vdash P \to \neg \neg P$}
-\end{prooftree}
+\begin{array}{c}
+\dfrac{
+ \dfrac{
+  \dfrac{
+   \dfrac{}{P, \neg P \vdash P}\text{(Var)}
+   \quad
+   \dfrac{}{P, \neg P \vdash \neg P}\text{(Var)}
+  }{P, \neg P \vdash \bot}(\neg E)
+ }{P \vdash \neg \neg P}(\neg I)
+}{\vdash P \to \neg \neg P}(\to I)
+\end{array}
 $$
 <h3 id="sat问题">SAT问题</h3>
 <p>SAT（布尔可满足性理论）：given a proposition P, is it satisfiable?</p>

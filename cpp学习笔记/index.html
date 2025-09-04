@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>cpp学习笔记 - DeepThought | 自学空间</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+  <meta property="og:site_name" content="DeepThought | 自学空间">
+  <meta property="og:title" content="cpp学习笔记">
+  <meta property="og:description" content="自己在学习cpp的过程中整理的一些笔记">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
+    <meta property="article:modified_time" content="2025-09-04T19:49:17+08:00">
+    <meta property="article:tag" content="编程">
+    <meta property="og:image" content="https://example.com/images/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/images/logo.png">
+  <meta name="twitter:title" content="cpp学习笔记">
+  <meta name="twitter:description" content="自己在学习cpp的过程中整理的一些笔记">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/favicon-logo-u.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://example.com/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "cpp学习笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "编程","wordcount":  4742 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-09-04T19:49:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
+                "@type": "Person",
+                "name": "Thising"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DeepThought | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/thisingl/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DeepThought | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/thisingl/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4742 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;次阅读</span>
+        
+    
+
+</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#cpp学习笔记">cpp学习笔记</a>
+      <ul>
+        <li><a href="#学习资源">学习资源</a></li>
+        <li><a href="#1-cpp语法">1. cpp语法</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#11-基本结构">1.1 基本结构</a></li>
+                <li><a href="#12-编译链接头文件">1.2 编译、链接、头文件</a></li>
+                <li><a href="#13-pointer">1.3 pointer</a></li>
+                <li><a href="#14-reference">1.4 reference</a></li>
+                <li><a href="#15-class">1.5 class</a></li>
+                <li><a href="#16-static">1.6 static</a>
+                  <ul>
+                    <li><a href="#161-在类和结构体之外">1.6.1 在类和结构体之外</a></li>
+                    <li><a href="#162-在类和结构体里">1.6.2 在类和结构体里</a></li>
+                  </ul>
+                </li>
+                <li><a href="#17-enum">1.7 enum</a></li>
+                <li><a href="#18-constructor">1.8 constructor</a></li>
+                <li><a href="#19-destructor">1.9 destructor</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="cpp学习笔记">cpp学习笔记</h1>
+<h2 id="学习资源">学习资源</h2>
+<p>视频地址：<a href="https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb" target="_blank" rel="noopener noreffer ">C++教程-油管大佬 The Cherno C++教程</a></p>
+<h2 id="1-cpp语法">1. cpp语法</h2>
+<h4 id="11-基本结构">1.1 基本结构</h4>
+<p>下面有一个简单的cpp程序，我们来看看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;b.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">a</span> <span class="o">=</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于cpp兼容着c，因此基本语法并没有很明显的区别，这里需要注意的是cpp的头文件和c语言的标准库文件确实是有区别的，c语言的头文件一般是<code>#include &lt;stdio.h&gt;</code>，而cpp的标准库文件一般没有<code>.h</code>作为结尾，这是为了和c语言有所区分。</p>
+<p>这时候又会有人问了，那为什么cpp中又有<code>&lt;&gt;</code>又有<code>&quot;&quot;</code>这两种include写法呢？其实就是为了让编译器知道，哪些头文件需要从用户的仓库目录里面找，哪些从gcc的库函数里面去找。</p>
+<h4 id="12-编译链接头文件">1.2 编译、链接、头文件</h4>
+<p>刚刚给的例子太简单了，这次我们给一个稍微复杂一点的,涉及到调用另一个文件中的方法的代码：</p>
+<p>main.cc:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">funcB</span><span class="p">();</span>        <span class="c1">// 调用b.cc中的方法funcB();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果设计到一个项目中有两个文件，而且main函数需要调用另一个文件中的funcA方法，编译器到底怎么样才能将这个main函数成功运行呢？</p>
+<p>那么我们就得了解编译器到底干了什么事情。简单来说主要就是两件事：<strong>编译</strong>和<strong>链接</strong></p>
+<p>编译其实就是编译器（如 <code>g++</code>）把 <em>源代码</em>（<code>.cpp</code>）转化为 <em>目标文件</em>（<code>.o</code>/<code>.obj</code>），这个过程中包含几个子阶段：</p>
+<ol>
+<li>预处理 (Preprocessing)
+<ul>
+<li>处理 <code>#include</code>、<code>#define</code>、<code>#if</code> 等预处理指令。</li>
+<li>例如：<code>#include &quot;b.h&quot;</code> 会直接把 <code>b.h</code> 的内容拷贝进来。</li>
+<li>预处理后的文件其实是一个纯 C++ 源文件。</li>
+</ul>
+</li>
+<li>词法/语法分析
+<ul>
+<li>检查语法是否正确，比如 <code>int x = &quot;abc&quot;;</code> 就会报错。</li>
+<li>把代码拆成语法树（AST）。</li>
+</ul>
+</li>
+<li>语义分析 + 生成中间表示
+<ul>
+<li>确认类型是否匹配，作用域是否正确。</li>
+<li>例如：声明了函数 <code>void f();</code> 但是在同一个 <code>.cpp</code> 文件里没有定义，不会报错，只会标记“这个符号需要外部解析”。</li>
+</ul>
+</li>
+<li>生成目标文件 (.o)
+<ul>
+<li>每个 <code>.cpp</code> 编译后，都会生成对应的 <code>.o</code>。</li>
+<li><code>.o</code> 文件里包含了 <em>机器指令 + 符号表</em>（符号表记录了函数和变量的名字、是否已经实现、还是等待外部提供）。</li>
+</ul>
+</li>
+</ol>
+<p>看了上面的介绍，你认为上面的代码使用<code>g++ -c main.cpp -o a.o</code>能成功编译吗？</p>
+<p>答案当然是 No，根据上面编译过程的分析可以知道，想要使用一个当前文件没有实现的方法，我们需要声明这个函数，我们把代码更新为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">funcB</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">funcB</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在我们重新编译：<code>g++ -c main.cpp -o a.o</code></p>
+<p>这次果然成功了，生成了<code>a.o</code>这个目标文件，but oh no, <code>b.cc</code>我甚至还没写啊，what crazy! 这样居然编译都没报错，因此你应该理解了下面这句话了：</p>
+<p>👉 这个阶段 <strong>不会报“未定义引用（undefined reference）”错误</strong>，因为编译器只管当前 <code>.cpp</code> 文件，不管别的文件到底有没有<code>funcB()</code>的具体实现。</p>
+<p>至于<code>funcB()</code>到底实现在哪了，那就是接下来<strong>链接</strong>阶段需要关心的。</p>
+<p>链接阶段其实就是链接器（<code>ld</code>）把所有 <code>.o</code> 文件和库文件 <code>.a</code> / <code>.so</code> 组合在一起，生成一个<em>可执行文件</em>。</p>
+<ol>
+<li><strong>符号解析</strong>
+<ul>
+<li>每个 <code>.o</code> 文件都有符号表（symbol table）。</li>
+<li>如果某个 <code>.o</code> 里声明了 <code>extern void foo();</code>，但是没有实现，链接器会在别的 <code>.o</code> 或库里找 <code>foo</code> 的定义。</li>
+</ul>
+</li>
+<li><strong>符号重定位</strong>
+<ul>
+<li>不同目标文件中的函数、变量可能会分布在不同内存区域，链接器会把调用地址改成实际的地址。</li>
+<li>比如：在 <code>main.o</code> 里有 <code>call foo</code>，但是不知道 <code>foo</code> 在哪，链接器会把它改成 <code>call 0x400123</code> 这种真实地址。</li>
+</ul>
+</li>
+<li><strong>生成可执行文件</strong>
+<ul>
+<li>所有引用都能匹配 → 链接成功，得到 ELF（Linux）或 PE（Windows）格式的可执行文件。</li>
+<li>如果找不到 → 报错 <code>undefined reference to 'foo'</code>。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>注：what is<code>extern</code>?</p>
+<p>👉 它告诉编译器：
+“这个变量/函数的定义在别的地方，我这里只是声明一下。”</p>
+<p>换句话说，<code>extern</code> 只做 声明 (declaration)，不做 定义 (definition)。
+最终在链接阶段，链接器会去别的翻译单元（别的 .o 文件、库）里找到真正的实现。</p>
+<p>（1）全局变量跨文件使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// a.cpp
+</span></span><span class="line"><span class="cl">int g_value = 42;   // 定义（真正分配内存）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// b.cpp
+</span></span><span class="line"><span class="cl">extern int g_value; // 声明（不分配内存）
+</span></span><span class="line"><span class="cl">void print() {
+</span></span><span class="line"><span class="cl">    std::cout &lt;&lt; g_value &lt;&lt; std::endl;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编译时 <code>b.cpp</code> 看到 <code>extern int g_value;</code>，知道有个 <code>int</code> 变量存在，但不生成内存。
+链接时，它去 <code>a.o</code> 找到 <code>g_value</code> 的定义，拼在一起 ✅。</p>
+<hr>
+<p>（2）函数默认就是 <code>extern</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// a.cpp
+</span></span><span class="line"><span class="cl">void foo() {}  // 定义
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// b.cpp
+</span></span><span class="line"><span class="cl">void foo();    // 声明（其实相当于 extern void foo();）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>函数声明本质上都带 <code>extern</code>，所以你不写也行</p></blockquote>
+<p>这时候如果我们没有实现<code>b.cpp</code>直接去把<code>g++ main.cc -o main</code></p>
+<p>我们会发现报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">(</span>TraeAI-4<span class="o">)</span> ~/Downloads/cpp <span class="o">[</span>126<span class="o">]</span> $ g++ main.cc -o main
+</span></span><span class="line"><span class="cl">Undefined symbols <span class="k">for</span> architecture arm64:
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;funcB()&#34;</span>, referenced from:
+</span></span><span class="line"><span class="cl">      _main in main-331bbe.o
+</span></span><span class="line"><span class="cl">ld: symbol<span class="o">(</span>s<span class="o">)</span> not found <span class="k">for</span> architecture arm64
+</span></span><span class="line"><span class="cl">clang: error: linker <span class="nb">command</span> failed with <span class="nb">exit</span> code <span class="m">1</span> <span class="o">(</span>use -v to see invocation<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这说明虽然上面的编译阶段成功了，但是链接阶段却有问题，提示找不到<code>funcB()</code>的具体实现</p>
+<p>这时候我们就需要实际去实现我们的<code>b.cc</code>文件了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">funcB</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;B&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在我们再次运行<code>g++ main.cc b.cc -o main</code>，构建成功了!</p>
+<p>聪明的同学肯定还有疑问啊，那c以及cpp文件中随处可见的<code>.h</code>文件，在项目构建时会发生什么呢？</p>
+<p>包括还有人有疑问，每次写我们都得将函数声明<code>void funcB();</code>写在文件的上面吗，那不是非常的丑陋，如果调用的函数非常多的话？</p>
+<p>其实头文件<code>.h</code>就是为了解决这个问题的，也就是我们上面提到的编译过程中的预处理阶段。在预处理阶段，编译器看到了<code>#include</code>等预处理指令，就会 copy 这个文件中的内容到这个位置，对就是这么朴实无华的复制粘贴，因此一个大胆的想法就是，我们为什么不吧函数声明专门放在一个<code>.h</code>文件中呢，那么我们只需要在文件前面使用<code>#include &quot;b.h&quot;</code>，就可以实现函数声明的作用，是不是很天才！</p>
+<p>另外要注意的是，<code>.h</code>文件并没有被实际编译，因此我们依旧运行<code>g++ main.cc b.cc -o main</code>便可以构建成功了。以及<code>b.cc</code>的头文件不一定是<code>b.h</code>，也可以命名为<code>c.h</code>，因为本质上<code>b.h</code>的内容只是被 copy 进了<code>main.cc</code>中了，他的使命在编译阶段便结束了，至于怎么找到<code>funcB()</code>的实际实现，就是靠链接阶段的符号表了。</p>
+<p>以及头文件中可能会造成重复声明的问题，这里只需要在头文件的开头加上一行<code>#pragma once</code>就可以解决问题了。至于古老的项目中，你可能还会见到下面这种写法，只是不太推荐：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#ifndef C_H
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define C_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">funcB</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="13-pointer">1.3 pointer</h4>
+<p>首先我们来下一个定义：<strong>指针只是存储内存地址的整数</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">var</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因此本质上来看，为什么变量要指定类型呢？答案是需要知道实际用几个字节来存储该变量的值。那么指针指定的变量难道也是为了告诉编译器需要用几个字节来存储吗？No，No，No，如果真这么简单我也不会在这里花一段话来讲了，本质上来看指针存的只是内存中某一个位置的地址值，难道地址大小还不一样吗计算机哈哈哈，所以比如如果是64位的机器，那么默认指针都需要用8B来存啊，这都不用用户去说编译器就能自动知道。但是拿到这个地址值之后，你知道要读多少位吗？是读8位的char，还是32位的int呢？这就需要事先告诉编译器了，因此指针的类型是告诉编译器如果<code>*ptr</code>，编译器需要去读多少字节。</p>
+<h4 id="14-reference">1.4 reference</h4>
+<p>首先我们来下一个定义：<strong>引用只是指针的语法糖</strong>。</p>
+<p>可以简单理解为引用是一种别名，引用只能引用已经存在的变量，引用本身不是创建变量，因此它并<em>不占用内存</em>。他们并没有真正的存储空间。</p>
+<p>要注意的是，c语言中常见的<code>&amp;a</code>的是意思是变量a的地址，引用是跟在<em>类型</em>后面的，实际是类型的一部分，我们会看到<code>int&amp; ref = a</code>，这里就是引用类型了。</p>
+<p>而至于什么时候是引用，什么时候是地址，那就看<strong>上下文</strong>了，跟在类型后面就是引用，在变量前面就是地址。</p>
+<p>这里的<code>ref</code>变量实际不存在，他只存在于我们的源代码中。如果你现在编译这段代码，不会得到两个变量<code>a</code>和<code>ref</code>，你只会得到<code>a</code>，我们只是把所有对<code>ref</code>的操作都加到<code>a</code>上。</p>
+<p>因此之前我们如果想传入一个值，并且在函数内部修改这个值，需要用到指针，并且看着有点乱.现在我们就可以优雅的用引用传递了（Java中对对象默认自动支持引用传递）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">a</span> <span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后要说的一点是，引用只能绑定一次，不能中途更换引用的变量，要想更换只能使用功能更强大，但是也更复杂的指针了。</p>
+<h4 id="15-class">1.5 class</h4>
+<p>很多人看到c++中的<code>class</code>，经常会想到c语言中大名鼎鼎的<code>struct</code>，所以他们之间有什么区别呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 和下面的class写法等价
+</span></span></span><span class="line"><span class="cl"><span class="c1">// struct Player {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     int x, y;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     int speed;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// };
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Player</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">speed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Player</span> <span class="n">player</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">player</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">player</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">player</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">player</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">player</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">player</span><span class="p">.</span><span class="n">speed</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面代码中的Player的结构体和类的作用是一摸一样的，我们就能看到一个最明显的区别：<code>class</code>默认内部都是<code>private</code>的，如果想要<code>public</code>需要声明；而<code>struct</code>则恰好相反。</p>
+<p>所以说对于是用<code>class</code>还是<code>struct</code>，如果不是为了类的继承多态等高级特性，那这两个基本没有区别了。那就看个人的编程风格了，如果他只是一种只表示变量的简单组织结构，比如基本的数据结构，就可以考虑只使用简单的<code>struct</code>。</p>
+<p>下面未来介绍类的其他特性，我们先给出一个简单的<code>log</code>类，它将会随着我们新的语法特性的介绍而逐渐被优化，现在代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Log</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">log_level</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">LogLevelError</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">LogLevelWarning</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">LogLevelInfo</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetLevel</span><span class="p">(</span><span class="kt">int</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log_level</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Error</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">log_level</span> <span class="o">&gt;=</span> <span class="n">LogLevelError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[ERROR]: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Warn</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">log_level</span> <span class="o">&gt;=</span> <span class="n">LogLevelWarning</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[WARNING]: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Info</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">log_level</span> <span class="o">&gt;=</span> <span class="n">LogLevelInfo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[INFO]: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Log</span> <span class="n">log</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">log</span><span class="p">.</span><span class="n">LogLevelInfo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;called object type &#39;int&#39; is not a function or function pointer&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="s">&#34;default member initializer for non-static data member is a C++11 extension [-Wc++11-extensions]&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&#34;1 warnings and 1 errors generated.&#34;</span><span class="p">);</span>   
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="16-static">1.6 static</h4>
+<p>和引用一样，<code>static</code>在不同的语境下的含义也是不一样的。</p>
+<h5 id="161-在类和结构体之外">1.6.1 在类和结构体之外</h5>
+<p>对于在类和结构体之外使用<code>static</code>，它的作用就是将你声明的该符号不对外链接，这意味着它只在你定义他的这个文件中起作用。</p>
+<p>这种情况的好处是对于cpp，如果你链接的两个文件中，有一个同名的变量，就会报错，在链接阶段，这时候只需要将一个变量声明为<code>static</code>就行。</p>
+<p>因此一个编程建议是：除非你想要将一个文件跨文件链接，否则尽量将你的函数和变量声明为静态。</p>
+<h5 id="162-在类和结构体里">1.6.2 在类和结构体里</h5>
+<p>这种情况就分为静态变量和静态方法两种了。</p>
+<p>类和结构体中的静态变量是所有实例共有的，每个实例有的是一个副本，访问静态变量需要通过<code>类名::静态变量</code>来访问。</p>
+<p>静态方法的访问方式和上面一样，静态方法中不能访问类中的非静态变量。这个很好理解吧，因为静态方法同样不需要绑定实例，但是非静态变量是和实例有关的，显然是冲突的。</p>
+<h4 id="17-enum">1.7 enum</h4>
+<p>这里我们先讲普通的enum：</p>
+<p>enum 的作用就是可以统一管理一些变量，将他们映射为整数（注意只能映射为整数），同时这个值都是如果未指定，默认是从0开始递增。</p>
+<p>同时我们还可以通过<code>:类型</code>来指定值的实际存储类型，当然float不行。这样可以使用<code>char</code>来省空间有时候。就像下面写法这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">enum</span> <span class="nc">Status</span> <span class="o">:</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Pending</span> <span class="o">=</span> <span class="mi">65</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Success</span><span class="p">,</span> <span class="n">Failed</span><span class="p">,</span>   <span class="c1">// Success=66,默认递增
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Status</span> <span class="n">e</span> <span class="o">=</span> <span class="n">Success</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">==</span> <span class="n">Success</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">e</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样我们声明出来的<code>Status e</code>也不怕别人往里面写错误的值了，如果不用<code>enum</code>，直接通过<code>int e</code>，那么用户可以随意写不在<code>enum</code>范围内的值，比如1000，这样也不用写范围判断了。</p>
+<p>有了这个工具，我们也就可以把之前写的简陋的<code>log</code>类来更新了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Log</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">enum</span> <span class="nc">Level</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LevelError</span><span class="p">,</span> <span class="n">LevelWarn</span><span class="p">,</span> <span class="n">LevelInfo</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetLevel</span><span class="p">(</span><span class="n">Level</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log_level</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Error</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">log_level</span> <span class="o">&gt;=</span> <span class="n">LevelError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[ERROR]: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Warn</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">log_level</span> <span class="o">&gt;=</span> <span class="n">LevelWarn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[WARNING]: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Info</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">log_level</span> <span class="o">&gt;=</span> <span class="n">LevelInfo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[INFO]: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Level</span> <span class="n">log_level</span> <span class="o">=</span> <span class="n">LevelInfo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Log</span> <span class="n">log</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">Log</span><span class="o">::</span><span class="n">LevelInfo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;called object type &#39;int&#39; is not a function or function pointer&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="s">&#34;default member initializer for non-static data member is a C++11 extension [-Wc++11-extensions]&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&#34;1 warnings and 1 errors generated.&#34;</span><span class="p">);</span>   
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>TODO：补充一下 enum class</p>
+<h4 id="18-constructor">1.8 constructor</h4>
+<p>构造函数就是在创建对象的时候默认执行的方法，如果没有指定构造函数，就会默认一个空的<code>publib</code>类型的构造函数。</p>
+<h4 id="19-destructor">1.9 destructor</h4>
+<p>构造函数的evil twin：析构函数：</p>
+<p>当销毁对象时，会自动运行析构函数</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-09-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="cpp学习笔记" data-hashtags="编程"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-hashtag="编程"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="cpp学习笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="cpp学习笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="cpp学习笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%BC%96%E7%A8%8B/">编程</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA/" class="prev" rel="prev" title="算法理论"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>算法理论</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div>
+
+            <div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.3/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@15.1.2/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://valine.hugoloveit.com","visitor":false}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

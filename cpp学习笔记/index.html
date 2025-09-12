@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-09-04T19:49:17+08:00">
+    <meta property="article:modified_time" content="2025-09-12T18:29:17+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  4742 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-09-04T19:49:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  6077 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-09-12T18:29:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4742 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6077 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;
     
 
     
@@ -161,6 +161,11 @@
                 <li><a href="#17-enum">1.7 enum</a></li>
                 <li><a href="#18-constructor">1.8 constructor</a></li>
                 <li><a href="#19-destructor">1.9 destructor</a></li>
+                <li><a href="#110-inheritance">1.10 inheritance</a></li>
+                <li><a href="#111-virtual-function">1.11 virtual function</a></li>
+                <li><a href="#112-pure-virtual-function">1.12 pure virtual function</a></li>
+                <li><a href="#113-visibility">1.13 visibility</a></li>
+                <li><a href="#114-string">1.14 string</a></li>
               </ul>
             </li>
           </ul>
@@ -320,7 +325,7 @@
 </span></span><span class="line"><span class="cl">// b.cpp
 </span></span><span class="line"><span class="cl">extern int g_value; // 声明（不分配内存）
 </span></span><span class="line"><span class="cl">void print() {
-</span></span><span class="line"><span class="cl">    std::cout &lt;&lt; g_value &lt;&lt; std::endl;
+</span></span><span class="line"><span class="cl"> std::cout &lt;&lt; g_value &lt;&lt; std::endl;
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -713,13 +718,158 @@
 <h4 id="18-constructor">1.8 constructor</h4>
 <p>构造函数就是在创建对象的时候默认执行的方法，如果没有指定构造函数，就会默认一个空的<code>publib</code>类型的构造函数。</p>
 <h4 id="19-destructor">1.9 destructor</h4>
-<p>构造函数的evil twin：析构函数：</p>
-<p>当销毁对象时，会自动运行析构函数</p>
+<p>构造函数的evil twin：析构函数</p>
+<p>当销毁对象时，会自动运行析构函数。</p>
+<p>析构函数和构造函数在声明和定义的唯一区别就是析构函数前面加上了<code>~</code>。一般用来在对象销毁时，主动释放一些堆上申请的空间。</p>
+<h4 id="110-inheritance">1.10 inheritance</h4>
+<p>可以近似理解为：子类 $ \subseteq $ 父类（子类拥有父类中包含的所有内容（private除外））。</p>
+<p>可以通过这样写来让子类继承某个父类<code>class Child : public Parent </code>。这意味着此时的<code>Child</code>不但具有类型<code>Child</code>，而且具有类型<code>Parent</code>。</p>
+<p><strong>绝大多数情况下我们都使用的<code>public</code>继承</strong></p>
+<p>当然继承方式其实有两种，区别如下：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">继承方式</th>
+          <th style="text-align: left">父类 <code>public</code> 成员变成</th>
+          <th style="text-align: left">父类 <code>protected</code> 成员变成</th>
+          <th style="text-align: left">父类 <code>private</code> 成员</th>
+          <th style="text-align: left">能否被孙类继承？</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>public</code> 继承</td>
+          <td style="text-align: left">子类的 <code>public</code> 成员</td>
+          <td style="text-align: left">子类的 <code>protected</code> 成员</td>
+          <td style="text-align: left">不可见</td>
+          <td style="text-align: left">可以</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>private</code> 继承</td>
+          <td style="text-align: left">子类的 <code>private</code> 成员</td>
+          <td style="text-align: left">子类的 <code>private</code> 成员</td>
+          <td style="text-align: left">不可见</td>
+          <td style="text-align: left">不可以</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="111-virtual-function">1.11 virtual function</h4>
+<p>虚函数是为了实现<strong>多态</strong>，来让子类重写父类方法。（对应于Java语言中的<code>@override</code>注解）</p>
+<p>如果我们直接这么写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Parent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">say</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;I am a parent&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Child</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Parent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">say</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;I am a child&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Parent</span><span class="o">*</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Child</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">person</span><span class="o">-&gt;</span><span class="n">say</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 运行结果：I am a parent
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这说明虽然<code>person</code>对象有<code>Child</code>和<code>Parent</code>两个类型，但是编译器默认直接去声明的<code>Parent</code>类型中去找同名的方法。那么如何才能让编译器意识到，我们传入的其实是个<code>Child</code>，我们想调用的是<code>Child</code>中的方法呢？
+这就得靠虚函数了，虚函数引入了<em>动态分配</em>的概念，编译器通常通过一个<code>VTABLE</code>来实现它。<code>VTABLE</code>是一个包含我们父类中的虚函数的所有子类重写函数的映射的一张表，这样我们就能在运行时将他们映射到正确的重写函数。</p>
+<p>使用虚函数很简单，我们只需要在父类的方法前面加上<code>virtual</code>，方法就会变成一个虚函数。而<code>c++11</code>中引入了<code>override</code>关键词，我们还可以在子类的重写方法后门加上<code>override</code>关键词（当然不是必须的，但是推荐加上，因为可以让编译器去帮我们检查子类的方法名有没有写错，是不是和父类中的某个方法一样等等）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Parent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">say</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;I am a parent&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Child</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Parent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">say</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;I am a child&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Parent</span><span class="o">*</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Child</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">person</span><span class="o">-&gt;</span><span class="n">say</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 运行结果：I am a child
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>当然我们需要承认的是，虚函数肯定不是free的，它有两种运行时成本：<code>VTABLE</code>的存储开消，以及查看<code>VTABLE</code>来确定具体映射到哪个重写函数的时间开销。</p>
+<p><strong>但是</strong>，绝大部分情况下，我们还没有到无法容忍虚函数开销的地步。</p>
+<h4 id="112-pure-virtual-function">1.12 pure virtual function</h4>
+<p>c++中的<strong>接口</strong>是通过<strong>纯虚函数</strong>实现的。</p>
+<p>纯虚函数的写法就像这样：<code>virtual void say() = 0;</code>，方法体不需要实现，留给子类去实现。并且父类由于并未实现这个方法，就无法直接创建父类对象。</p>
+<h4 id="113-visibility">1.13 visibility</h4>
+<p>c++中的可见性有三种:<code>public</code>、<code>protected</code>和<code>private</code>。</p>
+<p><code>protected</code>是指可以在父类和子类中访问，但是对象中不可见。</p>
+<p>其实可见性最主要的作用其实是一种 code style。用户可以通过比如<code>private</code>立马知道这个不是暴露给用户的，这样看很多代码时可以忽略掉很多细节，主要看暴露给用户的API的<code>public</code>即可。</p>
+<h4 id="114-string">1.14 string</h4>
+<p><code>std::string name = &quot;thisingl&quot;</code></p>
+<p>cpp中直接<code>&quot;xxx&quot;</code>默认是一个<code>const char*</code>类型，本身是在栈上分配空间，但是<code>string</code>又是一个<em>引用</em>类型，空间分配在堆上，于是默认会将<code>const char*</code>的内容复制到堆上分配的空间。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-09-04</span>
+                <span>更新于 2025-09-12</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

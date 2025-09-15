@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  6077 ,
+                        }],"genre": "posts","keywords": "编程","wordcount":  6673 ,
         "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-09-12T18:29:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6077 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6673 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;
     
 
     
@@ -166,6 +166,7 @@
                 <li><a href="#112-pure-virtual-function">1.12 pure virtual function</a></li>
                 <li><a href="#113-visibility">1.13 visibility</a></li>
                 <li><a href="#114-string">1.14 string</a></li>
+                <li><a href="#115-const">1.15 const</a></li>
               </ul>
             </li>
           </ul>
@@ -865,6 +866,81 @@
 <h4 id="114-string">1.14 string</h4>
 <p><code>std::string name = &quot;thisingl&quot;</code></p>
 <p>cpp中直接<code>&quot;xxx&quot;</code>默认是一个<code>const char*</code>类型，本身是在栈上分配空间，但是<code>string</code>又是一个<em>引用</em>类型，空间分配在堆上，于是默认会将<code>const char*</code>的内容复制到堆上分配的空间。</p>
+<h4 id="115-const">1.15 const</h4>
+<p>你可以简单理解为：cpp中的<code>const</code>，只是一种编译器级别的保护，对于最后产生生成的机器码完全没有影响。(编译优化除外)</p>
+<p>大家肯定都知道<code>const int a</code>代表着变量<code>a</code>不可被修改，那<code>const int* a</code>、<code>int const* a</code>以及<code>int* const a</code>呢？</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>分析</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>const int* a</code></td>
+          <td>可以看作<code>const (*a)</code></td>
+          <td>可以改变<code>a</code>指针，但是不能改变<code>a</code>指向的内容</td>
+      </tr>
+      <tr>
+          <td><code>int const* a</code></td>
+          <td>同<code>const (*a)</code></td>
+          <td>同<code>const int* a</code></td>
+      </tr>
+      <tr>
+          <td><code>int* const a</code></td>
+          <td>可以看作<code>const (a)</code></td>
+          <td>可以改变<code>a</code>指向的内容，但是不能改变<code>a</code>指针</td>
+      </tr>
+      <tr>
+          <td><code>const int* const a</code></td>
+          <td>可以看做<code>const (*a) &amp;&amp; const (a)</code></td>
+          <td>既不能改变<code>a</code>指针，也不能改变<code>a</code>指向的内容</td>
+      </tr>
+      <tr>
+          <td><code>int const* const a</code></td>
+          <td>同<code>const (*a) &amp;&amp; const (a)</code></td>
+          <td>同<code>const int* const a</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>上面我们讨论的都是在变量中的使用，那你肯定不经想问，在类中有什么使用场景吗？</p>
+<p>有的兄弟，有的，例如下面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>    
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">GetAge</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// age = 1;  // 编译错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printPerson</span><span class="p">(</span><span class="k">const</span> <span class="n">Person</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">GetAge</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果<code>const</code>放在方法后面，就代表我们的方法不会影响到对象本身。而<code>const Person&amp; p</code>，意味着我们承诺我们不会修改对象<code>p</code>，那么此时我们只能访问<code>p</code>中被<code>const</code>修饰的方法，因为没有被<code>const</code>修饰的方法我们无法保证不会修改对象<code>p</code>。</p>
+<p>但是有些时候，我们有一些用于调试的变量比如<code>int var</code>，我们的<code>const</code>修饰的方法可能也想修改他，但是我们能确保他不会影响到程序，这时候就很不方便了，我们又不想放弃将方法定义为<code>const</code>，这时候我们就可以使用下一次要讲到的<code>mutable</code>来完成他了！</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

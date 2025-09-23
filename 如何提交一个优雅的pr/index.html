@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  1547 ,
+                        }],"genre": "posts","keywords": "编程","wordcount":  1584 ,
         "url": "https:\/\/example.com\/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr\/","datePublished": "2025-09-23T12:03:20+08:00","dateModified": "2025-09-23T12:03:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何提交一个优雅的pr</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-09-23">2025-09-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1547 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-09-23">2025-09-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1584 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;
     
 
@@ -202,7 +202,7 @@
 <p>本地开发始终记住：<strong>永远不要</strong>在main分支上修改提交commit！！！每次开发都请和远程派生的代码库一样，<strong>各自新建</strong>一个分支来开发，pr提交合并结束记得<strong>删除</strong>本地相关分支和派生代码库的相关分支。</p>
 <p>这里的好处是非常非常大的，也是我本地踩过很多次坑发现的：因为GitHub提交pr的特点是，pr中可能有10个commit，最终如果owner approve 你的合并，那也只会将这个pr的内容作为一个整体commit提交上去。所以如果你在main分支上直接开发，就会出现<strong>你的本地commit多于远程代码库的main分支</strong>，这显然是有问题的，两边git历史对不上。所以这就是为什么我说的永远不要在main分支上直接修改提交，新建新的分支开发完提交pr之后就可以删掉了，然后本地main分支重新git pull就可以保持完全一致！</p>
 <h3 id="3-创建合并请求">3. 创建合并请求</h3>
-<p>只要你将本地的修改push到你远程的派生代码库的相关分支上，回到线上派生项目的工作区，会看到新分支和修改的合并提交信息，点击**<code>Compare &amp; pull request</code>**:</p>
+<p>只要你将本地的修改push到你远程的派生代码库的相关分支上，回到线上派生项目的工作区，会看到新分支和修改的合并提交信息，点击<code>Compare &amp; pull request</code>:</p>
 <p>
 <figure><a class="lightgallery" href="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923183009698.png" title="image-20250923183009698" data-thumbnail="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923183009698.png" data-sub-html="<h2> </h2><p>image-20250923183009698</p>">
         <img
@@ -215,6 +215,7 @@
     </a><figcaption class="image-caption">image-20250923183009698</figcaption>
     </figure></p>
 <p>选择你想并入的原项目分支，标题和描述信息。如果有对应的 issue，就通过键入 <code>#</code> 添加(Github 会自动展示 issues 列表)</p>
+<p>然后点击<code>Create pull request</code>即可创建合并请求成功，之后就等待cr就行。</p>
 <h3 id="4-根据评论修改你的代码">4. 根据评论修改你的代码</h3>
 <p>你提交的pr是需要 code owner 进行 review 的，他们认为你的代码有问题就会在cr的时候提出评论，此时你需要根据评论去修改你本地的内容，然后再提交到之前的那个远程分支上就可以自动更新pr中的commit了。</p>
 <p>但是很多情况下会有很复杂的情况，比如给你的评论很复杂改了几天，回头发现有人先提交了一些新的pr并且合入了怎么办？</p>

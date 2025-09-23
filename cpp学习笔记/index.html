@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  6673 ,
+                        }],"genre": "posts","keywords": "编程","wordcount":  7991 ,
         "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-09-12T18:29:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6673 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7991 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 16 分钟&nbsp;
     
 
     
@@ -167,6 +167,9 @@
                 <li><a href="#113-visibility">1.13 visibility</a></li>
                 <li><a href="#114-string">1.14 string</a></li>
                 <li><a href="#115-const">1.15 const</a></li>
+                <li><a href="#116-mutable">1.16 mutable</a></li>
+                <li><a href="#117-member-initializer-list">1.17 member initializer list</a></li>
+                <li><a href="#118-instantiate-object">1.18 instantiate object</a></li>
               </ul>
             </li>
           </ul>
@@ -941,6 +944,148 @@
 </div>
 </div><p>如果<code>const</code>放在方法后面，就代表我们的方法不会影响到对象本身。而<code>const Person&amp; p</code>，意味着我们承诺我们不会修改对象<code>p</code>，那么此时我们只能访问<code>p</code>中被<code>const</code>修饰的方法，因为没有被<code>const</code>修饰的方法我们无法保证不会修改对象<code>p</code>。</p>
 <p>但是有些时候，我们有一些用于调试的变量比如<code>int var</code>，我们的<code>const</code>修饰的方法可能也想修改他，但是我们能确保他不会影响到程序，这时候就很不方便了，我们又不想放弃将方法定义为<code>const</code>，这时候我们就可以使用下一次要讲到的<code>mutable</code>来完成他了！</p>
+<h4 id="116-mutable">1.16 mutable</h4>
+<p><code>mutable</code>修饰的变量意味着可以修改，<code>const</code>方法中可以修改这种变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">mutable</span> <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>    
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">GetAge</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">age</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printPerson</span><span class="p">(</span><span class="k">const</span> <span class="n">Person</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">GetAge</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还有一种使用场景是在lambda表达式中修改按值传递的变量（非常非常少见，因为可以直接将这些变量设置为引用传递），所以我们就直接略过了。</p>
+<h4 id="117-member-initializer-list">1.17 member initializer list</h4>
+<p>我们首先来看下面这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Entity</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Entity</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Entity default constructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">Entity</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Entity int constructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Entity</span> <span class="n">entity</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">entity</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Person</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>问题来了，你认为最后打印输出的是什么呢？是<code>Entity int constructor</code>吗？</p>
+<p>答案是No，输出的是<code>&quot;Entity default constructor&quot;</code>和<code>Entity int constructor</code>。</p>
+<p>是不是很疑惑，为什么我明明只调用了<code>Entity(int a)</code>这个构造函数，怎么还自动先调用了<code>Entity()</code>构造函数？？？</p>
+<p>答案是：c++中的成员变量在进入构造函数体时，会先被复制进来执行，也就是可以理解为上面的构造函数其实长这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">    <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Entity</span> <span class="n">entity</span><span class="p">;</span>        <span class="c1">// 把private中内容移动到了这里（调用了构造器）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">entity</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="c1">// 赋值操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以其实<code>Entity</code>的两个构造器都被调用了，很明显这个是一种资源的浪费，那么有没有办法解决了？</p>
+<p>聪明的c++创建者肯定考虑到了，所以提供了<strong>成员初始化列表</strong>这个语法。</p>
+<p>当你在成员初始化列表中指定了如何构造成员变量，编译器就会使用你指定的方法，而不会默认执行一遍成员变量的默认构造函数了，这个的优先级最高。</p>
+<p>使用方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Entity</span> <span class="n">entity</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">Person</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl">        <span class="o">:</span> <span class="n">entity</span><span class="p">(</span><span class="n">Entity</span><span class="p">(</span><span class="mi">100</span><span class="p">)){</span>    <span class="c1">// 成员初始化列表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时运行就会发现，只会打印输出:<code>Entity int constructor</code>。</p>
+<p>当然这个写法还涉及到一种代码风格，如果构造函数中的代码逻辑很复杂的话，那么简单的初始化复制逻辑就可以直接放在成员初始化列表中，这样就分离开来了。</p>
+<h4 id="118-instantiate-object">1.18 instantiate object</h4>
+<p>c++中由于有<strong>栈</strong>和<strong>堆</strong>两个地址空间，所以实例化对象也有两种，对应的是一种在栈上申请空间，一种在堆上申请空间。</p>
+<p>在栈上申请空间就是通过直接<code>ClassName A(初始化参数)</code>或者<code>ClassName A = ClassName(初始化参数)</code>。这时分配的空间在栈上，大家都知道进行方法调用时会伴随着压栈和出栈，当出栈时栈中的空间也就都释放了，所以很显然，栈上申请的空间只能存活在变量存在的生命周期中（这个变量前面的第一个<code>{</code>到后面的第一个<code>}</code>之间），一旦超过就会自动释放。所以适合空间小，而且不需要长期存在的变量，更推荐使用栈。</p>
+<p>而堆上申请的空间上通过<code>new</code>和<code>delete</code>关键字进行管理，需要用户主动去释放空间，所以容易出现忘记释放空间导致内存泄漏的问题。通过直接<code>ClassName* B = new ClassName(初始化参数)</code>在堆上申请空间。这里指针上因为使用<code>new</code>申请空间会返回申请到的空间的初始地址。使用完毕后就需要使用<code>delete(B)</code>进行主动的释放。</p>
+<p>对于Java中，由于有gg的存在，所以不需要主动释放，而且也不提供栈和堆两种空间申请方式，统一使用堆，所以和c++中有点不一样。而c++中后面提到的智能指针可以在一定程度上完成像Java中这种在堆上申请空间并且主动释放的功能。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

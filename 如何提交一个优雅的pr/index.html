@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>如何提交一个优雅的pr - DeepThought | 自学空间</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/">
+  <meta property="og:site_name" content="DeepThought | 自学空间">
+  <meta property="og:title" content="如何提交一个优雅的pr">
+  <meta property="og:description" content="有幸在这个暑假参加了一个开源项目的活动，所以整理了一下对于在GitHub上提交pr以及公司内部提交pr的一个推荐的标准化操作">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-23T12:03:20+08:00">
+    <meta property="article:modified_time" content="2025-09-23T12:03:17+08:00">
+    <meta property="article:tag" content="编程">
+    <meta property="og:image" content="https://example.com/images/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/images/logo.png">
+  <meta name="twitter:title" content="如何提交一个优雅的pr">
+  <meta name="twitter:description" content="有幸在这个暑假参加了一个开源项目的活动，所以整理了一下对于在GitHub上提交pr以及公司内部提交pr的一个推荐的标准化操作">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/favicon-logo-u.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" /><link rel="prev" href="https://example.com/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何提交一个优雅的pr",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "编程","wordcount":  1546 ,
+        "url": "https:\/\/example.com\/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr\/","datePublished": "2025-09-23T12:03:20+08:00","dateModified": "2025-09-23T12:03:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
+                "@type": "Person",
+                "name": "Thising"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DeepThought | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/thisingl/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DeepThought | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/thisingl/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何提交一个优雅的pr</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-09-23">2025-09-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1546 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;次阅读</span>
+        
+    
+
+</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#如何提交一个优雅的pr">如何提交一个优雅的pr</a>
+          <ul>
+            <li><a href="#1-fork-仓库">1. fork 仓库</a></li>
+            <li><a href="#2-本地开发">2. 本地开发</a></li>
+            <li><a href="#3-创建合并请求">3. 创建合并请求</a></li>
+            <li><a href="#4-根据评论修改你的代码">4. 根据评论修改你的代码</a></li>
+            <li><a href="#5-删除你的分支">5. 删除你的分支</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="如何提交一个优雅的pr">如何提交一个优雅的pr</h2>
+<blockquote>
+<p>暑假参加了2025OSPP的活动，有幸参与了apache/fory的开源项目的开发活动，也因此在实践中学习到了如何在GitHub上参与一个开源项目</p></blockquote>
+<p>在GitHub上你想要给开源项目提交你的代码，就需要提交pr，也就是所谓的 pull request。</p>
+<h3 id="1-fork-仓库">1. fork 仓库</h3>
+<p>首先需要将这个项目<code>fork</code>到你的主页，<strong>注意</strong>：后续所有的操作都是基于你<strong>仓库内</strong>的这个派生的代码库展开的。</p>
+<p>
+<figure><a class="lightgallery" href="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923145650118.png" title="image-20250923145650118" data-thumbnail="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923145650118.png" data-sub-html="<h2> </h2><p>image-20250923145650118</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923145650118.png"
+            data-srcset="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923145650118.png, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923145650118.png 1.5x, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923145650118.png 2x"
+            data-sizes="auto"
+            alt="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923145650118.png" width="2714" height="1536" />
+    </a><figcaption class="image-caption">image-20250923145650118</figcaption>
+    </figure></p>
+<p>拉取的项目的<code>main</code>分支不要动，因为我们要靠这个分支与原仓库做同步。</p>
+<p>从优雅简洁的角度来看，每次你想要提交一个pr，都请先在你的这个派生的代码库中新建一个分支：</p>
+<p>
+<figure><a class="lightgallery" href="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150223563.png" title="image-20250923150223563" data-thumbnail="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150223563.png" data-sub-html="<h2> </h2><p>image-20250923150223563</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150223563.png"
+            data-srcset="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150223563.png, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150223563.png 1.5x, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150223563.png 2x"
+            data-sizes="auto"
+            alt="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150223563.png" width="2880" height="1556" />
+    </a><figcaption class="image-caption">image-20250923150223563</figcaption>
+    </figure></p>
+<p>分支名最好和本次提交的主题相关，这样方便分辨哪个分支是干什么的，比如我这次需要提交一个新特性：让go语言的代码生成部分支持slice，那么我就可以新建一个叫做<code>feat-slice</code>的分支。</p>
+<p>GitHub里的派生的代码库不会默认进行同步，如果你派生的代码库落后于最新的原始仓库，那么这里就会有提示，点击 Sync fork 按钮即可 Update branch。（注意我们每次只要更新main分支就好，保持main分支是最新的就行）</p>
+<p>
+<figure><a class="lightgallery" href="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150446976.png" title="image-20250923150446976" data-thumbnail="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150446976.png" data-sub-html="<h2> </h2><p>image-20250923150446976</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150446976.png"
+            data-srcset="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150446976.png, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150446976.png 1.5x, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150446976.png 2x"
+            data-sizes="auto"
+            alt="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923150446976.png" width="2604" height="1346" />
+    </a><figcaption class="image-caption">image-20250923150446976</figcaption>
+    </figure></p>
+<h3 id="2-本地开发">2. 本地开发</h3>
+<p>本地开发始终记住：<strong>永远不要</strong>在main分支上修改提交commit！！！每次开发都请和远程派生的代码库一样，<strong>各自新建</strong>一个分支来开发，pr提交合并结束记得<strong>删除</strong>本地相关分支和派生代码库的相关分支。</p>
+<p>这里的好处是非常非常大的，也是我本地踩过很多次坑发现的：因为GitHub提交pr的特点是，pr中可能有10个commit，最终如果owner approve 你的合并，那也只会将这个pr的内容作为一个整体commit提交上去。所以如果你在main分支上直接开发，就会出现<strong>你的本地commit多于远程代码库的main分支</strong>，这显然是有问题的，两边git历史对不上。所以这就是为什么我说的永远不要在main分支上直接修改提交，新建新的分支开发完提交pr之后就可以删掉了，然后本地main分支重新git pull就可以保持完全一致！</p>
+<h3 id="3-创建合并请求">3. 创建合并请求</h3>
+<p>只要你将本地的修改push到你远程的派生代码库的相关分支上，回到线上派生项目的工作区，会看到新分支和修改的合并提交信息，点击**<code>Compare &amp; pull request</code>**</p>
+<p>选择你想并入的原项目分支，标题和描述信息。如果有对应的 issue，就通过键入 <code>#</code> 添加(Github 会自动展示 issues 列表)</p>
+<h3 id="4-根据评论修改你的代码">4. 根据评论修改你的代码</h3>
+<p>你提交的pr是需要 code owner 进行 review 的，他们认为你的代码有问题就会在cr的时候提出评论，此时你需要根据评论去修改你本地的内容，然后再提交到之前的那个远程分支上就可以自动更新pr中的commit了。</p>
+<p>但是很多情况下会有很复杂的情况，比如给你的评论很复杂改了几天，回头发现有人先提交了一些新的pr并且合入了怎么办？</p>
+<p>我们可以把这种情况抽象为下面的模型：</p>
+<ol>
+<li>初始情况:</li>
+</ol>
+<ul>
+<li>远程
+<ul>
+<li><code>main</code>: A</li>
+<li><code>feat-slice</code>: A</li>
+</ul>
+</li>
+<li>本地
+<ul>
+<li><code>feat_slice</code>: A</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>你在本地提交了 C</li>
+</ol>
+<ul>
+<li>本地 <code>feat_slice</code>: A–C</li>
+<li>然后你 push 到远程 <code>feat-slice</code>：
+<ul>
+<li><code>main</code>: A</li>
+<li><code>feat-slice</code>: A–C</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>远程 main 更新为 A–B</li>
+</ol>
+<ul>
+<li>远程：
+<ul>
+<li><code>main</code>: A–B</li>
+<li><code>feat-slice</code>: A–C</li>
+</ul>
+</li>
+<li>本地：
+<ul>
+<li><code>feat_slice</code>: A–C （还没 <code>git pull --rebase</code>）</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>本地 <code>git pull --rebase</code> 到 main</li>
+</ol>
+<p>执行：<code>git pull --rebase</code></p>
+<p>结果：</p>
+<ul>
+<li>本地 <code>feat_slice</code>: A–B–C
+（C 被“挪”到 B 后面）</li>
+<li>远程还是：
+<ul>
+<li><code>main</code>: A–B</li>
+<li><code>feat-slice</code>: A–C</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>此时 <code>git push origin master:feat_slice</code> 到远程 <code>feat-slice</code></li>
+</ol>
+<p>Git 会检查：</p>
+<ul>
+<li>远程 <code>feat-slice</code> 目前是 A–C</li>
+<li>你要推的是 A–B–C</li>
+</ul>
+<p>👉 这两条历史<strong>分叉了</strong>：</p>
+<ul>
+<li>远程的 C 在 A 后直接接，</li>
+<li>本地的 C 在 A–B 后接。</li>
+</ul>
+<p>所以，Git 默认会认为这是「非快进 (non-fast-forward) 更新」，<strong>直接 push 会报错</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; feat_slice <span class="o">(</span>non-fast-forward<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>强制推送</li>
+</ol>
+<p>怎么办？</p>
+<p>如果你确认要让远程 <code>feat-slice</code> 变成 <strong>A–B–C</strong>，需要强制推送：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git push -f origin master:feat_slice
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样远程 <code>feat-slice</code> 就会被改写成 A–B–C。pr上也会出现<code>force-pushed</code>的相关显示：</p>
+<p>
+<figure><a class="lightgallery" href="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923170353243.png" title="image-20250923170353243" data-thumbnail="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923170353243.png" data-sub-html="<h2> </h2><p>image-20250923170353243</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923170353243.png"
+            data-srcset="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923170353243.png, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923170353243.png 1.5x, /%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923170353243.png 2x"
+            data-sizes="auto"
+            alt="/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/images/image-20250923170353243.png" width="1946" height="160" />
+    </a><figcaption class="image-caption">image-20250923170353243</figcaption>
+    </figure></p>
+<h3 id="5-删除你的分支">5. 删除你的分支</h3>
+<p><strong>请记住：<strong>每次提交的pr合并进去，都请</strong>删除</strong>本地和派生代码库的相关分支，然后在本地的<code>main</code>分支重新<code>git pull</code>即可，如果还需要继续开发，请回到 <em>步骤2. 本地开发</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-09-23</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" data-title="如何提交一个优雅的pr" data-hashtags="编程"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" data-hashtag="编程"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" data-title="如何提交一个优雅的pr"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" data-title="如何提交一个优雅的pr"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/" data-title="如何提交一个优雅的pr"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%BC%96%E7%A8%8B/">编程</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="cpp学习笔记"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>cpp学习笔记</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div>
+
+            <div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.3/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@15.1.2/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://valine.hugoloveit.com","visitor":false}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

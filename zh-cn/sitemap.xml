@@ -11,15 +11,6 @@
                     hreflang="zh-cn"
                     href="https://example.com/categories/"
                     /></url><url>
-            <loc>https://example.com/</loc><lastmod>2025-09-23T12:03:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://example.com/en/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://example.com/"
-                    /></url><url>
             <loc>https://example.com/posts/</loc><lastmod>2025-09-23T12:03:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/tags/</loc><lastmod>2025-09-23T12:03:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
@@ -29,6 +20,15 @@
                     rel="alternate"
                     hreflang="zh-cn"
                     href="https://example.com/tags/"
+                    /></url><url>
+            <loc>https://example.com/</loc><lastmod>2025-09-23T12:03:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://example.com/en/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="https://example.com/"
                     /></url><url>
             <loc>https://example.com/categories/%E7%BC%96%E7%A8%8B/</loc><lastmod>2025-09-23T12:03:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/tags/%E7%BC%96%E7%A8%8B/</loc><lastmod>2025-09-23T12:03:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

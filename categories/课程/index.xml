@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>课程 - 分类 - DeepThought | 自学空间</title>
+        <title>课程 - 分类 - Thising&#39;log | 自学空间</title>
         <link>https://example.com/categories/%E8%AF%BE%E7%A8%8B/</link>
-        <description>课程 - 分类 - DeepThought | 自学空间</description>
+        <description>课程 - 分类 - Thising&#39;log | 自学空间</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 12 Jun 2025 17:04:29 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/%E8%AF%BE%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
     <title>形式化方法</title>
     <link>https://example.com/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/</link>

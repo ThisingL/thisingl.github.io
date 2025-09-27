@@ -201,18 +201,34 @@
 <h3 id="2-本地开发">2. 本地开发</h3>
 <p>本地开发始终记住：<strong>永远不要</strong>在main分支上修改提交commit！！！每次开发都请和远程派生的代码库一样，<strong>各自新建</strong>一个分支来开发，pr提交合并结束记得<strong>删除</strong>本地相关分支和派生代码库的相关分支。</p>
 <p>这里的好处是非常非常大的，也是我本地踩过很多次坑发现的：因为GitHub提交pr的特点是，pr中可能有10个commit，最终如果owner approve 你的合并，那也只会将这个pr的内容作为一个整体commit提交上去。所以如果你在main分支上直接开发，就会出现<strong>你的本地commit多于远程代码库的main分支</strong>，这显然是有问题的，两边git历史对不上。所以这就是为什么我说的永远不要在main分支上直接修改提交，新建新的分支开发完提交pr之后就可以删掉了，然后本地main分支重新git pull就可以保持完全一致！</p>
-<ol>
-<li>
-<p>首先先查看git历史：<code>git log --graph --oneline --decorate --all</code></p>
-</li>
-<li>
-<p>然后切换到main分支：<code>git checkout main</code></p>
-</li>
-<li>
-<p>新建并切换分支：<code>git checkout -b &lt;新分支名&gt;</code></p>
-</li>
-</ol>
-<p>下面就可以在这个新的分支上进行开发了。</p>
+<p>首先先查看git历史：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git log --graph --oneline --decorate --all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后切换到main分支：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新建并切换分支：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout -b &lt;新分支名&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面就可以在这个新的分支上进行愉快的开发了！</p>
 <h3 id="3-创建合并请求">3. 创建合并请求</h3>
 <p>只要你将本地的修改push到你远程的派生代码库的相关分支上，回到线上派生项目的工作区，会看到新分支和修改的合并提交信息，点击<code>Compare &amp; pull request</code>:</p>
 <p>

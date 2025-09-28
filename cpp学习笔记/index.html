@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  9814 ,
+                        }],"genre": "posts","keywords": "编程","wordcount":  10793 ,
         "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-09-23T20:43:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 9814 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 20 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 10793 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 22 分钟&nbsp;
     
 
     
@@ -175,6 +175,7 @@
                 <li><a href="#121-operator-overloadin">1.21 operator overloadin</a></li>
                 <li><a href="#122-this">1.22 this</a></li>
                 <li><a href="#123-object-lifetime">1.23 object lifetime</a></li>
+                <li><a href="#124-smart-pointer">1.24 smart pointer</a></li>
               </ul>
             </li>
           </ul>
@@ -1275,7 +1276,7 @@
 <p>之前在<em>1.18 instantiate object</em>中我们就已经讨论过了<strong>栈</strong>和<strong>堆</strong>两种申请空间方式的区别。</p>
 <p>但是之前讲的对栈的使用太浅了，因为那只是将对象的空间申请到栈上，但是也提到了栈的空间比较小，那么有没有办法和堆结合起来呢？我们又想要堆的大空间，又想要栈这种超过使用范围就自动销毁的能力？</p>
 <p>聪明的你一定想到了，我们可以用栈上的指针指向堆中的空间呀，一旦出栈就调用析构函数去释放掉堆上空间。</p>
-<p>比如我们可以设计一个这样的作用域指针：</p>
+<p>比如我们可以设计一个这样的<em>作用域指针</em>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1329,7 +1330,91 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们就可以直接创建这样一个作用域指针<code>ScopedPtr e = new Entity()</code>，自动在作用域结束后就会释放掉<code>Entity</code>变量所占的空间。</p>
-<p>当然指针指针的功能更加强大，我们这里只是简单的演示它的一个小功能。</p>
+<p>当然智能指针的功能更加强大，我们这里只是简单的演示它的一个小功能。</p>
+<h4 id="124-smart-pointer">1.24 smart pointer</h4>
+<p>c++中的智能指针主要有：<code>unique_ptr</code>、<code>shared_ptr</code>和<code>weak_ptr</code>。</p>
+<p>我们首先来聊一聊<code>unique_ptr</code>，这个就是我们刚刚演示过的一个简单的作用域指针，自动会在作用域结束后就会释放掉堆上空间，看看下面这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Entity</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Entity</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Entity created&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Entity</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Entity destroyed&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// std::unique_ptr&lt;Entity&gt; entity(new Entity()); // 不推荐写法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span> <span class="n">entity</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// 推荐写法   
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里申请<code>unique_ptr</code>指向的空间时推荐使用<code>make_unique</code>申请空间，因为会更加安全。一开始 C++11 只有 <code>make_shared</code>，没有 <code>make_unique</code>，是因为 <code>make_unique</code> 没有性能优势（不像 <code>make_shared</code> 可以少分配一次内存），但后来大家发现安全性问题太多，于是 C++14 才正式引入。</p>
+<p>原因就是如果直接<code>std::unique_ptr&lt;Entity&gt; entity(new Entity())</code>，那么假设在堆上申请完<code>new Entity()</code>空间后，还没来得及构造<code>std::unique_ptr&lt;Entity&gt; entity</code>指向刚刚申请的空间，就出现异常，那么申请的空间就忘记自动释放了，造成了内存泄漏。而如果使用<code> std::make_unique&lt;Entity&gt;()</code>来申请内存，那么就能保证不会出现刚刚的问题。</p>
+<p>同时一个对象只能被一个<code>unique_ptr</code>拥有，那么你肯定好奇c++是怎么做到这么确保的呢？其实很简单，<code>unique_ptr</code>的实现中删除了<code>=</code>运算符，也就导致了不能被拷贝了，自然也就可以做到这个<strong>独占所有权</strong>，这也是名字中的unique的由来。</p>
+<p>下面我们再看看<code>shared_ptr</code>，这种智能指针就能够让多个指针指向同一个对象，他的具体实现和编译器有关，但是大部分都是使用了所谓的<strong>引用计数</strong>，也就是当最后一个指向这个对象的<code>shared_ptr</code>被销毁时，才会释放内存。</p>
+<p>用法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span> <span class="n">entity1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span> <span class="n">entity2</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">entity1</span> <span class="o">=</span> <span class="n">entity2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 执行到这里不会释放空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="c1">// 执行到这里才会释放空间
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里使用<code>std::make_shared</code>来申请空间不但是为了安全，同时还有性能差异：</p>
+<ul>
+<li>
+<p><code>std::make_shared&lt;T&gt;(...)</code> 会<strong>一次性分配一块内存</strong>，同时存放对象和引用计数控制块。</p>
+</li>
+<li>
+<p><code>std::shared_ptr&lt;T&gt;(new T(...))</code> 会分配两次：</p>
+<ul>
+<li>
+<p><code>new T(...)</code> 分配对象</p>
+</li>
+<li>
+<p>内部再分配一块内存存放引用计数控制块</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>weak_ptr</code>一般和<code>shared_ptr</code>一块使用，他的特点是<strong>不会增加引用计数</strong>，同时通过使用<code>lock()</code>方法可以知道对象是否还存活，不存活就会返回空指针。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

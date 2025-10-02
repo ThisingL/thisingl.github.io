@@ -76,12 +76,12 @@
     <description><![CDATA[根据y总算法基础课、算法提高课、Leetcode整理出来的算法模板，还在不断更新中&hellip;]]></description>
 </item>
 <item>
-    <title>云服务器笔记</title>
-    <link>https://example.com/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AC%94%E8%AE%B0/</link>
+    <title>tmux常用命令</title>
+    <link>https://example.com/tmux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
     <pubDate>Tue, 12 Nov 2024 19:16:22 &#43;0800</pubDate>
     <author>Thising</author>
-    <guid>https://example.com/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[记录自己部署自己的springboot项目到阿里云上的步骤心得]]></description>
+    <guid>https://example.com/tmux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[记录一下tmux常用命令]]></description>
 </item>
 </channel>
 </rss>

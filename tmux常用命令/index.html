@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-11-11T19:16:22+08:00">
-    <meta property="article:modified_time" content="2025-10-02T21:33:00+08:00">
+    <meta property="article:modified_time" content="2025-10-02T21:37:45+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -38,7 +38,7 @@
                             "width":  3200 ,
                             "height":  2048 
                         }],"genre": "posts","keywords": "编程","wordcount":  1118 ,
-        "url": "https:\/\/example.com\/tmux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\/","datePublished": "2024-11-11T19:16:22+08:00","dateModified": "2025-10-02T21:33:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/example.com\/tmux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\/","datePublished": "2024-11-11T19:16:22+08:00","dateModified": "2025-10-02T21:37:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -162,20 +162,39 @@
 <h3 id="结构">结构：</h3>
 <p>一个<code>tmux</code>可以包含多个<code>session</code>，一个<code>session</code>可以包含多个<code>window</code>，一个<code>window</code>可以包含多个<code>pane</code>。</p>
 <p>类似于下面的逻辑：</p>
-<p>​     tmux:
-​         session 0:
-​             window 0:
-​                 pane 0
-​                 pane 1
-​                 pane 2
-​                 &hellip;
-​             window 1
-​             window 2
-​             &hellip;
-​         session 1
-​         session 2
-​         &hellip;</p>
-<h3 id="操作">操作：</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"> tmux:
+</span></span><span class="line"><span class="cl">     session 0:
+</span></span><span class="line"><span class="cl">         window 0:
+</span></span><span class="line"><span class="cl">             pane <span class="m">0</span>
+</span></span><span class="line"><span class="cl">             pane <span class="m">1</span>
+</span></span><span class="line"><span class="cl">             pane <span class="m">2</span>
+</span></span><span class="line"><span class="cl">             ...
+</span></span><span class="line"><span class="cl">         window <span class="m">1</span>
+</span></span><span class="line"><span class="cl">         window <span class="m">2</span>
+</span></span><span class="line"><span class="cl">         ...
+</span></span><span class="line"><span class="cl">     session <span class="m">1</span>
+</span></span><span class="line"><span class="cl">     session <span class="m">2</span>
+</span></span><span class="line"><span class="cl">     ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="操作">操作：</h3>
 <p>我大概按照自己的使用频率，从高到底列举了大部分日常使用中用到的操作：</p>
 <p>(1) <code>tmux</code>：新建一个session，其中包含一个window，window中包含一个pane，pane里打开了一个shell对话框。</p>
 <p>(2) <code>tmux a</code>：打开之前挂起的session。</p>
@@ -209,8 +228,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-10-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/fb02e087d55aff59400222ed71a78c6c4de4dac9" target="_blank" title="commit by JarVis(2055543978@qq.com) fb02e087d55aff59400222ed71a78c6c4de4dac9: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>fb02e08</a></span>
+                <span>更新于 2025-10-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/20d9bd8dbc9f07ff22f798073d4d6625e9391cf4" target="_blank" title="commit by JarVis(2055543978@qq.com) 20d9bd8dbc9f07ff22f798073d4d6625e9391cf4: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>20d9bd8</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

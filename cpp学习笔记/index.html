@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-09-30T22:14:28+08:00">
+    <meta property="article:modified_time" content="2025-10-04T20:05:15+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  10795 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-09-30T22:14:28+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  11634 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-04T20:05:15+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 10795 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 22 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11634 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 24 分钟&nbsp;
     
 
     
@@ -176,7 +176,7 @@
                 <li><a href="#122-this">1.22 this</a></li>
                 <li><a href="#123-object-lifetime">1.23 object lifetime</a></li>
                 <li><a href="#124-smart-pointer">1.24 smart pointer</a></li>
-                <li><a href="#copy-constructor">Copy Constructor</a></li>
+                <li><a href="#125-copy-constructor">1.25 Copy Constructor</a></li>
               </ul>
             </li>
           </ul>
@@ -1416,13 +1416,168 @@
 </li>
 </ul>
 <p><code>weak_ptr</code>一般和<code>shared_ptr</code>一块使用，他的特点是<strong>不会增加引用计数</strong>，同时通过使用<code>lock()</code>方法可以知道对象是否还存活，不存活就会返回空指针。</p>
-<h4 id="copy-constructor">Copy Constructor</h4>
+<h4 id="125-copy-constructor">1.25 Copy Constructor</h4>
+<p>要想搞清楚什么是<strong>拷贝构造函数</strong>，我们就得先看看为什么需要它。</p>
+<p>我们先来看下面一个类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span><span class="o">*</span> <span class="n">buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">b_Size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b_Size</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">b_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">b_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">String</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">delete</span><span class="p">[]</span> <span class="n">buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">getBuffer</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">buffer</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果我们这样调用，程序会发生什么：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">first</span> <span class="o">=</span> <span class="s">&#34;thising&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">second</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">first</span><span class="p">.</span><span class="n">getBuffer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">second</span><span class="p">.</span><span class="n">getBuffer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案是：在打印完两次&quot;thising&quot;之后，程序出现了未知的错误，程序崩溃了！</p>
+<p>是不是非常的<em>Interesting?</em></p>
+<p>要想知道这里为什么报错了，我们就得先了解程序中两个非常重要的概念：<strong>浅拷贝</strong>和<strong>深拷贝</strong></p>
+<ol>
+<li>浅拷贝（Shallow Copy）</li>
+</ol>
+<p>​	浅拷贝就是<strong>只复制对象的成员变量的值</strong>，而不复制指针所指向的实际数据。也就是说，如果对象中有指针成员，浅拷贝只会复制指针的值（地址），而不会新建一块内存来存放数据。</p>
+<ol start="2">
+<li>深拷贝（Deep Copy）</li>
+</ol>
+<p>​	深拷贝不仅复制成员变量的值，还会为指针成员<strong>分配新的内存空间</strong>，并将原指针指向的数据复制到新的内存中。</p>
+<p>而我们刚刚进行的<code>String second = first</code>，其实就是一次浅拷贝，这是因为在所有的类中，有一个特殊的构造函数，叫做<strong>拷贝构造函数</strong>的存在，函数具体就长这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">A</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 这里写如何从 other 复制成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里如果说我们没有显示去重写这个拷贝构造函数，编译器就会默认帮我们生成一个<strong>默认的浅拷贝构造函数</strong>。</p>
+<p>那么根据浅拷贝的定义，就很容易知道<code>first.buffer</code>和<code>second.buffer</code>其实指向同一片内存区域，因此在函数运行结束后，会调用<strong>2次</strong>析构函数，对同一块内存区域释放两次！因此出现了未定义行为，导致了程序崩溃。</p>
+<p>那么这里我们的本意肯定是希望使用的是<strong>深拷贝</strong>，因此我们就得重写拷贝构造函数了，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span><span class="o">*</span> <span class="n">buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">b_Size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b_Size</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">b_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">b_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span>      	<span class="c1">// 拷贝构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">:</span><span class="n">b_Size</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">b_Size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">b_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>  <span class="c1">// 申请新的空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">buffer</span><span class="p">,</span> <span class="n">b_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">String</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">delete</span><span class="p">[]</span> <span class="n">buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">getBuffer</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">buffer</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时再次运行之前的<code>main</code>函数，便不会报错了，由此大功告成</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-09-30&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/824d687665c5d41f0f8e04518c066f8b556821f1" target="_blank" title="commit by JarVis(2055543978@qq.com) 824d687665c5d41f0f8e04518c066f8b556821f1: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>824d687</a></span>
+                <span>更新于 2025-10-04&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/e96c4a3676f64ea960233709595cf60249dc4b8a" target="_blank" title="commit by JarVis(2055543978@qq.com) e96c4a3676f64ea960233709595cf60249dc4b8a: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e96c4a3</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

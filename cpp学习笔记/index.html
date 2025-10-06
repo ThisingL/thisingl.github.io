@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-10-04T20:10:10+08:00">
+    <meta property="article:modified_time" content="2025-10-06T23:35:20+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  11655 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-04T20:10:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  12771 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-06T23:35:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11655 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 24 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 12771 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 26 分钟&nbsp;
     
 
     
@@ -176,7 +176,8 @@
                 <li><a href="#122-this">1.22 this</a></li>
                 <li><a href="#123-object-lifetime">1.23 object lifetime</a></li>
                 <li><a href="#124-smart-pointer">1.24 smart pointer</a></li>
-                <li><a href="#125-copy-constructor">1.25 Copy Constructor</a></li>
+                <li><a href="#125-copy-constructor">1.25 copy constructor</a></li>
+                <li><a href="#126-vector">1.26 vector</a></li>
               </ul>
             </li>
           </ul>
@@ -1416,7 +1417,7 @@
 </li>
 </ul>
 <p><code>weak_ptr</code>一般和<code>shared_ptr</code>一块使用，他的特点是<strong>不会增加引用计数</strong>，同时通过使用<code>lock()</code>方法可以知道对象是否还存活，不存活就会返回空指针。</p>
-<h4 id="125-copy-constructor">1.25 Copy Constructor</h4>
+<h4 id="125-copy-constructor">1.25 copy constructor</h4>
 <p>要想搞清楚什么是<strong>拷贝构造函数</strong>，我们就得先看看为什么需要它。</p>
 <p>我们先来看下面一个类：</p>
 <div class="highlight"><div class="chroma">
@@ -1572,12 +1573,114 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时再次运行之前的<code>main</code>函数，便不会报错了，由此大功告成</p>
+<h4 id="126-vector">1.26 vector</h4>
+<p><code>std::vector</code>是cpp中的标准库中的<strong>动态数组</strong>，但是却叫向量这个名字属实有点奇怪啊哈哈哈</p>
+<p>基本用法我们就不说了，废话不多说，我们先看一段新手的经常写法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Vertex</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Vertex</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Vertex</span><span class="p">(</span><span class="k">const</span> <span class="n">Vertex</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span>         <span class="c1">// 改造拷贝构造函数来看看复制了几次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;do a copy&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Q.</strong> 请问<code>do a copy</code>会被打印多少次呢？</p>
+<p><strong>A.</strong> 6次！是不是很神奇，卧槽为啥会被复制了6次呢？这不得非常的废时间，因为对象的复制操作其实挺慢的。</p>
+<p>首先我们得先明白<code>std::vector</code>的<strong>扩容策略</strong>，当然这和编译器有关，我这台win电脑上是默认一开始是没有空间的，每次扩容是按照2的倍速递增。当执行第一次<code>push_back</code>时，由于一开始没有空间，会分配 capacity=1 的空间，当然这次扩容并没有用到复制操作。当执行第二次<code>push_back</code>时，由于空间只有1，所以又会扩容，分配 capacity=2 的空间，这时候会将之前的<code>Vertex(1, 2, 3)</code>复制到新的空间里，复制操作**+1**。当执行第三次<code>push_back</code>时，由于空间只有2，所以又会扩容，分配 capacity=4 的空间，这时候会将之前的<code>Vertex(1, 2, 3)</code>和<code>Vertex(4, 5, 6)</code>复制到新的空间里，复制操作**+2**。</p>
+<p>所以上诉<strong>扩容策略</strong>导致了3次复制操作，有没有办法能优化一下这个性能呢？</p>
+<p>有的兄弟有的，那就是试用<code>reserve(3)</code>去预分配用户想要的空间啊，注意不是使用的<code>resize()</code>，因为会影响到<code>size</code>，我们只想要空间，不想改变目前的节点数。</p>
+<p>因此当我们使用下面的写法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行后果然，只打印了3次了！</p>
+<p>那么这3次又是哪里来的呢？这是由于当我们使用<code>push_back(Vertex(1, 2, 3))</code>时，<code>Vertex(1, 2, 3)</code>分配的空间是在<code>main</code>中的，而<code>std::vector</code>的空间是独有的，那么就会出现一次复制，将<code>Vertex(1, 2, 3)</code>从外面拷贝到<code>std::vector</code>的空间中。<code>push_back</code>总共执行了3次，所以这里也就打印了3次啊！</p>
+<p>那么这里的复制是不是也是没必要的，聪明的你一定想要了，为什么不直接在<code>std::vector</code>的空间中创建对象呢？所以<code>emplace_back()</code>方法就应运而生了，你不需要传递一个对象进来，因为<code>std::vector</code>在声明的时候就已经绑定了类型了，因此知道类型只需要传入构造函数的参数就可以依靠<code>emplace_back(1, 2, 3)</code>在内部空间中直接创建了，也就少掉了1次没有必要的复制操作。</p>
+<p>因此优化的代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>非常完美！现在什么都不打印了，说明一次都没有复制了。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-10-04&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/38901f0f839150f51e55561f5c7c0343e5338252" target="_blank" title="commit by JarVis(2055543978@qq.com) 38901f0f839150f51e55561f5c7c0343e5338252: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>38901f0</a></span>
+                <span>更新于 2025-10-06&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/3c89fded981f343ef55571960c20c004e4a923c4" target="_blank" title="commit by JarVis(2055543978@qq.com) 3c89fded981f343ef55571960c20c004e4a923c4: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3c89fde</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

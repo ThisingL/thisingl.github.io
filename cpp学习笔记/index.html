@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-10-13T20:45:34+08:00">
+    <meta property="article:modified_time" content="2025-10-13T21:41:58+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  13333 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-13T20:45:34+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  13818 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-13T21:41:58+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 13333 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 27 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 13818 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 28 分钟&nbsp;
     
 
     
@@ -156,6 +156,7 @@
                   <ul>
                     <li><a href="#161-在类和结构体之外">1.6.1 在类和结构体之外</a></li>
                     <li><a href="#162-在类和结构体里">1.6.2 在类和结构体里</a></li>
+                    <li><a href="#163-局部静态变量">1.6.3 局部静态变量</a></li>
                   </ul>
                 </li>
                 <li><a href="#17-enum">1.7 enum</a></li>
@@ -186,6 +187,7 @@
         </li>
       </ul>
     </li>
+    <li><a href="#同时我们要明白模版不应该被滥用当发现错误的时候模版调试时是比较困难的同时可读性也不如重载但是它足够简洁">同时我们要明白：模版不应该被滥用，当发现错误的时候，模版调试时是比较困难的，同时可读性也不如重载，但是它足够简洁</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="cpp学习笔记">cpp学习笔记</h1>
@@ -616,6 +618,124 @@
 <p>这种情况就分为静态变量和静态方法两种了。</p>
 <p>类和结构体中的静态变量是所有实例共有的，每个实例有的是一个副本，访问静态变量需要通过<code>类名::静态变量</code>来访问。</p>
 <p>静态方法的访问方式和上面一样，静态方法中不能访问类中的非静态变量。这个很好理解吧，因为静态方法同样不需要绑定实例，但是非静态变量是和实例有关的，显然是冲突的。</p>
+<h5 id="163-局部静态变量">1.6.3 局部静态变量</h5>
+<p>这里的<strong>局部静态变量</strong>和我们在 <em>1.6 static</em> 中的有点不一样，这是指的是在<strong>函数内部</strong>定义的<code>static</code>变量。</p>
+<p>我们可以看下面这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">&amp;</span> <span class="n">getCounter</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 局部静态变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">getCounter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">getCounter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">getCounter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后输出的是123。</p>
+<p>这说明局部静态变量<strong>只会被初始化一次</strong>，之后调用函数会直接使用已经存在的变量。并且和普通局部变量一样，只能在函数内部访问。</p>
+<p>有时候这个是非常有用的，对于简化代码写法的角度，例如如果我们需要写一个单例模式，我们使用之前的<strong>类的静态成员</strong>的写法，代码就得写成这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Singleton</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">*</span><span class="n">instance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">instance</span><span class="p">;</span> <span class="c1">// 声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Singleton</span><span class="o">*</span> <span class="n">Singleton</span><span class="o">::</span><span class="n">instance</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span> <span class="c1">// 类外初始化
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是如果我们使用局部静态变量，代码就可以直接简化为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Singleton</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="p">;</span> <span class="c1">// 局部静态变量，自动销毁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以画一张两种方式的对比表：</p>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>类的静态成员变量</th>
+          <th>局部静态变量</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>定义位置</td>
+          <td>类内声明，类外定义</td>
+          <td>函数内部</td>
+      </tr>
+      <tr>
+          <td>初始化时机</td>
+          <td>程序启动时</td>
+          <td>第一次执行到定义语句时</td>
+      </tr>
+      <tr>
+          <td>是否需要手动初始化</td>
+          <td>必须（类外）</td>
+          <td>不需要，自动初始化</td>
+      </tr>
+      <tr>
+          <td>作用域</td>
+          <td>类作用域（可全局访问）</td>
+          <td>函数内部</td>
+      </tr>
+      <tr>
+          <td>生命周期</td>
+          <td>整个程序运行期间</td>
+          <td>整个程序运行期间</td>
+      </tr>
+  </tbody>
+</table>
 <h4 id="17-enum">1.7 enum</h4>
 <p>这里我们先讲普通的enum：</p>
 <p>enum 的作用就是可以统一管理一些变量，将他们映射为整数（注意只能映射为整数），同时这个值都是如果未指定，默认是从0开始递增。</p>
@@ -1677,6 +1797,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>非常完美！现在什么都不打印了，说明一次都没有复制了。</p>
+<p>&laquo;&laquo;&laquo;&lt; HEAD</p>
 <h4 id="127-pair--tuple">1.27 pair &amp;&amp; tuple</h4>
 <p><code>std::pair&lt;int, std::string&gt; p = (0, &quot;thising&quot;)</code>可以用来保存两个不同类型的值</p>
 <p><code>std::tuple&lt;int, std::string, double&gt; t(1, &quot;pi&quot;, 3.1415)</code>可以用来包含任意数量和类型的值</p>
@@ -1758,13 +1879,21 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>同时我们要明白：模版不应该被滥用，当发现错误的时候，模版调试时是比较困难的，同时可读性也不如重载，但是它足够简洁</p>
+</div><h1 id="同时我们要明白模版不应该被滥用当发现错误的时候模版调试时是比较困难的同时可读性也不如重载但是它足够简洁">同时我们要明白：模版不应该被滥用，当发现错误的时候，模版调试时是比较困难的，同时可读性也不如重载，但是它足够简洁</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>e2fa0dc (docs: update posts/)</p></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-10-13&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/8a3803d51f82fc1a7ec167380e19e4be8720d47d" target="_blank" title="commit by thisingl(thisingl@qq.com) 8a3803d51f82fc1a7ec167380e19e4be8720d47d: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8a3803d</a></span>
+                <span>更新于 2025-10-13&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/1571f8b96160e470572e37698b1e382569a09fc5" target="_blank" title="commit by JarVis(2055543978@qq.com) 1571f8b96160e470572e37698b1e382569a09fc5: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>1571f8b</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

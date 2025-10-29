@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-10-27T20:18:41+08:00">
+    <meta property="article:modified_time" content="2025-10-29T20:01:01+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  14071 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-27T20:18:41+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  14467 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-29T20:01:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 14071 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 14467 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 29 分钟&nbsp;
     
 
@@ -173,7 +173,7 @@
                 <li><a href="#118-instantiate-object">1.18 instantiate object</a></li>
                 <li><a href="#119-implicit-conversion">1.19 implicit conversion</a></li>
                 <li><a href="#120-explicit">1.20 explicit</a></li>
-                <li><a href="#121-operator-overloadin">1.21 operator overloadin</a></li>
+                <li><a href="#121-operator-overload">1.21 operator overload</a></li>
                 <li><a href="#122-this">1.22 this</a></li>
                 <li><a href="#123-object-lifetime">1.23 object lifetime</a></li>
                 <li><a href="#124-smart-pointer">1.24 smart pointer</a></li>
@@ -182,6 +182,7 @@
                 <li><a href="#127-pair--tuple">1.27 pair &amp;&amp; tuple</a></li>
                 <li><a href="#128-template">1.28 template</a></li>
                 <li><a href="#129-function-pointer">1.29 function pointer</a></li>
+                <li><a href="#130-lambda">1.30 lambda</a></li>
               </ul>
             </li>
           </ul>
@@ -1288,7 +1289,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>那么这时候这样写就会报错：<code>Person p = std::string(&quot;thisingl&quot;)</code></p>
-<h4 id="121-operator-overloadin">1.21 operator overloadin</h4>
+<h4 id="121-operator-overload">1.21 operator overload</h4>
 <p>c++中提供了一个很强大的，其他语言基本上没有的功能：<strong>操作符重载</strong>。</p>
 <p>也就是说在c++中，我们可以赋予像<code>+</code>、<code>*</code>或者<code>&gt;&gt;</code>等操作符另外的含义，这样有时候会简化很多特别繁琐的情况，特别是数学计算等领域。</p>
 <p>假设我们有下面这样一个二维向量类：</p>
@@ -1926,7 +1927,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>甚至我们可以做的更复杂一点，将函数的参数设置为另一个函数：</p>
+</div><p>知道了上面这个语法，我们就可以更进一步了，让函数变得更加的灵活！将函数的参数设置为另一个函数，这样用户在使用的时候就可以对一套大的函数逻辑进行个性化修改了使用了，不得不佩服c++的灵活性。</p>
+<p>下面是一段简单的代码示范：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1961,12 +1963,92 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h4 id="130-lambda">1.30 lambda</h4>
+<p>想要了解<code>lambda</code>表达式，首先得了解<em>1.29 函数指针</em>，知道一个函数的参数还可以是另一个函数。</p>
+<p><code>lambda</code>表达式就是为了简化之前的语法，当我们将函数的参数设置为另一个函数时，这个工具函数的名字似乎并没有什么意义，因此可以在用户使用时进行简化。</p>
+<p>C++中的<code>lambda</code>表达式语法是这样的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">[</span><span class="n">capture</span><span class="p">](</span><span class="n">parameter_list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">return_type</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">function_body</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的捕获列表（capture）有下面几种类型：</p>
+<table>
+  <thead>
+      <tr>
+          <th>写法</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>[]</td>
+          <td>不捕获，不访问外部变量</td>
+      </tr>
+      <tr>
+          <td>[x]</td>
+          <td>按值捕获，只捕获变量x</td>
+      </tr>
+      <tr>
+          <td>[&amp;x]</td>
+          <td>按引用捕获,只捕获变量x</td>
+      </tr>
+      <tr>
+          <td>[=]</td>
+          <td>按值捕获所有外部变量</td>
+      </tr>
+      <tr>
+          <td>[&amp;]</td>
+          <td>按引用捕获所有外部变量</td>
+      </tr>
+  </tbody>
+</table>
+<p>那么上面我们在 <em>1.29 函数指针</em> 中的代码就可以简化为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">ForEach</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">values</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">value</span> <span class="p">:</span> <span class="n">values</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">func</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ForEach</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">lambda</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-10-27&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/4f98320af2cbfaa4b7da07881fa18e4e11b8351b" target="_blank" title="commit by thisingl(thisingl@qq.com) 4f98320af2cbfaa4b7da07881fa18e4e11b8351b: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4f98320</a></span>
+                <span>更新于 2025-10-29&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/548b4ecdd8e5029ee463a4c140d95585939c212f" target="_blank" title="commit by thisingl(thisingl@qq.com) 548b4ecdd8e5029ee463a4c140d95585939c212f: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>548b4ec</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

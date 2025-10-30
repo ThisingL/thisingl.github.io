@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-10-29T20:01:01+08:00">
+    <meta property="article:modified_time" content="2025-10-30T14:23:52+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  14467 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-29T20:01:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  15369 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-30T14:23:52+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 14467 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 29 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15369 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 31 分钟&nbsp;
     
 
     
@@ -183,10 +183,12 @@
                 <li><a href="#128-template">1.28 template</a></li>
                 <li><a href="#129-function-pointer">1.29 function pointer</a></li>
                 <li><a href="#130-lambda">1.30 lambda</a></li>
+                <li><a href="#131-namespace">1.31 namespace</a></li>
               </ul>
             </li>
           </ul>
         </li>
+        <li><a href="#2-高级特性">2. 高级特性</a></li>
       </ul>
     </li>
   </ul>
@@ -2043,12 +2045,173 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h4 id="131-namespace">1.31 namespace</h4>
+<p><strong>命名空间</strong>是c++中有的而c中没有的，这个特性确实是大型软件开发时必备的特性。</p>
+<p>对于c中没有命名空间，那么就得自己去保证自己写的代码中的方法名或者变量名等不能有重复，有些项目比如 GL，就会把它的每一个库函数的方法名写成<code>GL_XXX</code>，来保证大概率不会发生重复，但是这样其实是很难受不优雅的做法，因此c++中增加了命名空间的功能来隔绝同名函数。</p>
+<p>比如下面这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">apple</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;apple&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">orange</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;orange&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">apple</span><span class="o">::</span><span class="n">print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">orange</span><span class="o">::</span><span class="n">print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们就可以在<code>apple</code>和<code>orange</code>两个不同的命名空间中去定义同名函数了，是不是非常的方便！</p>
+<p>甚至我们可以更灵活的进行使用嵌套的命名空间（当然非常的少见，仅作功能演示）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">fruit</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">namespace</span> <span class="n">apple</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;apple&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">namespace</span> <span class="n">orange</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;orange&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fruit</span><span class="o">::</span><span class="n">apple</span><span class="o">::</span><span class="n">print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fruit</span><span class="o">::</span><span class="n">orange</span><span class="o">::</span><span class="n">print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>甚至可以把命名空间赋给一个变量使用（更少见了）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">namespace</span> <span class="n">a</span> <span class="o">=</span> <span class="n">fruit</span><span class="o">::</span><span class="n">apple</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">namespace</span> <span class="n">o</span> <span class="o">=</span> <span class="n">fruit</span><span class="o">::</span><span class="n">orange</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="o">::</span><span class="n">print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">o</span><span class="o">::</span><span class="n">print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外我们这里需要讨论一个重要的事情，为什么尽量不要使用<code>using namespace XXX</code>？</p>
+<p>一个重要的原因是这样会把整个命名空间中的所有内容引入进来，那不又出现和一开始一样的问题吗：重名问题？</p>
+<p>同时就算不重名，那有可能引入更可怕的问题了：编译没问题，但是运行结果和想要的不一样？</p>
+<p>我们看看下面这个例子就知道这种问题有多么难排查了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 直接打印
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">b</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 反转并打印
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">reverse</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">tmp</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">tmp</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Q: 大家猜猜最后打印输出的是什么呢？</p>
+<p>A: <code>olleh</code>。哈哈哈为什么明明先引入的命名空间是<code>a</code>,我们却调用了<code>b</code>中的函数呢？那是因为<code>&quot;hello&quot;</code>本质上是<code>const char[]</code>，而<code>a</code>中想调用<code>print(&quot;hello&quot;)</code>，需要进行一次我们在 <em>1.19 隐式转换</em> 中提到的隐式转换，那么编译器就会认为<code>b</code>中的<code>print(const char*)</code>更匹配，那么你看是不是非常容易出错呢？纠错又极其的困难。</p>
+<p>因此我们<strong>建议</strong>：如果使用<code>using namespace</code>，也请在足够小的范围内使用，这样不会影响其他的部分。</p>
+<h2 id="2-高级特性">2. 高级特性</h2>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-10-29&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/548b4ecdd8e5029ee463a4c140d95585939c212f" target="_blank" title="commit by thisingl(thisingl@qq.com) 548b4ecdd8e5029ee463a4c140d95585939c212f: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>548b4ec</a></span>
+                <span>更新于 2025-10-30&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/8499e3219af264e981e5b8d13ad1dbda7b6542e2" target="_blank" title="commit by thisingl(thisingl@qq.com) 8499e3219af264e981e5b8d13ad1dbda7b6542e2: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8499e32</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

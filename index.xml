@@ -3,9 +3,17 @@
         <title>Thising&#39;log | 自学空间</title>
         <link>https://example.com/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Sep 2025 12:03:20 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 31 Oct 2025 18:12:20 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>《原子习惯》</title>
+    <link>https://example.com/%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF/</link>
+    <pubDate>Fri, 31 Oct 2025 18:12:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF/</guid>
+    <description><![CDATA[《原子习惯》是一本关于如何养成好习惯的书，作者是詹姆斯·克利尔（James Clear）。]]></description>
+</item>
+<item>
     <title>如何提交一个优雅的pr</title>
     <link>https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/</link>
     <pubDate>Tue, 23 Sep 2025 12:03:20 &#43;0800</pubDate>
@@ -76,14 +84,6 @@
     <author>Thising</author>
     <guid>https://example.com/vscode%E7%BC%BA%E5%B0%91module%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
     <description><![CDATA[经常遇到的module缺少问题的一个有效的解决方案]]></description>
-</item>
-<item>
-    <title>自用健身计划</title>
-    <link>https://example.com/%E8%87%AA%E7%94%A8%E5%81%A5%E8%BA%AB%E8%AE%A1%E5%88%92/</link>
-    <pubDate>Tue, 07 Jan 2025 22:58:10 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E8%87%AA%E7%94%A8%E5%81%A5%E8%BA%AB%E8%AE%A1%E5%88%92/</guid>
-    <description><![CDATA[研一上的日常健身计划]]></description>
 </item>
 </channel>
 </rss>

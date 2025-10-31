@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-10-30T14:23:52+08:00">
+    <meta property="article:modified_time" content="2025-10-31T18:03:07+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  15369 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-30T14:23:52+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  15687 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-10-31T18:03:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15369 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 31 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15687 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 32 分钟&nbsp;
     
 
     
@@ -184,6 +184,7 @@
                 <li><a href="#129-function-pointer">1.29 function pointer</a></li>
                 <li><a href="#130-lambda">1.30 lambda</a></li>
                 <li><a href="#131-namespace">1.31 namespace</a></li>
+                <li><a href="#132-thread">1.32 thread</a></li>
               </ul>
             </li>
           </ul>
@@ -2205,13 +2206,102 @@
 </div><p>Q: 大家猜猜最后打印输出的是什么呢？</p>
 <p>A: <code>olleh</code>。哈哈哈为什么明明先引入的命名空间是<code>a</code>,我们却调用了<code>b</code>中的函数呢？那是因为<code>&quot;hello&quot;</code>本质上是<code>const char[]</code>，而<code>a</code>中想调用<code>print(&quot;hello&quot;)</code>，需要进行一次我们在 <em>1.19 隐式转换</em> 中提到的隐式转换，那么编译器就会认为<code>b</code>中的<code>print(const char*)</code>更匹配，那么你看是不是非常容易出错呢？纠错又极其的困难。</p>
 <p>因此我们<strong>建议</strong>：如果使用<code>using namespace</code>，也请在足够小的范围内使用，这样不会影响其他的部分。</p>
-<h2 id="2-高级特性">2. 高级特性</h2>
+<h4 id="132-thread">1.32 thread</h4>
+<p>终于进入到多线程的情况了，实际编程遇到这种的时候，已经是比较复杂的情况了，我们首先来看看<code>std::thread</code>的语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">...)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们需要传入一个函数<code>func</code>，后面的<code>args</code>是这个函数的传参。</p>
+<p>当然这个传参有两种情况:</p>
+<table>
+  <thead>
+      <tr>
+          <th>func</th>
+          <th>args</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>func(int x)</code></td>
+          <td><code>x</code></td>
+      </tr>
+      <tr>
+          <td><code>func(int* x)</code></td>
+          <td><code>&amp;x</code></td>
+      </tr>
+      <tr>
+          <td><code>func(int&amp; x)</code></td>
+          <td><code>std::ref(x)</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>这里为什么是<code>std::ref(x)</code>?我们可以讲一讲：<code>std::thread</code> 默认会<strong>把参数拷贝一份</strong>给新线程，<code>std::ref(x)</code> 的意思就是“请当成引用传进去”。</p>
+<p>所以直接使用可以如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">begin</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">worker</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">begin</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">worker</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当然如果用上我们 <em>1.30 lambda</em> 中讲到的，就可以更简单了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">begin</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">worker</span><span class="p">([](</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">begin</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">worker</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-高级特性">2. 高级特性</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-10-30&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/8499e3219af264e981e5b8d13ad1dbda7b6542e2" target="_blank" title="commit by thisingl(thisingl@qq.com) 8499e3219af264e981e5b8d13ad1dbda7b6542e2: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8499e32</a></span>
+                <span>更新于 2025-10-31&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/11ffedee3d9850d9363975725c621c3c68af2393" target="_blank" title="commit by thisingl(thisingl@qq.com) 11ffedee3d9850d9363975725c621c3c68af2393: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>11ffede</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

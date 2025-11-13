@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-11-11T19:58:30+08:00">
+    <meta property="article:modified_time" content="2025-11-13T20:37:36+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  16235 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-11-11T19:58:30+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  17093 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-11-13T20:37:36+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 16235 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 33 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 17093 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 35 分钟&nbsp;
     
 
     
@@ -186,6 +186,7 @@
                 <li><a href="#131-namespace">1.31 namespace</a></li>
                 <li><a href="#132-thread">1.32 thread</a></li>
                 <li><a href="#133-type-punning">1.33 type punning</a></li>
+                <li><a href="#134-union">1.34 union</a></li>
               </ul>
             </li>
           </ul>
@@ -2361,13 +2362,96 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">header</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MessageHeader</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="2-高级特性">2. 高级特性</h2>
+</div><h4 id="134-union">1.34 union</h4>
+<p><code>union</code>（联合体）是一种特殊的类类型（类似于 <code>struct</code>），它的所有成员 <strong>共用同一段内存空间</strong>（<code>union</code> 所占的内存大小 == 其最大成员的大小）。也就是说，一个 <code>union</code> 在任意时刻只能“存”一个成员的值。</p>
+<p>我们先来看一段简单的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">union</span> <span class="nc">UnionName</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UnionName</span> <span class="n">u</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u</span><span class="p">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">.</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>		<span class="c1">// 100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">.</span><span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>		<span class="c1">// 1.4013e-43
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">.</span><span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>		<span class="c1">// d
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>按照我们上面的定义来看，此时 <code>u</code> 的空间大小应该是 4 个字节。然后我们将 <code>u</code> 中的变量 <code>i</code> 赋值为 100，100 在内存中的二进制表示是:<code>00000000 00000000 00000000 01100100</code>，然后由于是小端序，因此我们的内存空间的十六进制形式应该长这样：<code>64 00 00 00</code>。如果我们访问 <code>u.i</code>，就是将这段内存空间从头，按照 <code>int</code> 的格式去解读，那么显然就是 100。而如果我们访问 <code>u.f</code>，那就是按照 <code>float</code> 的格式去解读，那么按照浮点数的格式来读，就是上面输出的令我们疑惑的 1.4013e-43。以及我们访问<code>u.c</code>，那其实就是只读取了一开头的一个字节内容，按照 ASCII 去解读下来就是<code>d</code>。</p>
+<p>当然啊，看到这里，很多同学就会有疑惑，这不就和我们在 <em>1.33 type punning</em> 中提到的 <code>reinterpret_cast&lt;&gt;()</code> 干的事情一样吗？都是把一块内存用不同的类型去解读。确实你的疑惑是正确的，在编译器看来，这两者翻译成的汇编代码都一样，也就是性能也完全一样。当然本质上我们上面提到过：<em><code>reinterpret_cast&lt;double&gt;(&amp;a)</code>的语义比起<code>(double*)&amp;a</code>更加清晰，也就是多了一层抽象</em>，而我们在这里引入 <code>union</code>，其实也是一种抽象啊只是，<code>union</code> 中这段内存空间可以解读成的类型都被我们规定好了，一眼就知道了，是不是更加清晰！</p>
+<p>以及在实际使用中，我们经常的一种使用方法是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">enum</span> <span class="nc">Type</span> <span class="p">{</span> <span class="n">INT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">FLOAT</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">STR</span> <span class="o">=</span> <span class="mi">3</span> <span class="p">}</span> <span class="n">type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">union</span> <span class="nc">Data</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">float</span> <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Packet</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用时：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">p</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">Packet</span><span class="o">::</span><span class="n">FLOAT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="mf">3.14f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 读取时：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Packet</span><span class="o">::</span><span class="n">FLOAT</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>假如我们读取了一段网络包，网络包可以有不同的内容解读方式，就可以使用这种 <code>union</code> 的方式去简化，这样就不用怕整条链路上可能有不同类型的变量在传输了。</p>
+<h2 id="2-高级特性">2. 高级特性</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-11-11&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/680ab79768a9d933dc18d9898e4162b1b7fa4b87" target="_blank" title="commit by thisingl(thisingl@qq.com) 680ab79768a9d933dc18d9898e4162b1b7fa4b87: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>680ab79</a></span>
+                <span>更新于 2025-11-13&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/8f5b88d85b2c7513036f1ad5554cb0a864993f1e" target="_blank" title="commit by thisingl(thisingl@qq.com) 8f5b88d85b2c7513036f1ad5554cb0a864993f1e: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8f5b88d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

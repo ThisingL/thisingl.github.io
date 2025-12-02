@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-11-14T11:11:52+08:00">
+    <meta property="article:modified_time" content="2025-12-02T20:07:54+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  17086 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-11-14T11:11:52+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  18668 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-12-02T20:07:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 17086 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 35 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 18668 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 38 分钟&nbsp;
     
 
     
@@ -187,6 +187,8 @@
                 <li><a href="#132-thread">1.32 thread</a></li>
                 <li><a href="#133-type-punning">1.33 type punning</a></li>
                 <li><a href="#134-union">1.34 union</a></li>
+                <li><a href="#135-virtual-destructor">1.35 virtual destructor</a></li>
+                <li><a href="#136-casting">1.36 casting</a></li>
               </ul>
             </li>
           </ul>
@@ -2445,13 +2447,353 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="2-高级特性">2. 高级特性</h2>
+</div><h4 id="135-virtual-destructor">1.35 virtual destructor</h4>
+<p>前面我们介绍过<strong>虚函数</strong>，这里我们要介绍的是一个很像，但是不一样的特性：<strong>虚析构函数</strong></p>
+<p>我们先来看一段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base: constructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Base</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base: destructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Derived</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Derived: constructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Derived</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">delete</span><span class="p">[]</span> <span class="n">m_data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Derived: destructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">*</span> <span class="n">m_data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">base</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Base</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">base</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Derived</span><span class="o">*</span> <span class="n">derived</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">derived</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">poly</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">poly</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Q.</strong> 你认为输出的结果是什么？</p>
+<p>答案是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>thisingl@MacBook-Pro cpp<span class="o">]</span> % g++ -std<span class="o">=</span>c++17 main.cc -o main <span class="o">&amp;&amp;</span> ./main
+</span></span><span class="line"><span class="cl">Base: constructor
+</span></span><span class="line"><span class="cl">Base: destructor
+</span></span><span class="line"><span class="cl">----------------
+</span></span><span class="line"><span class="cl">Base: constructor
+</span></span><span class="line"><span class="cl">Derived: constructor
+</span></span><span class="line"><span class="cl">Derived: destructor
+</span></span><span class="line"><span class="cl">Base: destructor
+</span></span><span class="line"><span class="cl">----------------
+</span></span><span class="line"><span class="cl">Base: constructor
+</span></span><span class="line"><span class="cl">Derived: constructor
+</span></span><span class="line"><span class="cl">Base: destructor
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从输出中我们可以看出来，如果我们这样申明：<code>Derived* derived = new Derived();</code>，那么当结束生命周期的时候，就是我们想要的结果：<strong>同时调用子类和父类的析构函数</strong>。而如果我们是使用<strong>多态</strong>的方式来生命：<code>Base* poly = new Derived();</code>，此时当结束生命周期时，很神奇的是，编译器似乎<em>不智能</em>了，只调用声明的类型（父类）的析构函数，此时实际类型（子类）的析构函数给遗漏掉了，直接造成了<strong>内存泄漏</strong>！</p>
+<p>聪明的你很快发现了，这种情况和我们之前使用虚函数方法的场景很像，但是这里有一点不一样，虚函数方法是通过子类重写函数的映射表<code>VTABLE</code>来进行动态分配，但是这里不是重写方法，而是同时执行这两个析构函数。</p>
+<p>所以此时我们在父类方法上加上<code>virtual</code>，其他地方保持不变，此时再次运行下面代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base: constructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="o">~</span><span class="n">Base</span><span class="p">()</span> <span class="p">{</span>                                   <span class="c1">// 加上虚析构函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base: destructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Derived</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Derived: constructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Derived</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">delete</span><span class="p">[]</span> <span class="n">m_data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Derived: destructor&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">*</span> <span class="n">m_data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">base</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Base</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">base</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Derived</span><span class="o">*</span> <span class="n">derived</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">derived</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">poly</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">poly</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时输出的就是我们想要的了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>thisingl@MacBook-Pro cpp<span class="o">]</span> % g++ -std<span class="o">=</span>c++17 main.cc -o main <span class="o">&amp;&amp;</span> ./main
+</span></span><span class="line"><span class="cl">Base: constructor
+</span></span><span class="line"><span class="cl">Base: destructor
+</span></span><span class="line"><span class="cl">----------------
+</span></span><span class="line"><span class="cl">Base: constructor
+</span></span><span class="line"><span class="cl">Derived: constructor
+</span></span><span class="line"><span class="cl">Derived: destructor
+</span></span><span class="line"><span class="cl">Base: destructor
+</span></span><span class="line"><span class="cl">----------------
+</span></span><span class="line"><span class="cl">Base: constructor
+</span></span><span class="line"><span class="cl">Derived: constructor
+</span></span><span class="line"><span class="cl">Derived: destructor
+</span></span><span class="line"><span class="cl">Base: destructor
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>因此</strong>，如果我们想要一个类允许被<strong>继承</strong>，<strong>一定要将父类的虚函数申明为虚函数</strong>，否则就没有人可以安全的拓展继承这个类，甚至包括你自己！</p>
+<h4 id="136-casting">1.36 casting</h4>
+<p>下面我们来讲讲 C++ 的所有类型转换（casting）</p>
+<p>首先我们先来看看 C 语言风格的类型转换：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多么的优雅、简单、暴力美学（不是）</p>
+<p>它的问题其实非常多：</p>
+<p>❌ 它太强了
+❌ 它隐藏太多行为
+❌ 它可能执行 static_cast / reinterpret_cast / const_cast 的任意组合
+❌ 不安全、难排查 bug</p>
+<p>所以不适合现代化的 C++ 了</p>
+<p>C++ 提供了 <strong>四种更安全、语义更明确的转换</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>cast</th>
+          <th>是否安全</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>static_cast</strong></td>
+          <td>✔相对安全</td>
+          <td>普通类型转换、隐式转换显式化</td>
+      </tr>
+      <tr>
+          <td><strong>reinterpret_cast</strong></td>
+          <td>❌极危险</td>
+          <td>仅做“比特级重新解释”</td>
+      </tr>
+      <tr>
+          <td><strong>const_cast</strong></td>
+          <td>⚠局部危险</td>
+          <td>移除 <code>const</code>/<code>volatile</code></td>
+      </tr>
+      <tr>
+          <td><strong>dynamic_cast</strong></td>
+          <td>✔最安全</td>
+          <td>RTTI：运行时判断是否能转成某个类型</td>
+      </tr>
+  </tbody>
+</table>
+<p>我们按照推荐的使用顺序来介绍吧：</p>
+<ol>
+<li>首先我们先看看 <code>static_cast</code>，这是编译期能判断的安全转换。</li>
+</ol>
+<p>它常用于简单的数字类型转换：</p>
+<p>比如刚刚上面的代码就可以写成更安全的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以将 <code>void*</code> 转为具体类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">...;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">ip</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是 <code>static_cast</code> 对于基类指针 → 派生类指针的情况，是不安全的，需要使用下面的 <code>dynamic_cast</code></p>
+<ol start="2">
+<li>下面我们来看看 <code>dynamic_cast</code>，这是运行时安全检查（用于继承）</li>
+</ol>
+<p>这是唯一带 <strong>运行时检查</strong> 的 cast。</p>
+<p>用途：基类指针转换为派生类指针，并检查是否真的属于那个子类，如果类型不匹配，会返回 <code>nullptr</code>。</p>
+<p>比如下面的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Base</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Derived</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 转换成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>接下来我们要了解的是<code>const_cast</code>，它的作用是移除 <code>const</code></li>
+</ol>
+<p>const_cast 只负责“移除 const 修饰”，如果原变量是 const → 改它 = <strong>未定义行为（UB）</strong></p>
+<p>它的使用场景是，比如有些接口写死了不要 <code>const</code> 修饰的传参，如 <code>void legacy_api(char* buf)</code>，但是你外面变量拿到的恰好是 <code>const char* s = &quot;hello&quot;</code>，同时你还知道： legacy_api 不会修改这个字符串，它只是想读它，这时候就派上用场了。</p>
+<ol start="4">
+<li>最后要介绍的就是最危险，但是功能也最天马行空，什么都能干的 <code>reinterpret_cast</code>，这个可以看我们之前介绍过的 <em>1.33 type punning</em></li>
+</ol>
+<h2 id="2-高级特性">2. 高级特性</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-11-14&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/5bc924f65ed085ef04243a14ba642d7e7cb3568c" target="_blank" title="commit by thisingl(thisingl@qq.com) 5bc924f65ed085ef04243a14ba642d7e7cb3568c: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5bc924f</a></span>
+                <span>更新于 2025-12-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/15a1bed3387bbb9ec1129c97cef0e34a7184fd2c" target="_blank" title="commit by thisingl(thisingl@qq.com) 15a1bed3387bbb9ec1129c97cef0e34a7184fd2c: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>15a1bed</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

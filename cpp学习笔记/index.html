@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2025-12-02T20:07:54+08:00">
+    <meta property="article:modified_time" content="2025-12-02T20:10:20+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  18668 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-12-02T20:07:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  18652 ,
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2025-12-02T20:10:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cpp学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 18668 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-29">2025-08-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 18652 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 38 分钟&nbsp;
     
 
@@ -2684,10 +2684,10 @@
 </div>
 </div><p>多么的优雅、简单、暴力美学（不是）</p>
 <p>它的问题其实非常多：</p>
-<p>❌ 它太强了
-❌ 它隐藏太多行为
-❌ 它可能执行 static_cast / reinterpret_cast / const_cast 的任意组合
-❌ 不安全、难排查 bug</p>
+<p>❌ 它太强了</p>
+<p>❌ 它隐藏太多行为</p>
+<p>❌ 它可能执行 static_cast / reinterpret_cast / const_cast 的任意组合</p>
+<p>❌ 不安全、难排查 bug</p>
 <p>所以不适合现代化的 C++ 了</p>
 <p>C++ 提供了 <strong>四种更安全、语义更明确的转换</strong>：</p>
 <table>
@@ -2785,15 +2785,16 @@
 <p>const_cast 只负责“移除 const 修饰”，如果原变量是 const → 改它 = <strong>未定义行为（UB）</strong></p>
 <p>它的使用场景是，比如有些接口写死了不要 <code>const</code> 修饰的传参，如 <code>void legacy_api(char* buf)</code>，但是你外面变量拿到的恰好是 <code>const char* s = &quot;hello&quot;</code>，同时你还知道： legacy_api 不会修改这个字符串，它只是想读它，这时候就派上用场了。</p>
 <ol start="4">
-<li>最后要介绍的就是最危险，但是功能也最天马行空，什么都能干的 <code>reinterpret_cast</code>，这个可以看我们之前介绍过的 <em>1.33 type punning</em></li>
+<li>最后要介绍的就是最危险，但是功能也最天马行空，什么都能干的 <code>reinterpret_cast</code></li>
 </ol>
+<p>这个可以看我们之前介绍过的 <em>1.33 type punning</em></p>
 <h2 id="2-高级特性">2. 高级特性</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-12-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/15a1bed3387bbb9ec1129c97cef0e34a7184fd2c" target="_blank" title="commit by thisingl(thisingl@qq.com) 15a1bed3387bbb9ec1129c97cef0e34a7184fd2c: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>15a1bed</a></span>
+                <span>更新于 2025-12-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/b8410079210da9d92fc98058d3f91851a257326b" target="_blank" title="commit by thisingl(thisingl@qq.com) b8410079210da9d92fc98058d3f91851a257326b: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b841007</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

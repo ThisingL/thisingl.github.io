@@ -3,7 +3,15 @@
         <title>编程 - 分类 - Thising&#39;log | 自学空间</title>
         <link>https://example.com/categories/%E7%BC%96%E7%A8%8B/</link>
         <description>编程 - 分类 - Thising&#39;log | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Sep 2025 12:03:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 10 Dec 2025 19:18:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>vscode常用配置</title>
+    <link>https://example.com/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</link>
+    <pubDate>Wed, 10 Dec 2025 19:18:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</guid>
+    <description><![CDATA[记录一些vscode类编辑器的常用插件和设置，方便换电脑时快速复刻就环境]]></description>
+</item>
+<item>
     <title>如何提交一个优雅的pr</title>
     <link>https://example.com/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%B8%80%E4%B8%AA%E4%BC%98%E9%9B%85%E7%9A%84pr/</link>
     <pubDate>Tue, 23 Sep 2025 12:03:20 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>Thising</author>
     <guid>https://example.com/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</guid>
     <description><![CDATA[根据y总算法基础课、算法提高课、Leetcode整理出来的算法模板，还在不断更新中&hellip;]]></description>
-</item>
-<item>
-    <title>云服务器笔记</title>
-    <link>https://example.com/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AC%94%E8%AE%B0/</link>
-    <pubDate>Tue, 12 Nov 2024 19:16:22 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[记录自己部署自己的springboot项目到阿里云上的步骤心得]]></description>
 </item>
 </channel>
 </rss>

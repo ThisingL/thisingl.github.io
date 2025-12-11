@@ -3,7 +3,15 @@
         <title>编程 - 标签 - Thising&#39;log | 自学空间</title>
         <link>https://example.com/tags/%E7%BC%96%E7%A8%8B/</link>
         <description>编程 - 标签 - Thising&#39;log | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 10 Dec 2025 19:18:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 11 Dec 2025 19:42:22 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>开发机常用配置</title>
+    <link>https://example.com/%E5%BC%80%E5%8F%91%E6%9C%BA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</link>
+    <pubDate>Thu, 11 Dec 2025 19:42:22 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/%E5%BC%80%E5%8F%91%E6%9C%BA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</guid>
+    <description><![CDATA[由于在公司的电脑上分配了一台新的内网开发机，就顺便记录了一下如何通过源码安装外部工具（内网环境没法访问外网），以及如何通过配置外部工具来美化命令行]]></description>
+</item>
+<item>
     <title>vscode常用配置</title>
     <link>https://example.com/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</link>
     <pubDate>Wed, 10 Dec 2025 19:18:20 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>Thising</author>
     <guid>https://example.com/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
     <description><![CDATA[列举一些Git常用命令]]></description>
-</item>
-<item>
-    <title>算法学习自用板子</title>
-    <link>https://example.com/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</link>
-    <pubDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</guid>
-    <description><![CDATA[根据y总算法基础课、算法提高课、Leetcode整理出来的算法模板，还在不断更新中&hellip;]]></description>
 </item>
 </channel>
 </rss>

@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-12-11T19:42:22+08:00">
-    <meta property="article:modified_time" content="2025-12-12T11:53:55+08:00">
+    <meta property="article:modified_time" content="2025-12-12T17:32:27+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  683 ,
-        "url": "https:\/\/example.com\/%E5%BC%80%E5%8F%91%E6%9C%BA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE\/","datePublished": "2025-12-11T19:42:22+08:00","dateModified": "2025-12-12T11:53:55+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  774 ,
+        "url": "https:\/\/example.com\/%E5%BC%80%E5%8F%91%E6%9C%BA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE\/","datePublished": "2025-12-11T19:42:22+08:00","dateModified": "2025-12-12T17:32:27+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">开发机常用配置</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-11">2025-12-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 683 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-11">2025-12-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 774 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;
     
 
@@ -148,7 +148,12 @@
               <ul>
                 <li><a href="#在外网机器下载源码">在外网机器下载源码</a></li>
                 <li><a href="#在内网机编译">在内网机编译</a></li>
-                <li><a href="#zsh-autosuggest自动灰色提示">zsh-autosuggest（自动灰色提示）</a></li>
+                <li><a href="#zsh-autosuggest自动灰色提示">zsh-autosuggest（自动灰色提示）</a>
+                  <ul>
+                    <li><a href="#如何配置-zsh-历史持久化配置">如何配置 zsh 历史持久化配置</a></li>
+                    <li><a href="#如何直接执行-zsh-autosuggestions-的提示命令"><strong>如何直接执行 zsh-autosuggestions 的提示命令</strong></a></li>
+                  </ul>
+                </li>
                 <li><a href="#fzf">fzf</a></li>
               </ul>
             </li>
@@ -220,6 +225,7 @@
 <li><strong>只需要一个文件</strong></li>
 </ul>
 <p>下载后你会发现：新开的 zsh 终端无法看到前一个终端执行过的命令历史</p>
+<h5 id="如何配置-zsh-历史持久化配置">如何配置 zsh 历史持久化配置</h5>
 <p>这是 <strong>zsh 默认行为的坑</strong>：<strong>zsh 不会自动把命令立即写入 ~/.zsh_history</strong>，而是只在退出时写入。</p>
 <p>所以多个终端之间互相看不到对方的历史命令。</p>
 <p>✅ <strong>解决方法（标准 zsh 历史持久化配置）</strong></p>
@@ -280,14 +286,22 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">source</span> ~/.zshrc
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="fzf">fzf</h4>
+</div><h5 id="如何直接执行-zsh-autosuggestions-的提示命令"><strong>如何直接执行 zsh-autosuggestions 的提示命令</strong></h5>
+<p><strong>方式：按 →（右方向键）接受建议 + 回车</strong></p>
+<p>这是插件默认行为：</p>
+<ol>
+<li>光标右键（→）→ 立刻把灰色建议补全到命令行</li>
+<li>再按回车执行</li>
+</ol>
+<p>这是最标准、最常用的方式。</p>
+<h4 id="fzf">fzf</h4>
 <p>当然上面的 zsh-autosuggest 提供的提示不支持<strong>模糊匹配</strong>，比如如果我们有多个同样前缀的命令时就很苦恼了，这时候就得使用我们更强大的插件 <strong>fzf</strong> 了。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-12-12&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/f1b710632c6031a819edd6696343722ea9284a1e" target="_blank" title="commit by thisingl(thisingl@qq.com) f1b710632c6031a819edd6696343722ea9284a1e: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>f1b7106</a></span>
+                <span>更新于 2025-12-12&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/0f9ee94c353b47ac0f8a09bc9ae667ab6a51ddfe" target="_blank" title="commit by thisingl(thisingl@qq.com) 0f9ee94c353b47ac0f8a09bc9ae667ab6a51ddfe: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>0f9ee94</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

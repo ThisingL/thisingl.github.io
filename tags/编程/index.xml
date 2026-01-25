@@ -3,7 +3,15 @@
         <title>编程 - 标签 - Thising&#39;log | 自学空间</title>
         <link>https://example.com/tags/%E7%BC%96%E7%A8%8B/</link>
         <description>编程 - 标签 - Thising&#39;log | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 11 Dec 2025 19:42:22 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>程序员面试面经</title>
+    <link>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E9%9D%A2%E7%BB%8F/</link>
+    <pubDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E9%9D%A2%E7%BB%8F/</guid>
+    <description><![CDATA[自己在找实习和秋招期间准备的面经总结，包含高频面经考点和实际面试中遇到的题目，还在更新中&hellip;]]></description>
+</item>
+<item>
     <title>开发机常用配置</title>
     <link>https://example.com/%E5%BC%80%E5%8F%91%E6%9C%BA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</link>
     <pubDate>Thu, 11 Dec 2025 19:42:22 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>Thising</author>
     <guid>https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</guid>
     <description><![CDATA[配置文件：.tmux.conf、.vimrc]]></description>
-</item>
-<item>
-    <title>Git常用命令</title>
-    <link>https://example.com/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
-    <pubDate>Sat, 14 Dec 2024 15:15:20 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-    <description><![CDATA[列举一些Git常用命令]]></description>
 </item>
 </channel>
 </rss>

@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-01-25T23:58:20+08:00">
-    <meta property="article:modified_time" content="2026-01-26T00:01:11+08:00">
+    <meta property="article:modified_time" content="2026-01-26T13:26:15+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  31924 ,
-        "url": "https:\/\/example.com\/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E9%9D%A2%E7%BB%8F\/","datePublished": "2026-01-25T23:58:20+08:00","dateModified": "2026-01-26T00:01:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  34403 ,
+        "url": "https:\/\/example.com\/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E9%9D%A2%E7%BB%8F\/","datePublished": "2026-01-25T23:58:20+08:00","dateModified": "2026-01-26T13:26:15+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">程序员面试面经</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-25">2026-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 31924 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 64 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-25">2026-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 34403 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 69 分钟&nbsp;
     
 
     
@@ -145,7 +145,34 @@
         <li><a href="#自我介绍">自我介绍</a></li>
         <li><a href="#项目介绍">项目介绍：</a>
           <ul>
+            <li><a href="#apache-fory">Apache Fory</a>
+              <ul>
+                <li><a href="#1-项目信息">1. 项目信息</a></li>
+                <li><a href="#2-项目进度">2. 项目进度</a>
+                  <ul>
+                    <li><a href="#已完成工作">已完成工作</a></li>
+                    <li><a href="#遇到的问题及解决方案">遇到的问题及解决方案</a></li>
+                    <li><a href="#后续工作安排">后续工作安排</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
             <li><a href="#小智医疗">小智医疗</a></li>
+            <li><a href="#探店笔记">探店笔记</a>
+              <ul>
+                <li><a href="#项目介绍-1">项目介绍</a></li>
+                <li><a href="#主要功能模块">主要功能模块</a>
+                  <ul>
+                    <li><a href="#1登录">1.登录</a></li>
+                    <li><a href="#2商户缓存">2.商户缓存</a></li>
+                    <li><a href="#3优惠卷秒杀">3.优惠卷秒杀</a></li>
+                    <li><a href="#4-达人探店">4. 达人探店</a></li>
+                    <li><a href="#5-查看附近商户">5. 查看附近商户</a></li>
+                    <li><a href="#6全局唯一id">6.全局唯一id</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
             <li><a href="#蛇蛇大作战">蛇蛇大作战</a>
               <ul>
                 <li><a href="#主要包含模块">主要包含模块：</a></li>
@@ -173,21 +200,6 @@
                 <li><a href="#问题解决类">问题解决类</a></li>
                 <li><a href="#代码优化类">代码优化类</a></li>
                 <li><a href="#扩展性和维护性类">扩展性和维护性类</a></li>
-              </ul>
-            </li>
-            <li><a href="#探店笔记">探店笔记</a>
-              <ul>
-                <li><a href="#项目介绍-1">项目介绍</a></li>
-                <li><a href="#主要功能模块">主要功能模块</a>
-                  <ul>
-                    <li><a href="#1登录">1.登录</a></li>
-                    <li><a href="#2商户缓存">2.商户缓存</a></li>
-                    <li><a href="#3优惠卷秒杀">3.优惠卷秒杀</a></li>
-                    <li><a href="#4-达人探店">4. 达人探店</a></li>
-                    <li><a href="#5-查看附近商户">5. 查看附近商户</a></li>
-                    <li><a href="#6全局唯一id">6.全局唯一id</a></li>
-                  </ul>
-                </li>
               </ul>
             </li>
           </ul>
@@ -633,6 +645,146 @@
 <p>Thank you.</p>
 <p><strong>简历中项目应该按照时间顺序，把最新的项目放在上面</strong></p>
 <h2 id="项目介绍">项目介绍：</h2>
+<h3 id="apache-fory">Apache Fory</h3>
+<h4 id="1-项目信息">1. 项目信息</h4>
+<ul>
+<li>
+<p><strong>项目名称</strong>：为 Fury Go 实现编译时代码生成功能</p>
+</li>
+<li>
+<p><strong>方案描述</strong>：</p>
+<ul>
+<li>
+<p>总体目标：</p>
+<ul>
+<li>在编译阶段生成面向 Fury 二进制协议的强类型序列化/反序列化代码，替代反射热路径，保证协议一致性、性能与类型安全。</li>
+</ul>
+</li>
+<li>
+<p>实施思路（项目初期规划）：</p>
+<ul>
+<li>类型发现：通过 <code>go generate</code>/CLI，扫描源码中带 <code>//fory:generate</code> 注解的结构体，形成待生成清单。</li>
+<li>类型分析：获取结构体导出字段的编译期类型信息，识别基础类型、字符串、时间类（如时间戳与本地日期）、指针、结构体、切片与映射等；限定映射键为可比较的基础类型。</li>
+<li>字段排序：按运行时反射路径的分组与规则生成稳定顺序（primitive/final/other/collection/map），组内再按类型与命名排序，确保与反射序列化的字段顺序一致。</li>
+<li>结构哈希：将字段类型映射为协议类型标识并迭代计算结构哈希；对切片/映射使用统一标识；对指针命名结构体按规则取符号；避免零哈希。</li>
+<li>代码生成：为每个目标类型生成一个序列化器及工厂，注册到运行时；生成强类型 <code>WriteTyped/ReadTyped</code> 与接口兼容方法；先读写结构哈希，再按排序顺序逐字段编码/解码。
+<ul>
+<li>写入规则：可引用类型（指针、结构体、字符串等）走带引用跟踪通道；非引用基本类型写非空标识后再写值；字符串写引用标识后写内容；时间写微秒，本地日期写天数并处理零日期标记；切片先写长度后遍历；映射先写长度、对键排序后写入键值对。</li>
+<li>读取规则：对称恢复并校验结构哈希；字符串先读并丢弃引用标识；切片/映射按长度分配或置空；可引用类型走带引用跟踪通道读取并回填。</li>
+</ul>
+</li>
+<li>编译期守卫：生成结构体“快照”与编译期校验。当结构体变更但未重新生成时代码无法通过编译，并给出强制刷新与再生成指引。</li>
+<li>开发体验：提供文件/包/类型多入口与 <code>--force</code> 选项；统一注解为 <code>//fory:generate</code>；在出现守卫冲突时输出可操作的提示信息。</li>
+<li>兼容与迁移：生成路径与反射路径保持格式完全一致，可在同一工程内混用并互通，支持按文件/类型的增量引入。</li>
+<li>测试与验证：构造包含基础类型、切片、映射、指针与嵌套的样例结构体；对比反射与生成路径的二进制；验证读写互通与确定性排序；覆盖零值与引用回路等边界。</li>
+<li>风险与应对：针对键排序一致性、变长编码差异、可寻址性、零日期语义等风险，分别通过显式排序、遵循协议编码 API、可寻址写入与专门分支规避。</li>
+<li>验收标准：能为 Struct/Slice/Map 生成零反射开销的序列化器；与反射路径二进制完全一致；守卫可检测失配并提供清晰恢复路径；可无侵入增量接入。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>时间规划</strong>：</p>
+<ul>
+<li>7 月：熟悉仓库与跨语言协议；学习 Java/Python 版本实现；设计 Go 端 AOT 方案与文件结构</li>
+<li>8 月下：提交首个 PR（Struct 代码生成，先支持基础类型）</li>
+<li>9 月中：提交第二个 PR（扩展支持 Slice）</li>
+<li>9 月下：提交第三个 PR（扩展支持 Map）；完善 CLI、文档与测试，收尾优化</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-项目进度">2. 项目进度</h4>
+<h5 id="已完成工作">已完成工作</h5>
+<ul>
+<li>
+<p>编译时代码生成全链路</p>
+<ul>
+<li>元信息解析与类型分析：<code>parser.go</code>、<code>utils.go</code></li>
+<li>代码生成核心：<code>encoder.go</code>（WriteTyped）、<code>decoder.go</code>（ReadTyped）、<code>generator.go</code></li>
+<li>编译期一致性保护（结构体快照与强校验）：<code>guard.go</code></li>
+<li>CLI 工具与使用指引：<code>cmd/fory/main.go</code>、<code>README.md</code></li>
+</ul>
+</li>
+<li>
+<p>支持的类型与特性</p>
+<ul>
+<li>Struct：基础类型、命名类型（含 <code>time.Time</code>、<code>fory.Date</code>）、指针、嵌套结构体</li>
+<li>Slice：支持任意维度嵌套 slice 的序列化与反序列化</li>
+<li>Map：对基本可比较键的 Map，按键排序实现确定性序列化</li>
+<li>引用追踪与接口兼容：生成强类型 <code>WriteTyped/ReadTyped</code>，并生成 <code>reflect.Value</code> 兼容接口方法</li>
+<li>字段排序与结构哈希：复刻反射路径排序与哈希规则，确保跨语言/反射路径完全一致</li>
+</ul>
+</li>
+<li>
+<p>体验与一致性改进</p>
+<ul>
+<li>生成文件包含 <code>init()</code> 自动注册，零显式接线</li>
+<li>统一注解从 <code>//fory:gen</code> 调整为更语义化的 <code>//fory:generate</code></li>
+<li>CLI 支持 <code>--force</code> 自动清理并重试，缓解编译期快照失配引发的错误</li>
+</ul>
+</li>
+<li>
+<p>测试与示例</p>
+<ul>
+<li>新增/完善 <code>tests/structs.go</code> 覆盖 Struct、Slice、Map、动态切片等示例类型（如 <code>ValidationDemo</code>、<code>SliceDemo</code>、<code>DynamicSliceDemo</code>、<code>MapDemo</code>）</li>
+<li>生成器及跨语言模式相关用例：<code>tests/generator_test.go</code>、<code>tests/generator_xlang_test.go</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="遇到的问题及解决方案">遇到的问题及解决方案</h5>
+<ul>
+<li>
+<p>反射路径对齐与排序一致性</p>
+<ul>
+<li>问题：生成代码需与反射序列化在字段排序、类型分组、哈希计算上完全一致，否则跨语言/回放失败。</li>
+<li>方案：严格复刻反射实现的分组与排序规则；哈希计算对 Slice/Map 采用统一 TypeId（如 LIST=21、MAP=23）；为 <code>int</code>、<code>string</code> 等细节做特判，保证编码一致。</li>
+</ul>
+</li>
+<li>
+<p>可空与引用追踪</p>
+<ul>
+<li>问题：区分可引用类型与非引用类型的头标识（RefValueFlag/NotNullValueFlag），以及字符串/指针等路径的差异。</li>
+<li>方案：在生成代码中统一通过 <code>WriteReferencable/ReadReferencable</code> 或非引用路径写入正确标识；字符串等最终类型按协议处理。</li>
+</ul>
+</li>
+<li>
+<p>特殊类型与零值语义</p>
+<ul>
+<li>问题：<code>time.Time</code> 与 <code>fory.Date</code> 在协议中的编码语义不同（如本地日期零值标记）。</li>
+<li>方案：为这两类命名类型生成专门分支，零值与时间单位严格按协议读写。</li>
+</ul>
+</li>
+<li>
+<p>Map 确定性输出</p>
+<ul>
+<li>问题：Go map 无序，跨平台/回放可能不一致。</li>
+<li>方案：对不同键类型生成相应的排序逻辑（string/int/uint/float/bool），确保序列化稳定。</li>
+</ul>
+</li>
+<li>
+<p>Varint 编码与类型位宽</p>
+<ul>
+<li>问题：部分基础类型在反射路径使用变长编码（如 int32/int64）；若不一致会导致不兼容。</li>
+<li>方案：在非引用路径下为对应类型使用变长编码 API，保证与反射路径完全一致。</li>
+</ul>
+</li>
+<li>
+<p>编译期守卫导致的首次失败</p>
+<ul>
+<li>问题：结构体变更后未重新生成会触发守卫，造成一轮编译失败。</li>
+<li>方案：CLI 增加智能提示与 <code>--force</code> 清理重试；文档同步指引。</li>
+</ul>
+</li>
+</ul>
+<h5 id="后续工作安排">后续工作安排</h5>
+<ul>
+<li>类型支持拓展：<code>set</code>、<code>array</code>、更丰富的 map 键类型、enum/decimal 等</li>
+<li>兼容模式完善：元共享（MetaShare）与 schema 演进场景代码生成</li>
+<li>工具链与稳定性：增加 Reflect vs Codegen 对照测试、fuzz 测试、性能基准与 CI 校验</li>
+<li>生态完善：更多示例与最佳实践文档，支持更细粒度的生成选项（按包/按文件/按类型）</li>
+<li>代码质量：进一步收敛边界分支（指针可寻址性、接口落地类型），提升可维护性</li>
+</ul>
+<hr>
 <h3 id="小智医疗">小智医疗</h3>
 <p><strong>嵌入模型</strong>：阿里云百炼平台嵌入模型 <strong>text-embedding-v3</strong>，向量维度1024</p>
 <p><strong>持久化数据库</strong>：MongoDB</p>
@@ -641,127 +793,6 @@
 <p><strong>流式输出</strong>：修改chatModel为<code>streamingChatModel = &quot;qwenStreamingChatModel&quot;</code>,并修改chat方法返回值为<code>Flux&lt;String&gt;</code></p>
 <p><strong>@AiService:</strong></p>
 <p><strong>Function calling</strong>:用 @Tool 注解的方法,并配置工具名称和描述</p>
-<del>
-<h3 id="蛇蛇大作战">蛇蛇大作战</h3>
-<h4 id="主要包含模块">主要包含模块：</h4>
-<ul>
-<li>
-<p>pk模块</p>
-</li>
-<li>
-<p>对局列表模块：</p>
-</li>
-<li>
-<p>排行榜模块</p>
-</li>
-<li>
-<p>用户中心模块</p>
-</li>
-</ul>
-<img src="https://i-blog.csdnimg.cn/blog_migrate/d920547a3ff846296c9f05f7b33801f5.jpeg" alt="img" style="zoom:50%;" />
-<p>websocket（全双工）</p>
-<h4 id="kob项目可能面试题">KOB项目可能面试题</h4>
-<h5 id="问题在实现bot服务时如何确保代码的安全性避免恶意代码的执行">问题：在实现Bot服务时，如何确保代码的安全性，避免恶意代码的执行？</h5>
-<blockquote>
-<p>为确保代码安全性，我们可以对用户提交的Bot代码进行过滤和限制。例如，可以使用沙箱技术隔离代码执行环境，限制代码对系统资源的访问。同时，我们还可以对代码进行静态分析，以识别并阻止潜在的恶意行为。</p></blockquote>
-<h5 id="问题请谈谈项目中使用websocket的优势以及在实际应用中遇到的挑战">问题：请谈谈项目中使用WebSocket的优势以及在实际应用中遇到的挑战。</h5>
-<blockquote>
-<p>WebSocket的主要优势是提供了一种实时双向通信机制，允许服务器与客户端之间进行低延迟、高效的数据交换。这对于在线游戏这样要求快速响应和实时交互的应用场景非常重要。在实际应用中，我们可能会遇到WebSocket连接不稳定、网络延迟和浏览器兼容性等问题。为了解决这些问题，我们需要确保代码具有足够的容错能力，如重连机制，以及对各种浏览器的充分测试。</p></blockquote>
-<h5 id="问题在匹配服务中如何根据玩家的分值差距和等待时间进行智能匹配">问题：在匹配服务中，如何根据玩家的分值差距和等待时间进行智能匹配？</h5>
-<blockquote>
-<p>在匹配服务中，我们使用一个定时线程来定期检查待匹配玩家列表。根据玩家的分值差距和等待时间，我们可以为每个玩家计算一个匹配优先级。优先级越高，匹配的可能性越大。我们可以利用优先级队列来快速找到最佳匹配对手。为了实现更精确的匹配，我们可以根据实际情况调整优先级计算的权重和阈值。</p></blockquote>
-<h5 id="问题在项目中为什么选择将功能划分为三个独立的springboot进程模块">问题：在项目中，为什么选择将功能划分为三个独立的SpringBoot进程模块？</h5>
-<blockquote>
-<p>将主服务、匹配服务和Bot服务独立出来，可以降低各个模块之间的耦合度，使每个模块专注于自己的功能，便于维护和扩展。</p>
-<ul>
-<li>可扩展性：各个模块可以根据实际需求进行横向扩展，提高系统的整体性能。</li>
-<li>容错性：将功能拆分为多个独立的进程可以提高系统的容错性。当某个模块出现故障时，不会影响到其他模块的正常运行。</li>
-<li>灵活部署：各个模块可以根据实际情况灵活部署，例如在不同的服务器上运行，以满足不同模块的资源需求。</li>
-</ul></blockquote>
-<h5 id="问题项目中如何实现线程安全的游戏状态同步">问题：项目中如何实现线程安全的游戏状态同步？</h5>
-<blockquote>
-<p>为了实现线程安全的游戏状态同步，我们采用了以下策略：</p>
-<ol>
-<li>对共享资源进行同步访问：在涉及到多线程访问共享资源的地方，我们使用锁或其他同步机制来保证数据的一致性。</li>
-<li>尽量减少共享资源：通过将共享资源封装在ThreadLocal中，可以实现线程之间的数据隔离，从而减少同步的需求。</li>
-<li>优先使用无锁数据结构：在适当的场景下，使用无锁数据结构（如ConcurrentHashMap、AtomicInteger等）可以降低锁竞争带来的性能开销。</li>
-</ol></blockquote>
-<h5 id="问题在项目中如何保证bot代码执行的性能和资源占用">问题：在项目中，如何保证Bot代码执行的性能和资源占用？</h5>
-<blockquote>
-<p>为了保证Bot代码执行的性能和资源占用，我们采用了以下策略：</p>
-<ol>
-<li>使用线程池：通过线程池控制并发的Bot任务数量，避免过多的线程导致系统资源耗尽。</li>
-<li>设置超时限制：为Bot代码执行设置合理的超时限制，防止某些任务长时间占用系统资源。</li>
-<li>资源限制：为每个Bot任务分配固定的资源，例如CPU和内存，以防止某些任务过度消耗系统资源。</li>
-</ol></blockquote>
-<h5 id="问题如何保证匹配服务在高并发情况下的性能">问题：如何保证匹配服务在高并发情况下的性能？</h5>
-<blockquote>
-<p>为了保证匹配服务在高并发情况下的性能，我们采用了以下策略：</p>
-<ol>
-<li>使用高性能数据结构：选择高性能的数据结构（如ConcurrentHashMap、PriorityQueue等）来维护待匹配玩家列表，以减小并发访问的性能开销。</li>
-<li>异步处理：通过将匹配任务放入队列并采用异步处理方式，可以有效降低用户请求的响应时间。</li>
-<li>定时线程：使用定时线程按照分值差距和等待时间进行动态配对，减少匹配过程中的计算量。</li>
-</ol></blockquote>
-<h5 id="问题在实现bot服务时如何防止恶意代码的执行">问题：在实现Bot服务时，如何防止恶意代码的执行？</h5>
-<blockquote>
-<p>为了防止恶意代码的执行，我们在Bot服务中采用了以下策略：</p>
-<ol>
-<li>代码审查：在用户提交Bot代码前，可以通过代码审查工具对其进行安全性检查，过滤掉潜在的恶意代码。</li>
-<li>沙箱环境：将Bot代码运行在隔离的沙箱环境中，限制其对系统资源的访问，从而降低恶意代码对系统的影响。</li>
-<li>资源限制：为每个Bot任务分配固定的资源，例如CPU和内存，以防止恶意代码消耗过多的系统资源。</li>
-</ol></blockquote>
-<h5 id="问题在游戏平台中如何处理用户的实时在线对战功能">问题：在游戏平台中，如何处理用户的实时在线对战功能？</h5>
-<blockquote>
-<p>为了处理用户的实时在线对战功能，我们采用了以下策略：</p>
-<ol>
-<li>WebSocket：使用WebSocket实现双向实时通信，使服务器能够及时将游戏状态推送给客户端，同时接收客户端的操作。</li>
-<li>多线程处理：针对多对玩家的操作，我们采用多线程处理方式，每对玩家的操作在一个独立的线程中执行，以提高并发处理能力。</li>
-<li>游戏状态同步：通过服务器端的游戏状态管理和同步机制，确保所有客户端看到的游戏状态是一致的。</li>
-</ol></blockquote>
-<h4 id="项目整体架构类">项目整体架构类</h4>
-<ol>
-<li>请简要描述这个项目的整体架构，包括前端、后端和数据库的交互流程。</li>
-<li>项目中使用了哪些微服务？它们之间是如何通信和协作的？</li>
-<li>请说明项目中不同模块（如匹配系统、对战系统、回放系统）之间的依赖关系和调用逻辑。</li>
-</ol>
-<h4 id="技术细节类">技术细节类</h4>
-<h5 id="前端部分">前端部分</h5>
-<ol>
-<li>在 <code>web/src/assets/scripts/GameMap.js</code> 中，<code>add_listening_events</code> 方法在回放模式和正常游戏模式下的处理逻辑有何不同？</li>
-<li>前端使用了哪些技术来实现游戏的动画效果，如蛇的移动和死亡状态？</li>
-<li>前端如何与后端进行数据交互，特别是在获取对局记录和发送玩家操作方面？</li>
-</ol>
-<h5 id="后端部分">后端部分</h5>
-<ol>
-<li>在 <code>kob/backendcloud/backend/src/main/java/com/kob/backend/consumer/utils/Game.java</code> 中，<code>nextStep</code> 方法的作用是什么？它是如何实现等待玩家下一步操作的？</li>
-<li>后端使用了哪些技术来实现多线程处理，如 <code>Game</code> 类继承 <code>Thread</code> 类的作用和实现方式？</li>
-<li>请解释 <code>kob/backendcloud/botrunningsystem/src/main/java/com/kob/botrunningsystem/service/impl/utils/Consumer.java</code> 中 <code>startTimeout</code> 方法的作用和实现逻辑。</li>
-</ol>
-<h5 id="数据库部分">数据库部分</h5>
-<ol>
-<li>项目中使用了哪种数据库？请说明数据库表结构，特别是与对局记录相关的表。</li>
-<li>在 <code>kob/backendcloud/backend/src/main/java/com/kob/backend/consumer/utils/Game.java</code> 中，<code>saveToDatabase</code> 方法是如何将对局信息保存到数据库中的？</li>
-<li>如何保证数据库操作的事务性和数据一致性？</li>
-</ol>
-<h4 id="问题解决类">问题解决类</h4>
-<ol>
-<li>如果在对局回放过程中出现卡顿或延迟，你会从哪些方面进行排查和解决？</li>
-<li>当多个玩家同时请求匹配时，如何处理并发问题，确保匹配系统的稳定性和公平性？</li>
-<li>如果前端无法获取后端的对局记录，你会如何进行调试和定位问题？</li>
-</ol>
-<h4 id="代码优化类">代码优化类</h4>
-<ol>
-<li>请分析 <code>web/src/assets/scripts/Snake.js</code> 中 <code>update_move</code> 方法的性能瓶颈，并提出优化建议。</li>
-<li>对于 <code>kob/backendcloud/matchingsystem/src/main/java/com/kob/matchingsystem/service/impl/utils/Player.java</code> 类，你认为可以从哪些方面进行代码优化？</li>
-<li>如何优化前端的网络请求，减少响应时间和数据传输量？</li>
-</ol>
-<h4 id="扩展性和维护性类">扩展性和维护性类</h4>
-<ol>
-<li>如果要增加一种新的游戏模式，你会从哪些方面对项目进行修改和扩展？</li>
-<li>如何保证项目代码的可维护性，特别是在多人协作开发的情况下？</li>
-<li>请说明项目中使用的依赖管理工具（如 <code>npm</code> 和 <code>Maven</code>）对项目扩展性和维护性的影响。</li>
-</ol>
-</del>
 <hr>
 <h3 id="探店笔记">探店笔记</h3>
 <h4 id="项目介绍-1">项目介绍</h4>
@@ -886,6 +917,128 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<del>
+<h3 id="蛇蛇大作战">蛇蛇大作战</h3>
+<h4 id="主要包含模块">主要包含模块：</h4>
+<ul>
+<li>
+<p>pk模块</p>
+</li>
+<li>
+<p>对局列表模块：</p>
+</li>
+<li>
+<p>排行榜模块</p>
+</li>
+<li>
+<p>用户中心模块</p>
+</li>
+</ul>
+<img src="https://i-blog.csdnimg.cn/blog_migrate/d920547a3ff846296c9f05f7b33801f5.jpeg" alt="img" style="zoom:50%;" />
+<p>websocket（全双工）</p>
+<h4 id="kob项目可能面试题">KOB项目可能面试题</h4>
+<h5 id="问题在实现bot服务时如何确保代码的安全性避免恶意代码的执行">问题：在实现Bot服务时，如何确保代码的安全性，避免恶意代码的执行？</h5>
+<blockquote>
+<p>为确保代码安全性，我们可以对用户提交的Bot代码进行过滤和限制。例如，可以使用沙箱技术隔离代码执行环境，限制代码对系统资源的访问。同时，我们还可以对代码进行静态分析，以识别并阻止潜在的恶意行为。</p></blockquote>
+<h5 id="问题请谈谈项目中使用websocket的优势以及在实际应用中遇到的挑战">问题：请谈谈项目中使用WebSocket的优势以及在实际应用中遇到的挑战。</h5>
+<blockquote>
+<p>WebSocket的主要优势是提供了一种实时双向通信机制，允许服务器与客户端之间进行低延迟、高效的数据交换。这对于在线游戏这样要求快速响应和实时交互的应用场景非常重要。在实际应用中，我们可能会遇到WebSocket连接不稳定、网络延迟和浏览器兼容性等问题。为了解决这些问题，我们需要确保代码具有足够的容错能力，如重连机制，以及对各种浏览器的充分测试。</p></blockquote>
+<h5 id="问题在匹配服务中如何根据玩家的分值差距和等待时间进行智能匹配">问题：在匹配服务中，如何根据玩家的分值差距和等待时间进行智能匹配？</h5>
+<blockquote>
+<p>在匹配服务中，我们使用一个定时线程来定期检查待匹配玩家列表。根据玩家的分值差距和等待时间，我们可以为每个玩家计算一个匹配优先级。优先级越高，匹配的可能性越大。我们可以利用优先级队列来快速找到最佳匹配对手。为了实现更精确的匹配，我们可以根据实际情况调整优先级计算的权重和阈值。</p></blockquote>
+<h5 id="问题在项目中为什么选择将功能划分为三个独立的springboot进程模块">问题：在项目中，为什么选择将功能划分为三个独立的SpringBoot进程模块？</h5>
+<blockquote>
+<p>将主服务、匹配服务和Bot服务独立出来，可以降低各个模块之间的耦合度，使每个模块专注于自己的功能，便于维护和扩展。</p>
+<ul>
+<li>可扩展性：各个模块可以根据实际需求进行横向扩展，提高系统的整体性能。</li>
+<li>容错性：将功能拆分为多个独立的进程可以提高系统的容错性。当某个模块出现故障时，不会影响到其他模块的正常运行。</li>
+<li>灵活部署：各个模块可以根据实际情况灵活部署，例如在不同的服务器上运行，以满足不同模块的资源需求。</li>
+</ul></blockquote>
+<h5 id="问题项目中如何实现线程安全的游戏状态同步">问题：项目中如何实现线程安全的游戏状态同步？</h5>
+<blockquote>
+<p>为了实现线程安全的游戏状态同步，我们采用了以下策略：</p>
+<ol>
+<li>对共享资源进行同步访问：在涉及到多线程访问共享资源的地方，我们使用锁或其他同步机制来保证数据的一致性。</li>
+<li>尽量减少共享资源：通过将共享资源封装在ThreadLocal中，可以实现线程之间的数据隔离，从而减少同步的需求。</li>
+<li>优先使用无锁数据结构：在适当的场景下，使用无锁数据结构（如ConcurrentHashMap、AtomicInteger等）可以降低锁竞争带来的性能开销。</li>
+</ol></blockquote>
+<h5 id="问题在项目中如何保证bot代码执行的性能和资源占用">问题：在项目中，如何保证Bot代码执行的性能和资源占用？</h5>
+<blockquote>
+<p>为了保证Bot代码执行的性能和资源占用，我们采用了以下策略：</p>
+<ol>
+<li>使用线程池：通过线程池控制并发的Bot任务数量，避免过多的线程导致系统资源耗尽。</li>
+<li>设置超时限制：为Bot代码执行设置合理的超时限制，防止某些任务长时间占用系统资源。</li>
+<li>资源限制：为每个Bot任务分配固定的资源，例如CPU和内存，以防止某些任务过度消耗系统资源。</li>
+</ol></blockquote>
+<h5 id="问题如何保证匹配服务在高并发情况下的性能">问题：如何保证匹配服务在高并发情况下的性能？</h5>
+<blockquote>
+<p>为了保证匹配服务在高并发情况下的性能，我们采用了以下策略：</p>
+<ol>
+<li>使用高性能数据结构：选择高性能的数据结构（如ConcurrentHashMap、PriorityQueue等）来维护待匹配玩家列表，以减小并发访问的性能开销。</li>
+<li>异步处理：通过将匹配任务放入队列并采用异步处理方式，可以有效降低用户请求的响应时间。</li>
+<li>定时线程：使用定时线程按照分值差距和等待时间进行动态配对，减少匹配过程中的计算量。</li>
+</ol></blockquote>
+<h5 id="问题在实现bot服务时如何防止恶意代码的执行">问题：在实现Bot服务时，如何防止恶意代码的执行？</h5>
+<blockquote>
+<p>为了防止恶意代码的执行，我们在Bot服务中采用了以下策略：</p>
+<ol>
+<li>代码审查：在用户提交Bot代码前，可以通过代码审查工具对其进行安全性检查，过滤掉潜在的恶意代码。</li>
+<li>沙箱环境：将Bot代码运行在隔离的沙箱环境中，限制其对系统资源的访问，从而降低恶意代码对系统的影响。</li>
+<li>资源限制：为每个Bot任务分配固定的资源，例如CPU和内存，以防止恶意代码消耗过多的系统资源。</li>
+</ol></blockquote>
+<h5 id="问题在游戏平台中如何处理用户的实时在线对战功能">问题：在游戏平台中，如何处理用户的实时在线对战功能？</h5>
+<blockquote>
+<p>为了处理用户的实时在线对战功能，我们采用了以下策略：</p>
+<ol>
+<li>WebSocket：使用WebSocket实现双向实时通信，使服务器能够及时将游戏状态推送给客户端，同时接收客户端的操作。</li>
+<li>多线程处理：针对多对玩家的操作，我们采用多线程处理方式，每对玩家的操作在一个独立的线程中执行，以提高并发处理能力。</li>
+<li>游戏状态同步：通过服务器端的游戏状态管理和同步机制，确保所有客户端看到的游戏状态是一致的。</li>
+</ol></blockquote>
+<h4 id="项目整体架构类">项目整体架构类</h4>
+<ol>
+<li>请简要描述这个项目的整体架构，包括前端、后端和数据库的交互流程。</li>
+<li>项目中使用了哪些微服务？它们之间是如何通信和协作的？</li>
+<li>请说明项目中不同模块（如匹配系统、对战系统、回放系统）之间的依赖关系和调用逻辑。</li>
+</ol>
+<h4 id="技术细节类">技术细节类</h4>
+<h5 id="前端部分">前端部分</h5>
+<ol>
+<li>在 <code>web/src/assets/scripts/GameMap.js</code> 中，<code>add_listening_events</code> 方法在回放模式和正常游戏模式下的处理逻辑有何不同？</li>
+<li>前端使用了哪些技术来实现游戏的动画效果，如蛇的移动和死亡状态？</li>
+<li>前端如何与后端进行数据交互，特别是在获取对局记录和发送玩家操作方面？</li>
+</ol>
+<h5 id="后端部分">后端部分</h5>
+<ol>
+<li>在 <code>kob/backendcloud/backend/src/main/java/com/kob/backend/consumer/utils/Game.java</code> 中，<code>nextStep</code> 方法的作用是什么？它是如何实现等待玩家下一步操作的？</li>
+<li>后端使用了哪些技术来实现多线程处理，如 <code>Game</code> 类继承 <code>Thread</code> 类的作用和实现方式？</li>
+<li>请解释 <code>kob/backendcloud/botrunningsystem/src/main/java/com/kob/botrunningsystem/service/impl/utils/Consumer.java</code> 中 <code>startTimeout</code> 方法的作用和实现逻辑。</li>
+</ol>
+<h5 id="数据库部分">数据库部分</h5>
+<ol>
+<li>项目中使用了哪种数据库？请说明数据库表结构，特别是与对局记录相关的表。</li>
+<li>在 <code>kob/backendcloud/backend/src/main/java/com/kob/backend/consumer/utils/Game.java</code> 中，<code>saveToDatabase</code> 方法是如何将对局信息保存到数据库中的？</li>
+<li>如何保证数据库操作的事务性和数据一致性？</li>
+</ol>
+<h4 id="问题解决类">问题解决类</h4>
+<ol>
+<li>如果在对局回放过程中出现卡顿或延迟，你会从哪些方面进行排查和解决？</li>
+<li>当多个玩家同时请求匹配时，如何处理并发问题，确保匹配系统的稳定性和公平性？</li>
+<li>如果前端无法获取后端的对局记录，你会如何进行调试和定位问题？</li>
+</ol>
+<h4 id="代码优化类">代码优化类</h4>
+<ol>
+<li>请分析 <code>web/src/assets/scripts/Snake.js</code> 中 <code>update_move</code> 方法的性能瓶颈，并提出优化建议。</li>
+<li>对于 <code>kob/backendcloud/matchingsystem/src/main/java/com/kob/matchingsystem/service/impl/utils/Player.java</code> 类，你认为可以从哪些方面进行代码优化？</li>
+<li>如何优化前端的网络请求，减少响应时间和数据传输量？</li>
+</ol>
+<h4 id="扩展性和维护性类">扩展性和维护性类</h4>
+<ol>
+<li>如果要增加一种新的游戏模式，你会从哪些方面对项目进行修改和扩展？</li>
+<li>如何保证项目代码的可维护性，特别是在多人协作开发的情况下？</li>
+<li>请说明项目中使用的依赖管理工具（如 <code>npm</code> 和 <code>Maven</code>）对项目扩展性和维护性的影响。</li>
+</ol>
+</del>
+<hr>
 <h2 id="c语法">c++语法</h2>
 <p>大根堆：</p>
 <div class="highlight"><div class="chroma">
@@ -3883,8 +4036,8 @@ $$</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-01-26&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/928527983533e7c85cd43002e247ae79534c581f" target="_blank" title="commit by JarVis(2055543978@qq.com) 928527983533e7c85cd43002e247ae79534c581f: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>9285279</a></span>
+                <span>更新于 2026-01-26&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/70a05e59510053fb2c9c156466c18e2a4bcf5814" target="_blank" title="commit by JarVis(2055543978@qq.com) 70a05e59510053fb2c9c156466c18e2a4bcf5814: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>70a05e5</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

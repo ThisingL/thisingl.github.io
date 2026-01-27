@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-29T15:19:20+08:00">
-    <meta property="article:modified_time" content="2026-01-26T15:30:20+08:00">
+    <meta property="article:modified_time" content="2026-01-27T18:17:45+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -38,7 +38,7 @@
                             "width":  3200 ,
                             "height":  2048 
                         }],"genre": "posts","keywords": "编程","wordcount":  19219 ,
-        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2026-01-26T15:30:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/example.com\/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2025-08-29T15:19:20+08:00","dateModified": "2026-01-27T18:17:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -145,7 +145,42 @@
         <li><a href="#学习资源">学习资源</a></li>
         <li><a href="#1-cpp语法">1. cpp语法</a>
           <ul>
-            <li></li>
+            <li><a href="#11-基本结构">1.1 基本结构</a></li>
+            <li><a href="#12-编译链接头文件">1.2 编译、链接、头文件</a></li>
+            <li><a href="#13-pointer">1.3 pointer</a></li>
+            <li><a href="#14-reference">1.4 reference</a></li>
+            <li><a href="#15-class">1.5 class</a></li>
+            <li><a href="#16-static">1.6 static</a></li>
+            <li><a href="#17-enum">1.7 enum</a></li>
+            <li><a href="#18-constructor">1.8 constructor</a></li>
+            <li><a href="#19-destructor">1.9 destructor</a></li>
+            <li><a href="#110-inheritance">1.10 inheritance</a></li>
+            <li><a href="#111-virtual-function">1.11 virtual function</a></li>
+            <li><a href="#112-pure-virtual-function">1.12 pure virtual function</a></li>
+            <li><a href="#113-visibility">1.13 visibility</a></li>
+            <li><a href="#114-string">1.14 string</a></li>
+            <li><a href="#115-const">1.15 const</a></li>
+            <li><a href="#116-mutable">1.16 mutable</a></li>
+            <li><a href="#117-member-initializer-list">1.17 member initializer list</a></li>
+            <li><a href="#118-instantiate-object">1.18 instantiate object</a></li>
+            <li><a href="#119-implicit-conversion">1.19 implicit conversion</a></li>
+            <li><a href="#120-explicit">1.20 explicit</a></li>
+            <li><a href="#121-operator-overload">1.21 operator overload</a></li>
+            <li><a href="#122-this">1.22 this</a></li>
+            <li><a href="#123-object-lifetime">1.23 object lifetime</a></li>
+            <li><a href="#124-smart-pointer">1.24 smart pointer</a></li>
+            <li><a href="#125-copy-constructor">1.25 copy constructor</a></li>
+            <li><a href="#126-vector">1.26 vector</a></li>
+            <li><a href="#127-pair--tuple">1.27 pair &amp;&amp; tuple</a></li>
+            <li><a href="#128-template">1.28 template</a></li>
+            <li><a href="#129-function-pointer">1.29 function pointer</a></li>
+            <li><a href="#130-lambda">1.30 lambda</a></li>
+            <li><a href="#131-namespace">1.31 namespace</a></li>
+            <li><a href="#132-thread">1.32 thread</a></li>
+            <li><a href="#133-type-punning">1.33 type punning</a></li>
+            <li><a href="#134-union">1.34 union</a></li>
+            <li><a href="#135-virtual-destructor">1.35 virtual destructor</a></li>
+            <li><a href="#136-casting">1.36 casting</a></li>
           </ul>
         </li>
         <li><a href="#2-高级特性">2. 高级特性</a>
@@ -161,7 +196,7 @@
 <h2 id="学习资源">学习资源</h2>
 <p>视频地址：<a href="https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb" target="_blank" rel="noopener noreffer ">C++教程-油管大佬 The Cherno C++教程</a></p>
 <h2 id="1-cpp语法">1. cpp语法</h2>
-<h4 id="11-基本结构">1.1 基本结构</h4>
+<h3 id="11-基本结构">1.1 基本结构</h3>
 <p>下面有一个简单的cpp程序，我们来看看：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -187,7 +222,7 @@
 </div>
 </div><p>由于cpp兼容着c，因此基本语法并没有很明显的区别，这里需要注意的是cpp的头文件和c语言的标准库文件确实是有区别的，c语言的头文件一般是<code>#include &lt;stdio.h&gt;</code>，而cpp的标准库文件一般没有<code>.h</code>作为结尾，这是为了和c语言有所区分。</p>
 <p>这时候又会有人问了，那为什么cpp中又有<code>&lt;&gt;</code>又有<code>&quot;&quot;</code>这两种include写法呢？其实就是为了让编译器知道，哪些头文件需要从用户的仓库目录里面找，哪些从gcc的库函数里面去找。</p>
-<h4 id="12-编译链接头文件">1.2 编译、链接、头文件</h4>
+<h3 id="12-编译链接头文件">1.2 编译、链接、头文件</h3>
 <p>刚刚给的例子太简单了，这次我们给一个稍微复杂一点的,涉及到调用另一个文件中的方法的代码：</p>
 <p><code>main.cc</code>:</p>
 <div class="highlight"><div class="chroma">
@@ -395,7 +430,7 @@
 </span></span><span class="line"><span class="cl"><span class="cp">#endif
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="13-pointer">1.3 pointer</h4>
+</div><h3 id="13-pointer">1.3 pointer</h3>
 <p>首先我们来下一个定义：<strong>指针只是存储内存地址的整数</strong>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -412,7 +447,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>因此本质上来看，为什么变量要指定类型呢？答案是需要知道实际用几个字节来存储该变量的值。那么指针指定的变量难道也是为了告诉编译器需要用几个字节来存储吗？No，No，No，如果真这么简单我也不会在这里花一段话来讲了，本质上来看指针存的只是内存中某一个位置的地址值，难道地址大小还不一样吗计算机哈哈哈，所以比如如果是64位的机器，那么默认指针都需要用8B来存啊，这都不用用户去说编译器就能自动知道。但是拿到这个地址值之后，你知道要读多少位吗？是读8位的char，还是32位的int呢？这就需要事先告诉编译器了，因此指针的类型是告诉编译器如果<code>*ptr</code>，编译器需要去读多少字节。</p>
-<h4 id="14-reference">1.4 reference</h4>
+<h3 id="14-reference">1.4 reference</h3>
 <p>首先我们来下一个定义：<strong>引用只是指针的语法糖</strong>。</p>
 <p>可以简单理解为引用是一种别名，引用只能引用已经存在的变量，引用本身不是创建变量，因此它并<em>不占用内存</em>。他们并没有真正的存储空间。</p>
 <p>要注意的是，c语言中常见的<code>&amp;a</code>的是意思是变量a的地址，引用是跟在<em>类型</em>后面的，实际是类型的一部分，我们会看到<code>int&amp; ref = a</code>，这里就是引用类型了。</p>
@@ -440,7 +475,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后要说的一点是，引用只能绑定一次，不能中途更换引用的变量，要想更换只能使用功能更强大，但是也更复杂的指针了。</p>
-<h4 id="15-class">1.5 class</h4>
+<h3 id="15-class">1.5 class</h3>
 <p>很多人看到c++中的<code>class</code>，经常会想到c语言中大名鼎鼎的<code>struct</code>，所以他们之间有什么区别呢？</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -575,17 +610,17 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="16-static">1.6 static</h4>
+</div><h3 id="16-static">1.6 static</h3>
 <p>和引用一样，<code>static</code>在不同的语境下的含义也是不一样的。</p>
-<h5 id="161-在类和结构体之外">1.6.1 在类和结构体之外</h5>
+<h4 id="161-在类和结构体之外">1.6.1 在类和结构体之外</h4>
 <p>对于在类和结构体之外使用<code>static</code>，它的作用就是将你声明的该符号不对外链接，这意味着它只在你定义他的这个文件中起作用。</p>
 <p>这种情况的好处是对于cpp，如果你链接的两个文件中，有一个同名的变量，就会报错，在链接阶段，这时候只需要将一个变量声明为<code>static</code>就行。</p>
 <p>因此一个编程建议是：除非你想要将一个文件跨文件链接，否则尽量将你的函数和变量声明为静态。</p>
-<h5 id="162-在类和结构体里">1.6.2 在类和结构体里</h5>
+<h4 id="162-在类和结构体里">1.6.2 在类和结构体里</h4>
 <p>这种情况就分为静态变量和静态方法两种了。</p>
 <p>类和结构体中的静态变量是所有实例共有的，每个实例有的是一个副本，访问静态变量需要通过<code>类名::静态变量</code>来访问。</p>
 <p>静态方法的访问方式和上面一样，静态方法中不能访问类中的非静态变量。这个很好理解吧，因为静态方法同样不需要绑定实例，但是非静态变量是和实例有关的，显然是冲突的。</p>
-<h5 id="163-局部静态变量">1.6.3 局部静态变量</h5>
+<h4 id="163-局部静态变量">1.6.3 局部静态变量</h4>
 <p>这里的<strong>局部静态变量</strong>和我们在 <em>1.6 static</em> 中的有点不一样，这是指的是在<strong>函数内部</strong>定义的<code>static</code>变量。</p>
 <p>我们可以看下面这段代码：</p>
 <div class="highlight"><div class="chroma">
@@ -703,7 +738,7 @@
       </tr>
   </tbody>
 </table>
-<h4 id="17-enum">1.7 enum</h4>
+<h3 id="17-enum">1.7 enum</h3>
 <p>这里我们先讲普通的enum：</p>
 <p>enum 的作用就是可以统一管理一些变量，将他们映射为整数（注意只能映射为整数），同时这个值都是如果未指定，默认是从0开始递增。</p>
 <p>同时我们还可以通过<code>:类型</code>来指定值的实际存储类型，当然float不行。这样可以使用<code>char</code>来省空间有时候。就像下面写法这样：</p>
@@ -816,13 +851,13 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>TODO：补充一下 enum class</p>
-<h4 id="18-constructor">1.8 constructor</h4>
+<h3 id="18-constructor">1.8 constructor</h3>
 <p>构造函数就是在创建对象的时候默认执行的方法，如果没有指定构造函数，就会默认一个空的<code>publib</code>类型的构造函数。</p>
-<h4 id="19-destructor">1.9 destructor</h4>
+<h3 id="19-destructor">1.9 destructor</h3>
 <p>构造函数的evil twin：析构函数</p>
 <p>当销毁对象时，会自动运行析构函数。</p>
 <p>析构函数和构造函数在声明和定义的唯一区别就是析构函数前面加上了<code>~</code>。一般用来在对象销毁时，主动释放一些堆上申请的空间。</p>
-<h4 id="110-inheritance">1.10 inheritance</h4>
+<h3 id="110-inheritance">1.10 inheritance</h3>
 <p>可以近似理解为：子类 $ \subseteq $ 父类（子类拥有父类中包含的所有内容（private除外））。</p>
 <p>可以通过这样写来让子类继承某个父类<code>class Child : public Parent </code>。这意味着此时的<code>Child</code>不但具有类型<code>Child</code>，而且具有类型<code>Parent</code>。</p>
 <p><strong>绝大多数情况下我们都使用的<code>public</code>继承</strong></p>
@@ -854,7 +889,7 @@
       </tr>
   </tbody>
 </table>
-<h4 id="111-virtual-function">1.11 virtual function</h4>
+<h3 id="111-virtual-function">1.11 virtual function</h3>
 <p>虚函数是为了实现<strong>多态</strong>，来让子类重写父类方法。（对应于Java语言中的<code>@override</code>注解）</p>
 <p>如果我们直接这么写：</p>
 <div class="highlight"><div class="chroma">
@@ -956,17 +991,17 @@
 </div>
 </div><p>当然我们需要承认的是，虚函数肯定不是free的，它有两种运行时成本：<code>VTABLE</code>的存储开消，以及查看<code>VTABLE</code>来确定具体映射到哪个重写函数的时间开销。</p>
 <p><strong>但是</strong>，绝大部分情况下，我们还没有到无法容忍虚函数开销的地步。</p>
-<h4 id="112-pure-virtual-function">1.12 pure virtual function</h4>
+<h3 id="112-pure-virtual-function">1.12 pure virtual function</h3>
 <p>c++中的<strong>接口</strong>是通过<strong>纯虚函数</strong>实现的。</p>
 <p>纯虚函数的写法就像这样：<code>virtual void say() = 0;</code>，方法体不需要实现，留给子类去实现。并且父类由于并未实现这个方法，就无法直接创建父类对象。</p>
-<h4 id="113-visibility">1.13 visibility</h4>
+<h3 id="113-visibility">1.13 visibility</h3>
 <p>c++中的可见性有三种:<code>public</code>、<code>protected</code>和<code>private</code>。</p>
 <p><code>protected</code>是指可以在父类和子类中访问，但是对象中不可见。</p>
 <p>其实可见性最主要的作用其实是一种 code style。用户可以通过比如<code>private</code>立马知道这个不是暴露给用户的，这样看很多代码时可以忽略掉很多细节，主要看暴露给用户的API的<code>public</code>即可。</p>
-<h4 id="114-string">1.14 string</h4>
+<h3 id="114-string">1.14 string</h3>
 <p><code>std::string name = &quot;thisingl&quot;</code></p>
 <p>cpp中直接<code>&quot;xxx&quot;</code>默认是一个<code>const char*</code>类型，本身是在栈上分配空间，但是<code>string</code>又是一个<em>引用</em>类型，空间分配在堆上，于是默认会将<code>const char*</code>的内容复制到堆上分配的空间。</p>
-<h4 id="115-const">1.15 const</h4>
+<h3 id="115-const">1.15 const</h3>
 <p>你可以简单理解为：cpp中的<code>const</code>，只是一种编译器级别的保护，对于最后产生生成的机器码完全没有影响。(编译优化除外)</p>
 <p>大家肯定都知道<code>const int a</code>代表着变量<code>a</code>不可被修改，那<code>const int* a</code>、<code>int const* a</code>以及<code>int* const a</code>呢？</p>
 <table>
@@ -1041,7 +1076,7 @@
 </div>
 </div><p>如果<code>const</code>放在方法后面，就代表我们的方法不会影响到对象本身。而<code>const Person&amp; p</code>，意味着我们承诺我们不会修改对象<code>p</code>，那么此时我们只能访问<code>p</code>中被<code>const</code>修饰的方法，因为没有被<code>const</code>修饰的方法我们无法保证不会修改对象<code>p</code>。</p>
 <p>但是有些时候，我们有一些用于调试的变量比如<code>int var</code>，我们的<code>const</code>修饰的方法可能也想修改他，但是我们能确保他不会影响到程序，这时候就很不方便了，我们又不想放弃将方法定义为<code>const</code>，这时候我们就可以使用下一次要讲到的<code>mutable</code>来完成他了！</p>
-<h4 id="116-mutable">1.16 mutable</h4>
+<h3 id="116-mutable">1.16 mutable</h3>
 <p><code>mutable</code>修饰的变量意味着可以修改，<code>const</code>方法中可以修改这种变量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1076,7 +1111,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>还有一种使用场景是在lambda表达式中修改按值传递的变量（非常非常少见，因为可以直接将这些变量设置为引用传递），所以我们就直接略过了。</p>
-<h4 id="117-member-initializer-list">1.17 member initializer list</h4>
+<h3 id="117-member-initializer-list">1.17 member initializer list</h3>
 <p>我们首先来看下面这段代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1142,10 +1177,10 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">    <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Entity</span> <span class="n">entity</span><span class="p">;</span>        <span class="c1">// 把private中内容移动到了这里（调用了构造器）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">entity</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="c1">// 赋值操作
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Entity</span> <span class="n">entity</span><span class="p">;</span>        <span class="c1">// 把private中内容移动到了这里（调用了构造器）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">entity</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="c1">// 赋值操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以其实<code>Entity</code>的两个构造器都被调用了，很明显这个是一种资源的浪费，那么有没有办法解决了？</p>
@@ -1178,12 +1213,12 @@
 </div>
 </div><p>此时运行就会发现，只会打印输出:<code>Entity int constructor</code>。</p>
 <p>当然这个写法还涉及到一种代码风格，如果构造函数中的代码逻辑很复杂的话，那么简单的初始化复制逻辑就可以直接放在成员初始化列表中，这样就分离开来了。</p>
-<h4 id="118-instantiate-object">1.18 instantiate object</h4>
+<h3 id="118-instantiate-object">1.18 instantiate object</h3>
 <p>c++中由于有<strong>栈</strong>和<strong>堆</strong>两个地址空间，所以实例化对象也有两种，对应的是一种在栈上申请空间，一种在堆上申请空间。</p>
 <p>在栈上申请空间就是通过直接<code>ClassName A(初始化参数)</code>或者<code>ClassName A = ClassName(初始化参数)</code>。这时分配的空间在栈上，大家都知道进行方法调用时会伴随着压栈和出栈，当出栈时栈中的空间也就都释放了，所以很显然，栈上申请的空间只能存活在变量存在的生命周期中（这个变量前面的第一个<code>{</code>到后面的第一个<code>}</code>之间），一旦超过就会自动释放。所以适合空间小，而且不需要长期存在的变量，更推荐使用栈。</p>
 <p>而堆上申请的空间上通过<code>new</code>和<code>delete</code>关键字进行管理，需要用户主动去释放空间，所以容易出现忘记释放空间导致内存泄漏的问题。通过直接<code>ClassName* B = new ClassName(初始化参数)</code>在堆上申请空间。这里指针上因为使用<code>new</code>申请空间会返回申请到的空间的初始地址。使用完毕后就需要使用<code>delete(B)</code>进行主动的释放。</p>
 <p>对于Java中，由于有gg的存在，所以不需要主动释放，而且也不提供栈和堆两种空间申请方式，统一使用堆，所以和c++中有点不一样。而c++中后面提到的智能指针可以在一定程度上完成像Java中这种在堆上申请空间并且主动释放的功能。</p>
-<h4 id="119-implicit-conversion">1.19 implicit conversion</h4>
+<h3 id="119-implicit-conversion">1.19 implicit conversion</h3>
 <p>c++中有一个独特的特性：<strong>隐式转换</strong>。这是Java中没有的。</p>
 <p>我们先看一段代码：</p>
 <div class="highlight"><div class="chroma">
@@ -1222,7 +1257,7 @@
 <p>如果从Java等其他语言的角度来看，这肯定错啊，100怎么可能能赋值给一个对象，但是先别急，我们刚刚提到的<strong>隐式转换</strong>说的就是这个，当给对象赋值的时候，如果直接传入一个值，就会自动尝试去调用他的构造函数，也就是<code>Person(int age){}</code>了，也就是说这两种写法其实是等价的。</p>
 <p>那么理解到这里，我再问你一个问题，<code>Person p = &quot;thisingl&quot;</code>对吗？先别急着下结论噢，我们先来看看这个情况和我们刚刚<code>Person p = 100</code>的情况一样吗？聪明的你肯定发现了一个语法细节了，<code>&quot;thisingl&quot;</code>其实是<code>const char[]</code>类型的，这里就已经有一次默认的隐式抓换了，从<code>const char[]</code>-&gt;<code>string</code>，然后再进行一次隐式转换，从<code>string</code>-&gt;<code>Person(const std::string&amp; )</code>，而c++中规定：<strong>最多只能进行一次隐式转换</strong>，所以这个写法是错误的，我们可以写成：<code>Person p = std::string(&quot;thisingl&quot;)</code>，就可以避免第一次隐式转换。</p>
 <p>当然直接这么写其实很多时候很奇怪给人，就是会增加人的理解成本，所以其实用的还是比较少的，感觉可能在一些数学场景下用的比较多</p>
-<h4 id="120-explicit">1.20 explicit</h4>
+<h3 id="120-explicit">1.20 explicit</h3>
 <p><code>explicit</code>上显示关键词，他可以支持让用户不允许某些情况下的隐式调用，比如如果上面改成：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1255,7 +1290,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>那么这时候这样写就会报错：<code>Person p = std::string(&quot;thisingl&quot;)</code></p>
-<h4 id="121-operator-overload">1.21 operator overload</h4>
+<h3 id="121-operator-overload">1.21 operator overload</h3>
 <p>c++中提供了一个很强大的，其他语言基本上没有的功能：<strong>操作符重载</strong>。</p>
 <p>也就是说在c++中，我们可以赋予像<code>+</code>、<code>*</code>或者<code>&gt;&gt;</code>等操作符另外的含义，这样有时候会简化很多特别繁琐的情况，特别是数学计算等领域。</p>
 <p>假设我们有下面这样一个二维向量类：</p>
@@ -1361,9 +1396,9 @@
 </div>
 </div><p>这时候我们只需要这样调用即可：<code>Vector result2 = position + speed * powerup</code></p>
 <p>是不是简单太多了。当然我们还可以改写<code>std::cout &lt;&lt; </code>中的<code>&lt;&lt;</code>操作符来达到直接输出这个二维向量的功能，以及重写<code>==</code>操作符来达到比较两个二维向量的功能。</p>
-<h4 id="122-this">1.22 this</h4>
+<h3 id="122-this">1.22 this</h3>
 <p>c++中的<code>this</code>的用法和Java中有点不同，c++中的<code>this</code>本质上是<code>ClassName * const this</code>类型的，所以它访问类中变量是用<code>this-&gt;x</code>，Java中一般是<code>this.x</code>。</p>
-<h4 id="123-object-lifetime">1.23 object lifetime</h4>
+<h3 id="123-object-lifetime">1.23 object lifetime</h3>
 <p>之前在<em>1.18 instantiate object</em>中我们就已经讨论过了<strong>栈</strong>和<strong>堆</strong>两种申请空间方式的区别。</p>
 <p>但是之前讲的对栈的使用太浅了，因为那只是将对象的空间申请到栈上，但是也提到了栈的空间比较小，那么有没有办法和堆结合起来呢？我们又想要堆的大空间，又想要栈这种超过使用范围就自动销毁的能力？</p>
 <p>聪明的你一定想到了，我们可以用栈上的指针指向堆中的空间呀，一旦出栈就调用析构函数去释放掉堆上空间。</p>
@@ -1422,7 +1457,7 @@
 </div>
 </div><p>我们就可以直接创建这样一个作用域指针<code>ScopedPtr e = new Entity()</code>，自动在作用域结束后就会释放掉<code>Entity</code>变量所占的空间。</p>
 <p>当然智能指针的功能更加强大，我们这里只是简单的演示它的一个小功能。</p>
-<h4 id="124-smart-pointer">1.24 smart pointer</h4>
+<h3 id="124-smart-pointer">1.24 smart pointer</h3>
 <p>c++中的智能指针主要有：<code>unique_ptr</code>、<code>shared_ptr</code>和<code>weak_ptr</code>。</p>
 <p>我们首先来聊一聊<code>unique_ptr</code>，这个就是我们刚刚演示过的一个简单的作用域指针，自动会在作用域结束后就会释放掉堆上空间，看看下面这段代码：</p>
 <div class="highlight"><div class="chroma">
@@ -1506,7 +1541,7 @@
 </li>
 </ul>
 <p><code>weak_ptr</code>一般和<code>shared_ptr</code>一块使用，他的特点是<strong>不会增加引用计数</strong>，同时通过使用<code>lock()</code>方法可以知道对象是否还存活，不存活就会返回空指针。</p>
-<h4 id="125-copy-constructor">1.25 copy constructor</h4>
+<h3 id="125-copy-constructor">1.25 copy constructor</h3>
 <p>要想搞清楚什么是<strong>拷贝构造函数</strong>，我们就得先看看为什么需要它。</p>
 <p>我们先来看下面一个类：</p>
 <div class="highlight"><div class="chroma">
@@ -1662,7 +1697,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时再次运行之前的<code>main</code>函数，便不会报错了，由此大功告成</p>
-<h4 id="126-vector">1.26 vector</h4>
+<h3 id="126-vector">1.26 vector</h3>
 <p><code>std::vector</code>是cpp中的标准库中的<strong>动态数组</strong>，但是却叫向量这个名字属实有点奇怪啊哈哈哈</p>
 <p>基本用法我们就不说了，废话不多说，我们先看一段新手的经常写法：</p>
 <div class="highlight"><div class="chroma">
@@ -1764,10 +1799,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>非常完美！现在什么都不打印了，说明一次都没有复制了。</p>
-<h4 id="127-pair--tuple">1.27 pair &amp;&amp; tuple</h4>
+<h3 id="127-pair--tuple">1.27 pair &amp;&amp; tuple</h3>
 <p><code>std::pair&lt;int, std::string&gt; p = (0, &quot;thising&quot;)</code>可以用来保存两个不同类型的值</p>
 <p><code>std::tuple&lt;int, std::string, double&gt; t(1, &quot;pi&quot;, 3.1415)</code>可以用来包含任意数量和类型的值</p>
-<h4 id="128-template">1.28 template</h4>
+<h3 id="128-template">1.28 template</h3>
 <p><strong>模版</strong>是一个高级主题，非常的复杂，这里我们只是简单的使用。</p>
 <p>我们首先考虑下面这种实际编程的场景：</p>
 <div class="highlight"><div class="chroma">
@@ -1846,7 +1881,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>同时我们要明白：模版不应该被滥用，当发现错误的时候，模版调试时是比较困难的，同时可读性也不如重载，但是它足够简洁</p>
-<h4 id="129-function-pointer">1.29 function pointer</h4>
+<h3 id="129-function-pointer">1.29 function pointer</h3>
 <p>c++中有<strong>函数指针</strong>的概念，也就是我们的指针不仅可以指向一个变量，也可以指向一个函数，如下所示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1929,7 +1964,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="130-lambda">1.30 lambda</h4>
+</div><h3 id="130-lambda">1.30 lambda</h3>
 <p>想要了解<code>lambda</code>表达式，首先得了解<em>1.29 函数指针</em>，知道一个函数的参数还可以是另一个函数。</p>
 <p><code>lambda</code>表达式就是为了简化之前的语法，当我们将函数的参数设置为另一个函数时，这个工具函数的名字似乎并没有什么意义，因此可以在用户使用时进行简化。</p>
 <p>C++中的<code>lambda</code>表达式语法是这样的：</p>
@@ -2188,7 +2223,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="131-namespace">1.31 namespace</h4>
+</div><h3 id="131-namespace">1.31 namespace</h3>
 <p><strong>命名空间</strong>是c++中有的而c中没有的，这个特性确实是大型软件开发时必备的特性。</p>
 <p>对于c中没有命名空间，那么就得自己去保证自己写的代码中的方法名或者变量名等不能有重复，有些项目比如 GL，就会把它的每一个库函数的方法名写成<code>GL_XXX</code>，来保证大概率不会发生重复，但是这样其实是很难受不优雅的做法，因此c++中增加了命名空间的功能来隔绝同名函数。</p>
 <p>比如下面这段代码：</p>
@@ -2348,7 +2383,7 @@
 </div><p>Q: 大家猜猜最后打印输出的是什么呢？</p>
 <p>A: <code>olleh</code>。哈哈哈为什么明明先引入的命名空间是<code>a</code>,我们却调用了<code>b</code>中的函数呢？那是因为<code>&quot;hello&quot;</code>本质上是<code>const char[]</code>，而<code>a</code>中想调用<code>print(&quot;hello&quot;)</code>，需要进行一次我们在 <em>1.19 隐式转换</em> 中提到的隐式转换，那么编译器就会认为<code>b</code>中的<code>print(const char*)</code>更匹配，那么你看是不是非常容易出错呢？纠错又极其的困难。</p>
 <p>因此我们<strong>建议</strong>：如果使用<code>using namespace</code>，也请在足够小的范围内使用，这样不会影响其他的部分。</p>
-<h4 id="132-thread">1.32 thread</h4>
+<h3 id="132-thread">1.32 thread</h3>
 <p>终于进入到多线程的情况了，实际编程遇到这种的时候，已经是比较复杂的情况了，我们首先来看看<code>std::thread</code>的语法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2437,7 +2472,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="133-type-punning">1.33 type punning</h4>
+</div><h3 id="133-type-punning">1.33 type punning</h3>
 <p>在 C++ 中，<strong>type punning（类型双关）</strong> 指的是通过不同的数据类型来访问同一块内存的操作。</p>
 <p>我们先来看一下下面这段代码：</p>
 <div class="highlight"><div class="chroma">
@@ -2502,7 +2537,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">header</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MessageHeader</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="134-union">1.34 union</h4>
+</div><h3 id="134-union">1.34 union</h3>
 <p><code>union</code>（联合体）是一种特殊的类类型（类似于 <code>struct</code>），它的所有成员 <strong>共用同一段内存空间</strong>（<code>union</code> 所占的内存大小 == 其最大成员的大小）。也就是说，一个 <code>union</code> 在任意时刻只能“存”一个成员的值。</p>
 <p>我们先来看一段简单的代码：</p>
 <div class="highlight"><div class="chroma">
@@ -2585,7 +2620,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="135-virtual-destructor">1.35 virtual destructor</h4>
+</div><h3 id="135-virtual-destructor">1.35 virtual destructor</h3>
 <p>前面我们介绍过<strong>虚函数</strong>，这里我们要介绍的是一个很像，但是不一样的特性：<strong>虚析构函数</strong></p>
 <p>我们先来看一段代码：</p>
 <div class="highlight"><div class="chroma">
@@ -2801,7 +2836,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>因此</strong>，如果我们想要一个类允许被<strong>继承</strong>，<strong>一定要将父类的虚函数申明为虚函数</strong>，否则就没有人可以安全的拓展继承这个类，甚至包括你自己！</p>
-<h4 id="136-casting">1.36 casting</h4>
+<h3 id="136-casting">1.36 casting</h3>
 <p>下面我们来讲讲 C++ 的所有类型转换（casting）</p>
 <p>首先我们先来看看 C 语言风格的类型转换：</p>
 <div class="highlight"><div class="chroma">
@@ -2932,8 +2967,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-01-26&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/93ccd7faf888adc00deaa46b1a086e2cddfdc9df" target="_blank" title="commit by thisingl(thisingl@qq.com) 93ccd7faf888adc00deaa46b1a086e2cddfdc9df: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>93ccd7f</a></span>
+                <span>更新于 2026-01-27&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/64ee1f43c7193652cd0eb2341bf1929f17aa6a79" target="_blank" title="commit by thisingl(thisingl@qq.com) 64ee1f43c7193652cd0eb2341bf1929f17aa6a79: docs: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>64ee1f4</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

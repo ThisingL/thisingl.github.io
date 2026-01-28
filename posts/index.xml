@@ -4,11 +4,11 @@
         <link>https://example.com/posts/</link>
         <description>所有文章 | Thising&#39;log | 自学空间</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>程序员面试面经</title>
-    <link>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E9%9D%A2%E7%BB%8F/</link>
+    <title>程序员面试指南</title>
+    <link>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/</link>
     <pubDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</pubDate>
     <author>Thising</author>
-    <guid>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E9%9D%A2%E7%BB%8F/</guid>
+    <guid>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/</guid>
     <description><![CDATA[自己在找实习和秋招期间准备的面经总结，包含高频面经考点和实际面试中遇到的题目，还在更新中&hellip;]]></description>
 </item>
 <item>

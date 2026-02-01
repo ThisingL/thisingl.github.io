@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-12-09T21:25:20+08:00">
-    <meta property="article:modified_time" content="2026-02-01T01:27:14+08:00">
+    <meta property="article:modified_time" content="2026-02-01T22:56:05+08:00">
     <meta property="article:tag" content="算法">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "算法, 编程","wordcount":  50960 ,
-        "url": "https:\/\/example.com\/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90\/","datePublished": "2024-12-09T21:25:20+08:00","dateModified": "2026-02-01T01:27:14+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "算法, 编程","wordcount":  53012 ,
+        "url": "https:\/\/example.com\/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90\/","datePublished": "2024-12-09T21:25:20+08:00","dateModified": "2026-02-01T22:56:05+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法学习自用板子</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-09">2024-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 50960 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 102 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-09">2024-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 53012 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 106 分钟&nbsp;
     
 
     
@@ -306,6 +306,7 @@
         <li><a href="#最短路">最短路</a>
           <ul>
             <li><a href="#单源最短路径">单源最短路径</a></li>
+            <li><a href="#leetcode-743-网络延迟时间-1">LeetCode 743. 网络延迟时间</a></li>
             <li><a href="#多源最短路径">多源最短路径</a></li>
             <li><a href="#leetcode-1334-阈值距离内邻居最少的城市-1">LeetCode 1334. 阈值距离内邻居最少的城市</a></li>
             <li><a href="#两点间最短路径">两点间最短路径</a></li>
@@ -5925,9 +5926,339 @@ $1≤C_i≤W≤10^8$</p>
 </div><hr>
 <h2 id="最短路">最短路</h2>
 <h3 id="单源最短路径">单源最短路径</h3>
-<h3 id="多源最短路径">多源最短路径</h3>
-<h4 id="leetcode-1334-阈值距离内邻居最少的城市">LeetCode 1334. 阈值距离内邻居最少的城市</h4>
+<h4 id="leetcode-743-网络延迟时间">LeetCode 743. 网络延迟时间</h4>
 <h5 id="题目描述-27">题目描述</h5>
+<blockquote>
+<h3 id="leetcode-743-网络延迟时间-1">LeetCode 743. 网络延迟时间</h3>
+<p>有 <code>n</code> 个网络节点，标记为 <code>1</code> 到 <code>n</code>。</p>
+<p>给你一个列表 <code>times</code>，表示信号经过 <strong>有向</strong> 边的传递时间。 <code>times[i] = (ui, vi, wi)</code>，其中 <code>ui</code> 是源节点，<code>vi</code> 是目标节点， <code>wi</code> 是一个信号从源节点传递到目标节点的时间。</p>
+<p>现在，从某个节点 <code>K</code> 发出一个信号。需要多久才能使所有节点都收到信号？如果不能使所有节点收到信号，返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p>
+<figure><a class="lightgallery" href="https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png" title="img" data-thumbnail="https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png" data-sub-html="<h2> </h2><p>img</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png"
+            data-srcset="https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png, https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png 1.5x, https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png 2x"
+            data-sizes="auto"
+            alt="https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png" />
+    </a><figcaption class="image-caption">img</figcaption>
+    </figure></p>
+<p>输入：times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
+输出：2</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= k &lt;= n &lt;= 100</code></li>
+<li><code>1 &lt;= times.length &lt;= 6000</code></li>
+<li><code>times[i].length == 3</code></li>
+<li><code>1 &lt;= ui, vi &lt;= n</code></li>
+<li><code>ui != vi</code></li>
+<li><code>0 &lt;= wi &lt;= 100</code></li>
+<li>所有 <code>(ui, vi)</code> 对都 <strong>互不相同</strong>（即，不含重复边）</li>
+</ul></blockquote>
+<h5 id="算法设计-28">算法设计</h5>
+<p>这题是一道经典的 <strong>Dijkstra 算法</strong> 板子题。</p>
+<p>Dijkstra 算法: 可以解决<strong>不含负权边</strong>的图的单源最短路径问题</p>
+<p>我们定义图的邻接矩阵为 $matrix[][]$，$matrix(i, j)$ 表示节点编号 $i$ 到节点编号 $j$ 的路径长度。</p>
+<p>我们的目标就是计算出节点编号 i 的 $dist[]$ 数组，$dist(j)$ 表示从节点编号 $i$ 到节点编号 $j$ 的最短路的长度。</p>
+<ul>
+<li>首先对 $\forall j$, $dist(j)$ 的初值就是 $matrix(i, j)$。</li>
+<li>然后取除了起点 $i$ 以外的 $dist[]$ 的最小值，我们假设当前的这个最小值的节点编号是 $k$。那么我们可以说：$dist(k)$ 的最小值我们已经确定了！我们可以用反证法来证明：如果说还存在有更短的路径经过节点编号 $u$,也就是 $dist(k) = dist(u) + matrix(u,k)$，由于我们的图是不含负权边的（这也是 Dijkstra 算法只适用于解决不含负权边的图的单源最短路径问题的原因），那么一定有 $matrix(u, k) &gt; 0$，所以 $dist(u) &lt; dist(k)$，显然这与我们前面对节点编号 $k$ 的定义矛盾！故原命题成立，此时我们得到了 $dist(k)$ 的最终值。</li>
+<li>我们用我们已经确定的节点编号 $k$ 去更新其他的 $dist(j)\ (j \ne k)$，也就是通过 $dist(j) = min(dist(j), dist(k) + matrix(k, j))$。</li>
+<li>然后我们取除了节点 $k$ 和起点 $i$ 以外的 $dist[]$的最小值，重复上述过程。</li>
+<li>由数学归纳法可知，最终的结果 $dist[]$ 就是我们要求的。</li>
+</ul>
+<ol>
+<li>写法一：<strong>朴素 Dijkstra（适用于稠密图）</strong></li>
+</ol>
+<blockquote>
+<p>稠密图： 边的数量集和 $n^2$ 相当的图（$n$ 是图的顶点数）</p></blockquote>
+<p>代码思路就是直接按照我们上面描述的，去实现就好了。</p>
+<p>写成代码就是下面这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @brief dijkstra算法模板(朴素版本)
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param w_matrix 图的邻接矩阵
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param idx 起点 idx（0 开始）
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return dist[i] 代表从单源节点 idx 到节点编号 i 的节点的最短路的长度
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dijkstra</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">w_matrix</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">w_matrix</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">INF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dist</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// 到自己的距离是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">mask</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>  <span class="c1">// 记录是否已经确定好最短路了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 找到当前 dist[i] 最小的节点编号 i
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mn</span> <span class="o">=</span> <span class="n">INF</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">mask</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span> <span class="o">&amp;&amp;</span> <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">INF</span> <span class="o">&amp;&amp;</span> <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">mn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">i</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">mn</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>  <span class="c1">// 如果剩下的全都不可达了，就可以提前结束了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 用中间节点编号 i 更新从单源节点 idx 到节点编号 j 最短路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">w_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">INF</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dist</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>复杂度分析</p>
+<ul>
+<li>时间复杂度： $O(V^2)$。</li>
+<li>空间复杂度： $O(V^2)$。</li>
+</ul>
+<ol start="2">
+<li>写法二：<strong>堆优化 Dijkstra（适用于稀疏图）</strong></li>
+</ol>
+<blockquote>
+<p>稀疏图： 边的数量远小于 $n^2$ 的图（$n$ 是图的顶点数）</p></blockquote>
+<p>聪明的你肯定发现，上面朴素 Dijkstra 写法的时间瓶颈在每次寻找当前 $dist[i]$ 的最小值上。</p>
+<p>显然，这个可以通过空间换时间来优化，也就是用堆这种数据结构来优化。</p>
+<p>当然，为了应对稀疏图，我们也不应该用邻接矩阵来建图了，因为有大量的元素是空的，而应该用<strong>邻接表</strong>来记录每一条边。</p>
+<ul>
+<li>一开始把 $[dist(idx), idx]$ 二元组入堆</li>
+<li>当前堆顶元素 $[dist(j), j]$ 就是 $dist(j)$ 的最小值</li>
+<li>利用上面的元素 $j$ 来更新 $j$ 连接的所有的点，并将新的最小值入堆</li>
+<li>重复上述操作，直到堆为空</li>
+</ul>
+<p>写成代码就是下面这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @brief dijkstra算法模板（邻接表 + 最小堆优化版）
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param adj_list 图的邻接表
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param idx 起点 idx（0 开始）
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return dist[i] 代表从单源节点 idx 到节点编号 i 的节点的最短路的长度
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dijkstra</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;&gt;&amp;</span> <span class="n">adj_list</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">adj_list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">INF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dist</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">greater</span><span class="o">&lt;&gt;&gt;</span> <span class="n">heap</span><span class="p">;</span>  <span class="c1">// 用堆来优化每次的查找最小值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">heap</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>  <span class="c1">// 到本身是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 找到当前距离最小的节点编号 j,这个节点的最短路长度就已确认
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">heap</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="p">[</span><span class="n">dis_i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">heap</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="c1">// dis_i 代表从单源节点 idx 到节点编号 i 的节点的最短路的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">heap</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dis_i</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>  <span class="c1">// 如果目前这个都不是最短的了，那就没必要更新了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">dis_j</span><span class="p">]</span> <span class="o">:</span> <span class="n">adj_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">new_dis</span> <span class="o">=</span> <span class="n">dis_i</span> <span class="o">+</span> <span class="n">dis_j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">new_dis</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_dis</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">heap</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dist</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>复杂度分析</p>
+<ul>
+<li>时间复杂度： $O(E \log V)$。每条边都会被处理一次，然后堆的操作的时间复杂度是 $\log V$,</li>
+<li>空间复杂度： $O(E + V)$。</li>
+</ul>
+<h5 id="完整-c-代码-26">完整 C++ 代码</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @brief dijkstra算法模板（邻接表 + 最小堆优化版）
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param adj_list 图的邻接表
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param idx 起点 idx（0 开始）
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return dist[i] 代表从单源节点 idx 到节点编号 i 的节点的最短路的长度
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dijkstra</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;&gt;&amp;</span> <span class="n">adj_list</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="kt">int</span> <span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">adj_list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">INF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dist</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">greater</span><span class="o">&lt;&gt;&gt;</span> <span class="n">heap</span><span class="p">;</span>  <span class="c1">// 用堆来优化每次的查找最小值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">heap</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>  <span class="c1">// 到本身是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 找到当前距离最小的节点编号 j,这个节点的最短路长度就已确认
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">heap</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="p">[</span><span class="n">dis_i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">heap</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="c1">// dis_i 代表从单源节点 idx 到节点编号 i 的节点的最短路的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">heap</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dis_i</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>  <span class="c1">// 如果目前这个都不是最短的了，那就没必要更新了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">dis_j</span><span class="p">]</span> <span class="o">:</span> <span class="n">adj_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">new_dis</span> <span class="o">=</span> <span class="n">dis_i</span> <span class="o">+</span> <span class="n">dis_j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">new_dis</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_dis</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">heap</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dist</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">networkDelayTime</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">times</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="kt">int</span> <span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 构建邻接矩阵
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;&gt;</span> <span class="n">adj_list</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">t</span> <span class="p">:</span> <span class="n">times</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">from</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">adj_list</span><span class="p">[</span><span class="n">from</span><span class="p">].</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// dijkstra算法求单源最短路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dist</span> <span class="o">=</span> <span class="n">dijkstra</span><span class="p">(</span><span class="n">adj_list</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 解题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">mx</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">dist</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mx</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mx</span> <span class="o">==</span> <span class="n">INF</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="n">mx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="多源最短路径">多源最短路径</h3>
+<h4 id="leetcode-1334-阈值距离内邻居最少的城市">LeetCode 1334. 阈值距离内邻居最少的城市</h4>
+<h5 id="题目描述-28">题目描述</h5>
 <blockquote>
 <h3 id="leetcode-1334-阈值距离内邻居最少的城市-1">LeetCode 1334. 阈值距离内邻居最少的城市</h3>
 <p>有 <code>n</code> 个城市，按从 <code>0</code> 到 <code>n-1</code> 编号。给你一个边数组 <code>edges</code>，其中 <code>edges[i] = [from, to, weight]</code> 代表 <code>from</code> 和 <code>to</code> 两个城市之间的双向加权边，距离阈值是一个整数 <code>distanceThreshold</code>。</p>
@@ -5964,7 +6295,7 @@ $1≤C_i≤W≤10^8$</p>
 <li>$1 \le \text{weight}_i, \ \text{distanceThreshold} \le 10^4$</li>
 <li>所有 $(\text{from}_i, \text{to}_i)$ 都是不同的。</li>
 </ul></blockquote>
-<h5 id="算法设计-28">算法设计</h5>
+<h5 id="算法设计-29">算法设计</h5>
 <p>这题是一道经典的 <strong>Floyd 算法</strong> 板子题。</p>
 <p>我们从寻找子问题 -&gt; 递归 -&gt; 记忆化搜索 -&gt; 动态规划 -&gt; 空间优化，一步步的来发明 Floyd 算法。</p>
 <ol>
@@ -5991,7 +6322,7 @@ $1≤C_i≤W≤10^8$</p>
 $$
 dfs(k, from, to) = min(dfs(k - 1, from, to),\ dfs(k - 1, from, k)+ dfs(k - 1, k, to))
 $$
-递归边界就是：没有中间节点时，也即 $k &lt; 0$，此时 $dfs(-1, from, to) = weight_matrix[from][to]$。也就是说直接就是节点编号 $from$ 到节点编号 $to$ 的距离。</p>
+递归边界就是：没有中间节点时，也即 $k &lt; 0$，此时 $dfs(-1, from, to) = matrix[from][to]$。也就是说直接就是节点编号 $from$ 到节点编号 $to$ 的距离。</p>
 <p>写成代码就是下面这样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -6094,10 +6425,10 @@ $$
 </div><p>复杂度分析：</p>
 <ul>
 <li>
-<p>时间复杂度： $O(n^23^n)$。需要求 $n^2$ 对最短路径，每个最短路径的递归树都是一颗满三叉树，因此每次递归树的节点个数为 $3^n$。</p>
+<p>时间复杂度： $O(V^23^V)$。需要求 $V^2$ 对最短路径，每个最短路径的递归树都是一颗满三叉树，因此每次递归树的节点个数为 $3^n$。</p>
 </li>
 <li>
-<p>空间复杂度： $O(n^3)$</p>
+<p>空间复杂度： $O(V^3)$</p>
 </li>
 </ul>
 <ol start="3">
@@ -6219,10 +6550,10 @@ $$
 </div><p>复杂度分析：</p>
 <ul>
 <li>
-<p>时间复杂度： $O(n^3)$。使用记忆化搜索后每种状态最多计算一次。</p>
+<p>时间复杂度： $O(V^3)$。使用记忆化搜索后每种状态最多计算一次。</p>
 </li>
 <li>
-<p>空间复杂度： $O(n^3)$</p>
+<p>空间复杂度： $O(V^3)$</p>
 </li>
 </ul>
 <ol start="4">
@@ -6237,13 +6568,13 @@ $$
 dp(k, from, to) = min(dp(k - 1, from, to),\ dp(k - 1, from, k)+ dp(k - 1, k, to))
 $$
 但是有一个工程问题：无法表示 $k=-1$ 的情况，也就是上面的递归边界。</p>
-<p>这时候我们通常会将 $dp$ 数组长度 $+1$，用 $dp[0][from][to] =  weight_matrix[from][to]$。由于 $dp[0]$ 被占用，我们所有的下标都需要 $+1$ 来使用。</p>
+<p>这时候我们通常会将 $dp$ 数组长度 $+1$，用 $dp[0][from][to] =  matrix[from][to]$。由于 $dp[0]$ 被占用，我们所有的下标都需要 $+1$ 来使用。</p>
 <p>因此修改后 $dp(k + 1, from, to)$ 才表示从节点编号 $from$ 到节点编号 $to$ 的最短路的长度，并且这条最短路的中间节点编号的最大值是 $k$。</p>
 <p>修改后的状态转移方程为：
 $$
 dp(k + 1, from, to) = min(dp(k, from, to),\ dp(k, from, k)+ dp(k, k, to))
 $$
-且初始值 $dp[0][from][to] =  weight_matrix[from][to]$。</p>
+且初始值 $dp[0][from][to] =  matrix[from][to]$。</p>
 <p>写成代码就是下面这样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -6340,10 +6671,10 @@ $$
 </div><p>复杂度分析：</p>
 <ul>
 <li>
-<p>时间复杂度： $O(n^3)$。和上面记忆化搜索一样，只是在 1：1 翻译。</p>
+<p>时间复杂度： $O(V^3)$。和上面记忆化搜索一样，只是在 1：1 翻译。</p>
 </li>
 <li>
-<p>空间复杂度： $O(n^3)$</p>
+<p>空间复杂度： $O(V^3)$</p>
 </li>
 </ul>
 <ol start="5">
@@ -6390,85 +6721,39 @@ $$
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">findTheCity</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">edges</span><span class="p">,</span> <span class="kt">int</span> <span class="n">distanceThreshold</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="kt">int</span> <span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 构建邻接矩阵
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">weight_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">INF</span><span class="p">));</span> <span class="c1">// 无穷大代表不可达
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">edges</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">from</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">to</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">            <span class="n">weight_matrix</span><span class="p">[</span><span class="n">from</span><span class="p">][</span><span class="n">to</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">weight_matrix</span><span class="p">[</span><span class="n">to</span><span class="p">][</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">vector</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// 记录所有的多源最短路径
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 递推形式： 获得从 from 到 to 的所有中间节点编号都 ≤k 的最短路径长度
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dp</span> <span class="o">=</span> <span class="n">weight_matrix</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// 解题
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">mn_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mn</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @brief Floyd 算法模板
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param w_matrix 邻接矩阵
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return dp(i, j) 表示从节点编号 i 到节点编号 j 的最短路的长度
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">floyd</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">w_matrix</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">w_matrix</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dp</span> <span class="o">=</span> <span class="n">w_matrix</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">distanceThreshold</span><span class="p">)</span> <span class="n">cnt</span> <span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">cnt</span> <span class="o">&lt;=</span> <span class="n">mn</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">mn</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                <span class="n">mn_idx</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mn_idx</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>复杂度分析：</p>
 <ul>
 <li>
-<p>时间复杂度： $O(n^3)$</p>
+<p>时间复杂度： $O(V^3)$</p>
 </li>
 <li>
-<p>空间复杂度： $O(n^2)$</p>
+<p>空间复杂度： $O(V^2)$</p>
 </li>
 </ul>
-<h5 id="完整-c-代码-26">完整 C++ 代码</h5>
+<h5 id="完整-c-代码-27">完整 C++ 代码</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -6513,11 +6798,43 @@ $$
 </span><span class="lnt">40
 </span><span class="lnt">41
 </span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">findTheCity</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">edges</span><span class="p">,</span> <span class="kt">int</span> <span class="n">distanceThreshold</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @brief Floyd 算法模板
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param w_matrix 邻接矩阵
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return dp(i, j) 表示从节点编号 i 到节点编号 j 的最短路的长度
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">floyd</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">w_matrix</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">w_matrix</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">vector</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span> <span class="o">=</span> <span class="n">w_matrix</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">findTheCity</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">edges</span><span class="p">,</span> <span class="kt">int</span> <span class="n">distanceThreshold</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="kt">int</span> <span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 构建邻接矩阵
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">weight_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">INF</span><span class="p">));</span> <span class="c1">// 无穷大代表不可达
@@ -6527,18 +6844,10 @@ $$
 </span></span><span class="line"><span class="cl">            <span class="n">weight_matrix</span><span class="p">[</span><span class="n">to</span><span class="p">][</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">vector</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 记录所有的多源最短路径
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 递推形式： 获得从 from 到 to 的所有中间节点编号都 ≤k 的最短路径长度
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dp</span> <span class="o">=</span> <span class="n">weight_matrix</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span> <span class="o">=</span> <span class="n">floyd</span><span class="p">(</span><span class="n">weight_matrix</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 解题
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">mn_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -6564,7 +6873,7 @@ $$
 <h2 id="模拟退火">模拟退火</h2>
 <blockquote>
 <h3 id="acwing-3167-星星还是树">AcWing 3167. 星星还是树</h3>
-<h4 id="题目描述-28">题目描述</h4>
+<h4 id="题目描述-29">题目描述</h4>
 <blockquote>
 <h3 id="3167-星星还是树">3167. 星星还是树</h3>
 <p>在二维平面上有 $n$ 个点，第 $i$ 个点的坐标为 $(x_i,y_i)$。</p>
@@ -6724,7 +7033,7 @@ $0≤x_i,y_i≤10000$</p>
 <blockquote>
 <p>数字三角形模型应该算是dp中最简单的模型了</p></blockquote>
 <h3 id="acwing-1018-最低通行费">AcWing 1018. 最低通行费</h3>
-<h4 id="题目描述-29">题目描述</h4>
+<h4 id="题目描述-30">题目描述</h4>
 <blockquote>
 <p>一个商人穿过一个 $N×N$ 的正方形的网格，去参加一个非常重要的商务活动。</p>
 <p>他要从网格的左上角进，右下角出。</p>
@@ -6770,9 +7079,9 @@ $0≤x_i,y_i≤10000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-29">算法设计</h4>
+<h4 id="算法设计-30">算法设计</h4>
 <p>这题说的看起来很复杂，商人必须在 $(2N−1)$ 个单位时间穿越出去，其实用贪心发现最快方式也就是每次只往右或者下走，时间正好是 $(2N−1)$ 所以这题其实就是一道数字三角形的简单模板</p>
-<h4 id="完整-c-代码-27">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-28">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -6832,7 +7141,7 @@ $0≤x_i,y_i≤10000$</p>
 </div><hr>
 <h2 id="最长上升子序列模型">最长上升子序列模型</h2>
 <h3 id="acwing-895-最长上升子序列">AcWing 895. 最长上升子序列</h3>
-<h4 id="题目描述-30">题目描述</h4>
+<h4 id="题目描述-31">题目描述</h4>
 <blockquote>
 <p>给定一个长度为 $N$ 的数列，求数值严格单调递增的子序列的长度最长是多少。</p>
 <h4 id="输入格式-29">输入格式</h4>
@@ -6864,7 +7173,7 @@ $0≤x_i,y_i≤10000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-30">算法设计</h4>
+<h4 id="算法设计-31">算法设计</h4>
 <p>$f_i$ 表示所有以第 $i$ 个数结尾的上升子序列中的最大值</p>
 <h4 id="完整c-代码-2">完整C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -6924,7 +7233,7 @@ $0≤x_i,y_i≤10000$</p>
 </div><hr>
 <h2 id="背包模型">背包模型</h2>
 <h3 id="acwing-2-01背包问题">AcWing 2. 01背包问题</h3>
-<h4 id="题目描述-31">题目描述</h4>
+<h4 id="题目描述-32">题目描述</h4>
 <blockquote>
 <h3 id="2-01背包问题">2. 01背包问题</h3>
 <p>有 $N$ 件物品和一个容量是 $V$ 的背包，每件物品只能使用一次。</p>
@@ -6966,9 +7275,9 @@ $0&lt;v_i,w_i≤1000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-31">算法设计</h4>
+<h4 id="算法设计-32">算法设计</h4>
 <p>背一下01背包的代码模板就行</p>
-<h4 id="完整-c-代码-28">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-29">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -7033,7 +7342,7 @@ $0&lt;v_i,w_i≤1000$</p>
 </div>
 </div><hr>
 <h3 id="acwing-3-完全背包问题">AcWing 3. 完全背包问题</h3>
-<h4 id="题目描述-32">题目描述</h4>
+<h4 id="题目描述-33">题目描述</h4>
 <blockquote>
 <h3 id="3-完全背包问题">3. 完全背包问题</h3>
 <p>有 $N$ 件物品和一个容量是 $V$ 的背包，每种物品都有无限件可用。</p>
@@ -7075,9 +7384,9 @@ $0&lt;v_i,w_i≤1000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-32">算法设计</h4>
+<h4 id="算法设计-33">算法设计</h4>
 <p>背一下完全背包的代码模板就行</p>
-<h4 id="完整-c-代码-29">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-30">完整 C++ 代码</h4>
 <p>暴力版本 $O(n^3)$</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -7212,7 +7521,7 @@ $0&lt;v_i,w_i≤1000$</p>
 </div>
 </div><hr>
 <h3 id="acwing-4-多重背包问题-i">AcWing 4. 多重背包问题 I</h3>
-<h4 id="题目描述-33">题目描述</h4>
+<h4 id="题目描述-34">题目描述</h4>
 <blockquote>
 <p>有 $N$ 种物品和一个容量是 $V$ 的背包。</p>
 <p>第 $i$ 种物品最多有 $s_i$ 件，每件体积是 $v_i$，价值是 $w_i$。</p>
@@ -7253,9 +7562,9 @@ $0&lt;v_i, w_i, s_i≤100$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-33">算法设计</h4>
+<h4 id="算法设计-34">算法设计</h4>
 <p>背一下完全背包的代码模板就行，这题的数据来看时间复杂度 $O(n^3)$ 就可以ac</p>
-<h4 id="完整-c-代码-30">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-31">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -7320,7 +7629,7 @@ $0&lt;v_i, w_i, s_i≤100$</p>
 </div>
 </div><hr>
 <h3 id="acwing-5-多重背包问题-ii">AcWing 5. 多重背包问题 II</h3>
-<h4 id="题目描述-34">题目描述</h4>
+<h4 id="题目描述-35">题目描述</h4>
 <blockquote>
 <p>有 $N$ 种物品和一个容量是 $V$ 的背包。</p>
 <p>第 $i$ 种物品最多有 $s_i$ 件，每件体积是 $v_i$，价值是 $w_i$。</p>
@@ -7364,12 +7673,12 @@ $0&lt;v_i, w_i, s_i≤2000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-34">算法设计</h4>
+<h4 id="算法设计-35">算法设计</h4>
 <p>一个非常简洁的二进制优化自用板子</p>
 <p>根据y总讲的AcWing7. 混合背包问题整理的板子，相当简洁还省空间</p>
 <p>空间复杂度无需$O(n \log n)$,降为$O(max(n, log s))$</p>
 <p>时间复杂度还是$O(n^2log n)$</p>
-<h4 id="完整-c-代码-31">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-32">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -7443,7 +7752,7 @@ $0&lt;v_i, w_i, s_i≤2000$</p>
 </div><hr>
 <h2 id="状态机模型">状态机模型</h2>
 <h3 id="acwing-1058-股票买卖-v">AcWing 1058. 股票买卖 V</h3>
-<h4 id="题目描述-35">题目描述</h4>
+<h4 id="题目描述-36">题目描述</h4>
 <blockquote>
 <p>给定一个长度为 $N$ 的数组，数组中的第 $i$ 个数字表示一个给定股票在第 $i$ 天的价格。</p>
 <p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
@@ -7479,7 +7788,7 @@ $0&lt;v_i, w_i, s_i≤2000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-35">算法设计</h4>
+<h4 id="算法设计-36">算法设计</h4>
 <p>状态分为：1. 手中有货，2. 手中无货的第 $1$ 天，3. 手中无货的第 $\ge2$ 天</p>
 <h4 id="完整c-代码-3">完整C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -7543,7 +7852,7 @@ $0&lt;v_i, w_i, s_i≤2000$</p>
 </div><hr>
 <h2 id="状态压缩dp">状态压缩DP</h2>
 <h3 id="acwing-1064-小国王">AcWing 1064. 小国王</h3>
-<h4 id="题目描述-36">题目描述</h4>
+<h4 id="题目描述-37">题目描述</h4>
 <blockquote>
 <h3 id="1064-小国王-1">1064. 小国王</h3>
 <p>在 $n×n$ 的棋盘上放 $k$ 个国王，国王可攻击相邻的 $8$ 个格子，求使它们无法互相攻击的方案总数。</p>
@@ -7574,7 +7883,7 @@ $0 \le k \le n^2$</p>
 </div>
 </div></blockquote>
 <hr>
-<h4 id="算法设计-36">算法设计</h4>
+<h4 id="算法设计-37">算法设计</h4>
 <p>这是收录的一道经典的**连通性状态压缩 $\text{DP}$ **。</p>
 <p>这里的状态压缩，其实指的就是二进制状态压缩，是指将一个长度为 $m$ 的 $\text{bool}$ 数组只需要用一个 $m$ 位的二进制整数表示并存储即可。这里当 $m &lt; 32$ 时，可以直接用一个 $\text{int}$ 来存储，如果 $m$ 较大，就需要使用 $\text{int}$ 数组或者 $\text{C++\ STL}$ 提供的 $\text{bitset}$。</p>
 <p>$f(i,j,s)$:所有只摆在前$i$行，已经摆了$j$个国王，并且第$i$行摆放的状态是$s$的所有方案的集合。</p>
@@ -7882,7 +8191,7 @@ $0 \le k \le n^2$</p>
 </div>
 </div><hr>
 <h3 id="acwing-91-最短hamilton路径">AcWing 91. 最短Hamilton路径</h3>
-<h4 id="题目描述-37">题目描述</h4>
+<h4 id="题目描述-38">题目描述</h4>
 <blockquote>
 <h3 id="91-最短hamilton路径">91. 最短Hamilton路径</h3>
 <p>给定一张 $n$ 个点的带权无向图，点从 $0∼n−1$ 标号，求起点 $0$ 到终点 $n−1$ 的最短 Hamilton 路径。</p>
@@ -7925,9 +8234,9 @@ $0≤a[i,j]≤10^7$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-37">算法设计</h4>
+<h4 id="算法设计-38">算法设计</h4>
 <p>这是收录的一道经典的<strong>集合类状态压缩 $\text{DP}$</strong>。</p>
-<h4 id="完整-c-代码-32">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-33">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
@@ -7937,7 +8246,7 @@ $0≤a[i,j]≤10^7$</p>
 </div><hr>
 <h2 id="区间dp">区间DP</h2>
 <h3 id="acwing-282-石子合并">AcWing 282. 石子合并</h3>
-<h4 id="题目描述-38">题目描述</h4>
+<h4 id="题目描述-39">题目描述</h4>
 <blockquote>
 <h4 id="282-石子合并">282. 石子合并</h4>
 <p>设有 $N$ 堆石子排成一排，其编号为 $1,2,3,…,N$。</p>
@@ -7975,7 +8284,7 @@ $0≤a[i,j]≤10^7$</p>
 </div>
 </div></blockquote>
 <hr>
-<h4 id="算法设计-38">算法设计</h4>
+<h4 id="算法设计-39">算法设计</h4>
 <p>这是区间 $\text{DP}$ 的一道经典的模板题，一般有两种解法：</p>
 <ul>
 <li>迭代式：适合对于一维的情况</li>
@@ -8103,7 +8412,7 @@ $0≤a[i,j]≤10^7$</p>
 <p>本题其实是还有一道变式</p>
 <blockquote>
 <h3 id="320-能量项链">320. 能量项链</h3>
-<h4 id="题目描述-39">题目描述</h4>
+<h4 id="题目描述-40">题目描述</h4>
 <p>在 $\text{Mars}$ 星球上，每个 $\text{Mars}$ 人都随身佩带着一串能量项链，在项链上有 $N$ 颗能量珠。</p>
 <p>能量珠是一颗有头标记与尾标记的珠子，这些标记对应着某个正整数。</p>
 <p>并且，对于相邻的两颗珠子，前一颗珠子的尾标记一定等于后一颗珠子的头标记。</p>
@@ -8144,7 +8453,7 @@ $1≤E≤2.1×10^9$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h4 id="算法设计-39">算法设计</h4>
+<h4 id="算法设计-40">算法设计</h4>
 <p>这题主要的变化在两个部分：</p>
 <ol>
 <li>环形合并</li>
@@ -8247,7 +8556,7 @@ $$
 </div></blockquote>
 <hr>
 <h3 id="acwing-479-加分二叉树">AcWing 479. 加分二叉树</h3>
-<h4 id="题目描述-40">题目描述</h4>
+<h4 id="题目描述-41">题目描述</h4>
 <blockquote>
 <h3 id="479-加分二叉树">479. 加分二叉树</h3>
 <p>设一个 $n$ 个节点的二叉树 tree 的中序遍历为（$1,2,3,…,n$），其中数字 $1,2,3,…,n$ 为节点编号。</p>
@@ -8290,7 +8599,7 @@ $$
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-40">算法设计</h4>
+<h4 id="算法设计-41">算法设计</h4>
 <p>这里选这题作为模板是因为这是一道求区间 $\text{DP}$ 具体方案的题目，和之前的石子合并求最大最小代价是不一样的。</p>
 <p>求区间 $\text{DP}$ 具体方案的通用做法是：</p>
 <p>通过使用 $g_{i,j}$ 记录区间 $[i,j]$ 中最大价值时的划分点 $d$ ，在使用完区间合并模板后，只需要使用一次 $\text{dfs}$ 即可找到每一次最大价值的划分点。</p>
@@ -8414,7 +8723,7 @@ $$
 </div><hr>
 <h2 id="树形dp">树形DP</h2>
 <h3 id="acwing-1072-树的最长路径">AcWing 1072. 树的最长路径</h3>
-<h4 id="题目描述-41">题目描述</h4>
+<h4 id="题目描述-42">题目描述</h4>
 <blockquote>
 <h3 id="1072-树的最长路径">1072. 树的最长路径</h3>
 <p>给定一棵树，树中包含 $n$ 个结点（编号$1∼n$）和 $n−1$ 条无向边，每条边都有一个权值。</p>
@@ -8459,7 +8768,7 @@ $−10^5≤ci≤10^5$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-41">算法设计</h4>
+<h4 id="算法设计-42">算法设计</h4>
 <p>首先我们先来证明图论中的一个经典结论：<strong>对于没有负边权的树，如何找树的直径？</strong></p>
 <ol>
 <li>任取一点作为起点，找到距离该点最远的一个点 $u$。</li>
@@ -8488,7 +8797,7 @@ $−10^5≤ci≤10^5$</p>
 <li>如果每次算出来的 $d &lt; m_1$，但是 $d &gt;m_2$，我们就令 $m_2=d$。</li>
 </ol>
 <p>以及这里使用了 $\text{st}$ 数组来确保每个点只走一次，有种 DP 减少重复计算的味道在里面。</p>
-<h4 id="完整-c-代码-33">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-34">完整 C++ 代码</h4>
 <p>这里我们可以通过每次 dfs 的时候传入一个 father 来避免递归回节点本身，下面代码便是这种写法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -8759,9 +9068,9 @@ $−10^5≤ci≤10^5$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h4 id="算法设计-42">算法设计</h4>
+<h4 id="算法设计-43">算法设计</h4>
 <p>y总在树形依赖 DP 这一块讲的不太行。我在知乎上也看到了有人说教材选自2017年的蓝书有点落伍了，一次这里的解法有点落后了，所以就不进行更新了，以后有时间再看看其他更新的视频来更新这里【<strong>插个眼</strong>】</p>
-<h4 id="完整-c-代码-34">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-35">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
@@ -8772,7 +9081,7 @@ $−10^5≤ci≤10^5$</p>
 <hr>
 <h2 id="数位dp">数位DP</h2>
 <h3 id="acwing-1082-数字游戏">AcWing 1082. 数字游戏</h3>
-<h4 id="题目描述-42">题目描述</h4>
+<h4 id="题目描述-43">题目描述</h4>
 <blockquote>
 <h3 id="1082-数字游戏">1082. 数字游戏</h3>
 <p>科协里最近很流行数字游戏。</p>
@@ -8809,7 +9118,7 @@ $−10^5≤ci≤10^5$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-43">算法设计</h4>
+<h4 id="算法设计-44">算法设计</h4>
 <p>数位 $\text{DP}$ 常用思考方式：</p>
 <ol>
 <li>利用前缀的思想：$[x,y] = f_y-f_{x-1}$</li>
@@ -8913,7 +9222,7 @@ $−10^5≤ci≤10^5$</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="完整-c-代码-35">完整 C++ 代码</h4>
+</div><h4 id="完整-c-代码-36">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -9029,7 +9338,7 @@ $−10^5≤ci≤10^5$</p>
 </div><hr>
 <h2 id="记忆化搜索">记忆化搜索</h2>
 <h3 id="acwing-901-滑雪">AcWing 901. 滑雪</h3>
-<h4 id="题目描述-43">题目描述</h4>
+<h4 id="题目描述-44">题目描述</h4>
 <blockquote>
 <h3 id="901-滑雪">901. 滑雪</h3>
 <p>给定一个 $R$ 行 $C$ 列的矩阵，表示一个矩形网格滑雪场。</p>
@@ -9101,10 +9410,10 @@ $0≤$矩阵中整数$≤10000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-44">算法设计</h4>
+<h4 id="算法设计-45">算法设计</h4>
 <p>此题是记忆化搜索的一道模板题，这道题用常规的迭代式 dp 写法，会发现状态转移不好写，也就是所有状态的起点不知道在哪。</p>
 <p>当遇到这种情况或者循环太复杂如 $f_{i,j,k,m,n}$，常规情况需要写五层循环转移状态，会发现很不好写，如果用记忆化搜索来写会发现会很容易翻译成代码。记忆化搜索其实就是递归式的 dp 写法。</p>
-<h4 id="完整-c-代码-36">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-37">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -9203,7 +9512,7 @@ $0≤$矩阵中整数$≤10000$</p>
 <h1 id="第六章-贪心">第六章 贪心</h1>
 <h2 id="区间问题">区间问题</h2>
 <h3 id="acwing-905-区间选点">AcWing 905. 区间选点</h3>
-<h4 id="题目描述-44">题目描述</h4>
+<h4 id="题目描述-45">题目描述</h4>
 <blockquote>
 <h3 id="905-区间选点">905. 区间选点</h3>
 <p>给定 $N$ 个闭区间 $[a_i,b_i]$，请你在数轴上选择尽量少的点，使得每个区间内至少包含一个选出的点。</p>
@@ -9242,7 +9551,7 @@ $−10^9≤a_i≤b_i≤10^9$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-45">算法设计</h4>
+<h4 id="算法设计-46">算法设计</h4>
 <p><strong>贪心问题</strong>一般有一个很简单的套路：通过每一步选取<em>局部最优</em>，最终得到的就是<em>全局最优</em>。然后我们只需要去证明这个做法得到的是最优解就可以了。</p>
 <p>我们可以通过构造一个特殊的情况，在这种情况下也得满足最优，所以我们可以先从这种情况下的局部最优出发，寻找猜想。</p>
 <blockquote>
@@ -9262,7 +9571,7 @@ $−10^9≤a_i≤b_i≤10^9$</p>
 <li>如果这两个区间没交点，那么按照我的做法需要两个点才可以满足条件，但是理论上不可能有小于两个点的做法，所以我们的做法得出来的点数一定小于等于最优解。</li>
 </ul>
 <p>所以综上所述，我们的贪心做法就是最优解。</p>
-<h4 id="完整-c-代码-37">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-38">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -9339,7 +9648,7 @@ $−10^9≤a_i≤b_i≤10^9$</p>
 </div>
 </div><hr>
 <h3 id="acwing-906-区间分组">AcWing 906. 区间分组</h3>
-<h4 id="题目描述-45">题目描述</h4>
+<h4 id="题目描述-46">题目描述</h4>
 <blockquote>
 <h3 id="906-区间分组">906. 区间分组</h3>
 <p>给定 $N$ 个闭区间 $[a_i,b_i]$，请你将这些区间分成若干组，使得每组内部的区间两两之间（包括端点）没有交集，并使得组数尽可能小。</p>
@@ -9377,7 +9686,7 @@ $−10^9≤a_i≤b_i≤10^9$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-46">算法设计</h4>
+<h4 id="算法设计-47">算法设计</h4>
 <p>这题一开始的想法很简单，既然是贪心，那我就套用 <a href="https://www.acwing.com/problem/content/910/" target="_blank" rel="noopener noreffer ">AcWing 908. 最大不相交区间数量</a> 的做法，使用局部最优的思想，首先在所有区间上找到最大不相交区间，然后把这部分区间删除，再在剩余区间上重复上面操作，最后的最大不相交区间就是重复上面操作最终将所有区间都删除的操作次数。</p>
 <p>但是 $\text{unluckily}$，上面的贪心做法不是最优解，下面我给出一组反例：</p>
 <p>$[1,3],[1,4],[5,6],[4,7]$。</p>
@@ -9403,7 +9712,7 @@ $−10^9≤a_i≤b_i≤10^9$</p>
 <p>我们可以把所有开始时间和结束时间排序，一个活动开始时，分配一间教室，一个活动结束时，释放一间教室，这样所需的教室数量上下浮动，而浮动过程中的最大值就是所需教室数量的最小值</p>
 <p>没结束就不释放，结束了就把对应的教室释放，不用管释放的是哪一间教室</p></blockquote>
 <p>这种解法的思想其实也是可以理解为按照我们上面的做法做的，这里的每间教室就对应了每一组。</p>
-<h4 id="完整-c-代码-38">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-39">完整 C++ 代码</h4>
 <p>暴力解法代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -9571,7 +9880,7 @@ $−10^9≤a_i≤b_i≤10^9$</p>
 </div><hr>
 <h2 id="推公式">推公式</h2>
 <h3 id="acwing-125-耍杂技的牛">AcWing 125. 耍杂技的牛</h3>
-<h4 id="题目描述-46">题目描述</h4>
+<h4 id="题目描述-47">题目描述</h4>
 <blockquote>
 <h3 id="125-耍杂技的牛">125. 耍杂技的牛</h3>
 <p>农民约翰的 $N$ 头奶牛（编号为 $1\dots N$）计划逃跑并加入马戏团，为此它们决定练习表演杂技。</p>
@@ -9615,7 +9924,7 @@ $1≤S_i≤1,000,000,000$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-47">算法设计</h4>
+<h4 id="算法设计-48">算法设计</h4>
 <p>我们首先将牛进行堆叠，从上往下进行依次编号，定义第 $i$ 头牛的重量为 $W_i$，强壮程度为 $S_i$。</p>
 <table>
   <thead>
@@ -9690,7 +9999,7 @@ $1≤S_i≤1,000,000,000$</p>
 <p>下面我们对上面的结论进行证明：</p>
 <p>假设我们贪心得到的做法不是最优解，那么将牛进行堆叠，一定存在某一次操作，最优解是需要将更小的 $w_i +  s_i $  堆在更大的 $w_{i+1} +s_{i+1}$ 下面，那么如果此时我们将牛 $i$ 和 $i+1$ 进行交换，那么由之前的证明可知，一定会增加这两头牛的风险值中的最大值，那么此时最优解得到的最大值一定大于我们贪心得到的最大值，故与最优解的定义矛盾。</p>
 <p>综上可得将牛按照 $w_i +  s_i $ 排序后堆叠是最优解。</p>
-<h4 id="完整-c-代码-39">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-40">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -9857,8 +10166,8 @@ $1≤S_i≤1,000,000,000$</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-01&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/5ceeb5bc9689907015ad994a5d42c1469a756508" target="_blank" title="commit by JarVis(2055543978@qq.com) 5ceeb5bc9689907015ad994a5d42c1469a756508: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5ceeb5b</a></span>
+                <span>更新于 2026-02-01&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/4d90c6f2833c6a60691c1654b104a637c6c4b4e0" target="_blank" title="commit by JarVis(2055543978@qq.com) 4d90c6f2833c6a60691c1654b104a637c6c4b4e0: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4d90c6f</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

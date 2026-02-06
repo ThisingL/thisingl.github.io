@@ -3,7 +3,23 @@
         <title>Tags - 标签 - Thising&#39;log | 自学空间</title>
         <link>https://example.com/tags/</link>
         <description>Tags - 标签 - Thising&#39;log | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>AI</title>
+    <link>https://example.com/tags/ai/</link>
+    <pubDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/ai/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>CS</title>
+    <link>https://example.com/tags/cs/</link>
+    <pubDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/cs/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>编程</title>
     <link>https://example.com/tags/%E7%BC%96%E7%A8%8B/</link>
     <pubDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</pubDate>
@@ -65,22 +81,6 @@
     <pubDate>Tue, 07 Jan 2025 22:58:10 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/tags/%E5%81%A5%E8%BA%AB/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>算法</title>
-    <link>https://example.com/tags/%E7%AE%97%E6%B3%95/</link>
-    <pubDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/tags/%E7%AE%97%E6%B3%95/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>专注力</title>
-    <link>https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/</link>
-    <pubDate>Sat, 26 Oct 2024 10:40:14 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

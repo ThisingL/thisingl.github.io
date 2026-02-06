@@ -3,9 +3,17 @@
         <title>Thising&#39;log | 自学空间</title>
         <link>https://example.com/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>现代人工智能</title>
+    <link>https://example.com/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
+    <pubDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</guid>
+    <description><![CDATA[关于 LLM 以及 MLsys 的内容]]></description>
+</item>
+<item>
     <title>程序员面试指南</title>
     <link>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/</link>
     <pubDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</pubDate>
@@ -76,14 +84,6 @@
     <author>Thising</author>
     <guid>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BB%B6%E5%AF%BF%E6%8C%87%E5%8D%97/</guid>
     <description><![CDATA[介绍一些有趣的东西来帮助程序员延长自身寿命]]></description>
-</item>
-<item>
-    <title>利用 Hugo 和 Github Pages 创建静态博客并实现自动部署</title>
-    <link>https://example.com/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</link>
-    <pubDate>Wed, 25 Jun 2025 23:12:30 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E5%88%A9%E7%94%A8-hugo-%E5%92%8C-github-pages-%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</guid>
-    <description><![CDATA[本文主要介绍了如何利用 Hugo 和 Github Pages 创建静态博客，并利用 Github Actions 实现博客的自动部署。]]></description>
 </item>
 </channel>
 </rss>

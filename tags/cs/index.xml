@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CS - 标签 - Thising&#39;log | 自学空间</title>
+        <link>https://example.com/tags/cs/</link>
+        <description>CS - 标签 - Thising&#39;log | 自学空间</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/cs/" rel="self" type="application/rss+xml" /><item>
+    <title>现代人工智能</title>
+    <link>https://example.com/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
+    <pubDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</guid>
+    <description><![CDATA[关于 LLM 以及 MLsys 的内容]]></description>
+</item>
+</channel>
+</rss>

@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-01-25T23:58:20+08:00">
-    <meta property="article:modified_time" content="2026-02-04T21:34:39+08:00">
+    <meta property="article:modified_time" content="2026-02-06T14:21:34+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  35312 ,
-        "url": "https:\/\/example.com\/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97\/","datePublished": "2026-01-25T23:58:20+08:00","dateModified": "2026-02-04T21:34:39+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  35679 ,
+        "url": "https:\/\/example.com\/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97\/","datePublished": "2026-01-25T23:58:20+08:00","dateModified": "2026-02-06T14:21:34+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">程序员面试指南</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-25">2026-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 35312 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 71 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-01-25">2026-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 35679 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 72 分钟&nbsp;
     
 
     
@@ -668,6 +668,61 @@
 <h2 id="c">c++</h2>
 <p>可以先看看我的<a href="https://thisingl.github.io/c-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener noreffer ">c++学习笔记</a></p>
 <p>c++语法方面的八股可以看：<a href="/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/images/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%EF%BC%88%E6%9C%80%E5%BC%BA%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%89%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%88C&#43;&#43;%E7%AF%87%EF%BC%89.pdf" rel="">代码随想录（最强八股文）第五版（C++篇）.pdf</a></p>
+<blockquote>
+<p>小红书引擎架构面试原题</p></blockquote>
+<p><strong>Q:</strong> 对于一个 struct vector：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">vector</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果我们有线程 a 和线程 b,它们一个在不停的修改 x,一个在不停的修改 y，请问会有性能问题吗？</p>
+<p><strong>A:</strong> 会有的。因为现代的 CPU cache line 一般为 64 字节，所以整个 vector 会在同一个 CPU cache line 里。</p>
+<p>这是一个经典的 False Sharing（伪共享） 问题。</p>
+<p>假设：</p>
+<ul>
+<li>线程 A 跑在 core 0</li>
+<li>线程 B 跑在 core 1</li>
+</ul>
+<p>第一次写：</p>
+<ol>
+<li>core 0 写 <code>x</code></li>
+<li>cache line 被加载到 core 0 的 L1 cache</li>
+<li>状态变成 Modified (M)</li>
+</ol>
+<p>然后线程 B 写 <code>y</code>:</p>
+<ol>
+<li>core 1 想写 <code>y</code></li>
+<li>根据 <strong>MESI 协议</strong>：
+<ul>
+<li>core 1 不能直接写</li>
+<li>必须先让 core 0 的那条 cache line 失效（invalidate）</li>
+</ul>
+</li>
+<li>cache line 被“抢”到 core 1</li>
+<li>core 1 写 <code>y</code> → Modified</li>
+</ol>
+<p>再轮到线程 A</p>
+<ol>
+<li>core 0 再写 <code>x</code></li>
+<li>invalidate core 1</li>
+<li>cache line 再被拉回 core 0</li>
+</ol>
+<blockquote>
+<p>小红书引擎架构面试原题</p></blockquote>
+<p><strong>Q.</strong></p>
+<p>1.我们的程序在执行 <code>char* data = new char[1024 * 1024 * 1024]</code>后，会立马分配 1GB 的内存空间吗？</p>
+<p>2.如果我们这时候访问 <code>data[0]</code>，os会做哪些事情？</p>
+<p>3.<code>malloc</code> 很大的空间和很小的空间会有什么差异吗？</p>
 <hr>
 <h2 id="java代码题">Java代码题</h2>
 <h4 id="交替打印abc">交替打印&quot;ABC&quot;</h4>
@@ -3901,8 +3956,8 @@ $$</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-04&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/132d30fe99bcae013cef151dd714b2f9250e3e49" target="_blank" title="commit by thisingl(thisingl@qq.com) 132d30fe99bcae013cef151dd714b2f9250e3e49: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>132d30f</a></span>
+                <span>更新于 2026-02-06&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/3add09e41283adfe8ae6600ced1d5ddac222cc35" target="_blank" title="commit by thisingl(thisingl@qq.com) 3add09e41283adfe8ae6600ced1d5ddac222cc35: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3add09e</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

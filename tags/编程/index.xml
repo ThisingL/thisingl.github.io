@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>编程 - 标签 - Thising&#39;log | 自学空间</title>
+        <title>编程 - 标签 - Thising | 自学空间</title>
         <link>https://example.com/tags/%E7%BC%96%E7%A8%8B/</link>
-        <description>编程 - 标签 - Thising&#39;log | 自学空间</description>
+        <description>编程 - 标签 - Thising | 自学空间</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
     <title>程序员面试指南</title>
     <link>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/</link>

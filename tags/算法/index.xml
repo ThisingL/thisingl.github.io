@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>算法 - 标签 - Thising&#39;log | 自学空间</title>
+        <title>算法 - 标签 - Thising | 自学空间</title>
         <link>https://example.com/tags/%E7%AE%97%E6%B3%95/</link>
-        <description>算法 - 标签 - Thising&#39;log | 自学空间</description>
+        <description>算法 - 标签 - Thising | 自学空间</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 09 Dec 2024 21:25:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
     <title>算法学习自用板子</title>
     <link>https://example.com/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90/</link>

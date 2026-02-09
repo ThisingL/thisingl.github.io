@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-07T18:23:36+08:00">
-    <meta property="article:modified_time" content="2026-02-09T19:04:27+08:00">
+    <meta property="article:modified_time" content="2026-02-09T19:19:42+08:00">
     <meta property="article:tag" content="CS">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -38,7 +38,7 @@
                             "width":  3200 ,
                             "height":  2048 
                         }],"genre": "posts","keywords": "CS","wordcount":  3165 ,
-        "url": "https:\/\/example.com\/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F\/","datePublished": "2026-02-07T18:23:36+08:00","dateModified": "2026-02-09T19:04:27+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/example.com\/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F\/","datePublished": "2026-02-07T18:23:36+08:00","dateModified": "2026-02-09T19:19:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -225,19 +225,19 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// key: document name, value: document contents
-</span></span><span class="line"><span class="cl">void Map(String key, String value) {
-</span></span><span class="line"><span class="cl">	for each word w in value:
-</span></span><span class="line"><span class="cl">		Emit_Intermediate(w, &#34;1&#34;);
-</span></span><span class="line"><span class="cl">}
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// key: document name, value: document contents
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Map</span><span class="p">(</span><span class="n">String</span> <span class="n">key</span><span class="p">,</span> <span class="n">String</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">each</span> <span class="n">word</span> <span class="n">w</span> <span class="n">in</span> <span class="nl">value</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Emit_Intermediate</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">&#34;1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">// key: a word, values: a list of counts
-</span></span><span class="line"><span class="cl">void Reduce(String key, Iterator values) {
-</span></span><span class="line"><span class="cl">	int result = 0;
-</span></span><span class="line"><span class="cl">	for each v in values:
-</span></span><span class="line"><span class="cl">		result += ParseInt(v);
-</span></span><span class="line"><span class="cl">	Emit(AsString(result));
-</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl"><span class="c1">// key: a word, values: a list of counts
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Reduce</span><span class="p">(</span><span class="n">String</span> <span class="n">key</span><span class="p">,</span> <span class="n">Iterator</span> <span class="n">values</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">each</span> <span class="n">v</span> <span class="n">in</span> <span class="nl">values</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">result</span> <span class="o">+=</span> <span class="n">ParseInt</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Emit</span><span class="p">(</span><span class="n">AsString</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>多么的简洁优雅，又很高效的一种编程范式。</p>
@@ -281,8 +281,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-09&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/e37a60b568b73d3c463ca16399d5003de4681fcd" target="_blank" title="commit by thisingl(thisingl@qq.com) e37a60b568b73d3c463ca16399d5003de4681fcd: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e37a60b</a></span>
+                <span>更新于 2026-02-09&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/314f7879b675a86da88cb98ba3afd4d515a02d65" target="_blank" title="commit by thisingl_baidu_Mac13(thisingl@qq.com) 314f7879b675a86da88cb98ba3afd4d515a02d65: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>314f787</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

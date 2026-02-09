@@ -74,10 +74,47 @@ jQuery(document).ready(function($) {
 
 /* 修复侧边目录自动滚动到当前激活项 */
 (function() {
+    console.log('[TOC] 初始化目录自动滚动脚本');
+
+    // 将目录项滚动到可视区域（居中显示）
+    function scrollTocItemIntoView(element) {
+        const tocContainer = document.getElementById('toc-auto');
+        if (!tocContainer || !element) {
+            console.log('[TOC] scrollTocItemIntoView: 容器或元素不存在');
+            return;
+        }
+
+        console.log('[TOC] 滚动到激活项:', element.textContent.trim());
+
+        const containerRect = tocContainer.getBoundingClientRect();
+        const elementRect = element.getBoundingClientRect();
+
+        // 计算元素相对于容器的位置
+        const relativeTop = elementRect.top - containerRect.top + tocContainer.scrollTop;
+
+        // 计算目标滚动位置（让激活项显示在容器中间）
+        const targetScrollTop = relativeTop - (containerRect.height / 2) + (elementRect.height / 2);
+
+        console.log('[TOC] 当前滚动位置:', tocContainer.scrollTop, '目标位置:', targetScrollTop);
+
+        // 平滑滚动到目标位置
+        tocContainer.scrollTo({
+            top: targetScrollTop,
+            behavior: 'smooth'
+        });
+    }
+
     // 等待页面完全加载
     function initTocAutoScroll() {
+        console.log('[TOC] 尝试初始化...');
+
         const tocContainer = document.getElementById('toc-auto');
-        if (!tocContainer) return;
+        if (!tocContainer) {
+            console.log('[TOC] 未找到 #toc-auto 容器');
+            return;
+        }
+
+        console.log('[TOC] 找到目录容器，开始设置观察器');
 
         // 使用 MutationObserver 监听目录项的 active 状态变化
         const observer = new MutationObserver(function(mutations) {
@@ -87,6 +124,7 @@ jQuery(document).ready(function($) {
 
                     // 如果是链接元素且包含 active 类
                     if (target.tagName === 'A' && target.classList.contains('active')) {
+                        console.log('[TOC] 检测到新的激活项');
                         // 平滑滚动到当前激活项
                         scrollTocItemIntoView(target);
                     }
@@ -103,42 +141,34 @@ jQuery(document).ready(function($) {
 
         // 开始观察目录容器
         observer.observe(tocContainer, config);
+        console.log('[TOC] MutationObserver 已启动');
 
         // 初始化时也检查一次
         const activeLink = tocContainer.querySelector('a.active');
         if (activeLink) {
-            setTimeout(() => scrollTocItemIntoView(activeLink), 500);
+            console.log('[TOC] 发现初始激活项，1秒后滚动');
+            setTimeout(() => scrollTocItemIntoView(activeLink), 1000);
+        } else {
+            console.log('[TOC] 未发现初始激活项');
         }
     }
 
-    // 将目录项滚动到可视区域（居中显示）
-    function scrollTocItemIntoView(element) {
-        const tocContainer = document.getElementById('toc-auto');
-        if (!tocContainer || !element) return;
-
-        const containerRect = tocContainer.getBoundingClientRect();
-        const elementRect = element.getBoundingClientRect();
-
-        // 计算元素相对于容器的位置
-        const relativeTop = elementRect.top - containerRect.top + tocContainer.scrollTop;
-
-        // 计算目标滚动位置（让激活项显示在容器中间）
-        const targetScrollTop = relativeTop - (containerRect.height / 2) + (elementRect.height / 2);
-
-        // 平滑滚动到目标位置
-        tocContainer.scrollTo({
-            top: targetScrollTop,
-            behavior: 'smooth'
-        });
-    }
-
-    // 页面加载完成后初始化
+    // 多种方式确保初始化
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTocAutoScroll);
+        console.log('[TOC] 等待 DOMContentLoaded...');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[TOC] DOMContentLoaded 触发');
+            setTimeout(initTocAutoScroll, 500);
+        });
     } else {
-        initTocAutoScroll();
+        console.log('[TOC] DOM 已加载，立即初始化');
+        setTimeout(initTocAutoScroll, 500);
     }
 
-    // 兼容 PJAX 或动态加载
-    window.addEventListener('load', initTocAutoScroll);
+    // 兼容完全加载
+    window.addEventListener('load', function() {
+        console.log('[TOC] window.load 触发');
+        setTimeout(initTocAutoScroll, 1000);
+    });
 })();
+

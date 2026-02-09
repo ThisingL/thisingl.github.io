@@ -74,13 +74,46 @@ jQuery(document).ready(function($) {
 
 /* 修复侧边目录自动滚动到当前激活项 */
 (function() {
-    console.log('[TOC] 初始化目录自动滚动脚本 v2');
+    console.log('[TOC] 初始化目录自动滚动脚本 v3');
 
     let lastActiveElement = null;
+    let isAdjusting = false; // 防止递归
 
-    // 简单的滚动函数，使用原生 scrollIntoViewIfNeeded 或 scrollIntoView
+    // 平滑滚动函数
+    function smoothScroll(container, targetScrollTop, duration = 300) {
+        if (isAdjusting) return;
+        isAdjusting = true;
+
+        const startScrollTop = container.scrollTop;
+        const distance = targetScrollTop - startScrollTop;
+        const startTime = performance.now();
+
+        function scroll() {
+            const currentTime = performance.now();
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // 使用 easeInOutCubic 缓动函数
+            const easeProgress = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            container.scrollTop = startScrollTop + distance * easeProgress;
+
+            if (progress < 1) {
+                requestAnimationFrame(scroll);
+            } else {
+                isAdjusting = false;
+                console.log('[TOC] 滚动完成');
+            }
+        }
+
+        requestAnimationFrame(scroll);
+    }
+
+    // 将目录项滚动到容器中央
     function scrollTocItemIntoView(element) {
-        if (!element || lastActiveElement === element) {
+        if (!element || lastActiveElement === element || isAdjusting) {
             return;
         }
 
@@ -90,21 +123,29 @@ jQuery(document).ready(function($) {
         console.log('[TOC] 滚动到激活项:', element.textContent.trim());
         lastActiveElement = element;
 
-        // 使用 requestAnimationFrame 确保在下一帧执行，避免和主题逻辑冲突
-        requestAnimationFrame(() => {
-            try {
-                // 优先使用 scrollIntoViewIfNeeded（Chrome/Safari）
-                if (typeof element.scrollIntoViewIfNeeded === 'function') {
-                    element.scrollIntoViewIfNeeded({ behavior: 'smooth', block: 'center' });
-                } else {
-                    // 降级使用 scrollIntoView
-                    element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-                }
-                console.log('[TOC] 滚动完成');
-            } catch (error) {
-                console.error('[TOC] 滚动失败:', error);
-            }
-        });
+        try {
+            const containerRect = tocContainer.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+
+            // 计算元素相对于容器顶部的位置
+            const elementOffsetTop = element.offsetTop;
+
+            // 目标位置：让元素显示在容器中央
+            const targetScrollTop = elementOffsetTop - (containerRect.height / 2) + (elementRect.height / 2);
+
+            // 确保不会滚动到负值或超出范围
+            const maxScrollTop = tocContainer.scrollHeight - containerRect.height;
+            const finalScrollTop = Math.max(0, Math.min(targetScrollTop, maxScrollTop));
+
+            console.log('[TOC] 当前位置:', tocContainer.scrollTop, '目标位置:', finalScrollTop);
+
+            // 使用自定义平滑滚动，不触发浏览器事件
+            smoothScroll(tocContainer, finalScrollTop);
+
+        } catch (error) {
+            console.error('[TOC] 滚动失败:', error);
+            isAdjusting = false;
+        }
     }
 
     // 初始化函数
@@ -117,22 +158,32 @@ jQuery(document).ready(function($) {
 
         console.log('[TOC] 找到目录容器，设置监听');
 
-        // 使用事件委托监听所有链接的 class 变化
-        const observer = new MutationObserver((mutations) => {
-            for (const mutation of mutations) {
-                if (mutation.type === 'attributes' &&
-                    mutation.attributeName === 'class' &&
-                    mutation.target.tagName === 'A') {
+        let pendingUpdate = null;
 
-                    const link = mutation.target;
-                    if (link.classList.contains('active')) {
-                        console.log('[TOC] 检测到激活项变化');
-                        // 延迟执行，等主题逻辑完成
-                        setTimeout(() => scrollTocItemIntoView(link), 150);
-                        break; // 只处理第一个
+        // 使用 MutationObserver 监听目录项变化
+        const observer = new MutationObserver((mutations) => {
+            // 清除之前的待处理更新
+            if (pendingUpdate) {
+                clearTimeout(pendingUpdate);
+            }
+
+            // 延迟处理，避免频繁触发
+            pendingUpdate = setTimeout(() => {
+                for (const mutation of mutations) {
+                    if (mutation.type === 'attributes' &&
+                        mutation.attributeName === 'class' &&
+                        mutation.target.tagName === 'A') {
+
+                        const link = mutation.target;
+                        if (link.classList.contains('active')) {
+                            console.log('[TOC] 检测到激活项变化');
+                            // 再延迟一点，确保主题 DOM 操作完成
+                            setTimeout(() => scrollTocItemIntoView(link), 100);
+                            return; // 只处理第一个
+                        }
                     }
                 }
-            }
+            }, 50); // 防抖 50ms
         });
 
         observer.observe(tocContainer, {
@@ -152,6 +203,6 @@ jQuery(document).ready(function($) {
         } else {
             console.log('[TOC] 当前页面可能没有目录');
         }
-    }, 2000); // 等待主题完全初始化
+    }, 2000);
 })();
 

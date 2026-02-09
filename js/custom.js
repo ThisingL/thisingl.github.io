@@ -68,6 +68,77 @@ jQuery(document).ready(function($) {
 			
 		}
 	a_click ++;
-		
+
     });
 });
+
+/* 修复侧边目录自动滚动到当前激活项 */
+(function() {
+    // 等待页面完全加载
+    function initTocAutoScroll() {
+        const tocContainer = document.getElementById('toc-auto');
+        if (!tocContainer) return;
+
+        // 使用 MutationObserver 监听目录项的 active 状态变化
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const target = mutation.target;
+
+                    // 如果是链接元素且包含 active 类
+                    if (target.tagName === 'A' && target.classList.contains('active')) {
+                        // 平滑滚动到当前激活项
+                        scrollTocItemIntoView(target);
+                    }
+                }
+            });
+        });
+
+        // 配置观察选项
+        const config = {
+            attributes: true,
+            attributeFilter: ['class'],
+            subtree: true
+        };
+
+        // 开始观察目录容器
+        observer.observe(tocContainer, config);
+
+        // 初始化时也检查一次
+        const activeLink = tocContainer.querySelector('a.active');
+        if (activeLink) {
+            setTimeout(() => scrollTocItemIntoView(activeLink), 500);
+        }
+    }
+
+    // 将目录项滚动到可视区域（居中显示）
+    function scrollTocItemIntoView(element) {
+        const tocContainer = document.getElementById('toc-auto');
+        if (!tocContainer || !element) return;
+
+        const containerRect = tocContainer.getBoundingClientRect();
+        const elementRect = element.getBoundingClientRect();
+
+        // 计算元素相对于容器的位置
+        const relativeTop = elementRect.top - containerRect.top + tocContainer.scrollTop;
+
+        // 计算目标滚动位置（让激活项显示在容器中间）
+        const targetScrollTop = relativeTop - (containerRect.height / 2) + (elementRect.height / 2);
+
+        // 平滑滚动到目标位置
+        tocContainer.scrollTo({
+            top: targetScrollTop,
+            behavior: 'smooth'
+        });
+    }
+
+    // 页面加载完成后初始化
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTocAutoScroll);
+    } else {
+        initTocAutoScroll();
+    }
+
+    // 兼容 PJAX 或动态加载
+    window.addEventListener('load', initTocAutoScroll);
+})();

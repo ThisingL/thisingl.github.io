@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-07T18:23:36+08:00">
-    <meta property="article:modified_time" content="2026-02-09T19:19:42+08:00">
+    <meta property="article:modified_time" content="2026-02-09T22:13:00+08:00">
     <meta property="article:tag" content="CS">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS","wordcount":  3165 ,
-        "url": "https:\/\/example.com\/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F\/","datePublished": "2026-02-07T18:23:36+08:00","dateModified": "2026-02-09T19:19:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS","wordcount":  3166 ,
+        "url": "https:\/\/example.com\/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F\/","datePublished": "2026-02-07T18:23:36+08:00","dateModified": "2026-02-09T22:13:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">分布式系统</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CS</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-07">2026-02-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3165 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-07">2026-02-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3166 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;
     
 
@@ -150,6 +150,7 @@
         <li><a href="#分布式系统">分布式系统</a>
           <ul>
             <li><a href="#mapreduce">MapReduce</a></li>
+            <li><a href="#gfs">GFS</a></li>
           </ul>
         </li>
       </ul>
@@ -277,12 +278,13 @@
 <p>这时候我们可以通过备份机制来缓解这个问题。当 MapReduce 操作接近完成时，主节点会调度剩余进行中的任务的备份来执行，这样只要有一个执行完了，我们就认为这个任务完成了。论文中测试发现，这个方法降低了大概 $44%$。</p>
 <h6 id="优化网络传输">优化网络传输</h6>
 <p>网络带宽经常会成为系统的瓶颈，reduce 任务的远程 rpc 调用获取 map 任务产生的中间键值对，会产生大量的网络传输，因此如果想要优化，在实现上可以考虑优先将 reduce 任务调度给执行完 map 任务的机器，这样就能直接本地读取了。如果不存在这样的机器，那也得优先调度给距离数据较近的机器。</p>
+<h3 id="gfs">GFS</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-09&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/314f7879b675a86da88cb98ba3afd4d515a02d65" target="_blank" title="commit by thisingl_baidu_Mac13(thisingl@qq.com) 314f7879b675a86da88cb98ba3afd4d515a02d65: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>314f787</a></span>
+                <span>更新于 2026-02-09&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/10f1544ae735782b40141e45822a494605bdc08f" target="_blank" title="commit by thisingl_home_Lenovo_xiaoxinpro16(2055543978@qq.com) 10f1544ae735782b40141e45822a494605bdc08f: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>10f1544</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

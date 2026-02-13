@@ -136,9 +136,7 @@
         legendHTML += '<span>More</span>';
         legendHTML += '</div>';
         
-        const titleHTML = '<div style="font-size: 14px; color: #666; margin-bottom: 8px; text-align: center; width: 100%; font-family: \'Hack\', \'QianZiBi\', monospace;">看看我的更新频率</div>';
-        
-        return '<div style="display: flex; flex-direction: column; align-items: flex-end;">' + titleHTML + svg + legendHTML + '</div>';
+        return '<div style="display: flex; flex-direction: column; align-items: flex-end;">' + svg + legendHTML + '</div>';
     }
     
     async function initHeatmap() {

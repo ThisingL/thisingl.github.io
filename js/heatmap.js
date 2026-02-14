@@ -1,7 +1,7 @@
 (function() {
     const owner = 'ThisingL';
     const repo = 'thisingl.github.io';
-    const CACHE_KEY = 'github_heatmap_cache_v2';
+    const CACHE_KEY = repo + '_github_heatmap_cache';
     const CACHE_DURATION = 20 * 60 * 1000;  // 20min 缓存
     
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

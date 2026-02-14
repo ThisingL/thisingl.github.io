@@ -12,17 +12,18 @@
             const cached = localStorage.getItem(CACHE_KEY);
             if (!cached) return null;
             
-            const { data, timestamp } = JSON.parse(cached);
-            if (!data || !Array.isArray(data) || data.length === 0) {
+            const parsed = JSON.parse(cached);
+            if (!parsed || !parsed.data || !Array.isArray(parsed.data) || parsed.data.length === 0) {
                 localStorage.removeItem(CACHE_KEY);
                 return null;
             }
-            if (Date.now() - timestamp < CACHE_DURATION) {
-                return data;
+            if (Date.now() - parsed.timestamp < CACHE_DURATION) {
+                return parsed.data;
             }
             localStorage.removeItem(CACHE_KEY);
             return null;
         } catch (e) {
+            localStorage.removeItem(CACHE_KEY);
             return null;
         }
     }
@@ -98,8 +99,8 @@
     }
     
     function generateHeatmapSVG(data) {
-        if (!data || data.length === 0) {
-            return '<text x="10" y="20" fill="#666">No commit data available</text>';
+        if (!data || !Array.isArray(data) || data.length === 0) {
+            return '<span style="color: #999; font-size: 12px;">No commit data available</span>';
         }
         
         const maxCount = Math.max(...data.map(week => Math.max(...week.days)));

@@ -21,6 +21,15 @@ function runtime() {
 }
 runtime();
 
+/* 背景图片预加载 - LQIP 方案 */
+(function() {
+	var hdBg = new Image();
+	hdBg.src = '/images/13MB-background.jpg';
+	hdBg.onload = function() {
+		document.body.classList.add('bg-loaded');
+	};
+})();
+
 
 /* 返回随机颜色 */
 function randomColor() {

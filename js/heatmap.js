@@ -100,7 +100,7 @@
     
     function generateHeatmapSVG(data) {
         if (!data || !Array.isArray(data) || data.length === 0) {
-            return '<span style="color: #999; font-size: 12px;">一大波数据正在赶来！！！</span>';
+            return '<span style="color: #999; font-size: 12px;">数据正在骑马赶来 🐎,让我再敲两行代码～</span>';
         }
         
         const maxCount = Math.max(...data.map(week => Math.max(...week.days)));
@@ -210,7 +210,7 @@
         if (data) {
             container.innerHTML = generateHeatmapSVG(data);
         } else {
-            container.innerHTML = '<span style="color: #999; font-size: 12px;">Failed to load</span>';
+            container.innerHTML = '<span style="color: #999; font-size: 12px;">API 暂时罢工中🤯，让我试试敲两行代码～</span>';
         }
     }
     

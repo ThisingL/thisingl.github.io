@@ -1,26 +1,85 @@
 (function() {
     const owner = 'ThisingL';
     const repo = 'thisingl.github.io';
+    const CACHE_KEY = 'github_heatmap_cache_v2';
+    const CACHE_DURATION = 20 * 60 * 1000;  // 20min 缓存
     
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     
-    async function fetchCommitActivity() {
+    function getCachedData() {
         try {
-            const response = await fetch(
-                `https://api.github.com/repos/${owner}/${repo}/stats/commit_activity`
-            );
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (!cached) return null;
             
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            const { data, timestamp } = JSON.parse(cached);
+            if (!data || !Array.isArray(data) || data.length === 0) {
+                localStorage.removeItem(CACHE_KEY);
+                return null;
             }
-            
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Failed to fetch commit activity:', error);
+            if (Date.now() - timestamp < CACHE_DURATION) {
+                return data;
+            }
+            localStorage.removeItem(CACHE_KEY);
+            return null;
+        } catch (e) {
             return null;
         }
+    }
+    
+    function setCachedData(data) {
+        try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+                data: data,
+                timestamp: Date.now()
+            }));
+        } catch (e) {}
+    }
+    
+    async function fetchWithTimeout(url, timeout = 10000) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeout);
+        
+        try {
+            const response = await fetch(url, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            return response;
+        } catch (error) {
+            clearTimeout(timeoutId);
+            throw error;
+        }
+    }
+    
+    async function fetchCommitActivity(retryCount = 3) {
+        const cached = getCachedData();
+        if (cached) {
+            return cached;
+        }
+        
+        for (let i = 0; i < retryCount; i++) {
+            try {
+                const response = await fetchWithTimeout(
+                    `https://api.github.com/repos/${owner}/${repo}/stats/commit_activity`
+                );
+                
+                if (!response.ok) {
+                    if (response.status === 202) {
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        continue;
+                    }
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                setCachedData(data);
+                return data;
+            } catch (error) {
+                if (i < retryCount - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+            }
+        }
+        return null;
     }
     
     function getColor(count, maxCount) {
@@ -150,7 +209,7 @@
         if (data) {
             container.innerHTML = generateHeatmapSVG(data);
         } else {
-            container.innerHTML = '<span style="color: #999; font-size: 12px;">Failed to load heatmap</span>';
+            container.innerHTML = '<span style="color: #999; font-size: 12px;">Failed to load</span>';
         }
     }
     

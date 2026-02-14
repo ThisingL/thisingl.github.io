@@ -100,7 +100,7 @@
     
     function generateHeatmapSVG(data) {
         if (!data || !Array.isArray(data) || data.length === 0) {
-            return '<span style="color: #999; font-size: 12px;">No commit data available</span>';
+            return '<span style="color: #999; font-size: 12px;">一大波数据正在赶来！！！</span>';
         }
         
         const maxCount = Math.max(...data.map(week => Math.max(...week.days)));

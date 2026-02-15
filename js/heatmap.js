@@ -65,13 +65,14 @@
                     `https://api.github.com/repos/${owner}/${repo}/stats/commit_activity`
                 );
                 
-                if (!response.ok) {
-                    if (response.status === 202) {
-                        if (attempts < retryCount) {
-                            await new Promise(resolve => setTimeout(resolve, 2000));
-                        }
-                        continue;
+                if (response.status === 202) {
+                    if (attempts < retryCount) {
+                        await new Promise(resolve => setTimeout(resolve, 5000));
                     }
+                    continue;
+                }
+                
+                if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 

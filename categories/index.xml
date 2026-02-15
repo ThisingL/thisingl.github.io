@@ -3,7 +3,15 @@
         <title>Categories - 分类 - Thising | 自学空间</title>
         <link>https://example.com/categories/</link>
         <description>Categories - 分类 - Thising | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Feb 2026 18:23:36 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>Math</title>
+    <link>https://example.com/categories/math/</link>
+    <pubDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/categories/math/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>CS</title>
     <link>https://example.com/categories/cs/</link>
     <pubDate>Sat, 07 Feb 2026 18:23:36 &#43;0800</pubDate>
@@ -73,14 +81,6 @@
     <pubDate>Sat, 26 Oct 2024 10:40:14 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/categories/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>文档</title>
-    <link>https://example.com/categories/documentation/</link>
-    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/documentation/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

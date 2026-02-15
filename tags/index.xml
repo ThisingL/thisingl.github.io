@@ -3,7 +3,15 @@
         <title>Tags - 标签 - Thising | 自学空间</title>
         <link>https://example.com/tags/</link>
         <description>Tags - 标签 - Thising | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Feb 2026 18:23:36 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Math</title>
+    <link>https://example.com/tags/math/</link>
+    <pubDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/math/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>CS</title>
     <link>https://example.com/tags/cs/</link>
     <pubDate>Sat, 07 Feb 2026 18:23:36 &#43;0800</pubDate>
@@ -73,14 +81,6 @@
     <pubDate>Thu, 12 Jun 2025 17:04:29 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/tags/cs%E8%AF%BE%E7%A8%8B/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>健身</title>
-    <link>https://example.com/tags/%E5%81%A5%E8%BA%AB/</link>
-    <pubDate>Tue, 07 Jan 2025 22:58:10 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/tags/%E5%81%A5%E8%BA%AB/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

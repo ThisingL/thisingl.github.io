@@ -57,7 +57,9 @@
             return cached;
         }
         
-        for (let i = 0; i < retryCount; i++) {
+        let attempts = 0;
+        while (attempts < retryCount) {
+            attempts++;
             try {
                 const response = await fetchWithTimeout(
                     `https://api.github.com/repos/${owner}/${repo}/stats/commit_activity`
@@ -65,7 +67,9 @@
                 
                 if (!response.ok) {
                     if (response.status === 202) {
-                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        if (attempts < retryCount) {
+                            await new Promise(resolve => setTimeout(resolve, 2000));
+                        }
                         continue;
                     }
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -75,7 +79,7 @@
                 setCachedData(data);
                 return data;
             } catch (error) {
-                if (i < retryCount - 1) {
+                if (attempts < retryCount) {
                     await new Promise(resolve => setTimeout(resolve, 1000));
                 }
             }

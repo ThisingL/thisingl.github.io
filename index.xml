@@ -3,9 +3,17 @@
         <title>Thising | 自学空间</title>
         <link>https://example.com/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 16 Feb 2026 23:13:17 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Go学习笔记</title>
+    <link>https://example.com/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Mon, 16 Feb 2026 23:13:17 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[由于在做MIT6.824的labs，所以简单学习了一下Go语法]]></description>
+</item>
+<item>
     <title>概率论与数理统计</title>
     <link>https://example.com/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</link>
     <pubDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</pubDate>
@@ -70,20 +78,12 @@
     <description><![CDATA[有幸在这个暑假参加了一个开源项目的活动，所以整理了一下对于在GitHub上提交pr以及公司内部提交pr的一个推荐的标准化操作]]></description>
 </item>
 <item>
-    <title>c&#43;&#43;学习笔记</title>
+    <title>C&#43;&#43;学习笔记</title>
     <link>https://example.com/c-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
     <pubDate>Fri, 29 Aug 2025 15:19:20 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/c-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[目前在搜索架构实习，组内语言是c++，所以边学习c++边整理了一些笔记]]></description>
-</item>
-<item>
-    <title>算法理论</title>
-    <link>https://example.com/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA/</link>
-    <pubDate>Fri, 04 Jul 2025 14:06:17 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA/</guid>
-    <description><![CDATA[关于分布式算法和概率算法的一门算法高阶课程]]></description>
+    <description><![CDATA[目前在搜索架构实习，组内语言是C++，所以边学习c++边整理了一些笔记]]></description>
 </item>
 </channel>
 </rss>

@@ -3,7 +3,15 @@
         <title>Tags - 标签 - Thising | 自学空间</title>
         <link>https://example.com/tags/</link>
         <description>Tags - 标签 - Thising | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 16 Feb 2026 23:13:17 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>编程</title>
+    <link>https://example.com/tags/%E7%BC%96%E7%A8%8B/</link>
+    <pubDate>Mon, 16 Feb 2026 23:13:17 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/tags/%E7%BC%96%E7%A8%8B/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Math</title>
     <link>https://example.com/tags/math/</link>
     <pubDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</pubDate>
@@ -25,14 +33,6 @@
     <pubDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/tags/ai/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>编程</title>
-    <link>https://example.com/tags/%E7%BC%96%E7%A8%8B/</link>
-    <pubDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/tags/%E7%BC%96%E7%A8%8B/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>

@@ -3,7 +3,15 @@
         <title>编程 - 分类 - Thising | 自学空间</title>
         <link>https://example.com/categories/%E7%BC%96%E7%A8%8B/</link>
         <description>编程 - 分类 - Thising | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 16 Feb 2026 23:13:17 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>Go学习笔记</title>
+    <link>https://example.com/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Mon, 16 Feb 2026 23:13:17 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://example.com/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[由于在做MIT6.824的labs，所以简单学习了一下Go语法]]></description>
+</item>
+<item>
     <title>程序员面试指南</title>
     <link>https://example.com/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/</link>
     <pubDate>Sun, 25 Jan 2026 23:58:20 &#43;0800</pubDate>
@@ -36,12 +44,12 @@
     <description><![CDATA[有幸在这个暑假参加了一个开源项目的活动，所以整理了一下对于在GitHub上提交pr以及公司内部提交pr的一个推荐的标准化操作]]></description>
 </item>
 <item>
-    <title>c&#43;&#43;学习笔记</title>
+    <title>C&#43;&#43;学习笔记</title>
     <link>https://example.com/c-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
     <pubDate>Fri, 29 Aug 2025 15:19:20 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://example.com/c-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[目前在搜索架构实习，组内语言是c++，所以边学习c++边整理了一些笔记]]></description>
+    <description><![CDATA[目前在搜索架构实习，组内语言是C++，所以边学习c++边整理了一些笔记]]></description>
 </item>
 <item>
     <title>算法理论</title>
@@ -74,14 +82,6 @@
     <author>Thising</author>
     <guid>https://example.com/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E9%92%88%E5%AF%B9pdf%E6%8F%90%E9%97%AEprompt/</guid>
     <description><![CDATA[针对期末pdf复习的提示词]]></description>
-</item>
-<item>
-    <title>常用配置文件config汇总</title>
-    <link>https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</link>
-    <pubDate>Thu, 19 Dec 2024 16:15:20 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</guid>
-    <description><![CDATA[配置文件：.tmux.conf、.vimrc]]></description>
 </item>
 </channel>
 </rss>

@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-02-24T23:16:22+08:00">
+    <meta property="article:modified_time" content="2026-03-02T20:25:56+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  136 ,
-        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-02-24T23:16:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  211 ,
+        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-02T20:25:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,7 +118,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">现代人工智能</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 136 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 211 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;
     
 
@@ -152,7 +152,11 @@
             </li>
           </ul>
         </li>
-        <li><a href="#llm">LLM</a>
+      </ul>
+    </li>
+    <li><a href="#llm">LLM</a>
+      <ul>
+        <li>
           <ul>
             <li>
               <ul>
@@ -161,7 +165,19 @@
             </li>
           </ul>
         </li>
-        <li><a href="#mlsys">MLsys</a></li>
+      </ul>
+    </li>
+    <li><a href="#mlsys">MLsys</a>
+      <ul>
+        <li><a href="#1-异构算力硬件结构体系">1. 异构算力硬件结构体系</a>
+          <ul>
+            <li><a href="#11-ai-计算体系">1.1 AI 计算体系</a></li>
+            <li><a href="#12-ai-芯片基础">1.2 AI 芯片基础</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-云原生资源编排与调度架构">2. 云原生资源编排与调度架构</a></li>
+        <li><a href="#3-ai-编译计算架构">3. AI 编译计算架构</a></li>
+        <li><a href="#4-大模型训练与推理系统架构">4. 大模型训练与推理系统架构</a></li>
       </ul>
     </li>
   </ul>
@@ -172,19 +188,26 @@
 <p><a href="https://space.bilibili.com/1567748478/lists/358497?type=series" target="_blank" rel="noopener noreffer ">李沐 动手学深度学习PyTorch版</a></p>
 <p>MLsys 视频:</p>
 <p><a href="https://www.bilibili.com/video/BV1if421z713/?spm_id_from=333.1387.0.0&amp;vd_source=28da4325512cd6f10bf532b50cf2042a" target="_blank" rel="noopener noreffer ">ZOMI酱 AI系统系列视频</a></p></blockquote>
-<h2 id="llm">LLM</h2>
+<h1 id="llm">LLM</h1>
 <h4 id="transformer">Transformer</h4>
 <p>谷歌在 2017 年发表了一篇划时代的论文： Attention Is All You Need(<a href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/Attention%20Is%20All%20You%20Need_%E5%8F%8C%E8%AF%AD%E5%AF%B9%E7%85%A7%E7%89%88.pdf" rel="">论文原文以及翻译在这</a>)</p>
-<h2 id="mlsys">MLsys</h2>
+<h1 id="mlsys">MLsys</h1>
 <p>先看一篇入门好文： <a href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/AI-Infra%E6%80%BB%E8%A7%88%EF%BC%9A%E6%9E%84%E5%BB%BA%E6%94%AF%E6%92%91%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%8E%A8%E7%90%86%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%B9%B3%E5%8F%B0.pdf" rel="">AI-Infra 总览：构建支撑大规模训练与推理基础设施平台</a></p>
 <p>我们来看看一个完整的 AI Infra 的架构分别都有什么：</p>
 <img src="images/image-20260213150952521.png" alt="image-20260213150952521" style="zoom:66%; display: block; margin: 0 auto;" />
+<h2 id="1-异构算力硬件结构体系">1. 异构算力硬件结构体系</h2>
+<h3 id="11-ai-计算体系">1.1 AI 计算体系</h3>
+<p>我们先来一句结论： Key Operations is <strong>multiply and accumulate(MAC) &gt; 90%</strong> computation</p>
+<h3 id="12-ai-芯片基础">1.2 AI 芯片基础</h3>
+<h2 id="2-云原生资源编排与调度架构">2. 云原生资源编排与调度架构</h2>
+<h2 id="3-ai-编译计算架构">3. AI 编译计算架构</h2>
+<h2 id="4-大模型训练与推理系统架构">4. 大模型训练与推理系统架构</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-24&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/08821d4ffef9b28866e3b6973840fe7bd0c01c00" target="_blank" title="commit by Thisingl_Home_Lenovo_XiaoXinPro(thisingl@qq.com) 08821d4ffef9b28866e3b6973840fe7bd0c01c00: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>08821d4</a></span>
+                <span>更新于 2026-03-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/3fee70b470909b26ea2fcd9525cacbb8c27a23ce" target="_blank" title="commit by Thisingl_Baidu_MacBookPro(thisingl@qq.com) 3fee70b470909b26ea2fcd9525cacbb8c27a23ce: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3fee70b</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

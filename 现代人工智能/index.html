@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-03-02T23:53:48+08:00">
+    <meta property="article:modified_time" content="2026-03-04T01:28:34+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  287 ,
-        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-02T23:53:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  877 ,
+        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-04T01:28:34+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">现代人工智能</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 287 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 877 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;
     
 
     
@@ -171,8 +171,19 @@
       <ul>
         <li><a href="#异构算力硬件结构体系">异构算力硬件结构体系</a>
           <ul>
-            <li><a href="#ai-计算体系">AI 计算体系</a></li>
-            <li><a href="#ai-芯片基础">AI 芯片基础</a></li>
+            <li><a href="#ai-计算体系">AI 计算体系</a>
+              <ul>
+                <li><a href="#ai-三大范式编程">AI 三大范式编程</a></li>
+                <li><a href="#算力单位">算力单位</a></li>
+                <li><a href="#矩阵运算">矩阵运算</a></li>
+                <li><a href="#比特位宽">比特位宽</a></li>
+              </ul>
+            </li>
+            <li><a href="#ai-芯片基础">AI 芯片基础</a>
+              <ul>
+                <li><a href="#cpu-架构">cpu 架构</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li><a href="#云原生资源编排与调度架构">云原生资源编排与调度架构</a></li>
@@ -197,9 +208,92 @@
 <img src="images/image-20260213150952521.png" alt="image-20260213150952521" style="zoom:66%; display: block; margin: 0 auto;" />
 <h2 id="异构算力硬件结构体系">异构算力硬件结构体系</h2>
 <h3 id="ai-计算体系">AI 计算体系</h3>
-<p>我们先来一句结论： Key Operations is <strong>multiply and accumulate(MAC)</strong> (&gt; 90% computation)</p>
+<p>我们先来一句结论： Key Operations is <strong>multiply and accumulate($\text{MAC}$)</strong> (&gt; 90% computation)</p>
+<p>我们定义一个标准的 $\text{MAC}$ 操作为:</p>
+<ul>
+<li>$\text{MAC} = (\text{操作数}_1 \times \text{操作数}_2) + \text{累加器}$</li>
+</ul>
 <p><strong>乘积累加</strong>操作的重要性显而易见，无论是矩阵求和，还是我们在计算每一个神经元输出时的 $w_1·x_1 + w_2·x_2 + w_3·x_3 + …$ 时，所用到的都是乘积累加操作。</p>
+<blockquote>
+<p>整体看看 AI or 深度学习计算模式：经典模型结构和轻量化模型结构、模型量化和剪枝到大模型分布式并行，从而理解“计算”需要什么？</p></blockquote>
+<h4 id="ai-三大范式编程">AI 三大范式编程</h4>
+<p>监督学习，无监督学习和强化学习</p>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260303223621045.png" title="image-20260303223621045" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260303223621045.png" data-sub-html="<h2> </h2><p>image-20260303223621045</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260303223621045.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260303223621045.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260303223621045.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260303223621045.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260303223621045.png" width="2412" height="922" />
+    </a><figcaption class="image-caption">image-20260303223621045</figcaption>
+    </figure></p>
+<blockquote>
+<p>通过AI芯片关键指标，了解一块AI芯片要更好的支持“计算”，需要关注哪些重要工作；从而引出峰值算力与带宽之间的关系？</p></blockquote>
+<h4 id="算力单位">算力单位</h4>
+<ol>
+<li>
+<p>$\text{OPS}$</p>
+<ul>
+<li>
+<p>$\text{OPS}$(Operations Per Second) 指每秒计算次数， $1 \text{TOPS}$ 代表每秒进行一万亿($10^{12}$)次计算</p>
+</li>
+<li>
+<p>$\text{OPS/}W$ 指每瓦特运算性能，$\text{TOPS/}W$ 常用来衡量在 1$W$ 功耗下</p>
+</li>
+</ul>
+</li>
+<li>
+<p>$\text{MACs}$</p>
+<ul>
+<li>Multiply-Accumulate Operations，乘积累加操作次数，通常 $\text{MACs} \approx 2 \text{FLOPs}$</li>
+</ul>
+</li>
+<li>
+<p>$\text{FLOPs}$</p>
+<ul>
+<li>Floating Point Operations,浮点运算次数，用来衡量模型计算的复杂度</li>
+</ul>
+</li>
+<li>
+<p>$\text{MAC}$</p>
+<ul>
+<li>Memory Access Cost，内存占用量</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>最后我们通过深度学习的计算核心“矩阵乘”来看对“计算”的实际需求和情况，为了提升计算性能、降低功耗和满足训练推理不同场景应用，对“计算”引入TF32/BF16等复杂多样的比特位宽</p></blockquote>
+<h4 id="矩阵运算">矩阵运算</h4>
+<p>传统的卷积运算，不太好分块进行并行化来优化性能，所以我们一般会将卷积 Conv 转换成 矩阵乘 MM:</p>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002347877.png" title="image-20260304002347877" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002347877.png" data-sub-html="<h2> </h2><p>image-20260304002347877</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002347877.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002347877.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002347877.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002347877.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002347877.png" width="2272" height="840" />
+    </a><figcaption class="image-caption">image-20260304002347877</figcaption>
+    </figure></p>
+<p>实际中，我们会使用<strong>矩阵分块（Tiling）</strong> 优化，核心思想就是把大矩阵拆成小块，让每一块刚好能放进高速缓存（Cache）里，从而实现数据重用，用 “空间”（Cache 容量）来换取 “时间”（减少内存访问）：</p>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002747520.png" title="image-20260304002747520" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002747520.png" data-sub-html="<h2> </h2><p>image-20260304002747520</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002747520.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002747520.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002747520.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002747520.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260304002747520.png" width="2473" height="770" />
+    </a><figcaption class="image-caption">image-20260304002747520</figcaption>
+    </figure></p>
+<h4 id="比特位宽">比特位宽</h4>
+<img src="images/image-20260304011904388.png" alt="image-20260304011904388" style="zoom:50%; display: block; margin: 0 auto;" />
 <h3 id="ai-芯片基础">AI 芯片基础</h3>
+<h4 id="cpu-架构">cpu 架构</h4>
 <h2 id="云原生资源编排与调度架构">云原生资源编排与调度架构</h2>
 <h2 id="ai-编译计算架构">AI 编译计算架构</h2>
 <h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
@@ -207,8 +301,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-03-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/c8c30c507c9041fb42af9ca72dcab0633f9049af" target="_blank" title="commit by Thisingl_Home_Lenovo_XiaoXinPro(thisingl@qq.com) c8c30c507c9041fb42af9ca72dcab0633f9049af: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c8c30c5</a></span>
+                <span>更新于 2026-03-04&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/2241053bf9782459c190c84df7454a11a35be4b4" target="_blank" title="commit by Thisingl_Home_Lenovo_XiaoXinPro(thisingl@qq.com) 2241053bf9782459c190c84df7454a11a35be4b4: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>2241053</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>如何利用AI快速理解复杂项目 - Thising | 自学空间</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="https://example.com/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/">
+  <meta property="og:site_name" content="Thising | 自学空间">
+  <meta property="og:title" content="如何利用AI快速理解复杂项目">
+  <meta property="og:description" content="来自一篇知乎好文，可以帮助我快速接手一个新的开源项目">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-07T22:21:30+08:00">
+    <meta property="article:modified_time" content="2026-03-08T01:56:20+08:00">
+    <meta property="article:tag" content="CS">
+    <meta property="og:image" content="https://example.com/images/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/images/logo.png">
+  <meta name="twitter:title" content="如何利用AI快速理解复杂项目">
+  <meta name="twitter:description" content="来自一篇知乎好文，可以帮助我快速接手一个新的开源项目">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" /><link rel="prev" href="https://example.com/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><meta name="google-site-verification" content="N4cNfssrLiqOu4yaBlJG5PnkRqQqFOMGXVXNkIMTad4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何利用AI快速理解复杂项目",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "CS","wordcount":  6780 ,
+        "url": "https:\/\/example.com\/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE\/","datePublished": "2026-03-07T22:21:30+08:00","dateModified": "2026-03-08T01:56:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
+                "@type": "Person",
+                "name": "Thising"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Thising | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 私人密码库 </a><a class="menu-item" href="https://github.com/thisingl/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Thising | 自学空间"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Thising&#39;log</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">私人密码库</a><a class="menu-item" href="https://github.com/thisingl/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何利用AI快速理解复杂项目</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-07">2026-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6780 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;次阅读</span>
+        
+    
+
+</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#为什么直接让ai总结整个项目没用">为什么直接让AI”总结整个项目”没用</a></li>
+            <li><a href="#我的方法从一个问题开始">我的方法：从一个问题开始</a></li>
+            <li><a href="#第一步找到入口">第一步：找到入口</a></li>
+            <li><a href="#第二步沿着调用链往下走">第二步：沿着调用链往下走</a></li>
+            <li><a href="#第三步遇到不懂的技术栈时">第三步：遇到不懂的技术栈时</a></li>
+            <li><a href="#第四步画地图">第四步：画地图</a></li>
+            <li><a href="#第五步在关键节点上深入">第五步：在关键节点上深入</a></li>
+            <li><a href="#一些容易踩的坑">一些容易踩的坑</a>
+              <ul>
+                <li><a href="#坑一一次问太多">坑一：一次问太多。</a></li>
+                <li><a href="#坑二完全信任cursor的回答">坑二：完全信任Cursor的回答。</a></li>
+                <li><a href="#坑三试图一次读完">坑三：试图一次读完。</a></li>
+                <li><a href="#坑四只读不跑">坑四：只读不跑。</a></li>
+              </ul>
+            </li>
+            <li><a href="#针对不同类型项目的策略差异">针对不同类型项目的策略差异</a></li>
+            <li><a href="#一个完整的实战流程示例">一个完整的实战流程示例</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文转载自知乎Up主笙囧同学的<a href="https://www.zhihu.com/question/7468595725/answer/2009921399750423069" target="_blank" rel="noopener noreffer ">如何利用cursor快速理解复杂代码工程？ - 知乎</a></p></blockquote>
+<p>去年我试着读 vLLM 的源码。</p>
+<p>起因是我在用 vLLM 做推理服务的时候遇到了一个性能问题，想看看它的调度器到底是怎么工作的。我clone了仓库，打开文件树，看到了大概几百个Python 文件、一堆 C++ 扩展、还有 CUDA kernel。</p>
+<p>我盯着屏幕看了十分钟，关掉了编辑器，去泡了杯咖啡。</p>
+<p>那种感觉你一定体会过——就像你站在一座陌生城市的市中心，四周全是高楼，每栋楼里都有几十层，你知道你要找的东西就在某一栋楼的某一层的某个房间里，但你连东南西北都分不清。</p>
+<p>后来我开始用 Cursor 来辅助读源码。摸索了一段时间之后，确实找到了一些有效的方法。</p>
+<p>不是那种”让AI帮你读完所有代码然后给你一份总结”的方法——那种方法我试过，没用，AI给你的总结跟你自己看README得到的信息差不多。</p>
+<p>我要说的方法更像是<strong>把Cursor当成一个对这个代码库了如指掌的向导</strong>，你问它路，它带你走，但路是你自己走的，风景是你自己看的。</p>
+<h3 id="为什么直接让ai总结整个项目没用">为什么直接让AI”总结整个项目”没用</h3>
+<p>这是很多人的第一反应。打开Cursor，把整个项目索引了，然后问：”帮我介绍一下这个项目的整体架构。”</p>
+<p>AI会给你一段话。听起来头头是道。什么”这个项目采用了分层架构，核心模块包括 XXX、YYY、ZZZ，它们之间通过 XXX 方式通信”。</p>
+<p>你读完觉得”嗯嗯好有道理”。</p>
+<p>然后呢？</p>
+<p>然后你发现自己并没有真正理解任何东西。你知道了几个模块的名字，但你不知道数据是怎么从入口流到出口的。你不知道某个关键的设计决策背后的原
+因。你不知道当一个请求进来的时候，代码到底在做什么。</p>
+<p>因为<strong>理解不是信息的传递，是认知结构的构建</strong>。 AI把架构信息告诉你，相当于给了你一张地图。但地图不是领土。你没有亲自走过那些路，地图上的每一个
+标记对你来说都只是一个符号，而不是一段体验。</p>
+<p>这就是为什么”让AI帮你读代码”作为一个整体策略是行不通的。</p>
+<p>但”<strong>在你自己读代码的过程中，让AI帮你解决具体的障碍</strong>”——这个策略是<strong>非常有效</strong>的。</p>
+<p>两者的区别是什么？是主动权在谁手里。前者你是被动的信息接收者，后者你是主动的探索者。AI的角色从”替你读”变成了”帮你读”。</p>
+<h3 id="我的方法从一个问题开始">我的方法：从一个问题开始</h3>
+<p>读任何一个复杂项目，我现在都不会从”了解整体架构”开始。</p>
+<p>我会从<strong>一个具体的问题</strong>开始。</p>
+<p>读 vLLM 的时候，我的问题是：”一个推理请求从进入系统到返回结果，经历了哪些步骤？”</p>
+<p>读 FastAPI 的时候，我的问题是：”当我写了一个 <code>@app.get('/users')</code> ，框架是怎么把这个装饰器变成一个能处理HTTP请求的东西的？”</p>
+<p>读 Redis 的时候，我的问题是：”当我执行 <code>SET key value</code> 的时候，这个命令从被接收到数据被写入内存，中间经过了什么？”</p>
+<p><strong>一个好的问题就是你的故事线</strong>。 你不需要理解整个项目——你需要沿着一个问题，把它涉及到的代码路径从头到尾走一遍。</p>
+<p>走完一条路径之后，你对项目的理解就不再是零了。你有了一个”锚点”。然后你可以从这个锚点出发，问第二个问题，走第二条路径。两条路径之间一定
+会有交叉点——那些交叉点就是项目的核心模块。</p>
+<p><strong>几条路径走完，项目的骨架自然就在你脑子里了</strong>。</p>
+<p>这个方法不需要AI也能做。但有Cursor的帮助，效率会高非常多。</p>
+<h3 id="第一步找到入口">第一步：找到入口</h3>
+<p>每一条故事线都需要一个入口。对于大部分项目来说，入口就是<strong>用户最先接触到的那个界面</strong>。</p>
+<p>如果是一个 Web 框架，入口就是你创建 app、注册路由的地方。</p>
+<p>如果是一个推理引擎，入口就是你调用 <code>model.generate()</code> 的地方。</p>
+<p>如果是一个数据库，入口就是它接收客户端连接和命令的地方。</p>
+<p><strong>怎么用 Cursor 找入口</strong>？ 直接问它：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">这个项目的用户入口在哪？当一个用户发起一个推理请求时，
+</span></span><span class="line"><span class="cl">代码的执行从哪个文件的哪个函数开始？请给我具体的文件路径
+</span></span><span class="line"><span class="cl">和函数名，不需要解释细节。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意最后那句”不需要解释细节”。这很重要。</p>
+<p>你在这个阶段只需要一个起点，不需要AI给你长篇大论。<strong>如果你让AI一次性解释太多，你会淹没在信息里，反而找不到方向</strong>。</p>
+<p>Cursor 会告诉你类似这样的信息：”入口在 <code>vllm/entrypoints/llm.py</code> 的 <code>LLM.generate()</code> 方法”。</p>
+<p>好。打开那个文件。开始读。</p>
+<h3 id="第二步沿着调用链往下走">第二步：沿着调用链往下走</h3>
+<p>打开入口文件之后，你开始读代码。很快你会遇到第一个障碍——你看到了一个函数调用，但你不知道那个函数做了什么、在哪个文件里。</p>
+<p><strong>这是Cursor最有价值的使用场景之一</strong>。</p>
+<p>选中那个函数调用，问Cursor：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">这个函数做了什么？用一两句话概括它的核心职责，
+</span></span><span class="line"><span class="cl">然后告诉我它在哪个文件里定义的。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：<strong>一两句话</strong>。 你不需要AI给你逐行解释那个函数的实现。你现在只需要知道”它大概做了什么”以及”它在哪”。</p>
+<p>这就像你在陌生城市里走路，遇到一个路口，你不需要知道每条岔路通向哪里的完整地图。你只需要知道”这条路大概通往火车站”和”那条路大概通往商
+业区”，然后选择跟你目标相关的那条走下去。</p>
+<p>你会沿着调用链一路走下去。入口函数调用了 A，A 调用了 B，B 调用了 C……</p>
+<p><strong>你不需要走完所有的分支。你只需要走跟你的问题相关的那条主线</strong>。</p>
+<p>中间遇到不影响主线理解的分支——比如日志记录、参数校验、缓存检查——直接跳过。怎么判断一个分支是不是主线？问 Cursor：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">在这个函数里，哪一行是实际执行核心逻辑的？
+</span></span><span class="line"><span class="cl">其他部分可以先忽略吗？
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cursor会告诉你：”第47行的 self._run_engine() 是核心调用，上面的都是参数处理和校验，可以先跳过。”</p>
+<p>然后你跳到第47行，继续往下走。</p>
+<h3 id="第三步遇到不懂的技术栈时">第三步：遇到不懂的技术栈时</h3>
+<p>这是你提到的第二个痛点——项目里用了你不熟悉的语言或技术。</p>
+<p>比如你在读一个 Python 项目，突然发现核心的计算部分是用 C++ 写的 CUDA 扩展。你不懂 CUDA。</p>
+<p>传统的做法是：先去学 CUDA，学个几天几周，然后回来接着读。</p>
+<p>有了 Cursor 你可以换一种做法：<strong>不学 CUDA 本身，只理解那段 CUDA 代码在做什么</strong>。</p>
+<p>选中那段 C++/CUDA 代码，问 Cursor：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">我不熟悉CUDA编程。请用我能理解的方式解释这段代码
+</span></span><span class="line"><span class="cl">在做什么——不需要解释CUDA的语法细节，只告诉我
+</span></span><span class="line"><span class="cl">它的输入是什么、输出是什么、中间做了什么计算。
+</span></span><span class="line"><span class="cl">用Python的思维方式类比。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后那句”用 Python 的思维方式类比”很关键。它告诉 Cursor 用你已有的知识框架来解释新东西。</p>
+<p>Cursor 可能会说：”这段 CUDA kernel 本质上在做的事情相当于 Python 里的：对一个大矩阵的每一行做 softmax，然后跟另一个矩阵做矩阵乘法。只不过它把这个计算拆分到了GPU的几千个线程上并行执行。”</p>
+<p>你不需要理解它是怎么拆分的、线程是怎么同步的——那些是CUDA的实现细节。<strong>你需要理解的是它在计算层面做了什么</strong>。 有了这个理解，你就能把这个
+CUDA函数当成一个”黑盒”，知道它的输入输出，然后继续沿着主线往下走。</p>
+<p>同样的方法适用于你遇到的任何不熟悉的技术栈：</p>
+<ul>
+<li>
+<p>不懂 Rust？让 Cursor 用你懂的语言类比解释</p>
+</li>
+<li>
+<p>不懂某个框架的特定 API？让 Cursor 解释它的作用而不是用法</p>
+</li>
+<li>
+<p>不懂某个设计模式？让 Cursor 解释它在这个项目里解决了什么问题</p>
+</li>
+</ul>
+<p>关键原则是：<strong>你的目标不是学会那个技术栈，而是理解代码的逻辑流。两者需要的知识量差了一个数量级</strong>。</p>
+<h3 id="第四步画地图">第四步：画地图</h3>
+<p>走完一条主线之后，你需要把你走过的路记下来。</p>
+<p>我的做法是在一个单独的markdown文件里，边读边记。格式很简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## 一个推理请求的完整路径
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> 入口：LLM.generate()（vllm/entrypoints/llm.py）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 接收用户的prompt，封装成SequenceGroup
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">2.</span> 调度：Scheduler.schedule()（vllm/core/scheduler.py）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 决定哪些请求可以在这一步被处理
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 核心逻辑：根据当前GPU显存和KV Cache的空间来排队
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">3.</span> 执行：ModelRunner.execute_model()（vllm/worker/model_runner.py）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 把一批请求打包，送进模型做一次forward
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 这里会调用CUDA kernel做实际计算
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">4.</span> 采样：Sampler.forward()（vllm/model_executor/layers/sampler.py）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 根据模型输出的logits，采样出下一个token
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">5.</span> 结果返回：把生成的token拼回去，返回给用户
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 我的理解
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">vLLM的核心创新在第2步——调度器的PagedAttention机制
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">让KV Cache可以像操作系统的虚拟内存一样按需分配，
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">不需要预留连续的大块显存……
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>这份笔记不是给别人看的，是给你自己看的</strong>。 所以不需要写得很正式，用你自己能理解的语言就好。</p>
+<p>你可能觉得”我直接记在脑子里不就行了”。不行。复杂项目的调用链太长了，你走到第五层的时候大概率已经忘了第二层的细节。写下来才能在脑子里维
+持一张完整的地图。</p>
+<p>而且这份笔记还有一个用处——当你后续探索第二条故事线的时候，你可以把新的路径叠加到同一份地图上，看到不同路径之间的交叉点。那些交叉点往往
+就是项目最核心的模块。</p>
+<h3 id="第五步在关键节点上深入">第五步：在关键节点上深入</h3>
+<p>走完主线之后，你已经有了一个粗粒度的理解。接下来你可以选择在某些你特别感兴趣的节点上深入。</p>
+<p>比如我走完vLLM的主线之后，对调度器特别感兴趣——因为它是vLLM性能优势的核心。</p>
+<p>这时候我会打开调度器的代码，让Cursor帮我做更细粒度的解读：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">请帮我梳理Scheduler.schedule()这个方法的内部逻辑。
+</span></span><span class="line"><span class="cl">按执行顺序列出它做了哪几件事，每件事用一句话概括。
+</span></span><span class="line"><span class="cl">对于涉及PagedAttention的部分请详细解释。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意这次我要求”详细解释”了——因为这是我选择深入的节点，值得花时间理解细节。</p>
+<p>在主线探索阶段，你的提问策略应该是”概括+定位”——告诉我大概做了什么、在哪里。</p>
+<p><strong>在深入阶段，你的提问策略变成”细节+原因”——具体是怎么实现的、为什么这么设计</strong>。</p>
+<p>这个节奏很重要。如果你从一开始就事事追问细节，你会迷失在细节里走不动。如果你全程只停留在概括层面，你最终得到的理解是浅薄的。</p>
+<p><strong>先粗后细，先主线后分支</strong>。 像画画一样——先画骨架，再填细节。</p>
+<h3 id="一些容易踩的坑">一些容易踩的坑</h3>
+<h4 id="坑一一次问太多">坑一：一次问太多。</h4>
+<p>不要发这种消息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">帮我解释一下这个项目的整体架构、核心模块的职责、
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">主要的设计模式、数据流向、以及关键算法的实现原理。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种问法得到的回答一定是又长又泛的废话。不是 Cursor 不行，是你的问题太大了，任何人面对这种问题都只能给你一个泛泛的回答。</p>
+<p><strong>好的提问是窄的、具体的、有明确边界的</strong>。</p>
+<ul>
+<li>
+<p>“这个函数的第三个参数是干什么用的？”</p>
+</li>
+<li>
+<p>“这个类为什么要继承那个基类而不是直接实现？”</p>
+</li>
+<li>
+<p>“数据从这个函数出来之后，下一步去了哪里？”</p>
+</li>
+</ul>
+<p>每个问题只解决一个困惑。解决完了再问下一个。<strong>你的理解就是这样一个困惑一个困惑地拼起来的</strong>。</p>
+<h4 id="坑二完全信任cursor的回答">坑二：完全信任Cursor的回答。</h4>
+<p>Cursor 有时候会瞎说。尤其是当你问的问题涉及到跨文件的复杂逻辑时，它可能会给你一个听起来很合理但实际上是错的解释。</p>
+<p>怎么办？<strong>交叉验证</strong>。</p>
+<p>Cursor 告诉你”这个函数会调用XXX”——你自己跳过去看一眼，确认它确实调用了。</p>
+<p>Cursor 告诉你”这个变量在YYY文件里被初始化”——你自己搜一下那个变量名，确认它说的位置是对的。</p>
+<p><strong>不需要每一句话都验证，但关键节点一定要自己确认</strong>。 尤其是那些会影响你对整体架构理解的判断——比如”模块A和模块B是通过消息队列通信的”——
+这种结论你最好自己看到代码里的证据。</p>
+<p>养成这个习惯之后，你会发现大部分时候 Cursor 是对的，但偶尔它确实会犯错。那些”偶尔”的错误如果你没有验证就接受了，可能会导致你对整个项目的理解建立在一个错误的基础上。</p>
+<h4 id="坑三试图一次读完">坑三：试图一次读完。</h4>
+<p>复杂的开源项目不是一个下午能读完的。vLLM 的代码我前前后后读了大概两周，中间穿插着其他工作。</p>
+<p>不要给自己压力说”今天一定要把这个项目读完”。你今天读明白了一条主线，就是实实在在的进展。明天再读一条。</p>
+<p>每次读完记得写笔记。 你下次再回来的时候，看一眼笔记就能快速恢复上下文，不用从头开始。</p>
+<h4 id="坑四只读不跑">坑四：只读不跑。</h4>
+<p>这可能是最大的坑。</p>
+<p>光看代码你能理解的东西是有限的。<strong>把项目跑起来，加几个断点或者打几行日志，亲眼看到数据怎么流动的</strong>——这个过程给你的理解深度是光看代码的好几
+倍。</p>
+<p>你可以让 Cursor 帮你做这件事：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">我想在本地把这个项目跑起来，走通一个最简单的例子。
+</span></span><span class="line"><span class="cl">请告诉我最少需要哪些步骤。如果有复杂的外部依赖可以mock掉的，告诉我怎么mock。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不需要搭建完整的开发环境。只要能跑通一个最小的例子，能让你在关键位置加断点看到数据，就够了。</p>
+<p>跑起来之后，在你走过的主线上的关键函数入口加个断点或者日志。然后触发一个请求，看实际的执行路径是不是跟你读代码时理解的一致。</p>
+<p><strong>经常会有惊喜</strong>。 你以为数据走的是路径A，实际上走的是路径B——因为有一个条件分支你读代码时忽略了。这种”预期和现实的偏差”本身就是最好的学习
+机会。</p>
+<h3 id="针对不同类型项目的策略差异">针对不同类型项目的策略差异</h3>
+<p>不同类型的项目，”故事线”的选择方式不一样。简单说几个常见的：</p>
+<p>Web框架类（FastAPI、Express、Gin等）：</p>
+<p>最好的故事线是”一个HTTP请求从进入到返回的完整生命周期”。从监听端口→接收请求→路由匹配→中间件执行→handler调用→响应返回。这条线走
+完，你就理解了框架的骨架。</p>
+<p>数据库/存储引擎类（Redis、LevelDB、SQLite等）：</p>
+<p>最好的故事线是”一个写操作从接收到持久化的完整路径”。从命令解析→数据结构操作→内存写入→持久化到磁盘。然后再走一条”读操作”的路径。两
+条路径交叉的地方就是核心的数据结构和存储引擎。</p>
+<p>AI推理/训练框架类（vLLM、DeepSpeed、PyTorch等）：</p>
+<p>最好的故事线是”一个前向传播从输入到输出的完整路径”。从数据预处理→模型加载→计算执行→结果后处理。特别注意计算是在哪里从Python进入
+C++/CUDA的——那个边界通常是理解性能优化的关键。</p>
+<p>编译器/解释器类（CPython、V8、GCC等）：</p>
+<p>最好的故事线是”一段源代码从文本到被执行的完整路径”。从词法分析→语法分析→AST→中间表示→优化→代码生成/执行。每一步的输入和输出是什
+么，格式是什么。</p>
+<p>不管哪种类型的项目，核心思路都是一样的：找到一条从入口到出口的主线，沿着它走，遇到障碍时让 Cursor 帮你清除障碍。</p>
+<h3 id="一个完整的实战流程示例">一个完整的实战流程示例</h3>
+<p>最后把整个流程用一个具体的例子串一遍。假设你想理解 FastAPI 是怎么工作的。</p>
+<p><strong>起手</strong>。 把 FastAPI 的仓库 clone 下来，用 Cursor 打开。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">找入口。 问 Cursor：
+</span></span><span class="line"><span class="cl">当用户写了这样的代码：
+</span></span><span class="line"><span class="cl">app = FastAPI()
+</span></span><span class="line"><span class="cl"><span class="ni">@app</span>.get(&#34;/hello&#34;)
+</span></span><span class="line"><span class="cl">def hello():
+</span></span><span class="line"><span class="cl"> return {&#34;msg&#34;: &#34;hello&#34;}
+</span></span><span class="line"><span class="cl">请告诉我 <span class="ni">@app</span>.get 这个装饰器的代码在哪个文件的
+</span></span><span class="line"><span class="cl">哪个函数里定义的。只给我位置，不用解释。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cursor 告诉你在 <code>fastapi/applications.py</code> 里。打开它。</p>
+<p><strong>沿主线走</strong>。 你看到 <code>app.get</code> 实际上调用了 <code>self.router.add_api_route()</code> 。你不知道这个函数做了什么。选中它，问 Cursor：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">这个函数做了什么？一句话概括。它在哪定义的？
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cursor告诉你它在 <code>fastapi/routing.py</code> 里，作用是”把你的函数包装成一个 APIRoute 对象，注册到路由表里”。</p>
+<p>你跳到 <code>routing.py</code> ，看到了 APIRoute 这个类。你好奇路由匹配是怎么做的——当一个请求进来时，框架怎么知道该调用哪个 handler？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">当一个HTTP请求到达时，FastAPI是怎么匹配到
+</span></span><span class="line"><span class="cl">对应的路由handler的？从哪个函数开始？
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cursor 告诉你 FastAPI 底层用的是 Starlette 的路由系统。实际的匹配逻辑在 Starlette 的 <code>Router.__call__</code> 里。</p>
+<p><strong>遇到技术栈边界</strong>。 你可能不熟悉 Starlette。没关系：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">我不熟悉Starlette。FastAPI和Starlette是什么关系？
+</span></span><span class="line"><span class="cl">我只需要知道它们之间的边界在哪——FastAPI自己做了什么，
+</span></span><span class="line"><span class="cl">哪些事情是委托给Starlette做的？
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cursor 会解释清楚边界。你决定要不要跨过这个边界深入到 Starlette 里去。也许现在不需要——你只需要知道”路由匹配这件事 Starlette 替你做了”就行，
+你更感兴趣的是 FastAPI 自己加了什么东西。</p>
+<p><strong>记笔记</strong>。 走完这条主线之后你写下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## 一个请求的处理流程
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> 启动时：<span class="ni">@app</span>.get 装饰器 → router.add_api_route() 
+</span></span><span class="line"><span class="cl">   → 创建 APIRoute 对象 → 注册到路由表
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">2.</span> 请求到达时：Starlette的路由系统做URL匹配
+</span></span><span class="line"><span class="cl">   → 找到对应的 APIRoute
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">3.</span> APIRoute 调用你的handler函数之前：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 依赖注入（Depends ）被解析和执行
+</span></span><span class="line"><span class="cl"> <span class="k">-</span> 请求参数被校验（用Pydantic）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">4.</span> 执行handler，返回结果
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">5.</span> 结果被序列化成JSON返回
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 发现
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">FastAPI的核心价值不在路由（那是Starlette做的），
+</span></span><span class="line"><span class="cl">而在第3步——依赖注入和参数校验。
+</span></span><span class="line"><span class="cl">这才是它跟其他框架的本质区别。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>选择深入点</strong>。 你对依赖注入特别好奇。开始第二轮探索，专门走Depends的解析流程。</p>
+<p><strong>循环</strong>。 每一轮探索都让你的地图更完整、更细致。三四轮之后，你对FastAPI的理解就已经远超大部分使用者了。</p>
+<hr>
+<p>回到最开始的问题。</p>
+<p>读复杂代码工程最大的难点从来不是”代码太多看不完”。代码多不可怕，可怕的是你不知道该看哪里。</p>
+<p><strong>Cursor 最大的价值不是替你读代码，而是在你迷路的时候告诉你该往哪走</strong>。</p>
+<p><strong>但走路这件事，得你自己来</strong>。</p>
+<p>每一行你亲自读过的代码、每一个你亲自想明白的逻辑、每一次你的预期和实际运行结果对不上然后你搞清楚了为什么——这些时刻构成的理解，是任何AI
+总结都给不了你的。</p>
+<p>Cursor 是一个极好的向导。但向导的价值是带你去你自己想去的地方，不是替你走完全程然后给你讲一遍沿途的风景。</p>
+<p>风景得自己看。看过的才是你的</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-08&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/8a1d6476f85cee57f31566f5a31941d51a04cc6d" target="_blank" title="commit by Thisingl_Home_Lenovo_XiaoXinPro(thisingl@qq.com) 8a1d6476f85cee57f31566f5a31941d51a04cc6d: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8a1d647</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" data-title="如何利用AI快速理解复杂项目" data-hashtags="CS"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" data-hashtag="CS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" data-title="如何利用AI快速理解复杂项目"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" data-title="如何利用AI快速理解复杂项目"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8ai%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE/" data-title="如何利用AI快速理解复杂项目"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cs/">CS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="Go学习笔记"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Go学习笔记</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div>
+
+            <div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2026</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.3/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@15.1.2/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://valine.hugoloveit.com","visitor":false}},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+<script type="text/javascript" src="/js/hide-header.js"></script></body>
+</html>

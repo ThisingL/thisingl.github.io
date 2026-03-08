@@ -1,30 +1,31 @@
 (function() {
-    function initMermaid() {
+    function extractMermaidContent() {
         var mermaidElements = document.getElementsByClassName('mermaid');
-        if (mermaidElements.length && typeof mermaid !== 'undefined') {
-            mermaid.initialize({
-                startOnLoad: false,
-                theme: document.body.getAttribute('theme') === 'dark' ? 'dark' : 'neutral',
-                securityLevel: 'loose'
-            });
-            for (var i = 0; i < mermaidElements.length; i++) {
-                var el = mermaidElements[i];
-                var id = el.id || ('mermaid-' + i);
-                var content = el.textContent.trim();
-                if (content) {
-                    mermaid.render('svg-' + id, content, function(svgCode) {
-                        el.innerHTML = svgCode;
-                    }, el);
-                }
+        var data = {};
+        for (var i = 0; i < mermaidElements.length; i++) {
+            var el = mermaidElements[i];
+            var content = el.textContent.trim();
+            if (content) {
+                data[el.id] = content;
             }
+        }
+        return data;
+    }
+    
+    function ensureMermaidData() {
+        if (!window.config) return;
+        if (!window.config.data) {
+            window.config.data = {};
+        }
+        var mermaidData = extractMermaidContent();
+        for (var key in mermaidData) {
+            window.config.data[key] = mermaidData[key];
         }
     }
     
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(initMermaid, 100);
-        });
+        document.addEventListener('DOMContentLoaded', ensureMermaidData);
     } else {
-        setTimeout(initMermaid, 100);
+        ensureMermaidData();
     }
 })();

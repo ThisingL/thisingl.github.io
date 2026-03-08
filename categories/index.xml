@@ -1,87 +1,90 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Categories - 分类 - Thising | 自学空间</title>
-        <link>https://example.com/categories/</link>
-        <description>Categories - 分类 - Thising | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Mar 2026 22:21:30 &#43;0800</lastBuildDate><atom:link href="https://example.com/categories/" rel="self" type="application/rss+xml" /><item>
-    <title>CS</title>
-    <link>https://example.com/categories/cs/</link>
-    <pubDate>Sat, 07 Mar 2026 22:21:30 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/cs/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>编程</title>
-    <link>https://example.com/categories/%E7%BC%96%E7%A8%8B/</link>
-    <pubDate>Mon, 16 Feb 2026 23:13:17 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/%E7%BC%96%E7%A8%8B/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Math</title>
-    <link>https://example.com/categories/math/</link>
-    <pubDate>Sun, 15 Feb 2026 14:33:22 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/math/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>AI</title>
-    <link>https://example.com/categories/ai/</link>
-    <pubDate>Fri, 06 Feb 2026 15:24:36 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/ai/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>阅读</title>
-    <link>https://example.com/categories/%E9%98%85%E8%AF%BB/</link>
-    <pubDate>Fri, 31 Oct 2025 18:12:20 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/%E9%98%85%E8%AF%BB/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>数学</title>
-    <link>https://example.com/categories/%E6%95%B0%E5%AD%A6/</link>
-    <pubDate>Tue, 01 Jul 2025 19:05:08 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/%E6%95%B0%E5%AD%A6/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>养生</title>
-    <link>https://example.com/categories/%E5%85%BB%E7%94%9F/</link>
-    <pubDate>Sat, 28 Jun 2025 16:56:53 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/%E5%85%BB%E7%94%9F/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>课程</title>
-    <link>https://example.com/categories/%E8%AF%BE%E7%A8%8B/</link>
-    <pubDate>Thu, 12 Jun 2025 17:04:29 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/%E8%AF%BE%E7%A8%8B/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>健身</title>
-    <link>https://example.com/categories/%E5%81%A5%E8%BA%AB/</link>
-    <pubDate>Tue, 07 Jan 2025 22:58:10 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/%E5%81%A5%E8%BA%AB/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>自我提升</title>
-    <link>https://example.com/categories/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</link>
-    <pubDate>Sat, 26 Oct 2024 10:40:14 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/categories/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</guid>
-    <description><![CDATA[]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Thising | 自学空间</title>
+    <link>https://example.com/categories/</link>
+    <description>Recent content in Categories on Thising | 自学空间</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 08 Mar 2026 16:54:51 +0800</lastBuildDate>
+    <atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CS</title>
+      <link>https://example.com/categories/cs/</link>
+      <pubDate>Sat, 07 Mar 2026 22:21:30 +0800</pubDate>
+      <guid>https://example.com/categories/cs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>编程</title>
+      <link>https://example.com/categories/%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 16 Feb 2026 23:13:17 +0800</pubDate>
+      <guid>https://example.com/categories/%E7%BC%96%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Math</title>
+      <link>https://example.com/categories/math/</link>
+      <pubDate>Sun, 15 Feb 2026 14:33:22 +0800</pubDate>
+      <guid>https://example.com/categories/math/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI</title>
+      <link>https://example.com/categories/ai/</link>
+      <pubDate>Fri, 06 Feb 2026 15:24:36 +0800</pubDate>
+      <guid>https://example.com/categories/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>阅读</title>
+      <link>https://example.com/categories/%E9%98%85%E8%AF%BB/</link>
+      <pubDate>Fri, 31 Oct 2025 18:12:20 +0800</pubDate>
+      <guid>https://example.com/categories/%E9%98%85%E8%AF%BB/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数学</title>
+      <link>https://example.com/categories/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Tue, 01 Jul 2025 19:05:08 +0800</pubDate>
+      <guid>https://example.com/categories/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>养生</title>
+      <link>https://example.com/categories/%E5%85%BB%E7%94%9F/</link>
+      <pubDate>Sat, 28 Jun 2025 16:56:53 +0800</pubDate>
+      <guid>https://example.com/categories/%E5%85%BB%E7%94%9F/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>课程</title>
+      <link>https://example.com/categories/%E8%AF%BE%E7%A8%8B/</link>
+      <pubDate>Thu, 12 Jun 2025 17:04:29 +0800</pubDate>
+      <guid>https://example.com/categories/%E8%AF%BE%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>健身</title>
+      <link>https://example.com/categories/%E5%81%A5%E8%BA%AB/</link>
+      <pubDate>Tue, 07 Jan 2025 22:58:10 +0800</pubDate>
+      <guid>https://example.com/categories/%E5%81%A5%E8%BA%AB/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>自我提升</title>
+      <link>https://example.com/categories/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</link>
+      <pubDate>Sat, 26 Oct 2024 10:40:14 +0800</pubDate>
+      <guid>https://example.com/categories/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文档</title>
+      <link>https://example.com/categories/documentation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/categories/documentation/</guid>
+      <description></description>
+    </item>
+  </channel>
 </rss>

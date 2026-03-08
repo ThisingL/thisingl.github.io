@@ -1,15 +1,20 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>专注力 - 标签 - Thising | 自学空间</title>
-        <link>https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/</link>
-        <description>专注力 - 标签 - Thising | 自学空间</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 26 Oct 2024 10:40:14 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/" rel="self" type="application/rss+xml" /><item>
-    <title>泡芙方专注力课程练习合集整理版</title>
-    <link>https://example.com/%E6%B3%A1%E8%8A%99%E6%96%B9%E4%B8%93%E6%B3%A8%E5%8A%9B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
-    <pubDate>Sat, 26 Oct 2024 10:40:14 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://example.com/%E6%B3%A1%E8%8A%99%E6%96%B9%E4%B8%93%E6%B3%A8%E5%8A%9B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[学习泡芙方专注力课程的一些笔记]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>专注力 on Thising | 自学空间</title>
+    <link>https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/</link>
+    <description>Recent content in 专注力 on Thising | 自学空间</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 29 Jun 2025 13:13:06 +0800</lastBuildDate>
+    <atom:link href="https://example.com/tags/%E4%B8%93%E6%B3%A8%E5%8A%9B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>泡芙方专注力课程练习合集整理版</title>
+      <link>https://example.com/%E6%B3%A1%E8%8A%99%E6%96%B9%E4%B8%93%E6%B3%A8%E5%8A%9B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 26 Oct 2024 10:40:14 +0800</pubDate>
+      <guid>https://example.com/%E6%B3%A1%E8%8A%99%E6%96%B9%E4%B8%93%E6%B3%A8%E5%8A%9B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
+      <description>学习泡芙方专注力课程的一些笔记</description>
+    </item>
+  </channel>
 </rss>

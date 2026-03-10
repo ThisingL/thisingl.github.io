@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-03-10T19:19:31+08:00">
+    <meta property="article:modified_time" content="2026-03-10T20:51:36+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  4661 ,
-        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-10T19:19:31+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  5155 ,
+        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-10T20:51:36+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">现代人工智能</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4661 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5155 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;
     
 
     
@@ -214,16 +214,47 @@
 <p><a href="https://www.bilibili.com/video/BV1if421z713/?spm_id_from=333.1387.0.0&amp;vd_source=28da4325512cd6f10bf532b50cf2042a" target="_blank" rel="noopener noreffer ">ZOMI酱 AI系统系列视频</a></p></blockquote>
 <h1 id="llm">LLM</h1>
 <h4 id="fnn">FNN</h4>
+<p>Feedforward Neural Network，前馈神经网络，也是最简单的神经网络</p>
+<p>模型结构如下图所示：</p>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-202603101743.png" title="image-202603101743" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-202603101743.png" data-sub-html="<h2> </h2><p>image-202603101743</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-202603101743.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-202603101743.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-202603101743.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-202603101743.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-202603101743.png" width="1276" height="592" />
+    </a><figcaption class="image-caption">image-202603101743</figcaption>
+    </figure></p>
+<p>如果我们想要用它作为一个序列转导模型(Sequence Transduction Model)来解决序列转导问题，它是不合适的，原因有以下几点：</p>
+<ol>
+<li>
+<p>从输入层来看，它的输入是固定的，每输入一个token，就会直接产生一个结果，显然是不合适的，只能产生所谓的等长结果</p>
+</li>
+<li>
+<p>完全丢弃了句子中词语的顺序信息</p>
+</li>
+</ol>
 <h4 id="rnn">RNN</h4>
+<p>Recurrent Nerual Network, 循环神经网络的出现就是为了解决 FNN 中出现的序列转导问题</p>
+<p>首先我们来尝试改造之前的 FNN，来将输入句子中词语的信息也编码进模型里，那么很容易想到，我们可以将上一个时间步 <span class="math">$t - 1$</span> 计算得到的中间输出 <span class="math">$h_{t - 1}$</span> 也传递给下一个时间步 <span class="math">$t$</span>。那么再下一个时间步 <span class="math">$t$</span> 计算时，就可以像人一样分析前面出现的词语了</p>
+<p>我们来举例说明，如果我们的输入是&quot;我爱水课&quot;，那么计算过程如下：</p>
+<img src="images/image.png" alt="image" style="zoom:36%; display: block; margin: 0 auto;" />
+<p>也就是：</p>
+<p><span class="math">$h_t = f(W x_t &#43; U h_{t - 1})$</span></p>
+<p><span class="math">$y_t = g(Vh_t)$</span></p>
+<p>很好，但是现在还有一个问题还没解决，输入和输出不等长的时候怎么办？</p>
+<p>那么我们显然不能在每个时间步 <span class="math">$t$</span> 都固定进行一次输出，而应该将输入和输出分开来，也就是在所有输入都计算完成后，再统一进行输出。</p>
+<p>这就是大名鼎鼎的 Encoder 和 Decoder 架构：</p>
+<img src="images/image1.png" alt="image1" style="zoom:36%; display: block; margin: 0 auto;" />
+<p>这里的 <span class="math">$C$</span> 就是所谓的“上下文向量”</p>
 <h4 id="transformer">Transformer</h4>
 <p>谷歌在 2017 年发表了一篇划时代的论文： Attention Is All You Need(<a href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/Attention%20Is%20All%20You%20Need_%E5%8F%8C%E8%AF%AD%E5%AF%B9%E7%85%A7%E7%89%88.pdf" rel="">论文原文以及翻译在这</a>)</p>
 <p>注意力机制计算可表示为：</p>
-<div class="math">
-$$
+<span class="math">$$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-$$
-</div>
-<p>What the Single-Head Attention really is?</p>
+$$</span><p>What the Single-Head Attention really is?</p>
 <p>​		Transformer的第一步是将输入的每一个token通过 embedding 转换成一个高维空间中的嵌入向量 <span class="math">$\overrightarrow {E_i}$</span>。Transformer的目标是将逐步调整 <span class="math">$\overrightarrow {E_i}$</span> 使得它们不单单编码单个token，还能融入更丰富的上下文含义。就比如一个名词会问前面的词中有没有形容词啊，这样的提问就被编码成了所谓的查询向量 <span class="math">$\overrightarrow {Q_i}$</span>。而前面的词想要回答后面的哪些查询提问，则被编码成了所谓的键向量 <span class="math">$\overrightarrow {K_i}$</span>。所以这个 <span class="math">$\overrightarrow {Q_i}$</span> 和 <span class="math">$\overrightarrow {K_i}$</span> 的点积和的大小，就是衡量每个键和每个查询的匹配程度。而前面的一个比如形容词，需要把后面的名词调整到什么程度，就被编码成了所谓的值向量 <span class="math">$\overrightarrow {V_i}$</span>。所以将上面计算出来的每一个查询的匹配程度，通过softmax函数转换成一个概率分布向量，作为权值再乘以值向量 <span class="math">$\overrightarrow {V_i}$</span>，将上面的这个结果进行求和，得到的就是嵌入向量的调整值 <span class="math">$\Delta\overrightarrow { E_i}$</span>，再将调整值加到原始嵌入向量上，便得到一个编码了更丰富的上下文信息的向量 <span class="math">$\overrightarrow {E_i} &#43; \Delta\overrightarrow { E_i}=\overrightarrow {E_i^{\prime}}$</span>。</p>
 <ul>
 <li>
@@ -589,8 +620,8 @@ $$
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-03-10&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/a2f9cfe525b46898e29d14d4e64b7fae16c9eb4c" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) a2f9cfe525b46898e29d14d4e64b7fae16c9eb4c: feat: 修复了直接使用$$块公式场景下特殊字符被转义问题">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>a2f9cfe</a></span>
+                <span>更新于 2026-03-10&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/29e9411bd782bd40415bc16933e65527c022c785" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 29e9411bd782bd40415bc16933e65527c022c785: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>29e9411</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

@@ -158,48 +158,48 @@
 </nav></div>
             </div><div class="content" id="content"><h1 id="mab多臂老虎机模型multi-armed-bandit">MAB/多臂老虎机模型（Multi-armed Bandit）</h1>
 <p>数学家将做我们生活中面临的选择困境抽象为了一个数学模型：MAB/多臂老虎机模型（Multi-armed Bandit）</p>
-<p>假如你进入了一个赌场，面前有一台有 $K$ 根拉杆的老虎机，拉动每一根拉杆都对应一个关于奖励的概率分布。我们在各根拉杆的奖励概率分布未知的情况下，操作 $T$ 次拉杆，目标是获得尽可能高的累计奖励。由于奖励的概率分布是未知的，因此我们需要在“探索”和“利用”中进行权衡</p>
+<p>假如你进入了一个赌场，面前有一台有 <span class="math">$K$</span> 根拉杆的老虎机，拉动每一根拉杆都对应一个关于奖励的概率分布。我们在各根拉杆的奖励概率分布未知的情况下，操作 <span class="math">$T$</span> 次拉杆，目标是获得尽可能高的累计奖励。由于奖励的概率分布是未知的，因此我们需要在“探索”和“利用”中进行权衡</p>
 <ul>
 <li>探索：尝试其他拉杆，由大数定理可得<em>频率会稳定于概率</em>，所以可以更新其他拉杆的期望奖励估计。可能会牺牲短期收益，但长期可能发现更高奖励的拉杆。</li>
 <li>利用：贪心的选择当前期望奖励估计最大的拉杆来最大化短期收益。</li>
 </ul>
-<p>多臂老虎机问题可以表示为一个元组 $\langle \mathcal{A}, \mathcal{R} \rangle$, 其中：</p>
+<p>多臂老虎机问题可以表示为一个元组 <span class="math">$\langle \mathcal{A}, \mathcal{R} \rangle$</span>, 其中：</p>
 <ul>
-<li>$\mathcal{A}$为动作集合，其中一个动作表示拉动一根拉杆。若多臂老虎机有 $K$ 根拉杆，那么动作空间就是集合 ${a_1, \ldots, a_K}$ ，我们用$a_t \in \mathcal{A}$表示任意一个动作 $a_t$ 。</li>
-<li>$\mathcal{R}$ 为奖励概率分布，拉动每一根杠杆的动作 $a_t$ 都对应一个奖励概率分布 $\mathcal{R}(r \mid a_t)$，不同拉杆的奖励概率分布通常是不同的。</li>
-<li>假设每个时间步只能拉动一根拉杆，多臂老虎机的目标为最大化一段时间步 $T$ 内累积的奖励：$\max \sum_{t=1}^T r_t, r_t \sim \mathcal{R}(\cdot \mid a_t)$，其中 $a_t$ 代表在第 $t$ 时间步拉动某一拉杆这一动作， $r_t$ 代表动作 $a_t$ 获得的奖励。</li>
+<li><span class="math">$\mathcal{A}$</span>为动作集合，其中一个动作表示拉动一根拉杆。若多臂老虎机有 <span class="math">$K$</span> 根拉杆，那么动作空间就是集合 <span class="math">$\{a_1, \ldots, a_K\}$</span> ，我们用<span class="math">$a_t \in \mathcal{A}$</span>表示任意一个动作 <span class="math">$a_t$</span> 。</li>
+<li><span class="math">$\mathcal{R}$</span> 为奖励概率分布，拉动每一根杠杆的动作 <span class="math">$a_t$</span> 都对应一个奖励概率分布 <span class="math">$\mathcal{R}(r \mid a_t)$</span>，不同拉杆的奖励概率分布通常是不同的。</li>
+<li>假设每个时间步只能拉动一根拉杆，多臂老虎机的目标为最大化一段时间步 <span class="math">$T$</span> 内累积的奖励：<span class="math">$\max \sum_{t=1}^T r_t, r_t \sim \mathcal{R}(\cdot \mid a_t)$</span>，其中 <span class="math">$a_t$</span> 代表在第 <span class="math">$t$</span> 时间步拉动某一拉杆这一动作， <span class="math">$r_t$</span> 代表动作 <span class="math">$a_t$</span> 获得的奖励。</li>
 </ul>
 <p>在2002年，由Peter Auer等三人提出了一个简单到出人意料的算法：上置信界算法（UCB，Upper Confidence Bound）。</p>
-<p>从概率论中我们可以知道：假设我们定义 $\Delta \mu$ 为样本均值 $\bar{X}$ 的标准误差（可以理解为样本均值与总体均值的平均差异程度），那么 $\Delta \mu = \frac{\sigma}{\sqrt{n}}$，其中 $\sigma$ 为标准差， $n$ 为样本容量。这里由于我们对老虎机拉杆的奖励概率分布是未知的，所以这个里 $\sigma$ 是无法精确计算得到的，所以我们将这个标准误差改写成 $\Delta \mu = \frac{c}{\sqrt{n}}$，这里的 $c$ 的取值就需要根据具体情况来进行初始化了。</p>
-<p>对于 $\forall a_t \in \mathcal{A}$，期望奖励估计更新为 $\hat{Q}(a_t) = \hat{Q}(a_t) + \frac{1}{N(a_t)} \left[ r_t - \hat{Q}(a_t) \right]$，由 Hoeffding 不等式（霍夫丁不等式）$\mathbb{P} \lbrace \mathbb{E}[X] \geq \bar{x}_t + u \rbrace \leq e^{-2nu^2}$，我们可以<em>很大概率</em>得出：期望奖励 $Q(a_t)$满足  $\hat{Q}(a_t) -                      \Delta \mu \le Q(a_t) \le \hat{Q}(a_t) + \Delta \mu$，因此上置信界 $\text{UCB}(a_t)=\hat{Q}(a_t) + \Delta \mu=\hat{Q}(a_t) + \frac{c}{\sqrt{n}}$</p>
+<p>从概率论中我们可以知道：假设我们定义 <span class="math">$\Delta \mu$</span> 为样本均值 <span class="math">$\bar{X}$</span> 的标准误差（可以理解为样本均值与总体均值的平均差异程度），那么 <span class="math">$\Delta \mu = \frac{\sigma}{\sqrt{n}}$</span>，其中 <span class="math">$\sigma$</span> 为标准差， <span class="math">$n$</span> 为样本容量。这里由于我们对老虎机拉杆的奖励概率分布是未知的，所以这个里 <span class="math">$\sigma$</span> 是无法精确计算得到的，所以我们将这个标准误差改写成 <span class="math">$\Delta \mu = \frac{c}{\sqrt{n}}$</span>，这里的 <span class="math">$c$</span> 的取值就需要根据具体情况来进行初始化了。</p>
+<p>对于 <span class="math">$\forall a_t \in \mathcal{A}$</span>，期望奖励估计更新为 <span class="math">$\hat{Q}(a_t) = \hat{Q}(a_t) &#43; \frac{1}{N(a_t)} \left[ r_t - \hat{Q}(a_t) \right]$</span>，由 Hoeffding 不等式（霍夫丁不等式）<span class="math">$\mathbb{P} \lbrace \mathbb{E}[X] \geq \bar{x}_t &#43; u \rbrace \leq e^{-2nu^2}$</span>，我们可以<em>很大概率</em>得出：期望奖励 <span class="math">$Q(a_t)$</span>满足  <span class="math">$\hat{Q}(a_t) -                      \Delta \mu \le Q(a_t) \le \hat{Q}(a_t) &#43; \Delta \mu$</span>，因此上置信界 <span class="math">$\text{UCB}(a_t)=\hat{Q}(a_t) &#43; \Delta \mu=\hat{Q}(a_t) &#43; \frac{c}{\sqrt{n}}$</span></p>
 <p>这个UCB算法可以被概括为：<strong>在乐观中选择最好，在交互中降低乐观</strong>。</p>
-<p>上面的数学定义形式下的标准误差被叫做乐观加分，在一次次选择中，乐观加分会因为 $n$ 的增大而不断减小，而算法每次会选择拉动上置信界 $\text{UCB}(a_t)$ 最大的，也就是乐观中选择最好。</p>
+<p>上面的数学定义形式下的标准误差被叫做乐观加分，在一次次选择中，乐观加分会因为 <span class="math">$n$</span> 的增大而不断减小，而算法每次会选择拉动上置信界 <span class="math">$\text{UCB}(a_t)$</span> 最大的，也就是乐观中选择最好。</p>
 <p>这也给了我们一个深刻的人生启示：在乐观中选择最好的那个去尝试，在尝试的交互中逐步降低你的乐观。不要害怕犯错，不要担心时间来不及，这个算法是数学中接近理论最优的做法，只要肯尝试、体验、感受、比较和提升，你一定能找到属于自己最好的选择，就怕你畏首畏尾，在固定型思维中焦虑恐惧畏缩不前，选择了一个随大流的稳妥选择了事。</p>
 <blockquote>
 <h3 id="注">注：</h3>
 <h5 id="1通用符号约定">1.通用符号约定</h5>
 <ul>
-<li><strong>花体字母的使用习惯</strong>：在数学中，花体字母（如 $\mathcal{A},\mathcal{B},\mathcal{C}$）通常用于表示 “高级” 或 “结构化” 的对象，例如集合的集合、代数结构、拓扑空间等，以区别于普通的集合或元素（如 <em>A</em>,<em>B</em>,<em>C</em> 或 <em>a</em>,<em>b</em>,<em>c</em>）。</li>
+<li><strong>花体字母的使用习惯</strong>：在数学中，花体字母（如 <span class="math">$\mathcal{A},\mathcal{B},\mathcal{C}$</span>）通常用于表示 “高级” 或 “结构化” 的对象，例如集合的集合、代数结构、拓扑空间等，以区别于普通的集合或元素（如 <em>A</em>,<em>B</em>,<em>C</em> 或 <em>a</em>,<em>b</em>,<em>c</em>）。</li>
 </ul>
-<h5 id="2强化学习中的符号-mathcalrr-mid-a_t">2.强化学习中的符号 $\mathcal{R}(r \mid a_t)$</h5>
+<h5 id="2强化学习中的符号">2.强化学习中的符号 <span class="math">$\mathcal{R}(r \mid a_t)$</span></h5>
 <p>强化学习直接借用了概率论的表示方法，但有以下特点：</p>
 <ol>
 <li><strong>符号习惯</strong>：
 <ul>
-<li>强化学习文献中常用 $\mathcal{R}$ 或 $R$ 表示奖励分布，以强调其与“奖励（Reward）”的关联。</li>
-<li>例如：$\mathcal{R}(r \mid a_t)$ 是MDP中状态-动作对的奖励分布。</li>
-<li><strong>本质仍是条件概率分布</strong>，只是变量名 $(r,a_t)$ 具有领域含义。</li>
+<li>强化学习文献中常用 <span class="math">$\mathcal{R}$</span> 或 <span class="math">$R$</span> 表示奖励分布，以强调其与“奖励（Reward）”的关联。</li>
+<li>例如：<span class="math">$\mathcal{R}(r \mid a_t)$</span> 是MDP中状态-动作对的奖励分布。</li>
+<li><strong>本质仍是条件概率分布</strong>，只是变量名 <span class="math">$(r,a_t)$</span> 具有领域含义。</li>
 </ul>
 </li>
 <li><strong>与传统概率论的区别</strong>：
 <ul>
-<li><strong>变量含义</strong>：$a_t$ 是智能体的动作（Action），属于强化学习的专用术语。</li>
-<li><strong>建模对象</strong>：奖励分布 $\mathcal{R}$ 通常是问题设定的核心部分（如MAB中拉杆的奖励分布）。</li>
+<li><strong>变量含义</strong>：<span class="math">$a_t$</span> 是智能体的动作（Action），属于强化学习的专用术语。</li>
+<li><strong>建模对象</strong>：奖励分布 <span class="math">$\mathcal{R}$</span> 通常是问题设定的核心部分（如MAB中拉杆的奖励分布）。</li>
 </ul>
 </li>
 <li><strong>数学一致性</strong>：
 <ul>
-<li>如果替换符号 $\mathcal{R}(r \mid a_t)$ 为 $P(r \mid a_t)$，其数学定义完全不变。</li>
+<li>如果替换符号 <span class="math">$\mathcal{R}(r \mid a_t)$</span> 为 <span class="math">$P(r \mid a_t)$</span>，其数学定义完全不变。</li>
 </ul>
 </li>
 </ol></blockquote>

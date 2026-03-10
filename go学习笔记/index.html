@@ -478,7 +478,7 @@
 <p>​	也可以通过使用 <code>make([]T, len)</code> 来创建，默认的 cap 会等于 len</p>
 <ol start="2">
 <li>
-<p>从数组中创建切片： <code>a[low : high]</code>，区间其实是 $[\text{low}, \text{high})$,包含从下标 low 到 high-1 的元素</p>
+<p>从数组中创建切片： <code>a[low : high]</code>，区间其实是 <span class="math">$[\text{low}, \text{high})$</span>,包含从下标 low 到 high-1 的元素</p>
 </li>
 <li>
 <p>切片类似于<strong>数组的引用</strong>，它的本身并不存储任何元素。所以更改切片的元素会修改底层数组中对应的元素，所有共享底层数组的切片都会观察到这些修改</p>

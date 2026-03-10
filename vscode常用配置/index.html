@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-12-10T19:18:20+08:00">
-    <meta property="article:modified_time" content="2026-02-01T22:56:05+08:00">
+    <meta property="article:modified_time" content="2026-03-10T19:19:31+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  379 ,
-        "url": "https:\/\/example.com\/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE\/","datePublished": "2025-12-10T19:18:20+08:00","dateModified": "2026-02-01T22:56:05+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  945 ,
+        "url": "https:\/\/example.com\/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE\/","datePublished": "2025-12-10T19:18:20+08:00","dateModified": "2026-03-10T19:19:31+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">vscode常用配置</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-10">2025-12-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 379 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-12-10">2025-12-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 945 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;
     
 
     
@@ -154,6 +154,7 @@
             <li><a href="#material-icon-theme">Material Icon Theme</a></li>
             <li><a href="#dracula-theme-official">Dracula Theme Official</a></li>
             <li><a href="#chinese-simplified">Chinese (Simplified)</a></li>
+            <li><a href="#仿造-hlchunknvim-效果">仿造 hlchunk.nvim 效果</a></li>
           </ul>
         </li>
       </ul>
@@ -214,12 +215,183 @@
 <p>很喜欢的vscode主题，吸血鬼</p>
 <h3 id="chinese-simplified">Chinese (Simplified)</h3>
 <p>汉化包，yyds!</p>
+<h3 id="仿造-hlchunknvim-效果">仿造 hlchunk.nvim 效果</h3>
+<p>我很喜欢一个up的 Neovim 插件，可以漂亮的提示当前 scope 作用域
+该博主的配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Lua" data-lang="Lua"><span class="line"><span class="cl"><span class="s2">&#34;shellRaining/hlchunk.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">      <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_create_autocmd</span><span class="p">({</span> <span class="s2">&#34;CursorMoved&#34;</span><span class="p">,</span> <span class="s2">&#34;CursorMovedI&#34;</span> <span class="p">},</span> <span class="p">{</span> <span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="s2">&#34;EnableHL&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">      <span class="n">require</span><span class="p">(</span><span class="s2">&#34;hlchunk&#34;</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chunk</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">use_treesitter</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">notify</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">-- notify if some situation(like disable chunk mod double time)</span>
+</span></span><span class="line"><span class="cl">          <span class="n">exclude_filetypes</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">aerial</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dashboard</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="n">support_filetypes</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;*.lua&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;*.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="n">chars</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">horizontal_line</span> <span class="o">=</span> <span class="s2">&#34;─&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vertical_line</span> <span class="o">=</span> <span class="s2">&#34;│&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left_top</span> <span class="o">=</span> <span class="s2">&#34;╭&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left_bottom</span> <span class="o">=</span> <span class="s2">&#34;╰&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right_arrow</span> <span class="o">=</span> <span class="s2">&#34;&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="n">fg</span> <span class="o">=</span> <span class="s2">&#34;#CB8764&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">indent</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">--</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">-- chars = { &#34;│&#34;, &#34;¦&#34;, &#34;┆&#34;, &#34;┊&#34; },</span>
+</span></span><span class="line"><span class="cl">          <span class="n">chars</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;▏&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">-- chars = { &#34; &#34;, &#34; &#34;, &#34; &#34;, &#34; &#34; },</span>
+</span></span><span class="line"><span class="cl">          <span class="n">use_treesitter</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(&#34;Whitespace&#34;)), &#34;fg&#34;, &#34;gui&#34;) }</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="n">fg</span> <span class="o">=</span> <span class="s2">&#34;#51576e&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line_num</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">enable</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">use_treesitter</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">style</span> <span class="o">=</span> <span class="s2">&#34;#806d9c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">blank</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">enable</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">chars</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;․&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.fn</span><span class="p">.</span><span class="n">synIDattr</span><span class="p">(</span><span class="n">vim.fn</span><span class="p">.</span><span class="n">synIDtrans</span><span class="p">(</span><span class="n">vim.fn</span><span class="p">.</span><span class="n">hlID</span><span class="p">(</span><span class="s2">&#34;Whitespace&#34;</span><span class="p">)),</span> <span class="s2">&#34;fg&#34;</span><span class="p">,</span> <span class="s2">&#34;gui&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下图所示：
+
+<figure><a class="lightgallery" href="/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/images/image-202603101011.png" title="image-202603101011" data-thumbnail="/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/images/image-202603101011.png" data-sub-html="<h2> </h2><p>image-202603101011</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/images/image-202603101011.png"
+            data-srcset="/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/images/image-202603101011.png, /vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/images/image-202603101011.png 1.5x, /vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/images/image-202603101011.png 2x"
+            data-sizes="auto"
+            alt="/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/images/image-202603101011.png" width="1768" height="804" />
+    </a><figcaption class="image-caption">image-202603101011</figcaption>
+    </figure>
+但是很可惜，vscode插件无法在 gutter 中自定义绘制字符块，所以没办法实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Lua" data-lang="Lua"><span class="line"><span class="cl"><span class="n">chars</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">horizontal_line</span> <span class="o">=</span> <span class="s2">&#34;─&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vertical_line</span> <span class="o">=</span> <span class="s2">&#34;│&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">left_top</span> <span class="o">=</span> <span class="s2">&#34;╭&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">left_bottom</span> <span class="o">=</span> <span class="s2">&#34;╰&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">right_arrow</span> <span class="o">=</span> <span class="s2">&#34;&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是VSCode 自带 active indent guide，设置一下也能基本够用：</p>
+<p><code>settings.json</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.guides.indentation&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.guides.highlightActiveIndentation&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;editor.guides.bracketPairs&#34;</span><span class="p">:</span> <span class="s2">&#34;active&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以及彩色scope插件：<code>Guides</code></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-01&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/4d90c6f2833c6a60691c1654b104a637c6c4b4e0" target="_blank" title="commit by JarVis(2055543978@qq.com) 4d90c6f2833c6a60691c1654b104a637c6c4b4e0: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4d90c6f</a></span>
+                <span>更新于 2026-03-10&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/3bb75b5466d80449f586488e4b721622dd418edd" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 3bb75b5466d80449f586488e4b721622dd418edd: feat: 修复了直接使用$$块公式场景下特殊字符被转义问题">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3bb75b5</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

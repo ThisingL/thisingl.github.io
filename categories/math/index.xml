@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 15 Feb 2026 18:23:51 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Mar 2026 19:19:31 +0800</lastBuildDate>
     <atom:link href="https://example.com/categories/math/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>概率论与数理统计</title>
@@ -15,6 +15,13 @@
       <pubDate>Sun, 15 Feb 2026 14:33:22 +0800</pubDate>
       <guid>https://example.com/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</guid>
       <description>一些概率论知识的笔记</description>
+    </item>
+    <item>
+      <title>数论</title>
+      <link>https://example.com/%E6%95%B0%E8%AE%BA/</link>
+      <pubDate>Tue, 01 Jul 2025 19:05:08 +0800</pubDate>
+      <guid>https://example.com/%E6%95%B0%E8%AE%BA/</guid>
+      <description>一些数论知识的学习笔记</description>
     </item>
     <item>
       <title>从数学角度来看做选择</title>

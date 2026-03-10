@@ -37,7 +37,7 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "cs课程","wordcount":  5186 ,
+                        }],"genre": "posts","keywords": "cs课程","wordcount":  6655 ,
         "url": "https:\/\/example.com\/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95\/","datePublished": "2025-06-12T17:04:29+08:00","dateModified": "2025-07-05T00:09:35+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">形式化方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AF%BE%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>课程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5186 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 11 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-12">2025-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6655 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;
     
 
     
@@ -155,7 +155,7 @@
             <li><a href="#语法规则">语法规则</a></li>
             <li><a href="#证明系统">证明系统</a></li>
             <li><a href="#推导规则">推导规则</a></li>
-            <li><a href="#sat问题">SAT问题</a></li>
+            <li><a href="#sat">SAT</a></li>
           </ul>
         </li>
         <li><a href="#构造逻辑">构造逻辑</a>
@@ -167,21 +167,24 @@
         </li>
         <li><a href="#谓词逻辑">谓词逻辑</a>
           <ul>
-            <li>
-              <ul>
-                <li><a href="#the-syntax">The Syntax:</a></li>
-                <li><a href="#intuition">Intuition:</a></li>
-              </ul>
-            </li>
-            <li><a href="#推导规则-1">推导规则</a>
+            <li><a href="#语法规则-2">语法规则</a></li>
+            <li><a href="#证明系统-2">证明系统</a>
               <ul>
                 <li><a href="#bound-free-variables">Bound free variables</a></li>
-                <li><a href="#alpha---重命名">$\alpha$ - 重命名</a></li>
-                <li><a href="#sat">SAT</a></li>
-                <li><a href="#theory">theory</a></li>
-                <li><a href="#smt">SMT</a></li>
+                <li><a href="#替换">替换</a></li>
+                <li><a href="#--重命名"> - 重命名</a></li>
               </ul>
             </li>
+            <li><a href="#推导规则-1">推导规则</a></li>
+            <li><a href="#sat-1">SAT</a></li>
+            <li><a href="#theory">theory</a>
+              <ul>
+                <li><a href="#euf">EUF</a></li>
+                <li><a href="#线性算数理论">线性算数理论</a></li>
+                <li><a href="#数据结构理论">数据结构理论</a></li>
+              </ul>
+            </li>
+            <li><a href="#smt">SMT</a></li>
           </ul>
         </li>
       </ul>
@@ -193,25 +196,25 @@
 <h1 id="形式化方法">形式化方法</h1>
 <h2 id="课程大纲">课程大纲</h2>
 <p>
-<figure><a class="lightgallery" href="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628023843877.png" title="image-20250628023843877" data-thumbnail="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628023843877.png" data-sub-html="<h2> </h2><p>image-20250628023843877</p>">
+<figure><a class="lightgallery" href="images/image-20250628023843877.png" title="image-20250628023843877" data-thumbnail="images/image-20250628023843877.png" data-sub-html="<h2> </h2><p>image-20250628023843877</p>">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
-            data-src="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628023843877.png"
-            data-srcset="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628023843877.png, /%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628023843877.png 1.5x, /%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628023843877.png 2x"
+            data-src="images/image-20250628023843877.png"
+            data-srcset="images/image-20250628023843877.png, images/image-20250628023843877.png 1.5x, images/image-20250628023843877.png 2x"
             data-sizes="auto"
-            alt="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628023843877.png" width="1149" height="544" />
+            alt="images/image-20250628023843877.png" />
     </a><figcaption class="image-caption">image-20250628023843877</figcaption>
     </figure></p>
 <p>
-<figure><a class="lightgallery" href="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628024411057.png" title="image-20250628024411057" data-thumbnail="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628024411057.png" data-sub-html="<h2> </h2><p>image-20250628024411057</p>">
+<figure><a class="lightgallery" href="images/image-20250628024411057.png" title="image-20250628024411057" data-thumbnail="images/image-20250628024411057.png" data-sub-html="<h2> </h2><p>image-20250628024411057</p>">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
-            data-src="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628024411057.png"
-            data-srcset="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628024411057.png, /%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628024411057.png 1.5x, /%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628024411057.png 2x"
+            data-src="images/image-20250628024411057.png"
+            data-srcset="images/image-20250628024411057.png, images/image-20250628024411057.png 1.5x, images/image-20250628024411057.png 2x"
             data-sizes="auto"
-            alt="/%E5%BD%A2%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95/images/image-20250628024411057.png" width="1118" height="553" />
+            alt="images/image-20250628024411057.png" />
     </a><figcaption class="image-caption">image-20250628024411057</figcaption>
     </figure></p>
 <h2 id="数学基础">数学基础</h2>
@@ -219,8 +222,8 @@
 <p>研究的是哪些问题是可以被计算机计算的：</p>
 <ul>
 <li>P问题：存在<em>多项式时间复杂度</em>解法的问题（比如大家常刷的LeetCode算法题）</li>
-<li>NP问题：<strong>不确定</strong>能否找到多项式时间复杂度解法，但是<em>有多项式时间复杂度的方法来验证答案是否正确</em>的问题(就比如Q:打印出集合$A$的所有子集，现有方法似乎只有穷举法，$2^n$ 的时间复杂度，但是验证某个集合是否是集合$A$的子集可以很快判定出来，因此人们不禁乐观的想(^_^)是否只是人们没有发现多项式的解法，而非数学意义上完全不存在这样的多项式时间算法来求解这样的NP问题)</li>
-<li>NPC问题：NPC完全问题。NPC问题 $\subseteq$ NP问题,而且对于任何 $\forall x \in $ NP问题,都可以在<em>多项式时间</em>内转换或归约成某一个NPC问题。</li>
+<li>NP问题：<strong>不确定</strong>能否找到多项式时间复杂度解法，但是<em>有多项式时间复杂度的方法来验证答案是否正确</em>的问题(就比如Q:打印出集合<span class="math">$A$</span>的所有子集，现有方法似乎只有穷举法，<span class="math">$2^n$</span> 的时间复杂度，但是验证某个集合是否是集合<span class="math">$A$</span>的子集可以很快判定出来，因此人们不禁乐观的想(^_^)是否只是人们没有发现多项式的解法，而非数学意义上完全不存在这样的多项式时间算法来求解这样的NP问题)</li>
+<li>NPC问题：NPC完全问题。NPC问题 <span class="math">$\subseteq$</span> NP问题,而且对于任何 <span class="math">$\forall x \in $</span> NP问题,都可以在<em>多项式时间</em>内转换或归约成某一个NPC问题。</li>
 </ul>
 <p>NPC问题是最近几十年对P?=NP问题比较大的理论突破。人们乐观的认为，只需要解决一个NPC问题，也就可以解决所有的NP问题。但是可惜的是，直到现在，人们还是没有解决出一个NPC问题。所以慢慢的更多的人感觉用永远也无法找到了。</p>
 <p>以及证明任意一个NPC问题都可以解决所有的NP问题，但是NPC问题也有难度的区别，因此将目光聚焦于那些更简单的NPC问题会更简单。</p>
@@ -229,157 +232,162 @@
 <p>四元组： G = {N、 T、 S、 P}</p>
 <ul>
 <li>N是<strong>非终结符</strong>的有限集合。</li>
-<li>T是<strong>终结符</strong>的有限集合，且 $\text{N} \cap \text{T} = \varnothing$。</li>
-<li>S是<strong>开始符号</strong>，且 $\text{S} \in \text{N}$。</li>
-<li>P是<strong>产生式</strong>的有限集合，每个产生式具有的形式如：$\text{N} \to \alpha, \alpha \in (\text{N} \cup \text{T})^*$</li>
+<li>T是<strong>终结符</strong>的有限集合，且 <span class="math">$\text{N} \cap \text{T} = \varnothing$</span>。</li>
+<li>S是<strong>开始符号</strong>，且 <span class="math">$\text{S} \in \text{N}$</span>。</li>
+<li>P是<strong>产生式</strong>的有限集合，每个产生式具有的形式如：<span class="math">$\text{N} \to \alpha, \alpha \in (\text{N} \cup \text{T})^*$</span></li>
 </ul>
 <p>下面我们来分析什么是上下文无关：</p>
-<p>假设我们有产生式 $\text{S} \to \text{a} \mid \text{b}$,那么如果我们遇到式子 $\text{aS}$,那么可以替换为 $\text{aS} \to \text{aa} \mid \text{ab}$,同理当我们遇到式子 $Sb$ 时，可以替换为 $\text{Sb}\to\text{ab}\mid\text{bb}$。所以在上下文无关文法中，我们遇到 $\text{S}$ 时，我们无需去关心 $\text{S}$ 的左边和右边是什么符号（这里的a、b其实就是所谓的上下文），直接根据产生式去替换就行。</p>
-<p>但是如果我们还有产生式 $\text{aS}\to aa$,那么下次当我们遇到式子 $\text{aS}$ 时，不能直接去替换 $\text{S}$，还得去研究 $\text{S}$ 的上下文。这时候就是上下文有关了。</p>
+<p>假设我们有产生式 <span class="math">$\text{S} \to \text{a} \mid \text{b}$</span>,那么如果我们遇到式子 <span class="math">$\text{aS}$</span>,那么可以替换为 <span class="math">$\text{aS} \to \text{aa} \mid \text{ab}$</span>,同理当我们遇到式子 <span class="math">$Sb$</span> 时，可以替换为 <span class="math">$\text{Sb}\to\text{ab}\mid\text{bb}$</span>。所以在上下文无关文法中，我们遇到 <span class="math">$\text{S}$</span> 时，我们无需去关心 <span class="math">$\text{S}$</span> 的左边和右边是什么符号（这里的a、b其实就是所谓的上下文），直接根据产生式去替换就行。</p>
+<p>但是如果我们还有产生式 <span class="math">$\text{aS}\to aa$</span>,那么下次当我们遇到式子 <span class="math">$\text{aS}$</span> 时，不能直接去替换 <span class="math">$\text{S}$</span>，还得去研究 <span class="math">$\text{S}$</span> 的上下文。这时候就是上下文有关了。</p>
 <blockquote>
 <p><strong>例1.1</strong>  给定文法G</p>
-<p>​	$E ::= E + E \mid E - E \mid E * E \mid E / E \mid (E) \mid n$</p>
-<p>其中，终结符 $T$ 的集合为 $\lbrace +,-,*,/,n,()\rbrace$,</p>
-<p>并且符号 $n$ 表示整数； 非终结符 $N$ 的集合为 $\lbrace E \rbrace$；</p></blockquote>
-<p><em>解：</em> 上面其实就是一个标准的上下文无关文法，他包含了我们之前说的四元组：G = {N、 T、 S、 P}，通常我们使用<strong>大写字母</strong>表示非终结符，<strong>小写字母</strong>表示终结符。这里的 $E$ 其实充当开始符号S的作用，不必拘泥于字母表示。</p>
+<p>​	<span class="math">$E ::= E &#43; E \mid E - E \mid E * E \mid E / E \mid (E) \mid n$</span></p>
+<p>其中，终结符 <span class="math">$T$</span> 的集合为 <span class="math">$\lbrace &#43;,-,*,/,n,()\rbrace$</span>,</p>
+<p>并且符号 <span class="math">$n$</span> 表示整数； 非终结符 <span class="math">$N$</span> 的集合为 <span class="math">$\lbrace E \rbrace$</span>；</p></blockquote>
+<p><em>解：</em> 上面其实就是一个标准的上下文无关文法，他包含了我们之前说的四元组：G = {N、 T、 S、 P}，通常我们使用<strong>大写字母</strong>表示非终结符，<strong>小写字母</strong>表示终结符。这里的 <span class="math">$E$</span> 其实充当开始符号S的作用，不必拘泥于字母表示。</p>
 <p>这个文法G可表示的集合为整数域上加减乘除的表达式</p>
 <blockquote>
-<p><em>Q1：</em> 判断表达式 $1+2*3$ 是否是文法G的元素？</p></blockquote>
-<div>$$
+<p><em>Q1：</em> 判断表达式 <span class="math">$1&#43;2*3$</span> 是否是文法G的元素？</p></blockquote>
+<span class="math">$$
 \begin{aligned}
-E &\to E + E \\
-  &\to E + E * E \\
-  &\to n + n * n \\
-  &\to 1 + 2 * 3 \\
+E &amp;\to E &#43; E \\
+  &amp;\to E &#43; E * E \\
+  &amp;\to n &#43; n * n \\
+  &amp;\to 1 &#43; 2 * 3 \\
 \end{aligned}
-$$
-当然由于我们的文法G的规则不够完善，还未支持四则运算的优先级，所以上面的推导过程不是唯一的。
+$$</span><p>
+当然由于我们的文法G的规则不够完善，还未支持四则运算的优先级，所以上面的推导过程不是唯一的。</p>
 <p>我们还可以用推导树来表示刚刚的推导过程：</p>
 <img src="images/image-20250628021844434.png" alt="image-20250628021844434" style="zoom: 50%;" />
 <blockquote>
 <p><em>Q2：</em> 怎么修改文法G的规则使得可以支持四则运算的优先级？</p></blockquote>
-<div>$$
+<span class="math">$$
 \begin{aligned}
-E &::= E + T \mid E - T \mid T \\
-T &::= T * F \mid T / F \mid F \\
-F &::= (E) \mid n \\
+E &amp;::= E &#43; T \mid E - T \mid T \\
+T &amp;::= T * F \mid T / F \mid F \\
+F &amp;::= (E) \mid n \\
 \end{aligned}
-$$
-在《形式化方法》这门课中，上下文无关文法只是我们用来表达命题逻辑、谓词逻辑等等的一个最基本的表达形式，所以了解到这里就已经够了，如果想要更深入的进行学习，可以学习另一门课程《编译原理》。
+$$</span><p>
+在《形式化方法》这门课中，上下文无关文法只是我们用来表达命题逻辑、谓词逻辑等等的一个最基本的表达形式，所以了解到这里就已经够了，如果想要更深入的进行学习，可以学习另一门课程《编译原理》。</p>
 <h3 id="结构化归纳法">结构化归纳法</h3>
 <p>归纳法(Induction)是一个非常强大的数学工具。</p>
 <ul>
 <li>数学归纳法(Mathematical induction)：我们在高中阶段就已经学过了，他其实是建立在natural number上的一套普适原则。在高中阶段我们并没有研究数学归纳法的证明，其实这个涉及到了什么是natural number?我们需要使用纯数中的皮亚诺公理系统（Piano number)来证明这个定理。</li>
 <li>结构化归纳法(Structural induction)：Do induction on any recursive defined structures。</li>
-<li>良基归纳(Well-founded induction)：是基于 $2^{nd}$ 数学归纳法而推广到任意线性序的归纳法。</li>
+<li>良基归纳(Well-founded induction)：是基于 <span class="math">$2^{nd}$</span> 数学归纳法而推广到任意线性序的归纳法。</li>
 </ul>
 <p>下面我们给出对于结构化归纳法的定义：</p>
-<p>对于产生式：</p>
-<div>$$
+<p>对于产生式：
+</p>
+<span class="math">$$
 A ::= \alpha_1 \mid \dots \mid \alpha_m \mid \beta_1 A \gamma_1 \mid \dots \mid \beta_n A \gamma_n
-$$
-其中非终结符A在 $\alpha_i、1 \leq i \leq m$ 中不出现。要证明某个命题P(A)成立，只要证明如下两个步骤：
+$$</span><p>
+其中非终结符A在 <span class="math">$\alpha_i、1 \leq i \leq m$</span> 中不出现。要证明某个命题P(A)成立，只要证明如下两个步骤：</p>
 <ol>
-<li>基础步：证明命题 P 对 $\alpha_i、1 \leq i \leq m$ 都成立；</li>
-<li>归纳步：分别假设命题 P 对 $\beta_i A \gamma_i、1 \leq i \leq n$ 中的A成立，分别证明 $P(\beta_i A \gamma_i)$ 成立。</li>
+<li>基础步：证明命题 P 对 <span class="math">$\alpha_i、1 \leq i \leq m$</span> 都成立；</li>
+<li>归纳步：分别假设命题 P 对 <span class="math">$\beta_i A \gamma_i、1 \leq i \leq n$</span> 中的A成立，分别证明 <span class="math">$P(\beta_i A \gamma_i)$</span> 成立。</li>
 </ol>
 <p>综合上述两个步骤，可证明命题P(A)成立。</p>
 <blockquote>
 <p><strong>例1.2</strong>  证明例1.1给定文法表示的集合A，左括号和右括号的数量相等</p></blockquote>
 <p>证明：设用符号(L(A))和(R(A))分别来表示集合A的左括号和右括号的数量。</p>
-<p>归纳基础：首先对集合A的元素进行证明，可得 $L(n) = R(n) = 0$，成立。</p>
-<p>归纳推理：设 $L(E) = R(E)$ 成立，则：</p>
-<div>$$
-L(E{+}E) = L(E) + L(+) + L(E) = R(E) + R(+) + R(E) = R(E{+}E),
-$$
-成立，同理可证 $E - E、E * E、E / E$ 成立；对 $(E)$ 进行验证，可得：
-<div>$$
-L((E)) = 1 + L(E) = R(E) + 1 = R((E)),
-$$
-成立。所以，我们可以得出对于例（1.2）给定文法所表示的集合，具有左括号等于右括号的性质。证毕。
+<p>归纳基础：首先对集合A的元素进行证明，可得 <span class="math">$L(n) = R(n) = 0$</span>，成立。</p>
+<p>归纳推理：设 <span class="math">$L(E) = R(E)$</span> 成立，则：
+</p>
+<span class="math">$$
+L(E{&#43;}E) = L(E) &#43; L(&#43;) &#43; L(E) = R(E) &#43; R(&#43;) &#43; R(E) = R(E{&#43;}E),
+$$</span><p>
+成立，同理可证 <span class="math">$E - E、E * E、E / E$</span> 成立；对 <span class="math">$(E)$</span> 进行验证，可得：
+</p>
+<span class="math">$$
+L((E)) = 1 &#43; L(E) = R(E) &#43; 1 = R((E)),
+$$</span><p>
+成立。所以，我们可以得出对于例（1.2）给定文法所表示的集合，具有左括号等于右括号的性质。证毕。</p>
 <h2 id="命题逻辑">命题逻辑</h2>
 <h3 id="语法规则">语法规则</h3>
-<p>首先我们用之前学到的上下文无关文法，给出命题逻辑的语法规则：</p>
-<div>$$
+<p>首先我们用之前学到的上下文无关文法，给出命题逻辑的语法规则：
+</p>
+<span class="math">$$
 P ::= \top \mid \bot \mid x \mid P \land P \mid P \lor P \mid P \to P \mid \lnot P
-$$
-符号 $\top , \bot , x$ 分别表示逻辑常量“真”，逻辑常量“假”，和原子命题变量。这三种语法形式都是基本的，因此我们可称它们为原子命题（其实就是上面的*终结符*）。
+$$</span><p>
+符号 <span class="math">$\top , \bot , x$</span> 分别表示逻辑常量“真”，逻辑常量“假”，和原子命题变量。这三种语法形式都是基本的，因此我们可称它们为原子命题（其实就是上面的<em>终结符</em>）。</p>
 <p>后面4个是通过连接词连接子命题，而构成复合命题。</p>
 <h3 id="证明系统">证明系统</h3>
 <p>我们使用<strong>自然演绎系统</strong>这种形式化的逻辑证明方式系统来作为命题逻辑的证明系统。</p>
 <p>首先我们需要先确定一些假定的推理规则，然后利用这些规则，在假定的一个真前提下，得出真结论。这里<em>假定的真前提</em>就是所谓的环境。（我们不关心这些前提实际的真假，只是在推理过程中假定他们为真）</p>
-<p>定义 $2.1$（环境） 环境 $\Gamma$ 是由$n，n\ge 0$，个命题构成的命题列表</p>
-<div>$$
+<p>定义 <span class="math">$2.1$</span>（环境） 环境 <span class="math">$\Gamma$</span> 是由<span class="math">$n，n\ge 0$</span>，个命题构成的命题列表
+</p>
+<span class="math">$$
 \Gamma = P_1, \ldots, P_n
-$$
-特别的，若 $n=0$,我们称 $\Gamma$ 为空环境。
-<p>定义 $2.2$(断言) 断言是由环境 $\Gamma$，和命题 $P$ 构成的元组</p>
-<div>$$
+$$</span><p>
+特别的，若 <span class="math">$n=0$</span>,我们称 <span class="math">$\Gamma$</span> 为空环境。</p>
+<p>定义 <span class="math">$2.2$</span>(断言) 断言是由环境 <span class="math">$\Gamma$</span>，和命题 <span class="math">$P$</span> 构成的元组
+</p>
+<span class="math">$$
 \Gamma \vdash P
-$$
-$\vdash $ 是推导符号，也即环境 $\Gamma$ 为真可以断言得到命题 $P$ 为真。
-<p>定义 $2.3$(证明规则) 证明规则是形如</p>
-<div>$$
+$$</span><p>
+<span class="math">$\vdash $</span> 是推导符号，也即环境 <span class="math">$\Gamma$</span> 为真可以断言得到命题 <span class="math">$P$</span> 为真。</p>
+<p>定义 <span class="math">$2.3$</span>(证明规则) 证明规则是形如
+</p>
+<span class="math">$$
 \frac{\Gamma_1 \vdash P_1 \quad \dots \quad \Gamma_n \vdash P_n}{\Gamma \vdash P} \ \ \ \ (\text{Rule-Name})
-$$
-的一条公式，其中 $n \ge 0$。
+$$</span><p>
+的一条公式，其中 <span class="math">$n \ge 0$</span>。</p>
 <p>证明规则由三部分组成：</p>
 <ul>
-<li>规则的前提：横线上方的 $n$ 条断言</li>
+<li>规则的前提：横线上方的 <span class="math">$n$</span> 条断言</li>
 <li>规则的结论：横线下方唯一的断言</li>
 <li>Rule-Name：规则的名字，唯一的表示了该规则</li>
 </ul>
 <h3 id="推导规则">推导规则</h3>
-<p>首先我们来看看最简单的变量规则，它是一条公理，也就是这个规则结论的推出是不需要前提的：</p>
-<div>$$
+<p>首先我们来看看最简单的变量规则，它是一条公理，也就是这个规则结论的推出是不需要前提的：
+</p>
+<span class="math">$$
 \frac{}{\Gamma, P \vdash P} \ (\mathrm{Var})
-$$
-显然如果命题$P$在环境中出现，根据定义就可以推出$P$成立。
-<p>下面是真引入规则：</p>
-<div>$$
+$$</span><p>
+显然如果命题<span class="math">$P$</span>在环境中出现，根据定义就可以推出<span class="math">$P$</span>成立。</p>
+<p>下面是真引入规则：
+</p>
+<span class="math">$$
 \frac{}{\Gamma \vdash \top} \ (\top I)
-$$
-它也是一条公理，表示在任意环境 $\Gamma$ 中，命题 $\top$ 都无条件成立。
-<p>接下来我们来看看假消除规则：</p>
-<div>$$
+$$</span><p>
+它也是一条公理，表示在任意环境 <span class="math">$\Gamma$</span> 中，命题 <span class="math">$\top$</span> 都无条件成立。</p>
+<p>接下来我们来看看假消除规则：
+</p>
+<span class="math">$$
 \frac{\Gamma \vdash \bot}{\Gamma \vdash P} \ (\bot E)
-$$
-可以理解为环境 $\Gamma$ 能推出 “假”，即 $\Gamma$ 中包含矛盾（比如同时有 $A$ 和 $\neg A$），那么环境 $\Gamma$ 能推出**任意命题** $P$（无论 $P$ 本身是否合理）。
+$$</span><p>
+可以理解为环境 <span class="math">$\Gamma$</span> 能推出 “假”，即 <span class="math">$\Gamma$</span> 中包含矛盾（比如同时有 <span class="math">$A$</span> 和 <span class="math">$\neg A$</span>），那么环境 <span class="math">$\Gamma$</span> 能推出<strong>任意命题</strong> <span class="math">$P$</span>（无论 <span class="math">$P$</span> 本身是否合理）。</p>
 <p>逻辑意义：维护 “无矛盾则有效” 的体系，它揭示了 <strong>“矛盾会摧毁推理有效性”</strong> 这一本质，迫使使用者必须保证前提的一致性，否则推理将失去意义。</p>
-<p>其他的规则我们也就不一一讲解了，下面给出完整的最基础的$14$条命题逻辑的推理规则：</p>
-<div>$$
+<p>其他的规则我们也就不一一讲解了，下面给出完整的最基础的<span class="math">$14$</span>条命题逻辑的推理规则：
+</p>
+<span class="math">$$
 \frac{}{\Gamma, P \vdash P} \ (\mathrm{Var}) \quad\quad\quad\quad\quad\quad \frac{}{\Gamma \vdash \top} \ (\top I)
-$$
-<div>$$
+$$</span><span class="math">$$
 \frac{\Gamma \vdash \bot}{\Gamma \vdash P} \ (\bot E) \quad\quad\quad\quad\quad\quad \frac{\Gamma \vdash P \quad\quad \Gamma \vdash Q}{\Gamma \vdash P \land Q} \ (\land I)
-$$
-<div>$$
+$$</span><span class="math">$$
 \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \ (\land E1) \quad\quad\quad\quad\quad\quad \frac{\Gamma \vdash P \land Q}{\Gamma \vdash Q} \ (\land E2)
-$$
-<div>$$
+$$</span><span class="math">$$
 \frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q} (\lor I1)
 \quad\quad\quad\quad\quad\quad
 \frac{\Gamma \vdash Q}{\Gamma \vdash P \lor Q} (\lor I2)
-$$
-<div>$$
+$$</span><span class="math">$$
 \frac{\Gamma, P \vdash Q}{\Gamma \vdash P \to Q} (\to I)
 \quad\quad\quad\quad
 \frac{\Gamma \vdash P \to Q \quad\quad \Gamma \vdash P}{\Gamma \vdash Q} (\to E)
-$$
-<div>$$
+$$</span><span class="math">$$
 \frac{\Gamma, P \vdash \perp}{\Gamma \vdash \neg P} (\neg I)
 \quad\quad\quad\quad\quad\quad\quad
 \frac{\Gamma \vdash P \quad\quad \Gamma \vdash \neg P}{\Gamma \vdash \perp} (\neg E)
-$$
-<div>$$
+$$</span><span class="math">$$
 \frac{\Gamma \vdash P \lor Q \quad\quad \Gamma, P \vdash R \quad\quad \Gamma, Q \vdash R}{\Gamma \vdash R} (\lor E)
 \quad\quad\quad
 \frac{\Gamma \vdash \neg \neg P}{\Gamma \vdash P} (\neg\neg E)
-$$
-<blockquote>
-<p>例2.1 根据上面的推导规则，画出命题 $\vdash P \to \neg \neg P$ 的证明树</p></blockquote>
-<p>从下往上根据上面的14条推理规则去找匹配的进行推导就行，最后推导到公理即可：</p>
-<div>$$
+$$</span><blockquote>
+<p>例2.1 根据上面的推导规则，画出命题 <span class="math">$\vdash P \to \neg \neg P$</span> 的证明树</p></blockquote>
+<p>从下往上根据上面的14条推理规则去找匹配的进行推导就行，最后推导到公理即可：
+</p>
+<span class="math">$$
 \begin{array}{c}
 \dfrac{
  \dfrac{
@@ -391,11 +399,10 @@ $$
  }{P \vdash \neg \neg P}(\neg I)
 }{\vdash P \to \neg \neg P}(\to I)
 \end{array}
-$$
-<h3 id="sat问题">SAT问题</h3>
+$$</span><h3 id="sat">SAT</h3>
 <p>SAT（布尔可满足性理论）：given a proposition P, is it satisfiable?</p>
 <p><strong>第一个NPC问题</strong>(Cook-Levin, 1971)</p>
-<p>显然我们可以通过画真值表的方式来得到答案，但是时间复杂度是$O(2^n)$。</p>
+<p>显然我们可以通过画真值表的方式来得到答案，但是时间复杂度是<span class="math">$O(2^n)$</span>。</p>
 <p>那么有没有更快一点的方式让计算机来解决SAT问题呢？</p>
 <p>有的有的兄弟，那就是就是<strong>DPLL算法</strong>：</p>
 <ul>
@@ -408,179 +415,165 @@ $$
 </li>
 </ul>
 <p>所有命题公式都可以转换成 CNF 的等价公式。在布尔逻辑中，如果一个公式公式(数理逻辑)是子句的，那么它是<strong>合取范式</strong>（CNF）的。作为规范形式，它在自动定理证明中有用。</p>
-<p>例如，下列所有公式都是CNF:</p>
-<div>$$
+<p>例如，下列所有公式都是CNF:
+</p>
+<span class="math">$$
 \begin{aligned}
-& A \land B \\
-& \neg A \land (B \lor C) \\
-& (A \lor B) \land (\neg B \lor C \lor \neg D) \land (D \lor \neg E) \\
-& (\neg B \lor C) \\
+&amp; A \land B \\
+&amp; \neg A \land (B \lor C) \\
+&amp; (A \lor B) \land (\neg B \lor C \lor \neg D) \land (D \lor \neg E) \\
+&amp; (\neg B \lor C) \\
 \end{aligned}
-$$
-<p>而下列不是:</p>
-<div>$$
+$$</span><p>而下列不是:
+</p>
+<span class="math">$$
 \begin{aligned}
-& \neg (B \lor C) \\
-& (A \land B) \lor C \\
-& A \land (B \lor (D \land E)) \\
+&amp; \neg (B \lor C) \\
+&amp; (A \land B) \lor C \\
+&amp; A \land (B \lor (D \land E)) \\
 \end{aligned}
-$$
-<p>上述三个公式分别等价于合取范式的下列三个公式:</p>
-<div>$$
+$$</span><p>上述三个公式分别等价于合取范式的下列三个公式:
+</p>
+<span class="math">$$
 \begin{aligned}
-& \neg B \land \neg C \\
-& (A \lor C) \land (B \lor C) \\
-& A \land (B \lor D) \land (B \lor E) \\
+&amp; \neg B \land \neg C \\
+&amp; (A \lor C) \land (B \lor C) \\
+&amp; A \land (B \lor D) \land (B \lor E) \\
 \end{aligned}
-$$
-<p>等价转换公式：</p>
-<div>$$
+$$</span><p>等价转换公式：
+</p>
+<span class="math">$$
 \begin{aligned}
-\mathcal{E}(\top) &= \top \\
-\mathcal{E}(\bot) &= \bot \\
-\mathcal{E}(p) &= p \\
-\mathcal{E}(P \land Q) &= \mathcal{E}(P) \land \mathcal{E}(Q) \\
-\mathcal{E}(P \lor Q) &= \mathcal{E}(P) \lor \mathcal{E}(Q) \\
-\mathcal{E}(P \to Q) &= \mathcal{E}(\neg P) \lor \mathcal{E}(Q) \\
-\mathcal{E}(\neg P) &= \neg \mathcal{E}(P) \\
+\mathcal{E}(\top) &amp;= \top \\
+\mathcal{E}(\bot) &amp;= \bot \\
+\mathcal{E}(p) &amp;= p \\
+\mathcal{E}(P \land Q) &amp;= \mathcal{E}(P) \land \mathcal{E}(Q) \\
+\mathcal{E}(P \lor Q) &amp;= \mathcal{E}(P) \lor \mathcal{E}(Q) \\
+\mathcal{E}(P \to Q) &amp;= \mathcal{E}(\neg P) \lor \mathcal{E}(Q) \\
+\mathcal{E}(\neg P) &amp;= \neg \mathcal{E}(P) \\
 \end{aligned}
-$$
-<div>$$
+$$</span><span class="math">$$
 \begin{aligned}
-\mathcal{N}(\top) &= \top \\
-\mathcal{N}(\bot) &= \bot \\
-\mathcal{N}(p) &= p \\
-\mathcal{N}(\neg P) &= \neg \mathcal{N}(P) \\
-\mathcal{N}(\neg \neg P) &= \mathcal{N}(P) \\
-\mathcal{N}(P \land Q) &= \mathcal{N}(P) \land \mathcal{N}(Q) \\
-\mathcal{N}(P \lor Q) &= \mathcal{N}(P) \lor \mathcal{N}(Q) \\
-\mathcal{N}(\neg (P \land Q)) &= \mathcal{N}(\neg P) \lor \mathcal{N}(\neg Q) \\
-\mathcal{N}(\neg (P \lor Q)) &= \mathcal{N}(\neg P) \land \mathcal{N}(\neg Q) \\
+\mathcal{N}(\top) &amp;= \top \\
+\mathcal{N}(\bot) &amp;= \bot \\
+\mathcal{N}(p) &amp;= p \\
+\mathcal{N}(\neg P) &amp;= \neg \mathcal{N}(P) \\
+\mathcal{N}(\neg \neg P) &amp;= \mathcal{N}(P) \\
+\mathcal{N}(P \land Q) &amp;= \mathcal{N}(P) \land \mathcal{N}(Q) \\
+\mathcal{N}(P \lor Q) &amp;= \mathcal{N}(P) \lor \mathcal{N}(Q) \\
+\mathcal{N}(\neg (P \land Q)) &amp;= \mathcal{N}(\neg P) \lor \mathcal{N}(\neg Q) \\
+\mathcal{N}(\neg (P \lor Q)) &amp;= \mathcal{N}(\neg P) \land \mathcal{N}(\neg Q) \\
 \end{aligned}
-$$
-<div>$$
+$$</span><span class="math">$$
 \begin{aligned}
-\mathcal{C}(\top) &= \top \\
-\mathcal{C}(\bot) &= \bot \\
-\mathcal{C}(p) &= p \\
-\mathcal{C}(\neg p) &= \neg \mathcal{C}(p) \\
-\mathcal{C}(P \land Q) &= \mathcal{C}(P) \land \mathcal{C}(Q) \\
-\mathcal{C}(P \lor Q) &= \mathcal{D}\bigl(\mathcal{C}(P), \mathcal{C}(Q)\bigr) \\
-\mathcal{D}(P_1 \land P_2, Q) &= \mathcal{D}(P_1, Q) \land \mathcal{D}(P_2, Q) \\
-\mathcal{D}(P, Q_1 \land Q_2) &= \mathcal{D}(P, Q_1) \land \mathcal{D}(P, Q_2) \\
-\mathcal{D}(P, Q) &= P \lor Q \\
+\mathcal{C}(\top) &amp;= \top \\
+\mathcal{C}(\bot) &amp;= \bot \\
+\mathcal{C}(p) &amp;= p \\
+\mathcal{C}(\neg p) &amp;= \neg \mathcal{C}(p) \\
+\mathcal{C}(P \land Q) &amp;= \mathcal{C}(P) \land \mathcal{C}(Q) \\
+\mathcal{C}(P \lor Q) &amp;= \mathcal{D}\bigl(\mathcal{C}(P), \mathcal{C}(Q)\bigr) \\
+\mathcal{D}(P_1 \land P_2, Q) &amp;= \mathcal{D}(P_1, Q) \land \mathcal{D}(P_2, Q) \\
+\mathcal{D}(P, Q_1 \land Q_2) &amp;= \mathcal{D}(P, Q_1) \land \mathcal{D}(P, Q_2) \\
+\mathcal{D}(P, Q) &amp;= P \lor Q \\
 \end{aligned}
-$$
-<blockquote>
-<p>例2.2 转换命题</p>
-<div>$$
-(p_1 \land \neg \neg p_2) \lor (\neg q_1 \to q_2)
-$$
-为CNF命题。</blockquote>
+$$</span><blockquote>
+<p>例2.2 转换命题
+</p>
+<span class="math">$$
+&gt; (p_1 \land \neg \neg p_2) \lor (\neg q_1 \to q_2)
+&gt; $$</span><p>
+为CNF命题。</p></blockquote>
 <ol>
 <li>消去蕴含。</li>
 </ol>
-<div>$$
+<span class="math">$$
 \begin{aligned}
 \mathcal{E}\bigl(((p_1 \land \neg \neg p_2) \lor (\neg q_1 \to q_2))\bigr) 
-&= \mathcal{E}(p_1 \land \neg \neg p_2) \lor \mathcal{E}(\neg q_1 \to q_2) \\
-&= \bigl(\mathcal{E}(p_1) \land \mathcal{E}(\neg \neg p_2)\bigr) \lor \bigl(\mathcal{E}(\neg q_1) \lor \mathcal{E}(q_2)\bigr) \\
-&= (p_1 \land \neg \neg p_2) \lor (\neg \neg q_1 \lor q_2) \\
+&amp;= \mathcal{E}(p_1 \land \neg \neg p_2) \lor \mathcal{E}(\neg q_1 \to q_2) \\
+&amp;= \bigl(\mathcal{E}(p_1) \land \mathcal{E}(\neg \neg p_2)\bigr) \lor \bigl(\mathcal{E}(\neg q_1) \lor \mathcal{E}(q_2)\bigr) \\
+&amp;= (p_1 \land \neg \neg p_2) \lor (\neg \neg q_1 \lor q_2) \\
 \end{aligned}
-$$
-<ol start="2">
+$$</span><ol start="2">
 <li>转换为NNF。</li>
 </ol>
-<div>$$
+<span class="math">$$
 \begin{aligned}
 \mathcal{N}\bigl(((p_1 \land \neg \neg p_2) \lor (\neg \neg q_1 \lor q_2))\bigr) 
-&= \mathcal{N}(p_1 \land \neg \neg p_2) \lor \mathcal{N}(\neg \neg q_1 \lor q_2) \\
-&= \bigl(\mathcal{N}(p_1) \land \mathcal{N}(\neg \neg p_2)\bigr) \lor \bigl(\mathcal{N}(\neg \neg q_1) \lor \mathcal{N}(q_2)\bigr) \\
-&= (p_1 \land p_2) \lor (q_1 \lor q_2) \\
+&amp;= \mathcal{N}(p_1 \land \neg \neg p_2) \lor \mathcal{N}(\neg \neg q_1 \lor q_2) \\
+&amp;= \bigl(\mathcal{N}(p_1) \land \mathcal{N}(\neg \neg p_2)\bigr) \lor \bigl(\mathcal{N}(\neg \neg q_1) \lor \mathcal{N}(q_2)\bigr) \\
+&amp;= (p_1 \land p_2) \lor (q_1 \lor q_2) \\
 \end{aligned}
-$$
-<ol start="3">
+$$</span><ol start="3">
 <li>等价转换为CNF</li>
 </ol>
-<div>$$
+<span class="math">$$
 \begin{aligned}
 \mathcal{C}\bigl(((p_1 \land p_2) \lor (q_1 \lor q_2))\bigr) 
-&= \mathcal{D}\bigl(\mathcal{C}(p_1 \land p_2), \mathcal{C}(q_1 \lor q_2)\bigr) \\
-&= \mathcal{D}(p_1 \land p_2, \mathcal{D}(q_1, q_2)) \\
-&= \mathcal{D}\bigl(p_1, \mathcal{D}(q_1, q_2)\bigr) \land \mathcal{D}\bigl(p_2, \mathcal{D}(q_1, q_2)\bigr) \\
-&= \mathcal{D}\bigl(p_1, q_1 \lor q_2\bigr) \land \mathcal{D}\bigl(q_2, q_1 \lor q_2\bigr) \\
-&= (p_1 \lor q_1 \lor q_2) \land (p_2 \lor q_1 \lor q_2) \\
+&amp;= \mathcal{D}\bigl(\mathcal{C}(p_1 \land p_2), \mathcal{C}(q_1 \lor q_2)\bigr) \\
+&amp;= \mathcal{D}(p_1 \land p_2, \mathcal{D}(q_1, q_2)) \\
+&amp;= \mathcal{D}\bigl(p_1, \mathcal{D}(q_1, q_2)\bigr) \land \mathcal{D}\bigl(p_2, \mathcal{D}(q_1, q_2)\bigr) \\
+&amp;= \mathcal{D}\bigl(p_1, q_1 \lor q_2\bigr) \land \mathcal{D}\bigl(q_2, q_1 \lor q_2\bigr) \\
+&amp;= (p_1 \lor q_1 \lor q_2) \land (p_2 \lor q_1 \lor q_2) \\
 \end{aligned}
-$$
-<h2 id="构造逻辑">构造逻辑</h2>
-<p>与经典命题逻辑的区别：是否接受排中律 $\vdash P \lor \neg P$ ?</p>
-<p>也就会导致我们无法使用反证法来证明命题成立。也就是我们再也无法通过证明 $\neg P$ 成立来证明 $P$ 不成立。</p>
+$$</span><h2 id="构造逻辑">构造逻辑</h2>
+<p>与经典命题逻辑的区别：是否接受排中律 <span class="math">$\vdash P \lor \neg P$</span> ?</p>
+<p>也就会导致我们无法使用反证法来证明命题成立。也就是我们再也无法通过证明 <span class="math">$\neg P$</span> 成立来证明 <span class="math">$P$</span> 不成立。</p>
 <h3 id="语法规则-1">语法规则</h3>
-<div>$$
+<span class="math">$$
 P ::= p \mid \top \mid \bot \mid x \mid P \land P \mid P \lor P \mid P \to P
-$$
-<p>$\neg P$ 被替换为 $p \to \bot$，而不再出现。</p>
+$$</span><p><span class="math">$\neg P$</span> 被替换为 <span class="math">$p \to \bot$</span>，而不再出现。</p>
 <h3 id="证明系统-1">证明系统</h3>
 <p>同命题逻辑。</p>
 <h3 id="推导系统">推导系统</h3>
-<p>剔除了双重否定律以及$\neg$的引入和消去规则，其他都同命题逻辑。</p>
+<p>剔除了双重否定律以及<span class="math">$\neg$</span>的引入和消去规则，其他都同命题逻辑。</p>
 <h2 id="谓词逻辑">谓词逻辑</h2>
-<h4 id="the-syntax">The Syntax:</h4>
-<div>$$
+<h3 id="语法规则-2">语法规则</h3>
+<span class="math">$$
 \begin{aligned}
-E &::= x \mid c \mid f(E,\dots,E) \\
-R &::= r(E,\dots,E) \\
-P &::= R  \\
-  &\phantom{::} \mid \top \\  % 用 \phantom 占位 ::= 的空格
-  &\phantom{::} \mid \bot \\
-  &\phantom{::} \mid P \lor P \\
-  &\phantom{::} \mid P \land P \\
-  &\phantom{::} \mid P \rightarrow P \\
-  &\phantom{::} \mid \neg P \\
-  &\phantom{::} \mid \forall x, P \\
-  &\phantom{::} \mid \exists x, P \\
+E &amp;::= x \mid c \mid f(E,\dots,E) \\
+R &amp;::= r(E,\dots,E) \\
+P &amp;::= R  \\
+  &amp;\phantom{::} \mid \top \\  % 用 \phantom 占位 ::= 的空格
+  &amp;\phantom{::} \mid \bot \\
+  &amp;\phantom{::} \mid P \lor P \\
+  &amp;\phantom{::} \mid P \land P \\
+  &amp;\phantom{::} \mid P \rightarrow P \\
+  &amp;\phantom{::} \mid \neg P \\
+  &amp;\phantom{::} \mid \forall x, P \\
+  &amp;\phantom{::} \mid \exists x, P \\
 \end{aligned}
-$$
-<p>$E$:表达式</p>
-<p>$x$：变量</p>
-<p>$c$：常量</p>
-<p>$R$:关系</p>
-<p>$r()$：关系算符</p>
-<p>$P$：命题</p>
-<h4 id="intuition">Intuition:</h4>
-<p>我们把上面的这套公理化系统引入到数论中直观感受一下各项代表着什么：</p>
-<div>$$
+$$</span><p><span class="math">$E$</span>:表达式</p>
+<p><span class="math">$x$</span>：变量</p>
+<p><span class="math">$c$</span>：常量</p>
+<p><span class="math">$R$</span>:关系</p>
+<p><span class="math">$r()$</span>：关系算符</p>
+<p><span class="math">$P$</span>：命题</p>
+<p>Intuition:</p>
+<p>我们把上面的这套公理化系统引入到数论中直观感受一下各项代表着什么：
+</p>
+<span class="math">$$
 \begin{aligned}
-E &::= x \mid \mathbb{Z} \mid E+E \mid E-E \mid \dots \\
-R &::= E>E \mid E=E \mid E \le E \\
-P &::= R \\
-  &\phantom{::} \mid \top \\  % 用 \phantom 占位 ::= 的空格
-  &\phantom{::} \mid \bot \\
-  &\phantom{::} \mid P \lor P \\
-  &\phantom{::} \mid P \land P \\
-  &\phantom{::} \mid P \rightarrow P \\
-  &\phantom{::} \mid \neg P \\
-  &\phantom{::} \mid \forall x, P \\
-  &\phantom{::} \mid \exists x, P \\
+E &amp;::= x \mid \mathbb{Z} \mid E&#43;E \mid E-E \mid \dots \\
+R &amp;::= E&gt;E \mid E=E \mid E \le E \\
+P &amp;::= R \\
+  &amp;\phantom{::} \mid \top \\  % 用 \phantom 占位 ::= 的空格
+  &amp;\phantom{::} \mid \bot \\
+  &amp;\phantom{::} \mid P \lor P \\
+  &amp;\phantom{::} \mid P \land P \\
+  &amp;\phantom{::} \mid P \rightarrow P \\
+  &amp;\phantom{::} \mid \neg P \\
+  &amp;\phantom{::} \mid \forall x, P \\
+  &amp;\phantom{::} \mid \exists x, P \\
 \end{aligned}
-$$
-很明显：上面这套谓词逻辑是数论的一种抽象，这种Syntax是由逻辑学派创建出来的。逻辑学已经有2000多年的历史了，最终确定下来这种形式，其实是对其中的抽象性和具体性的一种平衡。如果太讲究抽象性，那么就无法得出什么meaningful的结论，但如果太讲究具体性，就有可能会偏向于某一理论。
+$$</span><p>
+很明显：上面这套谓词逻辑是数论的一种抽象，这种Syntax是由逻辑学派创建出来的。逻辑学已经有2000多年的历史了，最终确定下来这种形式，其实是对其中的抽象性和具体性的一种平衡。如果太讲究抽象性，那么就无法得出什么meaningful的结论，但如果太讲究具体性，就有可能会偏向于某一理论。</p>
 <p>谓词逻辑其实就是从数论、集合论、矩阵理论等等中抽象出了一个共性语法规则，他的好处就是如果能正面共性成立，就无需去将每一个底层理论继续证明，就比如哥德尔不完备性定理就是在数理逻辑框架下证明，所以对于任意框架都成立。</p>
-<h3 id="推导规则-1">推导规则</h3>
-<div>$$
-\frac{\Gamma, x \vdash P}{\Gamma \vdash \forall x. P} \ (\forall I)
-\quad \quad \quad \quad \quad\quad \quad\quad
-\frac{\Gamma \vdash \forall x. P}{\Gamma \vdash P[x \mapsto E]} \ (\forall E)
-$$
-<div>$$
-\frac{\Gamma \vdash P[x \mapsto E]}{\Gamma \vdash \exists x. P} \ (\exists I)
-\quad \quad \quad
-\frac{\Gamma \vdash \exists x. P \quad\quad \Gamma, x, P \vdash Q}{\Gamma \vdash Q} \ (\exists E)
-$$
+<h3 id="证明系统-2">证明系统</h3>
+<p>同命题逻辑。</p>
 <h4 id="bound-free-variables">Bound free variables</h4>
-<p>Bound variables （绑定变量）：默认只绑定最近的一个命题</p>
-<p>Free variables （自由变量）</p>
-<p>$\forall x, P(x,y)$中，$x$ 就是绑定变量，$y$ 就是自由变量。</p>
+<p>Bound variables （绑定变量）：作用域内定义的变量，默认只绑定最近的一个命题</p>
+<p>Free variables （自由变量）：作用域内使用却未在该作用域内定义的变量</p>
+<p><span class="math">$\forall x, P(x,y)$</span>中，<span class="math">$x$</span> 就是绑定变量，<span class="math">$y$</span> 就是自由变量。</p>
 <p>其实就可以翻译成类似下面的code：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -596,8 +589,118 @@ $$
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="alpha---重命名">$\alpha$ - 重命名</h4>
-<h4 id="sat">SAT</h4>
+</div><p>下面给出绑定变量的计算规则：
+</p>
+<span class="math">$$
+\begin{align*}
+\mathcal{B}(c) &amp;= \phi \\
+\mathcal{B}(x) &amp;= \phi \\
+\mathcal{B}(r(E, \ldots, E)) &amp;= \phi \\
+\mathcal{B}(f(E, \ldots, E)) &amp;= \phi \\
+\mathcal{B}(\top) &amp;= \phi \\
+\mathcal{B}(\bot) &amp;= \phi \\
+\mathcal{B}(\neg P) &amp;= \mathcal{B}(P) \\
+\mathcal{B}(P_1 \land P_2) &amp;= \mathcal{B}(P_1) \cup \mathcal{B}(P_2) \\
+\mathcal{B}(P_1 \lor P_2) &amp;= \mathcal{B}(P_1) \cup \mathcal{B}(P_2) \\
+\mathcal{B}(P_1 \to P_2) &amp;= \mathcal{B}(P_1) \cup \mathcal{B}(P_2) \\
+\mathcal{B}(\forall x.P) &amp;= \{x\} \cup \mathcal{B}(P) \\
+\mathcal{B}(\exists x.P) &amp;= \{x\} \cup \mathcal{B}(P) \\
+\end{align*}
+$$</span><p>
+根据上面的计算规则，即可输入一个命题，返回一个绑定变量的集合。</p>
+<blockquote>
+<p>例4.1 计算命题 <span class="math">$A = \exists x (P(x, y) \lor \forall y Q(x, y) \to R(x, z))$</span> 中的绑定变量集合</p></blockquote>
+<span class="math">$$
+\begin{align*}
+\mathcal{B}(A) &amp;= \mathcal{B}\bigl(\exists x (P(x, y) \lor \forall y\, Q(x, y) \to R(x, z))\bigr) \\
+&amp;= \{x\} \cup \mathcal{B}\bigl(P(x, y) \lor \forall y\, Q(x, y) \to R(x, z)\bigr) \\
+&amp;= \{x\} \cup \mathcal{B}\bigl(P(x, y) \lor \forall y\, Q(x, y)\bigr) \cup \mathcal{B}\bigl(R(x, z)\bigr) \\
+&amp;= \{x\} \cup \mathcal{B}\bigl(P(x, y)\bigr) \cup \mathcal{B}\bigl(\forall y\, Q(x, y)\bigr) \cup \{\} \\
+&amp;= \{x\} \cup \{\} \cup \mathcal{B}\bigl(\forall y\, Q(x, y)\bigr) \cup \{\} \\
+&amp;= \{x\} \cup \{\} \cup y\mathcal{B}\bigl(Q(x, y)\bigr) \cup \{\} \\
+&amp;= \{x\} \cup \{\} \cup \{y\} \cup \{\} \cup \{\} \\
+&amp;= \{x, y\}
+\end{align*}
+$$</span><p>同理，下面给出自由变量的计算规则：
+</p>
+<span class="math">$$
+\begin{align*}
+\mathcal{F}(c) &amp;= \phi \\
+\mathcal{F}(x) &amp;= \{x\} \\
+\mathcal{F}(f(E_1, \ldots, E_n)) &amp;= \mathcal{F}(E_1) \cup \ldots \cup \mathcal{F}(E_n) \\
+\mathcal{F}(r(E_1, \ldots, E_n)) &amp;= \mathcal{F}(E_1) \cup \ldots \cup \mathcal{F}(E_n) \\
+\mathcal{F}(\top) &amp;= \phi \\
+\mathcal{F}(\bot) &amp;= \phi \\
+\mathcal{F}(\neg P) &amp;= \mathcal{F}(P) \\
+\mathcal{F}(P_1 \land P_2) &amp;= \mathcal{F}(P_1) \cup \mathcal{F}(P_2) \\
+\mathcal{F}(P_1 \lor P_2) &amp;= \mathcal{F}(P_1) \cup \mathcal{F}(P_2) \\
+\mathcal{F}(P_1 \to P_2) &amp;= \mathcal{F}(P_1) \cup \mathcal{F}(P_2) \\
+\mathcal{F}(\forall x.P) &amp;= \mathcal{F}(P) - \{x\} \\
+\mathcal{F}(\exists x.P) &amp;= \mathcal{F}(P) - \{x\} \\
+\end{align*}
+$$</span><blockquote>
+<p>例4.2 计算命题 <span class="math">$A = \exists x (P(x, y) \lor \forall y Q(x, y) \to R(x, z))$</span> 中的自由变量集合</p></blockquote>
+<span class="math">$$
+\begin{align*}
+\mathcal{F}(A) &amp;= \mathcal{F}\bigl(\exists x (P(x, y) \lor \forall y\, Q(x, y) \to R(x, z))\bigr) \\
+&amp;= \mathcal{F}\bigl(P(x, y) \lor \forall y\, Q(x, y) \to R(x, z)\bigr) - \{x\} \\
+&amp;= \mathcal{F}\bigl(P(x, y) \lor \forall y\, Q(x, y)\bigr) \cup \mathcal{F}\bigl(R(x, z)\bigr) - \{x\} \\
+&amp;= \mathcal{F}\bigl(P(x, y)\bigr) \cup \mathcal{F}\bigl(\forall y\, Q(x, y)\bigr) \cup \{x, z\} - \{x\} \\
+&amp;= \{x, y\} \cup \bigl(\mathcal{F}(Q(x, y)) - \{y\}\bigr) \cup \{x, z\} - \{x\} \\
+&amp;= \{x, y\} \cup \bigl(\{x, y\} - \{y\}\bigr) \cup \{x, z\} - \{x\} \\
+&amp;= \{x, y\} \cup \{x\} \cup \{x, z\} - \{x\} \\
+&amp;= \{x, y, z\} - \{x\} \\
+&amp;= \{y, z\}
+\end{align*}
+$$</span><h4 id="替换">替换</h4>
+<p>作用域内的<strong>自由变量</strong>被替换成表达式</p>
+<p>和上面一样，我们下面给出替换规则：
+</p>
+<span class="math">$$
+\begin{align*}
+x[x \mapsto E] &amp;= E \\
+y[x \mapsto E] &amp;= y \quad \text{且 } x \neq y \\
+f(E_1, \ldots, E_n)[x \mapsto E] &amp;= f(E_1[x \mapsto E], \ldots, E_n[x \mapsto E]) \\
+r(E_1, \ldots, E_n)[x \mapsto E] &amp;= r(E_1[x \mapsto E], \ldots, E_n[x \mapsto E]) \\
+(P_1 \land P_2)[x \mapsto E] &amp;= P_1[x \mapsto E] \land P_2[x \mapsto E] \\
+(P_1 \lor P_2)[x \mapsto E] &amp;= P_1[x \mapsto E] \lor P_2[x \mapsto E] \\
+(P_1 \to P_2)[x \mapsto E] &amp;= P_1[x \mapsto E] \to P_2[x \mapsto E] \\
+(\forall x.P)[x \mapsto E] &amp;= \forall x.P \\
+(\forall y.P)[x \mapsto E] &amp;= (\forall z.P[y \mapsto z])[x \mapsto E] \\
+(\exists x.P)[x \mapsto E] &amp;= \exists x.P \\
+(\exists y.P)[x \mapsto E] &amp;= (\exists z.P[y \mapsto z])[x \mapsto E] \\
+\end{align*}
+$$</span><p>
+其中 <span class="math">$\mapsto$</span> 用于表示映射箭头，表示将某个变量替换成指定的表达式/值</p>
+<blockquote>
+<p>例4.3 设存在一个命题
+</p>
+<span class="math">$$
+&gt; F = \exists x \bigl( P(y, x) \land \forall y \, (\neg Q(y, x)) \lor P(y, z) \bigr)，
+&gt; $$</span><p>
+给出使用替换规则 <span class="math">$F[y \mapsto x]$</span> 的结果。</p></blockquote>
+<span class="math">$$
+\begin{align*}
+F[y \mapsto x] &amp;= \bigl( \exists x \, (P(y, x) \land \forall y \, (\neg Q(y, x)) \lor P(y, z))) [y \mapsto x] \\
+&amp;= \bigl( \exists t \, (P(y, t) \land \forall y \, (\neg Q(y, t)) \lor P(y, z))) [y \mapsto x] \\
+&amp;= \bigl( \exists t \, (P(y, t) \land \forall s \, (\neg Q(s, t)) \lor P(y, z))) [y \mapsto x] \\
+&amp;= (\exists t \, (P(x, t) \land \forall s \, (\neg Q(s, t)) \lor P(x, z))) \\
+\end{align*}
+$$</span><p>要切记替换规则，遇到绑定变量，是不用替换的，需要进行绑定变量的重命名，也就是上面第二行到第三行所做的事。</p>
+<h4 id="--重命名"><span class="math">$\alpha$</span> - 重命名</h4>
+<p>如果在替换自由变量之后带来了变量名的冲突问题，我们就需要提前将一些绑定变量进行 <span class="math">$\alpha$</span> - 重命名</p>
+<h3 id="推导规则-1">推导规则</h3>
+<p>谓词逻辑的推导规则是在之前命题逻辑的14条推导规则的基础上，新增了下面四条推导规则：
+</p>
+<span class="math">$$
+\frac{\Gamma, x \vdash P}{\Gamma \vdash \forall x. P} \ (\forall I)
+\quad \quad \quad \quad \quad\quad \quad\quad
+\frac{\Gamma \vdash \forall x. P}{\Gamma \vdash P[x \mapsto E]} \ (\forall E)
+$$</span><span class="math">$$
+\frac{\Gamma \vdash P[x \mapsto E]}{\Gamma \vdash \exists x. P} \ (\exists I)
+\quad \quad \quad
+\frac{\Gamma \vdash \exists x. P \quad\quad \Gamma, x, P \vdash Q}{\Gamma \vdash Q} \ (\exists E)
+$$</span><h3 id="sat-1">SAT</h3>
 <p>SAT（可满足性理论）：given a proposition P, is it satisfiable?</p>
 <p>SAT for 命题逻辑:</p>
 <ul>
@@ -608,10 +711,65 @@ $$
 <li>不可判定/理论上证明不可能有算法可以在合理时间求解/不可解</li>
 <li>这就引导我们去思考：有没有可能通过我们使用一些特殊的子集，对这个子集进行求解仍然是可解的呢？其实这就是下面我们要讲的<strong>theory</strong></li>
 </ul>
-<h4 id="theory">theory</h4>
-<h4 id="smt">SMT</h4>
+<h3 id="theory">theory</h3>
+<p>比如 EUF理论（等式与未解释函数理论），</p>
+<h4 id="euf">EUF</h4>
+<p>等式理论定义：
+</p>
+<span class="math">$$
+\begin{align*}
+E &amp;::= x \mid c \\
+R &amp;::= E = E \mid E \neq E \\
+P &amp;::= R \mid P \land P \\
+\end{align*}
+$$</span><p>
+未解释函数定义：</p>
+<p>未解释函数，它通常指在一个公式中没有被解释的函数，或者说没有被定义的函数。例如，公式 <span class="math">$F(x) = F(G(y))$</span>中 <span class="math">$F、G$</span>就是未解释函数。</p>
+<p>那么对于等式与未解释函数该怎么求解？</p>
+<p>下面我们给出一条全等规则：
+</p>
+<span class="math">$$
+\begin{array}{c}
+e_1 = e_1&#39; \quad \dots \quad e_n = e_n&#39; \\
+\hline
+f(e_1, \ldots, e_n) = f(e_1&#39;, \ldots, e_n&#39;)
+\end{array} \quad {\text{(Congruence)}}
+$$</span><p>
+这个规则也是我们用来证明两个未解释函数相等的重要规则，这个思想也是被广泛应用于一些实际证明中的，就比如程序等价性的证明，以及编译器中产生很多中间表示，这些中间表示的等价性。</p>
+<h4 id="线性算数理论">线性算数理论</h4>
+<p>线性算数理论定义：
+</p>
+<span class="math">$$
+\begin{align*}
+A &amp;::= x \mid c \mid c * x \\
+E &amp;::= A \mid A &#43; E \\
+R &amp;::= E = E \mid E \leq E \mid E &lt; E \\
+P &amp;::= R \mid P \land P \\
+\end{align*}
+$$</span><p>
+下面有一个反常识的特性：</p>
+<p>求解算法的变量论域</p>
+<ul>
+<li>整数域（<span class="math">$\mathbb{Z}$</span>），复杂度：NPC</li>
+<li>有理数域（<span class="math">$\mathbb{Q}$</span>），复杂度polynomial</li>
+</ul>
+<p>结果是更大的有理数域的复杂度是多项式的。</p>
+<p>下面介绍三种算法：</p>
+<ol>
+<li>
+<p>Fourier-Motzkin(消元法)</p>
+</li>
+<li>
+<p>单纯形法</p>
+</li>
+<li>
+<p>分支定界</p>
+</li>
+</ol>
+<h4 id="数据结构理论">数据结构理论</h4>
+<h3 id="smt">SMT</h3>
 <p>SMT(可解释性模理论)：Satisfiability modulo theory</p>
-<p>SAT + Theory Solvers = SMT</p>
+<p><strong>SAT + Theory Solvers = SMT</strong></p>
 <p>SMT的意义在于：CS中的终极大杀器。针对非常非常复杂的问题（如NPC问题），有没有一套通用范式来解决这类难题吗？那就是SMT。如果一个问题很难，我不知道该怎么解，那就上SMT，大概率就有用；如果SMT都没用，那估计你用其他方法也解不了。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

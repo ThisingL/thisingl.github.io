@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-07-04T14:06:17+08:00">
-    <meta property="article:modified_time" content="2025-07-07T08:33:16+08:00">
+    <meta property="article:modified_time" content="2026-03-10T19:19:31+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  6292 ,
-        "url": "https:\/\/example.com\/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA\/","datePublished": "2025-07-04T14:06:17+08:00","dateModified": "2025-07-07T08:33:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  6310 ,
+        "url": "https:\/\/example.com\/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA\/","datePublished": "2025-07-04T14:06:17+08:00","dateModified": "2026-03-10T19:19:31+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法理论</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-04">2025-07-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6292 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-04">2025-07-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6310 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;
     
 
@@ -146,7 +146,7 @@
           <ul>
             <li><a href="#数字概率算法">数字概率算法</a>
               <ul>
-                <li><a href="#pi-值计算">$\pi$ 值计算</a></li>
+                <li><a href="#值计算"> 值计算</a></li>
               </ul>
             </li>
             <li><a href="#sherwood算法">Sherwood算法</a></li>
@@ -179,19 +179,20 @@
 <p>首先我们需要区分一下概率算法和确定性算法的区别：在同一个输入实例上，每次执行的结果不尽相同。</p>
 <h3 id="数字概率算法">数字概率算法</h3>
 <p>特点： 主要用于找到一个数字问题的近似解</p>
-<h4 id="pi-值计算">$\pi$ 值计算</h4>
+<h4 id="值计算"><span class="math">$\pi$</span> 值计算</h4>
 <h3 id="sherwood算法">Sherwood算法</h3>
 <p>特点： 当某些<em>确定算法</em>解决一个特殊问题时的平均时间比最坏时间快得多时，我们可以使用Sherwood算法来减少，甚至是消除好的和坏的实例之间的差别。</p>
 <p>对于一个确定性算法，它的平均时间很容易计算：  T（确定性算法平均时间）= （每次执行的时间之和）/ （执行总次数）</p>
 <p>但是会存在这样一个不好的情况：某次执行的时间远远大于平均执行时间，比如最坏情况。</p>
-<p>设A是一个确定算法，$t_A(x)$是解某个实例x的执行时间，设$n$是一整数，$X_n$是大小为n的实例的集合。假定$X_n$中每一个实例是等可能出现的，则算法A解一个大小为$n$的实例的平均执行时间为：$\bar{t}<em>A(n) = \sum</em>{x \in X_n} t_A(x) / |X_n|$</p>
-<p>这里无法消除存在一个size为n的实例，使得：$t_A(x) &raquo; \bar{t}_A(n)$</p>
-<p>这时候我们就可以考虑设计一个概率算法B，对每个size为n的实例x，使得：</p>
-<div>$$
-t_B(x) \approx \bar{t}_A(n) + s(n)
-$$
-这里$t_B(x)$是算法B在实例x上的期望值，s(n)是概率算法B为了取得均匀性所付出的成本。
-<p>虽然算法B的执行时间也可能偶然地在某一个实例x上$&raquo;\bar{t}_A(n) + s(n)$，但这种偶然性行为只是由于算法所做的概率选择引起的，与实例x本身没有关系。因此，<strong>不再有最坏情况的实例，但有最坏的执行时间</strong>。</p>
+<p>设A是一个确定算法，<span class="math">$t_A(x)$</span>是解某个实例x的执行时间，设<span class="math">$n$</span>是一整数，<span class="math">$X_n$</span>是大小为n的实例的集合。假定<span class="math">$X_n$</span>中每一个实例是等可能出现的，则算法A解一个大小为<span class="math">$n$</span>的实例的平均执行时间为：<span class="math">$\bar{t}_A(n) = \sum_{x \in X_n} t_A(x) / |X_n|$</span></p>
+<p>这里无法消除存在一个size为n的实例，使得：<span class="math">$t_A(x) &gt;&gt; \bar{t}_A(n)$</span></p>
+<p>这时候我们就可以考虑设计一个概率算法B，对每个size为n的实例x，使得：
+</p>
+<span class="math">$$
+t_B(x) \approx \bar{t}_A(n) &#43; s(n)
+$$</span><p>
+这里<span class="math">$t_B(x)$</span>是算法B在实例x上的期望值，s(n)是概率算法B为了取得均匀性所付出的成本。</p>
+<p>虽然算法B的执行时间也可能偶然地在某一个实例x上<span class="math">$&gt;&gt;\bar{t}_A(n) &#43; s(n)$</span>，但这种偶然性行为只是由于算法所做的概率选择引起的，与实例x本身没有关系。因此，<strong>不再有最坏情况的实例，但有最坏的执行时间</strong>。</p>
 <p>Sherwood 一般方法是：</p>
 <pre><code>1. 将被解的实例变换到一个随机实例。// 预处理  
 2. 用确定算法解此随机实例，得到一个解。  
@@ -206,29 +207,29 @@ $$
 </ul>
 <p>算法的一般形式：</p>
 <p>LV(x, y, success) —— x 是输入的实例，y 是返回的参数，success是布尔值， true 表示成功，false 表示失败</p>
-<p>$p(x)$ —— 对于实例x，算法成功的概率</p>
-<p>$s(x)$ —— 算法成功时的期望时间</p>
-<p>$e(x)$ —— 算法失败时的期望时间</p>
-<p>设$t(x)$是算法找到一个正确解的期望时间，易得 $t(x)=p(x)s(x)+(1-p(x))(e(x)+t(x))$</p>
-<p>解得 $t(x) = s(x) + \frac{1 - p(x)}{p(x)} e(x)$</p>
+<p><span class="math">$p(x)$</span> —— 对于实例x，算法成功的概率</p>
+<p><span class="math">$s(x)$</span> —— 算法成功时的期望时间</p>
+<p><span class="math">$e(x)$</span> —— 算法失败时的期望时间</p>
+<p>设<span class="math">$t(x)$</span>是算法找到一个正确解的期望时间，易得 <span class="math">$t(x)=p(x)s(x)&#43;(1-p(x))(e(x)&#43;t(x))$</span></p>
+<p>解得 <span class="math">$t(x) = s(x) &#43; \frac{1 - p(x)}{p(x)} e(x)$</span></p>
 <h3 id="monte-carlo算法">Monte Carlo算法</h3>
 <p>特点： MC算法偶然会犯错，但它无论对何实例均能以高概率找到正确解。当算法出错时，没有警告信息。</p>
 <p>定义1：设p是一个实数，且1/2&lt;p&lt;1，若一个MC算法以不小于p的概率返回一个正确的解，则该MC算法称为p-正确，算法的优势（advantage）是 p-1/2.</p>
 <p>定义2：若一个MC算法对同一实例决不给出两个不同的正确解，则该算法称是相容的（consistent）或一致的。</p>
 <p>定义3：(偏真算法)为简单起见，设MC(x)是解某个判定问题，对任何x，若当MC(x)返回true时解总是正确的，仅当它返回false时才有可能产生错误的解，则称此算法为偏真的(true-biased)。</p>
-<p>定义4：(偏$y_0$算法)更一般的情况不再限定是判定问题，一个MC是偏$y_0$的($y_0$是某个特定解)，如果存在问题实例的子集$X$使得：</p>
-<p>若被解实例$x\notin X$，则算法MC(x)返回的解总是正确的(无论返回$y_0$还是非$y_0$)；若$\forall x \in X$，正确解是$y_0$ ，但MC并非对所有这样的实例$x$都返回正确解。</p>
-<p>$\implies$ 若返回$y_0$，解一定正确。</p>
-<p>设MC是一个一致的、$p$-correct和偏 $y_0$ 的蒙特卡洛算法，$x$ 是一个实例，$y$ 是MC(x)返回的解，可分为如下2种情形讨论：</p>
-<p>case1: $y=y_0$</p>
-<p>若$x\notin X$，则算法MC总是返回正确解，因此 $y_0$ 确实是正确的。</p>
-<p>若$x\in X$，算法返回的正确解必定是 $y_0$。这两种情况均可得到结论：$y_0$ 是一个正确解。</p>
-<p>case2: $y \ne y_0$</p>
-<p>若$x\notin X$，则 $y$ 是正确解。</p>
-<p>若$x\in X$，因为正确解是 $y_0$，故 $y$ 是错误解，此出错概率不超过 $1-p$。</p>
+<p>定义4：(偏<span class="math">$y_0$</span>算法)更一般的情况不再限定是判定问题，一个MC是偏<span class="math">$y_0$</span>的(<span class="math">$y_0$</span>是某个特定解)，如果存在问题实例的子集<span class="math">$X$</span>使得：</p>
+<p>若被解实例<span class="math">$x\notin X$</span>，则算法MC(x)返回的解总是正确的(无论返回<span class="math">$y_0$</span>还是非<span class="math">$y_0$</span>)；若<span class="math">$\forall x \in X$</span>，正确解是<span class="math">$y_0$</span> ，但MC并非对所有这样的实例<span class="math">$x$</span>都返回正确解。</p>
+<p><span class="math">$\implies$</span> 若返回<span class="math">$y_0$</span>，解一定正确。</p>
+<p>设MC是一个一致的、<span class="math">$p$</span>-correct和偏 <span class="math">$y_0$</span> 的蒙特卡洛算法，<span class="math">$x$</span> 是一个实例，<span class="math">$y$</span> 是MC(x)返回的解，可分为如下2种情形讨论：</p>
+<p>case1: <span class="math">$y=y_0$</span></p>
+<p>若<span class="math">$x\notin X$</span>，则算法MC总是返回正确解，因此 <span class="math">$y_0$</span> 确实是正确的。</p>
+<p>若<span class="math">$x\in X$</span>，算法返回的正确解必定是 <span class="math">$y_0$</span>。这两种情况均可得到结论：<span class="math">$y_0$</span> 是一个正确解。</p>
+<p>case2: <span class="math">$y \ne y_0$</span></p>
+<p>若<span class="math">$x\notin X$</span>，则 <span class="math">$y$</span> 是正确解。</p>
+<p>若<span class="math">$x\in X$</span>，因为正确解是 <span class="math">$y_0$</span>，故 <span class="math">$y$</span> 是错误解，此出错概率不超过 <span class="math">$1-p$</span>。</p>
 <blockquote>
-<p>例： 重复调用一个一致的，$p$-正确的，偏真的MC算法$k$次，可以得到一个出错概率是多少的算法？</p>
-<p>由单个算法出错概率为$(1-p)$得， 得出全错概率为全错：$(1-p)^k$</p></blockquote>
+<p>例： 重复调用一个一致的，<span class="math">$p$</span>-正确的，偏真的MC算法<span class="math">$k$</span>次，可以得到一个出错概率是多少的算法？</p>
+<p>由单个算法出错概率为<span class="math">$(1-p)$</span>得， 得出全错概率为全错：<span class="math">$(1-p)^k$</span></p></blockquote>
 <h2 id="分布式算法">分布式算法</h2>
 <p>分布式计算和并行计算区别：</p>
 <ul>
@@ -271,27 +272,27 @@ $$
 <h3 id="消息传递系统中的基本算法">消息传递系统中的基本算法</h3>
 <h4 id="形式化模型">形式化模型</h4>
 <p>首先我们给出msg传递系统这样一个形式化模型定义：</p>
-<p>我们给出 $G(V,E)$ 这样一个无向图的概念，处理机节点集合 $V= \lbrace p_0,p_1,\dots,p_{n-1} \rbrace$，$\exists p_ip_j$表示在处理机$P_i$和$p_j$之间存在一条双向信道$E_k$（这里我们统一假设信道都是双向了，下面遵循这个约定）</p>
+<p>我们给出 <span class="math">$G(V,E)$</span> 这样一个无向图的概念，处理机节点集合 <span class="math">$V= \lbrace p_0,p_1,\dots,p_{n-1} \rbrace$</span>，<span class="math">$\exists p_ip_j$</span>表示在处理机<span class="math">$P_i$</span>和<span class="math">$p_j$</span>之间存在一条双向信道<span class="math">$E_k$</span>（这里我们统一假设信道都是双向了，下面遵循这个约定）</p>
 <p>分布式算法是由所有处理机节点上的分布式程序统一构成的，是一个总和的概念。</p>
-<p>由于是同步msg传递模型，所以处理机会在理论上的msg延迟上界时候后才会去取消息，因此每个处理机都需要有buf缓冲区来预存提前到的消息，因此我们在每条双向信道 $E_k$ 的处理机 $p_i$ 处都设计一个 $outbuf_i$ 和 $inbuf_i$，分别用来缓存接受到的消息和发送的消息。</p>
-<p>因此对于每个处理机 $p_i$ 来说，都会有两个msg集合，$outbuf_i$[] 和 $inbuf_i$[]</p>
+<p>由于是同步msg传递模型，所以处理机会在理论上的msg延迟上界时候后才会去取消息，因此每个处理机都需要有buf缓冲区来预存提前到的消息，因此我们在每条双向信道 <span class="math">$E_k$</span> 的处理机 <span class="math">$p_i$</span> 处都设计一个 <span class="math">$outbuf_i$</span> 和 <span class="math">$inbuf_i$</span>，分别用来缓存接受到的消息和发送的消息。</p>
+<p>因此对于每个处理机 <span class="math">$p_i$</span> 来说，都会有两个msg集合，<span class="math">$outbuf_i$</span>[] 和 <span class="math">$inbuf_i$</span>[]</p>
 <ul>
-<li>$outbuf_i[l]$： $p_i$ 经第$l$条关联的信道发送给邻居，但尚未传到邻居的msg。</li>
-<li>$inbuf_i[l]$： 在 $p_i$ 的第$l$条关联的信道上已传递到 $p_i$，但尚未经过 $p_i$ 内部计算步骤处理的msg。</li>
+<li><span class="math">$outbuf_i[l]$</span>： <span class="math">$p_i$</span> 经第<span class="math">$l$</span>条关联的信道发送给邻居，但尚未传到邻居的msg。</li>
+<li><span class="math">$inbuf_i[l]$</span>： 在 <span class="math">$p_i$</span> 的第<span class="math">$l$</span>条关联的信道上已传递到 <span class="math">$p_i$</span>，但尚未经过 <span class="math">$p_i$</span> 内部计算步骤处理的msg。</li>
 </ul>
-<p>我们假设有一个上帝，在第0秒给 $outbuf_i$[] 和 $inbuf_i$[] 照了个相，内容就是两个msg集合里的内容，我们记为<strong>状态</strong> $q_{i0}$,同理，第1秒状态为 $q_{i1}$，第j秒状态就为 $q_{ij}$,这一连串的状态所构成的<strong>状态集</strong>我们就叫做 $Q_i$，因此每个处理器 $p_i$ 可以模型化为一个具有状态集 $Q_i$ 的状态机。</p>
-<p>进一步，在第0秒时，状态机 $q_i$ 的状态为 $q_{i0}$, 状态机 $q_j$ 的状态为 $q_{j0}$,这时候我们已经不满足于只对单个状态机进行照相了，我们在第 $t$ 秒时，对所有状态机的状态 $q_{0t}，q_{1t},\dots,q_{it}$,统一照了张相，我们把它叫做<strong>配置</strong>。</p>
+<p>我们假设有一个上帝，在第0秒给 <span class="math">$outbuf_i$</span>[] 和 <span class="math">$inbuf_i$</span>[] 照了个相，内容就是两个msg集合里的内容，我们记为<strong>状态</strong> <span class="math">$q_{i0}$</span>,同理，第1秒状态为 <span class="math">$q_{i1}$</span>，第j秒状态就为 <span class="math">$q_{ij}$</span>,这一连串的状态所构成的<strong>状态集</strong>我们就叫做 <span class="math">$Q_i$</span>，因此每个处理器 <span class="math">$p_i$</span> 可以模型化为一个具有状态集 <span class="math">$Q_i$</span> 的状态机。</p>
+<p>进一步，在第0秒时，状态机 <span class="math">$q_i$</span> 的状态为 <span class="math">$q_{i0}$</span>, 状态机 <span class="math">$q_j$</span> 的状态为 <span class="math">$q_{j0}$</span>,这时候我们已经不满足于只对单个状态机进行照相了，我们在第 <span class="math">$t$</span> 秒时，对所有状态机的状态 <span class="math">$q_{0t}，q_{1t},\dots,q_{it}$</span>,统一照了张相，我们把它叫做<strong>配置</strong>。</p>
 <p><strong>初始配置</strong>就是所有初始状态组成的配置。</p>
 <p>而状态的变化我们就可以叫做状态转移，我们将其抽象为一个转移系统，下面我们介绍这个转移系统的形式化定义：状态按离散步骤（事件/转移）变化的系统。</p>
-<p>定义1. 转移系统是一个三元组 $S=\lbrace C,\to,I \rbrace$</p>
-<p>其中$C$是配置集（所有配置的集合），$I$是初始配置的一个子集（表示转移系统的开始位置，如果不是子集就不合法了），$\to$是$C$上的一个二元转移关系，$\gamma \to \delta$ 代表从配置 $\gamma$ 转移到配置 $\delta$。</p>
-<p>定义2. 我们记转移系统 $S$ 的一次执行的最大序列 $E=(r_0,r_1,\dots)$,其中 $r_0 \in I$ 且对 $\forall i \ge 0$,都有 $r_i \to r_{i+1}$。我们定义终止配置 $\gamma$ 为不存在 $\delta$，使得 $\gamma \to \delta$。那么对于序列 $E$,如果他是无限的，或者以终止配置 $\gamma$ 结束的，我们就称这样的序列为<em>最大的</em>。</p>
-<p>这里的 $r_0 \in I$ 很好理解，因为都是从初始配置开始出发的。</p>
-<p>定义3. 如果存在序列 $\gamma  \to \gamma _1 \to \gamma _2 \dots \to \gamma _k = \delta$，那么我们称 $\delta$ 是由 $\gamma$ 可达的。 如果$\delta$ 是由初始配置可达的，则称 $\delta$ 是可达的。</p>
+<p>定义1. 转移系统是一个三元组 <span class="math">$S=\lbrace C,\to,I \rbrace$</span></p>
+<p>其中<span class="math">$C$</span>是配置集（所有配置的集合），<span class="math">$I$</span>是初始配置的一个子集（表示转移系统的开始位置，如果不是子集就不合法了），<span class="math">$\to$</span>是<span class="math">$C$</span>上的一个二元转移关系，<span class="math">$\gamma \to \delta$</span> 代表从配置 <span class="math">$\gamma$</span> 转移到配置 <span class="math">$\delta$</span>。</p>
+<p>定义2. 我们记转移系统 <span class="math">$S$</span> 的一次执行的最大序列 <span class="math">$E=(r_0,r_1,\dots)$</span>,其中 <span class="math">$r_0 \in I$</span> 且对 <span class="math">$\forall i \ge 0$</span>,都有 <span class="math">$r_i \to r_{i&#43;1}$</span>。我们定义终止配置 <span class="math">$\gamma$</span> 为不存在 <span class="math">$\delta$</span>，使得 <span class="math">$\gamma \to \delta$</span>。那么对于序列 <span class="math">$E$</span>,如果他是无限的，或者以终止配置 <span class="math">$\gamma$</span> 结束的，我们就称这样的序列为<em>最大的</em>。</p>
+<p>这里的 <span class="math">$r_0 \in I$</span> 很好理解，因为都是从初始配置开始出发的。</p>
+<p>定义3. 如果存在序列 <span class="math">$\gamma  \to \gamma _1 \to \gamma _2 \dots \to \gamma _k = \delta$</span>，那么我们称 <span class="math">$\delta$</span> 是由 <span class="math">$\gamma$</span> 可达的。 如果<span class="math">$\delta$</span> 是由初始配置可达的，则称 <span class="math">$\delta$</span> 是可达的。</p>
 <p>系统里所发生的事情均被模型化为<strong>事件</strong>，对于msg传递系统，有两种：</p>
 <ul>
-<li>comp(i)——————计算事件，代表处理器 $p_i$ 的一个计算步骤。其中，$p_i$ 的转换函数被用于当前可访问状态</li>
-<li>del(i,j,m)—————传递事件，表示msg $m$ 从 $p_i$ 传送到 $p_j$</li>
+<li>comp(i)——————计算事件，代表处理器 <span class="math">$p_i$</span> 的一个计算步骤。其中，<span class="math">$p_i$</span> 的转换函数被用于当前可访问状态</li>
+<li>del(i,j,m)—————传递事件，表示msg <span class="math">$m$</span> 从 <span class="math">$p_i$</span> 传送到 <span class="math">$p_j$</span></li>
 </ul>
 <p>系统在时间上的行为被模型化为一个执行。它是一个由配置和事件交错的序列。该序列须满足各种条件，主要分为两类：</p>
 <ul>
@@ -331,37 +332,37 @@ $$
 <p>广播算法：</p>
 <ul>
 <li>根节点发送Msg给孩子。收到Msg的节点转发Msg给孩子。</li>
-<li>Msg复杂度：$O(n-1)$，因为生成树每条边有一个Msg</li>
-<li>时间复杂度：$O(D)$，$D$为生成树直径</li>
+<li>Msg复杂度：<span class="math">$O(n-1)$</span>，因为生成树每条边有一个Msg</li>
+<li>时间复杂度：<span class="math">$O(D)$</span>，<span class="math">$D$</span>为生成树直径</li>
 </ul>
 <p>敛播算法：</p>
 <ul>
 <li>汇集是从所有节点收集信息至根</li>
-<li>Msg复杂度：$O(n-1)$，因为生成树每条边有一个Msg</li>
-<li>时间复杂度：$O(D)$，$D$为生成树直径</li>
+<li>Msg复杂度：<span class="math">$O(n-1)$</span>，因为生成树每条边有一个Msg</li>
+<li>时间复杂度：<span class="math">$O(D)$</span>，<span class="math">$D$</span>为生成树直径</li>
 </ul>
 <h4 id="构造生成树">构造生成树</h4>
 <p>上节讨论的广播和敛播都是建立在已知生成树的拓扑结构，因此我们还需要思考如何来构造生成树</p>
 <h5 id="指定根构造生成树">指定根构造生成树</h5>
 <p>flooding（洪泛）算法</p>
 <ul>
-<li>算法思想：设 $p_r$ 是特殊处理器。从 $p_r$ 开始，发送M到其所有邻居。当处理器 $p_i$ 第$1$次收到消息M（不妨设此msg来自于邻居$p_j$）时，$p_i$ 发送M到除 $p_j$ 外的所有邻居。</li>
-<li>Msg复杂度：$O(2m-(n-1))$,$m$是信道总数。我们考虑一些延迟误差，比如有3个处理器 $p_0、p_1、p_2$,$p_0$分别向$p_1$和$p_2$转发ms,然后$p_1$和$p_2$同时收到ms，那么此时$p_1$和$p_2$又会同时相互转发，所以一条信道 $E_k$ 就可能有两条ms，但是注意对于每个$p_i$，它是肯定不会对它收到的第1条M来自的邻居$p_j$发送M,因此需要减掉 $n-1$。</li>
-<li>时间复杂度：$O(D)$，$D$为生成树直径。</li>
+<li>算法思想：设 <span class="math">$p_r$</span> 是特殊处理器。从 <span class="math">$p_r$</span> 开始，发送M到其所有邻居。当处理器 <span class="math">$p_i$</span> 第<span class="math">$1$</span>次收到消息M（不妨设此msg来自于邻居<span class="math">$p_j$</span>）时，<span class="math">$p_i$</span> 发送M到除 <span class="math">$p_j$</span> 外的所有邻居。</li>
+<li>Msg复杂度：<span class="math">$O(2m-(n-1))$</span>,<span class="math">$m$</span>是信道总数。我们考虑一些延迟误差，比如有3个处理器 <span class="math">$p_0、p_1、p_2$</span>,<span class="math">$p_0$</span>分别向<span class="math">$p_1$</span>和<span class="math">$p_2$</span>转发ms,然后<span class="math">$p_1$</span>和<span class="math">$p_2$</span>同时收到ms，那么此时<span class="math">$p_1$</span>和<span class="math">$p_2$</span>又会同时相互转发，所以一条信道 <span class="math">$E_k$</span> 就可能有两条ms，但是注意对于每个<span class="math">$p_i$</span>，它是肯定不会对它收到的第1条M来自的邻居<span class="math">$p_j$</span>发送M,因此需要减掉 <span class="math">$n-1$</span>。</li>
+<li>时间复杂度：<span class="math">$O(D)$</span>，<span class="math">$D$</span>为生成树直径。</li>
 </ul>
 <p>我们可以通过<strong>改造flooding算法</strong>来设计一种构造生成树的算法：</p>
 <ul>
 <li>算法思想：
 <ul>
-<li>首先，$p_r$发送M给所有邻居，$p_r$为根</li>
-<li>当$p_i$从某邻居$p_j$收到的M是第1个来自邻居的msg时，$p_j$是$p_i$的双亲；若$p_i$首次收到的M同时来自多个邻居，则用一个comp事件处理自上一comp事件以来的所有已收到的msgs，故此时，$p_i$可在这些邻居中任选一个邻居$p_j$做双亲。</li>
-<li>双亲一旦选定就绝不更改。当$p_i$确定双亲是$p_j$时，发送<parent>给$p_j$，并向此后收到发来M的处理器发送<reject>msg。</li>
-<li>$p_i$向那些尚未发M给$p_i$(或已发M但尚未到达$p_i$)的邻居转发M之后，等待这些邻居发回响应msg：<parent>或<reject>。那些回应<parent>的邻居是$p_i$的孩子。</li>
-<li>当$p_i$发出M的所有接收者均已回应（<parent>或<reject>)，则$p_i$终止。将parent和children边保留即为生成树。</li>
+<li>首先，<span class="math">$p_r$</span>发送M给所有邻居，<span class="math">$p_r$</span>为根</li>
+<li>当<span class="math">$p_i$</span>从某邻居<span class="math">$p_j$</span>收到的M是第1个来自邻居的msg时，<span class="math">$p_j$</span>是<span class="math">$p_i$</span>的双亲；若<span class="math">$p_i$</span>首次收到的M同时来自多个邻居，则用一个comp事件处理自上一comp事件以来的所有已收到的msgs，故此时，<span class="math">$p_i$</span>可在这些邻居中任选一个邻居<span class="math">$p_j$</span>做双亲。</li>
+<li>双亲一旦选定就绝不更改。当<span class="math">$p_i$</span>确定双亲是<span class="math">$p_j$</span>时，发送<parent>给<span class="math">$p_j$</span>，并向此后收到发来M的处理器发送<reject>msg。</li>
+<li><span class="math">$p_i$</span>向那些尚未发M给<span class="math">$p_i$</span>(或已发M但尚未到达<span class="math">$p_i$</span>)的邻居转发M之后，等待这些邻居发回响应msg：<parent>或<reject>。那些回应<parent>的邻居是<span class="math">$p_i$</span>的孩子。</li>
+<li>当<span class="math">$p_i$</span>发出M的所有接收者均已回应（<parent>或<reject>)，则<span class="math">$p_i$</span>终止。将parent和children边保留即为生成树。</li>
 </ul>
 </li>
-<li>Msg复杂度：由于算法只是在flooding算法上增加了回应（<parent>或<reject>)，因此也就是2倍关系，所以也是$O(m)$</li>
-<li>时间复杂度：$O(D)$，$D$为生成树直径。</li>
+<li>Msg复杂度：由于算法只是在flooding算法上增加了回应（<parent>或<reject>)，因此也就是2倍关系，所以也是<span class="math">$O(m)$</span></li>
+<li>时间复杂度：<span class="math">$O(D)$</span>，<span class="math">$D$</span>为生成树直径。</li>
 </ul>
 <p>上述讨论的算法在同步模型下，也可以工作，同时所构造的生成树一定是一棵BFS树</p>
 <p>但是在异步模型下，构造的树就不一定是一棵BFS树了</p>
@@ -369,43 +370,43 @@ $$
 <ul>
 <li>算法思想：
 *</li>
-<li>Msg复杂度：$O(m)$</li>
-<li>时间复杂度：$O(m)$</li>
+<li>Msg复杂度：<span class="math">$O(m)$</span></li>
+<li>时间复杂度：<span class="math">$O(m)$</span></li>
 </ul>
 <h5 id="不指定根时构造生成树">不指定根时构造生成树</h5>
 <ul>
 <li>已知条件：个具有m条边和n个节点的网络，自发启动的节点共有p个，其中ID 值最大者的启动时间为t</li>
-<li>Msg 复杂度：$O(pn^2)$。最坏情况下，每个处理器均试图以自己为根构造一棵DFS树。 因此，Alg2.4 的msg复杂性至多是Alg2.3的n倍：O(m*n)  时间复杂度：</li>
-<li>时间复杂度：$O(t+m)$</li>
+<li>Msg 复杂度：<span class="math">$O(pn^2)$</span>。最坏情况下，每个处理器均试图以自己为根构造一棵DFS树。 因此，Alg2.4 的msg复杂性至多是Alg2.3的n倍：O(m*n)  时间复杂度：</li>
+<li>时间复杂度：<span class="math">$O(t&#43;m)$</span></li>
 </ul>
 <h3 id="环上选举算法">环上选举算法</h3>
 <h4 id="leader选举问题">Leader选举问题</h4>
-<p>异步环：下界$O(nlgn)$</p>
-<p>同步环：上界$O(n)$和下界$O(nlgn)$</p>
+<p>异步环：下界<span class="math">$O(nlgn)$</span></p>
+<p>同步环：上界<span class="math">$O(n)$</span>和下界<span class="math">$O(nlgn)$</span></p>
 <ul>
 <li>非均匀：
 <ul>
-<li>Msg 复杂度：$n·(i+1)$，i为最终Leader的id</li>
-<li>时间复杂度：$n·(i+1) $</li>
+<li>Msg 复杂度：<span class="math">$n·(i&#43;1)$</span>，i为最终Leader的id</li>
+<li>时间复杂度：<span class="math">$n·(i&#43;1) $</span></li>
 </ul>
 </li>
 <li>均匀：
 <ul>
-<li>Msg 复杂度：$O(4n)$，</li>
-<li>时间复杂度：$O(n· 2^i)$ i为最终Leader的id</li>
+<li>Msg 复杂度：<span class="math">$O(4n)$</span>，</li>
+<li>时间复杂度：<span class="math">$O(n· 2^i)$</span> i为最终Leader的id</li>
 </ul>
 </li>
 </ul>
 <h2 id="近似算法">近似算法</h2>
-<p>对于一些NP hard问题，我们只能使用$2^n$数量级的时间来求取最优解，但是近似算法给了我们一条新的思路，我们可以牺牲结果的部分准确性，比如只用$n^k$次方的时间，来求得问题的次优解。这个对于很多情况来说都是非常重要的。</p>
+<p>对于一些NP hard问题，我们只能使用<span class="math">$2^n$</span>数量级的时间来求取最优解，但是近似算法给了我们一条新的思路，我们可以牺牲结果的部分准确性，比如只用<span class="math">$n^k$</span>次方的时间，来求得问题的次优解。这个对于很多情况来说都是非常重要的。</p>
 <p>以及对于次优解和最优解之间的误差，我们该如何去控制，如果我们能有效控制误差，那么对于很多优化问题都非常有效。</p>
 <p>由于课程安排，近似算法这学期并没有讲，因此只做简单了解。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-07-07&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/7e6a3ef651f2472345d2a8f8463e05a116eafde9" target="_blank" title="commit by JarVis(2055543978@qq.com) 7e6a3ef651f2472345d2a8f8463e05a116eafde9: new posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7e6a3ef</a></span>
+                <span>更新于 2026-03-10&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/3bb75b5466d80449f586488e4b721622dd418edd" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 3bb75b5466d80449f586488e4b721622dd418edd: feat: 修复了直接使用$$块公式场景下特殊字符被转义问题">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3bb75b5</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

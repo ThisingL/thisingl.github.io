@@ -864,7 +864,7 @@
 <p>当销毁对象时，会自动运行析构函数。</p>
 <p>析构函数和构造函数在声明和定义的唯一区别就是析构函数前面加上了<code>~</code>。一般用来在对象销毁时，主动释放一些堆上申请的空间。</p>
 <h3 id="110-inheritance">1.10 inheritance</h3>
-<p>可以近似理解为：子类 $ \subseteq $ 父类（子类拥有父类中包含的所有内容（private除外））。</p>
+<p>可以近似理解为：子类 <span class="math">$ \subseteq $</span> 父类（子类拥有父类中包含的所有内容（private除外））。</p>
 <p>可以通过这样写来让子类继承某个父类<code>class Child : public Parent </code>。这意味着此时的<code>Child</code>不但具有类型<code>Child</code>，而且具有类型<code>Parent</code>。</p>
 <p><strong>绝大多数情况下我们都使用的<code>public</code>继承</strong></p>
 <p>当然继承方式其实有两种，区别如下：</p>

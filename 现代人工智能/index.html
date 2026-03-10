@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-03-09T00:09:55+08:00">
+    <meta property="article:modified_time" content="2026-03-10T19:19:31+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  3867 ,
-        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-09T00:09:55+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  4661 ,
+        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-10T19:19:31+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">现代人工智能</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3867 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4661 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;
     
 
     
@@ -160,6 +160,8 @@
           <ul>
             <li>
               <ul>
+                <li><a href="#fnn">FNN</a></li>
+                <li><a href="#rnn">RNN</a></li>
                 <li><a href="#transformer">Transformer</a></li>
               </ul>
             </li>
@@ -211,20 +213,50 @@
 <p>MLsys 视频:</p>
 <p><a href="https://www.bilibili.com/video/BV1if421z713/?spm_id_from=333.1387.0.0&amp;vd_source=28da4325512cd6f10bf532b50cf2042a" target="_blank" rel="noopener noreffer ">ZOMI酱 AI系统系列视频</a></p></blockquote>
 <h1 id="llm">LLM</h1>
+<h4 id="fnn">FNN</h4>
+<h4 id="rnn">RNN</h4>
 <h4 id="transformer">Transformer</h4>
 <p>谷歌在 2017 年发表了一篇划时代的论文： Attention Is All You Need(<a href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/Attention%20Is%20All%20You%20Need_%E5%8F%8C%E8%AF%AD%E5%AF%B9%E7%85%A7%E7%89%88.pdf" rel="">论文原文以及翻译在这</a>)</p>
+<p>注意力机制计算可表示为：</p>
+<div class="math">
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$
+</div>
+<p>What the Single-Head Attention really is?</p>
+<p>​		Transformer的第一步是将输入的每一个token通过 embedding 转换成一个高维空间中的嵌入向量 <span class="math">$\overrightarrow {E_i}$</span>。Transformer的目标是将逐步调整 <span class="math">$\overrightarrow {E_i}$</span> 使得它们不单单编码单个token，还能融入更丰富的上下文含义。就比如一个名词会问前面的词中有没有形容词啊，这样的提问就被编码成了所谓的查询向量 <span class="math">$\overrightarrow {Q_i}$</span>。而前面的词想要回答后面的哪些查询提问，则被编码成了所谓的键向量 <span class="math">$\overrightarrow {K_i}$</span>。所以这个 <span class="math">$\overrightarrow {Q_i}$</span> 和 <span class="math">$\overrightarrow {K_i}$</span> 的点积和的大小，就是衡量每个键和每个查询的匹配程度。而前面的一个比如形容词，需要把后面的名词调整到什么程度，就被编码成了所谓的值向量 <span class="math">$\overrightarrow {V_i}$</span>。所以将上面计算出来的每一个查询的匹配程度，通过softmax函数转换成一个概率分布向量，作为权值再乘以值向量 <span class="math">$\overrightarrow {V_i}$</span>，将上面的这个结果进行求和，得到的就是嵌入向量的调整值 <span class="math">$\Delta\overrightarrow { E_i}$</span>，再将调整值加到原始嵌入向量上，便得到一个编码了更丰富的上下文信息的向量 <span class="math">$\overrightarrow {E_i} &#43; \Delta\overrightarrow { E_i}=\overrightarrow {E_i^{\prime}}$</span>。</p>
+<ul>
+<li>
+<p><span class="math">$\overrightarrow {E_i}$</span>：嵌入向量。初始嵌入向量只编码了该token的含义以及该词的位置信息，和上下文没有关联。（在GPT3中是 <span class="math">$12288$</span> 维）</p>
+</li>
+<li>
+<p><span class="math">$Q$</span>：由查询向量 <span class="math">$\overrightarrow {Q_i}$</span> 组成的查询矩阵。通过使用一个查询投影矩阵 <span class="math">$W_Q$</span> 乘以嵌入向量 <span class="math">$\overrightarrow {E_i}$</span> 得到查询向量 <span class="math">$\overrightarrow {Q_i}$</span>。（注意：<span class="math">$\overrightarrow {Q_i}$</span> 的维度要比 <span class="math">$\overrightarrow {E_i}$</span> 小的多，例如只有 <span class="math">$128$</span> 维，所以它会将嵌入向量映射到低维度空间）</p>
+</li>
+<li>
+<p><span class="math">$K$</span>：由键向量 <span class="math">$\overrightarrow {K_i}$</span> 组成的键矩阵。通过使用一个键投影矩阵 <span class="math">$W_K$</span> 乘以嵌入向量 <span class="math">$\overrightarrow {E_i}$</span> 得到键向量 <span class="math">$\overrightarrow {K_i}$</span>。</p>
+</li>
+<li>
+<p><span class="math">$d_k$</span>：查询向量 <span class="math">$\overrightarrow {Q_i}$</span> 和键向量 <span class="math">$\overrightarrow {K_i}$</span> 的维度。</p>
+</li>
+<li>
+<p><span class="math">$\text{softmax}()$</span>：将数值向量归一化为一个概率分布向量。</p>
+</li>
+<li>
+<p><span class="math">$V$</span>：由值向量 <span class="math">$\overrightarrow {V_i}$</span> 组成的值矩阵。通过使用一个值投影矩阵 <span class="math">$W_V$</span> 乘以嵌入向量 <span class="math">$\overrightarrow {E_i}$</span> 得到值向量 <span class="math">$\overrightarrow {V_i}$</span>。</p>
+</li>
+</ul>
 <h1 id="mlsys">MLsys</h1>
 <p>先看一篇入门好文： <a href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/AI-Infra%E6%80%BB%E8%A7%88%EF%BC%9A%E6%9E%84%E5%BB%BA%E6%94%AF%E6%92%91%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%8E%A8%E7%90%86%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%B9%B3%E5%8F%B0.pdf" rel="">AI-Infra 总览：构建支撑大规模训练与推理基础设施平台</a></p>
 <p>我们来看看一个完整的 AI Infra 的架构分别都有什么：</p>
 <img src="images/image-20260213150952521.png" alt="image-20260213150952521" style="zoom:66%; display: block; margin: 0 auto;" />
 <h2 id="异构算力硬件结构体系">异构算力硬件结构体系</h2>
 <h3 id="ai-计算体系">AI 计算体系</h3>
-<p>我们先来一句结论： Key Operations is <strong>multiply and accumulate($\text{MAC}$)</strong> (&gt; 90% computation)</p>
-<p>我们定义一个标准的 $\text{MAC}$ 操作为:</p>
+<p>我们先来一句结论： Key Operations is <strong>multiply and accumulate(<span class="math">$\text{MAC}$</span>)</strong> (&gt; 90% computation)</p>
+<p>我们定义一个标准的 <span class="math">$\text{MAC}$</span> 操作为:</p>
 <ul>
-<li>$\text{MAC} = (\text{操作数}_1 \times \text{操作数}_2) + \text{累加器}$</li>
+<li><span class="math">$\text{MAC} = (\text{操作数}_1 \times \text{操作数}_2) &#43; \text{累加器}$</span></li>
 </ul>
-<p><strong>乘积累加</strong>操作的重要性显而易见，无论是矩阵求和，还是我们在计算每一个神经元输出时的 $w_1·x_1 + w_2·x_2 + w_3·x_3 + …$ 时，所用到的都是乘积累加操作。</p>
+<p><strong>乘积累加</strong>操作的重要性显而易见，无论是矩阵求和，还是我们在计算每一个神经元输出时的 <span class="math">$w_1·x_1 &#43; w_2·x_2 &#43; w_3·x_3 &#43; …$</span> 时，所用到的都是乘积累加操作。</p>
 <blockquote>
 <p>整体看看 AI or 深度学习计算模式：经典模型结构和轻量化模型结构、模型量化和剪枝到大模型分布式并行，从而理解“计算”需要什么？</p></blockquote>
 <h4 id="ai-三大范式编程">AI 三大范式编程</h4>
@@ -245,30 +277,30 @@
 <h4 id="算力单位">算力单位</h4>
 <ol>
 <li>
-<p>$\text{OPS}$</p>
+<p><span class="math">$\text{OPS}$</span></p>
 <ul>
 <li>
-<p>$\text{OPS}$(Operations Per Second) 指每秒计算次数， $1 \text{TOPS}$ 代表每秒进行一万亿($10^{12}$)次计算</p>
+<p><span class="math">$\text{OPS}$</span>(Operations Per Second) 指每秒计算次数， <span class="math">$1 \text{TOPS}$</span> 代表每秒进行一万亿(<span class="math">$10^{12}$</span>)次计算</p>
 </li>
 <li>
-<p>$\text{OPS/}W$ 指每瓦特运算性能，$\text{TOPS/}W$ 常用来衡量在 1$W$ 功耗下的计算效率</p>
+<p><span class="math">$\text{OPS/}W$</span> 指每瓦特运算性能，<span class="math">$\text{TOPS/}W$</span> 常用来衡量在 1<span class="math">$W$</span> 功耗下的计算效率</p>
 </li>
 </ul>
 </li>
 <li>
-<p>$\text{MACs}$</p>
+<p><span class="math">$\text{MACs}$</span></p>
 <ul>
-<li>Multiply-Accumulate Operations，乘积累加操作次数，通常 $\text{MACs} = 1次乘法+1次加法 \approx 2 \text{FLOPs}$</li>
+<li>Multiply-Accumulate Operations，乘积累加操作次数，通常 <span class="math">$\text{MACs} = 1次乘法&#43;1次加法 \approx 2 \text{FLOPs}$</span></li>
 </ul>
 </li>
 <li>
-<p>$\text{FLOPs}$</p>
+<p><span class="math">$\text{FLOPs}$</span></p>
 <ul>
 <li>Floating Point Operations,浮点运算次数，用来衡量模型计算的复杂度</li>
 </ul>
 </li>
 <li>
-<p>$\text{MC}$</p>
+<p><span class="math">$\text{MC}$</span></p>
 <ul>
 <li>Memory Access Cost，内存占用量</li>
 </ul>
@@ -557,8 +589,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-03-09&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/5d66904f868e155735b1cfb33c1a22cca75f3af5" target="_blank" title="commit by Thisingl_Home_Lenovo_XiaoXinPro(thisingl@qq.com) 5d66904f868e155735b1cfb33c1a22cca75f3af5: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5d66904</a></span>
+                <span>更新于 2026-03-10&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/3bb75b5466d80449f586488e4b721622dd418edd" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 3bb75b5466d80449f586488e4b721622dd418edd: feat: 修复了直接使用$$块公式场景下特殊字符被转义问题">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>3bb75b5</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

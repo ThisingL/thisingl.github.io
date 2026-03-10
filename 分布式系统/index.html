@@ -201,15 +201,15 @@
     </figure></p>
 <p>具体操作流程(对应着图中的操作编号)：</p>
 <ol>
-<li>输入数据切分与 worker 启动： 用户程序中运行一个 <code>MapReduce</code> 对象任务，<code>MapReduce</code> 库首先会将输入文件分割成 $M$ 块数据分片，这些数据分片由大小为 $64\text{MB}$ 的小数据块组成(大小可以自定义)，然后在服务器集群中启动多个运行同一个 MapReduce 程序的 worker 进程。</li>
-<li>Master 选举与任务调度： 这些启动的进程中，有一个会被宣布为 Master(主节点)，其余的节点都会由主节点进行调度。然后系统中有 $M$ 个 map task（任务） 和 $R$ 个 reduce task（任务） 需要调度。主节点每次都会去寻找空闲的 worker(节点)，然后给它调度一个 map 任务或者 reduce 任务。</li>
-<li>Map 任务执行与中间结果生成： 被调度 map 任务的节点 $i$ 都会读取自己这个任务所相应的输入数据分片 $M_i$ (map 任务的数量正好等于划分好的输入数据块的数量)，然后从中解析出键值对，用它们作为传参来调用用户自己定义的 <code>Map()</code> 方法，并将调用产生的 intermediate key/value pairs(中间键值对)缓存在内存中。</li>
-<li>中间结果分区与位置汇报： 被调度 map 任务的节点 $i$ 的缓存在内存中的中间键值对会被定期写入这个节点的磁盘中，并且由<strong>分区函数</strong>来将其划分为 $R$ 个区域（对应的就是 $R$ 个 reduce 任务）。这些区域的地址会被传给主节点，这样主节点就能将位置转发给相应的 reduce 任务的节点，让他进行下一步。</li>
-<li>Shuffle 与排序： 当被调度 reduce 任务的节点 $j$ 收到了来自主节点转发的具体的位置信息，它就可以通过 RPC 来从所有被调度 map 任务的节点产生的第 $R_j$ 个分区中读出中间键值对，然后 copy 到本地。等到所有的中间键值对都拿到了之后，再按照 key 进行排序，用来将相同 key 的 value 放进同一个 list 中。</li>
-<li>reduce 任务执行与结果输出： 被调度 reduce 任务的节点 $j$ 会将相同的 key 的 value 的 list，作为传参来调用用户自己定义的 <code>Reduce()</code>方法。方法的输出会先写入本地的临时文件，待当前 reduce 任务成功全部完成后，再以原子方式写入全局的 GFS 系统中，生成最终的输出文件 $j$。</li>
+<li>输入数据切分与 worker 启动： 用户程序中运行一个 <code>MapReduce</code> 对象任务，<code>MapReduce</code> 库首先会将输入文件分割成 <span class="math">$M$</span> 块数据分片，这些数据分片由大小为 <span class="math">$64\text{MB}$</span> 的小数据块组成(大小可以自定义)，然后在服务器集群中启动多个运行同一个 MapReduce 程序的 worker 进程。</li>
+<li>Master 选举与任务调度： 这些启动的进程中，有一个会被宣布为 Master(主节点)，其余的节点都会由主节点进行调度。然后系统中有 <span class="math">$M$</span> 个 map task（任务） 和 <span class="math">$R$</span> 个 reduce task（任务） 需要调度。主节点每次都会去寻找空闲的 worker(节点)，然后给它调度一个 map 任务或者 reduce 任务。</li>
+<li>Map 任务执行与中间结果生成： 被调度 map 任务的节点 <span class="math">$i$</span> 都会读取自己这个任务所相应的输入数据分片 <span class="math">$M_i$</span> (map 任务的数量正好等于划分好的输入数据块的数量)，然后从中解析出键值对，用它们作为传参来调用用户自己定义的 <code>Map()</code> 方法，并将调用产生的 intermediate key/value pairs(中间键值对)缓存在内存中。</li>
+<li>中间结果分区与位置汇报： 被调度 map 任务的节点 <span class="math">$i$</span> 的缓存在内存中的中间键值对会被定期写入这个节点的磁盘中，并且由<strong>分区函数</strong>来将其划分为 <span class="math">$R$</span> 个区域（对应的就是 <span class="math">$R$</span> 个 reduce 任务）。这些区域的地址会被传给主节点，这样主节点就能将位置转发给相应的 reduce 任务的节点，让他进行下一步。</li>
+<li>Shuffle 与排序： 当被调度 reduce 任务的节点 <span class="math">$j$</span> 收到了来自主节点转发的具体的位置信息，它就可以通过 RPC 来从所有被调度 map 任务的节点产生的第 <span class="math">$R_j$</span> 个分区中读出中间键值对，然后 copy 到本地。等到所有的中间键值对都拿到了之后，再按照 key 进行排序，用来将相同 key 的 value 放进同一个 list 中。</li>
+<li>reduce 任务执行与结果输出： 被调度 reduce 任务的节点 <span class="math">$j$</span> 会将相同的 key 的 value 的 list，作为传参来调用用户自己定义的 <code>Reduce()</code>方法。方法的输出会先写入本地的临时文件，待当前 reduce 任务成功全部完成后，再以原子方式写入全局的 GFS 系统中，生成最终的输出文件 <span class="math">$j$</span>。</li>
 <li>任务完成与用户程序返回： 当所有的 map 任务和 reduce 任务全都执行完，主节点才会唤醒用户程序。这时候用户程序中运行的 <code>MapReduce</code> 对象任务也调用返回了。</li>
 </ol>
-<p>任务执行结束后，我们会得到 $R$ 个输出文件。一般情况下，用户也不需要将这 $R$ 个文件合并，而是直接作为另一个 <code>MapReduce</code> 对象任务的输入。</p>
+<p>任务执行结束后，我们会得到 <span class="math">$R$</span> 个输出文件。一般情况下，用户也不需要将这 <span class="math">$R$</span> 个文件合并，而是直接作为另一个 <code>MapReduce</code> 对象任务的输入。</p>
 <h4 id="2-系统设计">2. 系统设计</h4>
 <p>我们来聊聊 <code>MapReduce</code> 库的底层设计哲学</p>
 <h5 id="21-编程模型">2.1 编程模型</h5>
@@ -276,12 +276,12 @@
 <p>有的时候，Map 任务产生的中间键值对存在很多重复，而网络传输经常是性能的瓶颈，我们这时候可以通过指定一个可选的合并函数来完成中间键值对的部分合并。</p>
 <p>比如我们上面的词频统计任务，Map 任务会产生大量的形如 <code>&lt;&quot;hello&quot;, &quot;1&quot;&gt;</code> 的中间键值对，我们可以通过合并函数将它们先累加，这样可以极大的减少输出的中间键值对的文件大小。</p>
 <h6 id="参数设置">参数设置</h6>
-<p>前面提到：我们将输入文件划分为 $M$ 块数据分片，中间键值对被划分为 $R$ 个区域。</p>
-<p>那么 $M,R$ 在实际使用时如何选取比较合适呢？</p>
-<p>理想情况下: $M,R$ 应该 $&raquo;$ 集群中的服务器数量，这样才能做到动态的负载均衡，因为这时候每个机器就能执行许多不同的任务了。</p>
-<p>但是 $M, R$ 也不能无限的大，因为主节点的调度需要 $O(M+R)$ 时间，然后还得记录 $O(M*R)$ 个状态在主节点的内存的数据结构中。以及 $R$ 还会影响最终输出的文件的数量，所以我们需要一个 trade off。</p>
-<p>在实践中，我们一般将 $M$ 调整的比较大，然后 $R$ 一般是我们集群中的服务器的较小倍数。</p>
-<p>在谷歌的论文中指出，它们一般设置 $M = 200,000$ $R = 5,000$ 来进行 MapReduce 计算，集群服务器数量为 $2,000$。</p>
+<p>前面提到：我们将输入文件划分为 <span class="math">$M$</span> 块数据分片，中间键值对被划分为 <span class="math">$R$</span> 个区域。</p>
+<p>那么 <span class="math">$M,R$</span> 在实际使用时如何选取比较合适呢？</p>
+<p>理想情况下: <span class="math">$M,R$</span> 应该 <span class="math">$&gt;&gt;$</span> 集群中的服务器数量，这样才能做到动态的负载均衡，因为这时候每个机器就能执行许多不同的任务了。</p>
+<p>但是 <span class="math">$M, R$</span> 也不能无限的大，因为主节点的调度需要 <span class="math">$O(M&#43;R)$</span> 时间，然后还得记录 <span class="math">$O(M*R)$</span> 个状态在主节点的内存的数据结构中。以及 <span class="math">$R$</span> 还会影响最终输出的文件的数量，所以我们需要一个 trade off。</p>
+<p>在实践中，我们一般将 <span class="math">$M$</span> 调整的比较大，然后 <span class="math">$R$</span> 一般是我们集群中的服务器的较小倍数。</p>
+<p>在谷歌的论文中指出，它们一般设置 <span class="math">$M = 200,000$</span> <span class="math">$R = 5,000$</span> 来进行 MapReduce 计算，集群服务器数量为 <span class="math">$2,000$</span>。</p>
 <h6 id="备份任务">备份任务</h6>
 <p>实际开发过程中，我们会发现经常会出现长尾任务，这个任务会成为性能瓶颈。比如说一个机器可能大部分的资源被调度到其他的进程任务上，这时候留给我们执行 reduce 任务的资源就会锐减，时间就会大大延长。</p>
 <p>这时候我们可以通过备份机制来缓解这个问题。当 MapReduce 操作接近完成时，主节点会调度剩余进行中的任务的备份来执行，这样只要有一个执行完了，我们就认为这个任务完成了。论文中测试发现，这个方法降低了大概 44%。</p>

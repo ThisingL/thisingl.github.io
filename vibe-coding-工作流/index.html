@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-03-07T22:21:30+08:00">
-    <meta property="article:modified_time" content="2026-03-15T02:04:06+08:00">
+    <meta property="article:modified_time" content="2026-03-18T20:34:08+08:00">
     <meta property="article:tag" content="CS">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS","wordcount":  11799 ,
-        "url": "https:\/\/example.com\/vibe-coding-%E5%B7%A5%E4%BD%9C%E6%B5%81\/","datePublished": "2026-03-07T22:21:30+08:00","dateModified": "2026-03-15T02:04:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS","wordcount":  12081 ,
+        "url": "https:\/\/example.com\/vibe-coding-%E5%B7%A5%E4%BD%9C%E6%B5%81\/","datePublished": "2026-03-07T22:21:30+08:00","dateModified": "2026-03-18T20:34:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vibe Coding 工作流</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CS</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-07">2026-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11799 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 24 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-07">2026-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 12081 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 25 分钟&nbsp;
     
 
     
@@ -142,6 +142,7 @@
   <ul>
     <li>
       <ul>
+        <li><a href="#如何做提交前的-review">如何做提交前的 Review</a></li>
         <li><a href="#如何利用cursor快速理解复杂代码工程">如何利用cursor快速理解复杂代码工程</a>
           <ul>
             <li><a href="#为什么直接让ai总结整个项目没用">为什么直接让AI”总结整个项目”没用</a></li>
@@ -184,7 +185,55 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="如何利用cursor快速理解复杂代码工程">如何利用cursor快速理解复杂代码工程</h2>
+            </div><div class="content" id="content"><h2 id="如何做提交前的-review">如何做提交前的 Review</h2>
+<blockquote>
+<p>这是我个人的一点经验，因为我比较喜欢写博客，写完博客后想每次让 AI 审核一下润色一下这次新写的内容</p></blockquote>
+<p>运行命令来将本次提交的修改 diff 写入一个 .tmp 文件中，然后让 AI review 一下这个文件：</p>
+<p>对已 <code>git commit</code> 的修改，与上一次提交做 diff：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git show <span class="p">|</span> tee <span class="s2">&#34;</span><span class="k">$(</span>date +%Y%m%d%H%M%S<span class="k">)</span><span class="s2">.review.tmp&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果还未提交，只是 <code>git add</code> 的部分的 diff：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git diff --staged  <span class="p">|</span> tee <span class="s2">&#34;</span><span class="k">$(</span>date +%Y%m%d%H%M%S<span class="k">)</span><span class="s2">.review.tmp&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果修改了但还没 <code>git add</code> 的内容的 diff：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git diff  <span class="p">|</span> tee <span class="s2">&#34;</span><span class="k">$(</span>date +%Y%m%d%H%M%S<span class="k">)</span><span class="s2">.review.tmp&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提示词：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@xxx.review.tmp 这个文件包含我这次新修改的内容，请帮我进行 review：
+</span></span><span class="line"><span class="cl">1. 检查语法和拼写错误；
+</span></span><span class="line"><span class="cl">2. 对句子结构和表达进行润色，让文章更流畅自然；
+</span></span><span class="line"><span class="cl">3. 给出可选的改进建议或更好的表达方式。
+</span></span><span class="line"><span class="cl">4. 先给出建议而不直接进行修改，等待我的 review
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="如何利用cursor快速理解复杂代码工程">如何利用cursor快速理解复杂代码工程</h2>
 <blockquote>
 <p>本文转载自知乎Up主笙囧同学的<a href="https://www.zhihu.com/question/7468595725/answer/2009921399750423069" target="_blank" rel="noopener noreffer ">如何利用cursor快速理解复杂代码工程？ - 知乎</a></p></blockquote>
 <p>去年我试着读 vLLM 的源码。</p>
@@ -840,8 +889,8 @@ C++/CUDA的——那个边界通常是理解性能优化的关键。</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-03-15&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/1723b5abd9db05b39581d451837ab2842099a350" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 1723b5abd9db05b39581d451837ab2842099a350: fix: 修复了mermaid某些场景下文字不可见问题">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>1723b5a</a></span>
+                <span>更新于 2026-03-18&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/32994c442d8043db25a2d4bc47ae54505dc97c3c" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 32994c442d8043db25a2d4bc47ae54505dc97c3c: feat: 修改表格样式颜色">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>32994c4</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

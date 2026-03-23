@@ -21,21 +21,12 @@ function runtime() {
 }
 runtime();
 
-/* 背景图片预加载 - LQIP 方案
- * body 的 CSS 背景始终是 726KB 小图（即时显示）。
- * 此处动态创建 #bg-hd div 叠在最底层（z-index:-1），
- * 13MB 高清图加载完成后将其 opacity 从 0 淡入到 1，
- * 实现无感替换。opacity 支持 CSS transition，background-image 不支持。
- */
+/* 背景图片预加载 - LQIP 方案 */
 (function() {
-	var div = document.createElement('div');
-	div.id = 'bg-hd';
-	document.body.insertBefore(div, document.body.firstChild);
-
 	var hdBg = new Image();
 	hdBg.src = '/images/13MB-background.jpg';
 	hdBg.onload = function() {
-		div.classList.add('visible');
+		document.body.classList.add('bg-loaded');
 	};
 })();
 
@@ -90,28 +81,79 @@ jQuery(document).ready(function($) {
     });
 });
 
-/* 代码块自定义标题支持
- * 读取 .chroma[data-title] 并应用到 .code-title 上，
- * 覆盖 CSS 默认的语言名显示（如 "C++"）。
+/* 代码块增强：自定义文件名标题 + 右侧语言名显示
  *
- * 注意：theme.js 的 initHighlight()（负责创建 .code-header）也在 DOMContentLoaded 中执行，
- * 且 custom.js 的 script 标签在 theme.js 之后，因此同一事件队列中 custom.js 的监听器
- * 会排在 theme.js 的监听器之后，保证 .code-header 已存在。
+ * 对所有代码块：
+ *   - 在 .copy 按钮左侧插入 .code-lang span，显示语言名（如 C++、Python）
+ * 对带 {title="xxx"} 的代码块：
+ *   - 左侧 .code-title 的 ::after 显示文件名（via data-custom-title + CSS attr()）
+ *   - 语言名仍显示在右侧
+ *
+ * 最终布局：[箭头][文件名 or 默认留空]  ←flex→  [语言名][复制]
+ *
+ * 执行时机：DOMContentLoaded，排在 theme.js initHighlight() 之后（JS 加载顺序保证）
  */
 document.addEventListener('DOMContentLoaded', function applyCustomCodeTitles() {
-    document.querySelectorAll('.highlight > .chroma[data-title]').forEach(function($chroma) {
-        var customTitle = $chroma.getAttribute('data-title');
-        if (!customTitle) return;
+    // 语言类名 → 显示名称映射表（与主题 $code-type-list 保持一致，并补充 c++）
+    var langMap = {
+        'language-bash': 'Bash', 'language-c': 'C', 'language-cs': 'C#',
+        'language-cpp': 'C++', 'language-c++': 'C++',
+        'language-clojure': 'Clojure', 'language-coffeescript': 'CoffeeScript',
+        'language-css': 'CSS', 'language-dart': 'Dart', 'language-diff': 'Diff',
+        'language-erlang': 'Erlang', 'language-go': 'Go',
+        'language-go-html-template': 'Go HTML Template', 'language-groovy': 'Groovy',
+        'language-haskell': 'Haskell', 'language-html': 'HTML', 'language-http': 'HTTP',
+        'language-xml': 'XML', 'language-java': 'Java', 'language-js': 'JavaScript',
+        'language-javascript': 'JavaScript', 'language-json': 'JSON',
+        'language-kotlin': 'Kotlin', 'language-latex': 'LaTeX', 'language-less': 'Less',
+        'language-lisp': 'Lisp', 'language-lua': 'Lua', 'language-makefile': 'Makefile',
+        'language-markdown': 'Markdown', 'language-matlab': 'Matlab',
+        'language-objectivec': 'Objective-C', 'language-php': 'PHP',
+        'language-perl': 'Perl', 'language-powershell': 'PowerShell',
+        'language-posh': 'PowerShell', 'language-puppet': 'Puppet',
+        'language-pwsh': 'PowerShell', 'language-python': 'Python',
+        'language-r': 'R', 'language-ruby': 'Ruby', 'language-rust': 'Rust',
+        'language-scala': 'Scala', 'language-scss': 'Scss', 'language-shell': 'Shell',
+        'language-sql': 'SQL', 'language-swift': 'Swift', 'language-tex': 'TeX',
+        'language-toml': 'TOML', 'language-ts': 'TypeScript',
+        'language-typescript': 'TypeScript', 'language-vue': 'Vue',
+        'language-yml': 'YAML', 'language-yaml': 'YAML',
+    };
 
+    document.querySelectorAll('.highlight > .chroma').forEach(function($chroma) {
         var $header = $chroma.querySelector('.code-header');
         if (!$header) return;
+
+        // ── 1. 从 code-header 类名中提取语言类，查表得到显示名 ──
+        var langClass = Array.from($header.classList).find(function(c) {
+            return c.startsWith('language-');
+        });
+        var langName = langClass ? (langMap[langClass] || null) : null;
+
+        // ── 2. 插入右侧语言名 span
+        // 需要插在 .ellipses 之前，保证折叠时顺序为：[语言名][...]
+        // （展开时 .ellipses 隐藏，顺序为：[语言名][复制]）
+        if (langName) {
+            var $lang = document.createElement('span');
+            $lang.classList.add('code-lang');
+            $lang.textContent = langName;
+            var $ellipses = $header.querySelector('.ellipses');
+            if ($ellipses) {
+                $header.insertBefore($lang, $ellipses);
+            } else {
+                $header.appendChild($lang);
+            }
+        }
+
+        // ── 3. 处理自定义文件名（仅对带 data-title 的代码块）──
+        var customTitle = $chroma.getAttribute('data-title');
+        if (!customTitle) return;
 
         var $titleSpan = $header.querySelector('.code-title');
         if (!$titleSpan) return;
 
-        // 标记类：CSS 通过此类激活自定义标题样式
+        // 标记类 + data 属性，CSS 通过 attr(data-custom-title) 显示文件名
         $header.classList.add('has-custom-title');
-        // 将标题写入 data 属性，供 CSS attr() 读取
         $titleSpan.setAttribute('data-custom-title', customTitle);
     });
 });

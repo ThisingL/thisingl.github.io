@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-03-18T20:34:08+08:00">
+    <meta property="article:modified_time" content="2026-03-23T19:44:17+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  11148 ,
-        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-18T20:34:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  14429 ,
+        "url": "https:\/\/example.com\/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-23T19:44:17+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">现代人工智能</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11148 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 23 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 14429 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 29 分钟&nbsp;
     
 
     
@@ -183,9 +183,15 @@
             </li>
             <li><a href="#ai-芯片基础">AI 芯片基础</a>
               <ul>
+                <li><a href="#性能指标">性能指标</a></li>
                 <li><a href="#cpu">CPU</a></li>
                 <li><a href="#gpu">GPU</a></li>
                 <li><a href="#tpu">TPU</a></li>
+              </ul>
+            </li>
+            <li><a href="#网络">网络</a>
+              <ul>
+                <li><a href="#rdma">RDMA</a></li>
               </ul>
             </li>
           </ul>
@@ -197,7 +203,6 @@
             <li><a href="#推理">推理</a>
               <ul>
                 <li><a href="#sglang">SGLang</a></li>
-                <li><a href="#rdma">RDMA</a></li>
               </ul>
             </li>
           </ul>
@@ -258,7 +263,7 @@
 <p>这就是大名鼎鼎的 Encoder 和 Decoder 架构：</p>
 <img src="images/image1.png" alt="image1" style="zoom:36%; display: block; margin: 0 auto;" />
 <p>这里的 <span class="math">$C$</span> 就是所谓的“上下文向量”</p>
-<p>现在我们来看 RNN 似乎已经够完美了，但是依旧还有两个问题困扰着人们：</p>
+<p>现在我们来看 RNN 似乎已经够完美了，但是依旧还有三个问题困扰着人们：</p>
 <ol>
 <li>我们来看隐藏状态 <span class="math">$h_1$</span>，它在产生 <span class="math">$C$</span> 的时候已经被计算了好多次了，随着序列长度的增加，它所携带的信息素会被稀释的越来越少，这也就是我们经常说的模型在处理长序列时出现的“遗忘”问题。</li>
 <li>对于每一个输出来说，不同时间步的隐藏状态 <span class="math">$h_i$</span> 对它来说意义显然不一样，比如“我爱水课”中的“水”，很明显对于“课”这个词应该非常关注，而不是现在这样笼统的进行同等对待的输入，而是应该类似于 <span class="math">$s_2=0.1h_1&#43;0.1h_2&#43;0.2h_3&#43;0.6h_4$</span></li>
@@ -467,6 +472,48 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 <h4 id="比特位宽">比特位宽</h4>
 <img src="images/image-20260304011904388.png" alt="image-20260304011904388" style="zoom:50%; display: block; margin: 0 auto;" />
 <h3 id="ai-芯片基础">AI 芯片基础</h3>
+<h4 id="性能指标">性能指标</h4>
+<h5 id="计算强度">计算强度</h5>
+<p>首先我们来看看什么是<strong>计算强度</strong>：
+</p>
+<span class="math">$$
+\text{Required Compute Intensity} = \frac{\text{算力}}{\text{带宽}}
+$$</span><p>
+假设我们 CPU 的计算能力是 <span class="math">$2000$</span> <span class="math">$\text{GFLOPS}$</span> FP64，数据带宽为 <span class="math">$200 \ \text{GB/s}$</span>，那么此时系统中的计算强度等于 <span class="math">$\frac{2000}{200/8} = 80$</span>（除以 8 是因为 FP64 每个数占 8 字节）。这意味着：理论上每加载一次数据后，需要对其进行 <span class="math">$80$</span> 次计算，才能让算力与带宽恰好达到平衡。</p>
+<p>这里我们可以理解为如果带宽很高，然后我们的算力比较小，那么计算就跟不上带宽。这个计算强度的结果代表着<strong>每字节数据做多少次浮点运算</strong>。</p>
+<h5 id="所需线程数">所需线程数</h5>
+<span class="math">$$
+\text{Threads Required} = \frac{\text{带宽} \times \text{时延} }{\text{单次请求数据量}}
+$$</span><p>
+由于内存时延较高，为了让芯片不空转、每时每刻都有数据可以处理，我们需要计算：到底需要多少个并发线程？</p>
+<p>例如 Intel Xeon 8280，它的内存带宽为 <span class="math">$131 \ \text{GB/s}$</span>，内存时延是 <span class="math">$89 \ \text{ns}$</span>，那么理论上传输时延这段时间里我们可以传输 <span class="math">$11,659$</span> Bytes。假设我们这里进行的操作是标准的 <span class="math">$\text{MAC}$</span> 操作，每次只传输两个数 <code>x</code>  和 <code>y</code>，计算一个 <code>y[i] = alpha * x[i] + y[i]</code>，<code>alpha</code> 是一个固定值，因此每个线程每次处理的数据量是 <span class="math">$16$</span> B，那么如果我们想数据传输的过程中，我们能一直在计算，这时候就可以使用多个线程进行并发。其实这个有点像那个 CPU 中的流水线指令调度一样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">时间轴 →
+</span></span><span class="line"><span class="cl">Warp 0: [计算][发请求]░░░░░░░░░░░░░░░[数据回来][计算]...
+</span></span><span class="line"><span class="cl">Warp 1:        [计算][发请求]░░░░░░░░░░░░░░░[数据回来][计算]...
+</span></span><span class="line"><span class="cl">Warp 2:              [计算][发请求]░░░░░░░░░░░░░░░[数据回来]...
+</span></span><span class="line"><span class="cl">Warp 3:                    [计算][发请求]░░░░░░░░░░░░░░░...
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">GPU执行器看到的：
+</span></span><span class="line"><span class="cl">████████████████████████████████████████████████████████████  ← 始终在执行某个 Warp，没有空隙！</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么理论上我们需要 <span class="math">$\frac{11659}{16} = 729$</span> 个线程才可以用满这里的带宽时延</p>
+<blockquote>
+<p>你可能会有这样的疑问: 这里为什么要用多线程呢？难道就不能一个线程连轴转？也就是比如一个线程的寄存器空间有 <span class="math">$256$</span> kb，然后可以一直往这个寄存器内打数据啊，然后一个线程不停的消费，反正传输时延只在一开始有一次消耗，后面的数据都是一块过来的，消费完继续用不就行了。甚至如果对单次请求的数据进行的计算正好符合计算强度，那不是一个线程就能完美使用了？</p>
+<p>这个想法有一个误区，就是一开始执行的时候不一定知道要请求多少数据啊，很可能请求的数据是得计算完成之后才知道，因此每一次请求都会有一个单独的传输时延。因此得靠多线程组成一个类似于流水线，才能保证每次起码有一个 warp 在执行，芯片没有空转</p></blockquote>
 <h4 id="cpu">CPU</h4>
 <p>无论现在 CPU 具体实现怎么变，依旧是由运算器、控制器、寄存器三大部分组成</p>
 <img src="images/image-20260318154056822.png" alt="image-20260318154056822" style="zoom:30%; display: block; margin: 0 auto;" />
@@ -667,6 +714,8 @@ $$</span><p>
 <img src="images/image-20260319162930062.png" alt="image-20260319162930062" style="zoom:20%; display: block; margin: 0 auto;" />
 <p>这 <span class="math">$0.14\%$</span> 一对比发现好像利用率还很高啊！这里的 GPU 的利用率更低，原因在于 GPU 擅长对同一批数据做大量复杂计算（高算术强度），而非像这里每次取完数据只做一次 MAC 这种低强度场景。</p>
 <h4 id="gpu">GPU</h4>
+<blockquote>
+<p>这里我们对 GPU 的讲解都是对 NVIDIA 的 GPU 进行分析，下面不再赘述。</p></blockquote>
 <p>GPU 的设计目标是<strong>最大化吞吐量</strong>，更关心的是<strong>并行度</strong>——即同时能执行多少任务；而 CPU 则更注重降低延迟与提升并发能力。</p>
 <p>还是回到上面的 demo 的例子，虽然单次我们只请求了 <code>x[i]</code> 和 <code>y[i]</code>，一共 <span class="math">$16$</span> Bytes，内存效率非常低</p>
 <p>比如对于上面表格中的 Intel Xeon 8280，理论上一次传输时延的时间里我们可以传输 <span class="math">$11,659$</span> Bytes，理论上我们需要一次做 <span class="math">$\frac{11659}{16} = 729$</span> 次计算才可以用满这里的带宽时延</p>
@@ -825,19 +874,21 @@ $$</span><p>
       </tr>
   </tbody>
 </table>
-<h5 id="gpu-线程机制">GPU 线程机制</h5>
+<h5 id="gpu-模型架构">GPU 模型架构</h5>
+<p>为了实现用户编程与底层硬件的解耦——即硬件每年迭代升级，用户在 CUDA 层编程时无需感知这些变化——NVIDIA 将 GPU 架构分为<strong>硬件架构</strong>和<strong>软件架构</strong>两层，用户不直接操作具体的硬件模块，而是给了一层软件层面的抽象，用户在 CUDA 层进行编程。</p>
+<img src="images/image-20260323144000711.png" alt="image-20260323144000711" style="zoom:36%; display: block; margin: 0 auto;" />
+<p>接下来我们来慢慢解释这张图上出现的名词和概念。</p>
+<h6 id="硬件架构">硬件架构</h6>
+<p>基本概念:</p>
+<ul>
+<li>GPC: 图像处理簇, Graphics Processing Clusters</li>
+<li>TPC: 纹理处理簇, Texture Processing Clusters。一个 GPC 里有多个 TPC。</li>
+<li>SM: 流多处理器, Stream Multiprocessors。一个 TPC 里有多个 SM。</li>
+<li>HBM: 高带宽存储器（显存）, High Bandwidth Memory</li>
+<li>Warp: 线程束，是 SM 的基本执行单元。逻辑上，所有线程都是并行的；<strong>但是硬件上</strong>，实际执行单元有限，不可能每个线程都在同一时刻执行。因此我们需要一种机制，把大量线程合理地映射到有限硬件上，让 GPU 可以高效调度。于是引入了 warp 概念。</li>
+</ul>
 <p>我们打开一个 GPU 中的 SM，看看里面到底都有什么：</p>
-<p>
-<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260320141719402.png" title="image-20260320141719402" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260320141719402.png" data-sub-html="<h2> </h2><p>image-20260320141719402</p>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260320141719402.png"
-            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260320141719402.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260320141719402.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260320141719402.png 2x"
-            data-sizes="auto"
-            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260320141719402.png" width="3820" height="1530" />
-    </a><figcaption class="image-caption">image-20260320141719402</figcaption>
-    </figure></p>
+<img src="images/image-20260320141719402.png" alt="image-20260320141719402" style="zoom:30%; display: block; margin: 0 auto;" />
 <p>对应的具体数据如下：</p>
 <table>
   <thead>
@@ -880,61 +931,217 @@ $$</span><p>
       </tr>
   </tbody>
 </table>
+<h6 id="软件架构">软件架构</h6>
+<p>基本概念:</p>
+<ul>
+<li>Grid： 网格。表示所有要执行的任务。 Grid 中包含了许多相同线程 Threads 数量的块 Blocks。</li>
+<li>Block: 一个 block 上的 thread 会放在同一个 SM 中进行执行</li>
+<li>Thread： 线程。</li>
+</ul>
+<p>我们来结合 CUDA 来介绍这几个概念：</p>
+<p>CUDA 引入主机端(<strong>Host</strong>)和设备(<strong>Device</strong>)概念。一个 CUDA 程序中既包含 Host 代码，也包含 Device 代码。可以理解为 Host 就是 CPU 要执行的部分， Device 就是 GPU 要执行的部分。这样的话需要大量并行计算的部分就可以通过 GPU 进行运行，然后将结果返回给 CPU。</p>
+<p>在 CUDA 程序构架中，Host 代码部分在 CPU 上执行，是普通 C 代码；当遇到数据并行处理的部分，CUDA 就会将程序编译成 GPU 能执行的程序，并传送到 GPU，这个程序在 CUDA 里称做 <strong>核(kernel)</strong>。</p>
+<p>Device 代码部分在 GPU 上执行，此代码部分在 kernel 上编写（<code>.cu</code> 文件）。kernel 用 <code>__global__</code> 符号声明，在调用时需要用 <code>&lt;&lt;&lt;grid, block&gt;&gt;&gt;</code> 来指定 kernel 要执行的具体结构。</p>
+<img src="images/image-20260323152434003.png" alt="image-20260323152434003" style="zoom:36%; display: block; margin: 0 auto;" />
+<p>具体代码示例：</p>
+<div class="highlight"><div class="chroma" data-title="cuda_device.cu">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// Kernel function to add the elements of two arrays
+</span></span></span><span class="line"><span class="cl"><span class="c1">// __global__ 变量声明符，作用是将 add 函数变成可以在 GPU 上运行的函数
+</span></span></span><span class="line"><span class="cl"><span class="c1">// __global__ 函数被称为 Kernel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">__global__</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">25</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Allocate Unified Memory – accessible from CPU or GPU
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 内存分配，在 GPU 或者 CPU 上统一分配内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">cudaMallocManaged</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cudaMallocManaged</span><span class="p">(</span><span class="o">&amp;</span><span class="n">y</span><span class="p">,</span> <span class="n">N</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// initialize x and y arrays on the host
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Run Kernel on 1M elements on the GPU
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// execution configuration, 执行配置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">add</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Wait for GPU to finish before accessing on host
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// CPU 需要等待 cuda 上的代码运行完毕，才能对数据进行读取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Free memory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">cudaFree</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cudaFree</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>kernel 在 Device 中执行时，实际上是启动非常多的线程。一个 kernel 执行所启动的所有的线程被称为一个 <strong>网格(grid)</strong></p>
+<ul>
+<li>
+<p>Grid 分为多个线程块（block），一个 block 里面包含很多线程。</p>
+</li>
+<li>
+<p>block 间并行执行，并且无法通信，也没有执行顺序。</p>
+</li>
+<li>
+<p>每个 block 包含共享内存（shared Memory），可由里面的 Thread 共享。</p>
+</li>
+</ul>
+<img src="images/image-20260323154120593.png" alt="image-20260323154120593" style="zoom:50%; display: block; margin: 0 auto;" />
+<p><strong>Q:</strong> 那么这里 CUDA 中引出的软件视角的线程模型和实际的硬件架构有什么关联呢？</p>
+<ul>
+<li>Block线程块只在一个 SM 上通过 Warp 进行调度。</li>
+<li>一旦在 SM 上调起了 Block 线程块，就会一直保留到执行完 Kernel。</li>
+<li>SM 可以同时保存多个 Block 线程块，块间并行的执行。</li>
+</ul>
+<img src="images/image-20260323144000711.png" alt="image-20260323144000711" style="zoom:36%; display: block; margin: 0 auto;" />
 <h5 id="gpu-编程本质">GPU 编程本质</h5>
 <p>由于有 Img2col 算法的存在，我们可以轻松地将图像处理中使用到的卷积运算转换为矩阵运算，因此 AI 中的绝大多数计算本质上都可以归结为矩阵运算。</p>
-<p>而 GPU 中的线程还有</p>
+<p>而在 AI 计算模式中，不是所有的计算都可以是线程独立的：</p>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321182908015.png" title="image-20260321182908015" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321182908015.png" data-sub-html="<h2> </h2><p>image-20260321182908015</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321182908015.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321182908015.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321182908015.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321182908015.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321182908015.png" width="3104" height="874" />
+    </a><figcaption class="image-caption">image-20260321182908015</figcaption>
+    </figure></p>
+<p>大致可以划分为三种计算模式：</p>
+<ol>
+<li>Element-wise（逐元素操作）</li>
+</ol>
+<p>比如 <span class="math">$\text{MAC}$</span> 操作</p>
+<ul>
+<li>Data Scales = <span class="math">$O(N)$</span>： 数据量随 <span class="math">$N$</span> 线性增长</li>
+<li>Compute Scales = <span class="math">$O(N)$</span>： 计算量也线性增长</li>
+<li>Intensity = <span class="math">$O(1)$</span>： 两者比值是常数，计算强度不随 <span class="math">$N$</span> 增大而增大</li>
+</ul>
+<p>→ 右边的图是一条<strong>水平线</strong>，说明不管数据规模多大，每份数据只做固定次数的计算，<strong>内存带宽永远是瓶颈</strong>，并行帮助有限。</p>
+<ol start="2">
+<li>Local（局部连接）</li>
+</ol>
+<p>比如卷积（CNN），每个输出只依赖周围固定窗口内的输入。</p>
+<ul>
+<li>Data Scales = <span class="math">$O(N^2)$</span>： 二维数据，搬运量是 <span class="math">$N^2$</span></li>
+<li>Compute Scales = <span class="math">$O(N^2)$</span>： 每个输出要计算 <span class="math">$k^2$</span> 次，输出数据有 <span class="math">$N^2$</span>。(<span class="math">$k$</span> 对于 <span class="math">$N$</span> 是一个常数)</li>
+<li>Intensity = <span class="math">$O(1)$</span>： 比值依然是常数</li>
+</ul>
+<p>→ 图也是<strong>水平线</strong>，性质和 Element-wise 一样，计算强度没有随规模提升的优势。</p>
+<ol start="3">
+<li>All to All（全连接）</li>
+</ol>
+<p>比如矩阵乘法（GEMM）、Attention——每个输出都依赖所有输入。</p>
+<ul>
+<li>Data Scales = <span class="math">$O(N^2)$</span>： 二维数据，搬运量是 <span class="math">$N^2$</span></li>
+<li>Compute Scales = <span class="math">$O(N^3)$</span>： 每个输出要计算 <span class="math">$N$</span> 次，输出数据有 <span class="math">$N^2$</span>。</li>
+<li>Intensity = <span class="math">$O(N)$</span>： <strong>计算强度随 N 线性增大！</strong></li>
+</ul>
+<p>→ 图是一条<strong>斜向上的线</strong>，意味着矩阵越大，每次搬运的数据能做的计算越多，硬件利用率越高，<strong>越容易打满算力</strong>。</p>
+<p>因此对于上面的 Element-wise 和 Local 来说，他们的计算强度没有办法通过调整输入的数据规模的增加来线性增加，也就是对于现在更强性能的 GPU 来说，我们没有办法充分地利用日益强大的算力。</p>
+<p>因此，All to All 计算模式非常适合 GPU，而矩阵乘法（GEMM）和 Attention 恰好都属于此类，也是当前 LLM 中最核心的计算操作。</p>
+<p>我们来看看随着矩阵规模 <span class="math">$N$</span> 的增大，计算强度和 GPU 硬件对于 FP32 和 FP64 精度的计算强度阈值的对比：</p>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321205207888.png" title="image-20260321205207888" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321205207888.png" data-sub-html="<h2> </h2><p>image-20260321205207888</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321205207888.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321205207888.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321205207888.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321205207888.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321205207888.png" width="2958" height="1388" />
+    </a><figcaption class="image-caption">image-20260321205207888</figcaption>
+    </figure></p>
+<p>当然，上面说的是一种通用计算的计算强度阈值，NVIDIA 提出了一种专门针对矩阵运算的计算单元： <strong>Tensor Core</strong>。它对于矩阵运算的计算强度阈值非常高，这样我们就能根据不同的缓存等级来对矩阵规模做更精细化的利用。我们来看看 L1、L2、HBM 的计算阈值分别是多少：</p>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321232331515.png" title="image-20260321232331515" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321232331515.png" data-sub-html="<h2> </h2><p>image-20260321232331515</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321232331515.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321232331515.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321232331515.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321232331515.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260321232331515.png" width="1664" height="818" />
+    </a><figcaption class="image-caption">image-20260321232331515</figcaption>
+    </figure></p>
+<p>因此我们可以知道，对于 L1，我们适合用一些比较小规模的矩阵进行运算，因为它的计算阈值比较小。这其实也很好理解，因为 L1 缓存的带宽非常高，数据传输非常快，自然留给我们计算的时间也就不多了。</p>
+<h5 id="nvidia-gpu-架构发展">NVIDIA GPU 架构发展</h5>
+<p>
+<figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260323175047122.png" title="image-20260323175047122" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260323175047122.png" data-sub-html="<h2> </h2><p>image-20260323175047122</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260323175047122.png"
+            data-srcset="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260323175047122.png, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260323175047122.png 1.5x, /%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260323175047122.png 2x"
+            data-sizes="auto"
+            alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/image-20260323175047122.png" width="3710" height="1610" />
+    </a><figcaption class="image-caption">image-20260323175047122</figcaption>
+    </figure></p>
+<p>我们可以看到随着 AI 大模型的发展， CUDA Core 逐渐退出了历史舞台，取而代之的是专门做矩阵运算的 Tensor Core。</p>
+<h5 id="tensor-core-原理">Tensor Core 原理</h5>
 <h4 id="tpu">TPU</h4>
-<h2 id="云原生资源编排与调度架构">云原生资源编排与调度架构</h2>
-<h2 id="ai-编译计算架构">AI 编译计算架构</h2>
-<h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
-<h3 id="推理">推理</h3>
-<h4 id="sglang">SGLang</h4>
-<p>一个专门用来学习 SGLang 框架的简化版本： <a href="https://github.com/gogongxt/nano-sglang" target="_blank" rel="noopener noreffer ">nano-sglang</a></p>
-<div class="mermaid" id="mermaid-1">sequenceDiagram
-    participant 用户
-    participant FastAPI as FastAPI Server
-    participant Tokenizer as TokenizerManager
-    participant Router as Router进程
-    participant Model as Model RPC
-    participant Detokenizer as Detokenizer
-
-    用户->>FastAPI: POST /generate (GenerateReqInput)
-    FastAPI->>FastAPI: obj.post_init()
-    FastAPI->>Tokenizer: generate_request(obj)
-    
-    Tokenizer->>Tokenizer: 第一次请求创建handle_loop
-    Tokenizer->>Tokenizer: tokenizer.encode(text)
-    Tokenizer->>Tokenizer: SamplingParams处理
-    Tokenizer->>Tokenizer: 图像处理(如果有)
-    Tokenizer->>Tokenizer: 创建TokenizedGenerateReqInput
-    
-    Tokenizer->>Router: send_pyobj(tokenized_obj)
-    Note over Router: 请求调度和批处理
-    
-    Router->>Model: RPC调用模型推理
-    loop 模型推理
-        Model->>Model: 前向推理生成tokens
-    end
-    
-    Model-->>Router: 返回logits和新生成的token_ids
-    Router-->>Detokenizer: 发送token_ids
-    
-    Detokenizer->>Detokenizer: 将token_ids解码为文本
-    Detokenizer-->>Tokenizer: 返回生成结果
-    
-    alt 流式输出
-        Tokenizer-->>FastAPI: yield 部分结果
-        FastAPI-->>用户: 流式返回
-        loop 直到生成完成
-            Model->>Model: 继续生成
-            Detokenizer-->>Tokenizer: 返回新token
-            Tokenizer-->>FastAPI: yield
-            FastAPI-->>用户: 流式返回
-        end
-    else 非流式输出
-        Tokenizer-->>FastAPI: 返回完整结果
-        FastAPI-->>用户: 返回最终结果
-    end</div><h4 id="rdma">RDMA</h4>
+<h3 id="网络">网络</h3>
+<h4 id="rdma">RDMA</h4>
 <p>RDMA(Remote Direct Memory Access)，远程直接内存访问。</p>
 <p>
 <figure><a class="lightgallery" href="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/e99e04c8dcd33b4bffb552036dd22996.png" title="e99e04c8dcd33b4bffb552036dd22996" data-thumbnail="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/e99e04c8dcd33b4bffb552036dd22996.png" data-sub-html="<h2> </h2><p>e99e04c8dcd33b4bffb552036dd22996</p>">
@@ -947,7 +1154,7 @@ $$</span><p>
             alt="/%E7%8E%B0%E4%BB%A3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/images/e99e04c8dcd33b4bffb552036dd22996.png" width="962" height="584" />
     </a><figcaption class="image-caption">e99e04c8dcd33b4bffb552036dd22996</figcaption>
     </figure></p>
-<p>我们来捋一下传统网络数据传输需要哪些步骤：</p>
+<p>我们来捋一下<strong>传统网络数据</strong>传输需要哪些步骤：</p>
 <p>数据发送方：</p>
 <ul>
 <li>数据从用户空间 Buffer copy 到内核空间的 Socket Buffer</li>
@@ -1128,12 +1335,62 @@ $$</span><p>
 </li>
 </ul>
 <p>而 iWARP 显然是为了再更宽泛的现有网络中使用，支持了广域网，同时由于 TCP 协议支持了流量和拥塞控制，因此不需要无损传输，当然性能也是最差的</p>
-</div><div class="post-footer" id="post-footer">
+<h2 id="云原生资源编排与调度架构">云原生资源编排与调度架构</h2>
+<h2 id="ai-编译计算架构">AI 编译计算架构</h2>
+<h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
+<h3 id="推理">推理</h3>
+<h4 id="sglang">SGLang</h4>
+<p>一个专门用来学习 SGLang 框架的简化版本： <a href="https://github.com/gogongxt/nano-sglang" target="_blank" rel="noopener noreffer ">nano-sglang</a></p>
+<div class="mermaid" id="mermaid-1">sequenceDiagram
+    participant 用户
+    participant FastAPI as FastAPI Server
+    participant Tokenizer as TokenizerManager
+    participant Router as Router进程
+    participant Model as Model RPC
+    participant Detokenizer as Detokenizer
+
+    用户->>FastAPI: POST /generate (GenerateReqInput)
+    FastAPI->>FastAPI: obj.post_init()
+    FastAPI->>Tokenizer: generate_request(obj)
+    
+    Tokenizer->>Tokenizer: 第一次请求创建handle_loop
+    Tokenizer->>Tokenizer: tokenizer.encode(text)
+    Tokenizer->>Tokenizer: SamplingParams处理
+    Tokenizer->>Tokenizer: 图像处理(如果有)
+    Tokenizer->>Tokenizer: 创建TokenizedGenerateReqInput
+    
+    Tokenizer->>Router: send_pyobj(tokenized_obj)
+    Note over Router: 请求调度和批处理
+    
+    Router->>Model: RPC调用模型推理
+    loop 模型推理
+        Model->>Model: 前向推理生成tokens
+    end
+    
+    Model-->>Router: 返回logits和新生成的token_ids
+    Router-->>Detokenizer: 发送token_ids
+    
+    Detokenizer->>Detokenizer: 将token_ids解码为文本
+    Detokenizer-->>Tokenizer: 返回生成结果
+    
+    alt 流式输出
+        Tokenizer-->>FastAPI: yield 部分结果
+        FastAPI-->>用户: 流式返回
+        loop 直到生成完成
+            Model->>Model: 继续生成
+            Detokenizer-->>Tokenizer: 返回新token
+            Tokenizer-->>FastAPI: yield
+            FastAPI-->>用户: 流式返回
+        end
+    else 非流式输出
+        Tokenizer-->>FastAPI: 返回完整结果
+        FastAPI-->>用户: 返回最终结果
+    end</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-03-18&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/d652aebe109d46b0ce6702647b0c958a55738411" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) d652aebe109d46b0ce6702647b0c958a55738411: feat: 修改表格样式颜色">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d652aeb</a></span>
+                <span>更新于 2026-03-23&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/5f84f9808713da21d9480310221acd55bab37b40" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 5f84f9808713da21d9480310221acd55bab37b40: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5f84f98</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

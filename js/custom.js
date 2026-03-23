@@ -21,12 +21,21 @@ function runtime() {
 }
 runtime();
 
-/* 背景图片预加载 - LQIP 方案 */
+/* 背景图片预加载 - LQIP 方案
+ * body 的 CSS 背景始终是 726KB 小图（即时显示）。
+ * 此处动态创建 #bg-hd div 叠在最底层（z-index:-1），
+ * 13MB 高清图加载完成后将其 opacity 从 0 淡入到 1，
+ * 实现无感替换。opacity 支持 CSS transition，background-image 不支持。
+ */
 (function() {
+	var div = document.createElement('div');
+	div.id = 'bg-hd';
+	document.body.insertBefore(div, document.body.firstChild);
+
 	var hdBg = new Image();
 	hdBg.src = '/images/13MB-background.jpg';
 	hdBg.onload = function() {
-		document.body.classList.add('bg-loaded');
+		div.classList.add('visible');
 	};
 })();
 

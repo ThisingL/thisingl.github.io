@@ -223,8 +223,7 @@
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">a</span> <span class="o">=</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于c++兼容着c，因此基本语法并没有很明显的区别，这里需要注意的是c++的头文件和c语言的标准库文件确实是有区别的，c语言的头文件一般是<code>#include &lt;stdio.h&gt;</code>，而c++的标准库文件一般没有<code>.h</code>作为结尾，这是为了和c语言有所区分。</p>
 <p>这时候又会有人问了，那为什么c++中又有<code>&lt;&gt;</code>又有<code>&quot;&quot;</code>这两种include写法呢？其实就是为了让编译器知道，哪些头文件需要从用户的仓库目录里面找，哪些从gcc的库函数里面去找。</p>
@@ -244,8 +243,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">funcB</span><span class="p">();</span>        <span class="c1">// 调用b.cc中的方法funcB();
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果设计到一个项目中有两个文件，而且main函数需要调用另一个文件中的funcA方法，编译器到底怎么样才能将这个main函数成功运行呢？</p>
 <p>那么我们就得了解编译器到底干了什么事情。简单来说主要就是两件事：<strong>编译</strong>和<strong>链接</strong></p>
@@ -296,8 +294,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">funcB</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在我们重新编译：<code>g++ -c main.c++ -o a.o</code></p>
 <p>这次果然成功了，生成了<code>a.o</code>这个目标文件，but oh no, <code>b.cc</code>我甚至还没写啊，what crazy! 这样居然编译都没报错，因此你应该理解了下面这句话了：</p>
@@ -350,8 +347,7 @@
 </span></span><span class="line"><span class="cl">extern int g_value; // 声明（不分配内存）
 </span></span><span class="line"><span class="cl">void print() {
 </span></span><span class="line"><span class="cl"> std::cout &lt;&lt; g_value &lt;&lt; std::endl;
-</span></span><span class="line"><span class="cl">}
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></td></tr></table>
 </div>
 </div><p>编译时 <code>b.c++</code> 看到 <code>extern int g_value;</code>，知道有个 <code>int</code> 变量存在，但不生成内存。
 链接时，它去 <code>a.o</code> 找到 <code>g_value</code> 的定义，拼在一起 ✅。</p>
@@ -370,8 +366,7 @@
 </span></span><span class="line"><span class="cl">void foo() {}  // 定义
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">// b.c++
-</span></span><span class="line"><span class="cl">void foo();    // 声明（其实相当于 extern void foo();）
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">void foo();    // 声明（其实相当于 extern void foo();）</span></span></code></pre></td></tr></table>
 </div>
 </div><p>函数声明本质上都带 <code>extern</code>，所以你不写也行</p></blockquote>
 <p>这时候如果我们没有实现<code>b.c++</code>直接去把<code>g++ main.cc -o main</code></p>
@@ -391,8 +386,7 @@
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;funcB()&#34;</span>, referenced from:
 </span></span><span class="line"><span class="cl">      _main in main-331bbe.o
 </span></span><span class="line"><span class="cl">ld: symbol<span class="o">(</span>s<span class="o">)</span> not found <span class="k">for</span> architecture arm64
-</span></span><span class="line"><span class="cl">clang: error: linker <span class="nb">command</span> failed with <span class="nb">exit</span> code <span class="m">1</span> <span class="o">(</span>use -v to see invocation<span class="o">)</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">clang: error: linker <span class="nb">command</span> failed with <span class="nb">exit</span> code <span class="m">1</span> <span class="o">(</span>use -v to see invocation<span class="o">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这说明虽然上面的编译阶段成功了，但是链接阶段却有问题，提示找不到<code>funcB()</code>的具体实现</p>
 <p>这时候我们就需要实际去实现我们的<code>b.cc</code>文件了：</p>
@@ -409,8 +403,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">funcB</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;B&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在我们再次运行<code>g++ main.cc b.cc -o main</code>，构建成功了!</p>
 <p>聪明的同学肯定还有疑问啊，那c以及c++文件中随处可见的<code>.h</code>文件，在项目构建时会发生什么呢？</p>
@@ -433,8 +426,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">funcB</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#endif
-</span></span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="13-pointer">1.3 pointer</h3>
 <p>首先我们来下一个定义：<strong>指针只是存储内存地址的整数</strong>。</p>
@@ -449,8 +441,7 @@
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">int</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">var</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>因此本质上来看，为什么变量要指定类型呢？答案是需要知道实际用几个字节来存储该变量的值。那么指针指定的变量难道也是为了告诉编译器需要用几个字节来存储吗？No，No，No，如果真这么简单我也不会在这里花一段话来讲了，本质上来看指针存的只是内存中某一个位置的地址值，难道地址大小还不一样吗计算机哈哈哈，所以比如如果是64位的机器，那么默认指针都需要用8B来存啊，这都不用用户去说编译器就能自动知道。但是拿到这个地址值之后，你知道要读多少位吗？是读8位的char，还是32位的int呢？这就需要事先告诉编译器了，因此指针的类型是告诉编译器如果<code>*ptr</code>，编译器需要去读多少字节。</p>
 <h3 id="14-reference">1.4 reference</h3>
@@ -477,8 +468,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">a</span> <span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后要说的一点是，引用只能绑定一次，不能中途更换引用的变量，要想更换只能使用功能更强大，但是也更复杂的指针了。</p>
 <h3 id="15-class">1.5 class</h3>
@@ -532,8 +522,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">player</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">player</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">player</span><span class="p">.</span><span class="n">speed</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面代码中的Player的结构体和类的作用是一摸一样的，我们就能看到一个最明显的区别：<code>class</code>默认内部都是<code>private</code>的，如果想要<code>public</code>需要声明；而<code>struct</code>则恰好相反。</p>
 <p>所以说对于是用<code>class</code>还是<code>struct</code>，如果不是为了类的继承多态等高级特性，那这两个基本没有区别了。那就看个人的编程风格了，如果他只是一种只表示变量的简单组织结构，比如基本的数据结构，就可以考虑只使用简单的<code>struct</code>。</p>
@@ -613,8 +602,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;called object type &#39;int&#39; is not a function or function pointer&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="s">&#34;default member initializer for non-static data member is a C++11 extension [-Wc++11-extensions]&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&#34;1 warnings and 1 errors generated.&#34;</span><span class="p">);</span>   
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="16-static">1.6 static</h3>
 <p>和引用一样，<code>static</code>在不同的语境下的含义也是不一样的。</p>
@@ -654,8 +642,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">getCounter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">getCounter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">getCounter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后输出的是123。</p>
 <p>这说明局部静态变量<strong>只会被初始化一次</strong>，之后调用函数会直接使用已经存在的变量。并且和普通局部变量一样，只能在函数内部访问。</p>
@@ -704,8 +691,7 @@
 </span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="p">;</span> <span class="c1">// 局部静态变量，自动销毁
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们可以画一张两种方式的对比表：</p>
 <table>
@@ -771,8 +757,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">==</span> <span class="n">Success</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">e</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样我们声明出来的<code>Status e</code>也不怕别人往里面写错误的值了，如果不用<code>enum</code>，直接通过<code>int e</code>，那么用户可以随意写不在<code>enum</code>范围内的值，比如1000，这样也不用写范围判断了。</p>
 <p>有了这个工具，我们也就可以把之前写的简陋的<code>log</code>类来更新了：</p>
@@ -853,8 +838,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;called object type &#39;int&#39; is not a function or function pointer&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="s">&#34;default member initializer for non-static data member is a C++11 extension [-Wc++11-extensions]&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&#34;1 warnings and 1 errors generated.&#34;</span><span class="p">);</span>   
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>TODO：补充一下 enum class</p>
 <h3 id="18-constructor">1.8 constructor</h3>
@@ -1077,8 +1061,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printPerson</span><span class="p">(</span><span class="k">const</span> <span class="n">Person</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">GetAge</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果<code>const</code>放在方法后面，就代表我们的方法不会影响到对象本身。而<code>const Person&amp; p</code>，意味着我们承诺我们不会修改对象<code>p</code>，那么此时我们只能访问<code>p</code>中被<code>const</code>修饰的方法，因为没有被<code>const</code>修饰的方法我们无法保证不会修改对象<code>p</code>。</p>
 <p>但是有些时候，我们有一些用于调试的变量比如<code>int var</code>，我们的<code>const</code>修饰的方法可能也想修改他，但是我们能确保他不会影响到程序，这时候就很不方便了，我们又不想放弃将方法定义为<code>const</code>，这时候我们就可以使用下一次要讲到的<code>mutable</code>来完成他了！</p>
@@ -1113,8 +1096,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printPerson</span><span class="p">(</span><span class="k">const</span> <span class="n">Person</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">GetAge</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>还有一种使用场景是在lambda表达式中修改按值传递的变量（非常非常少见，因为可以直接将这些变量设置为引用传递），所以我们就直接略过了。</p>
 <h3 id="117-member-initializer-list">1.17 member initializer list</h3>
@@ -1168,8 +1150,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Person</span> <span class="n">p</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>问题来了，你认为最后打印输出的是什么呢？是<code>Entity int constructor</code>吗？</p>
 <p>答案是No，输出的是<code>&quot;Entity default constructor&quot;</code>和<code>Entity int constructor</code>。</p>
@@ -1186,8 +1167,7 @@
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">Entity</span> <span class="n">entity</span><span class="p">;</span>        <span class="c1">// 把private中内容移动到了这里（调用了构造器）
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">entity</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="c1">// 赋值操作
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以其实<code>Entity</code>的两个构造器都被调用了，很明显这个是一种资源的浪费，那么有没有办法解决了？</p>
 <p>聪明的c++创建者肯定考虑到了，所以提供了<strong>成员初始化列表</strong>这个语法。</p>
@@ -1214,8 +1194,7 @@
 </span></span><span class="line"><span class="cl">        <span class="o">:</span> <span class="n">entity</span><span class="p">(</span><span class="n">Entity</span><span class="p">(</span><span class="mi">100</span><span class="p">)){</span>    <span class="c1">// 成员初始化列表
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时运行就会发现，只会打印输出:<code>Entity int constructor</code>。</p>
 <p>当然这个写法还涉及到一种代码风格，如果构造函数中的代码逻辑很复杂的话，那么简单的初始化复制逻辑就可以直接放在成员初始化列表中，这样就分离开来了。</p>
@@ -1256,8 +1235,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">Person</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="n">name</span><span class="p">(</span><span class="s">&#34;Unknown&#34;</span><span class="p">),</span> <span class="n">age</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们知道<code>Person p = Person(100)</code>肯定是正确的，那如果偷个懒，直接写成<code>Person p = 100</code>，请问这个写法对吗？</p>
 <p>如果从Java等其他语言的角度来看，这肯定错啊，100怎么可能能赋值给一个对象，但是先别急，我们刚刚提到的<strong>隐式转换</strong>说的就是这个，当给对象赋值的时候，如果直接传入一个值，就会自动尝试去调用他的构造函数，也就是<code>Person(int age){}</code>了，也就是说这两种写法其实是等价的。</p>
@@ -1292,8 +1270,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">Person</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="n">name</span><span class="p">(</span><span class="s">&#34;Unknown&#34;</span><span class="p">),</span> <span class="n">age</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>那么这时候这样写就会报错：<code>Person p = std::string(&quot;thisingl&quot;)</code></p>
 <h3 id="121-operator-overload">1.21 operator overload</h3>
@@ -1331,8 +1308,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">Vector</span> <span class="nf">Multiply</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们有下面这三个向量：</p>
 <div class="highlight"><div class="chroma">
@@ -1344,8 +1320,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Vector</span> <span class="nf">position</span><span class="p">(</span><span class="mf">4.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">Vector</span> <span class="nf">speed</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">1.5f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Vector</span> <span class="nf">powerup</span><span class="p">(</span><span class="mf">1.1f</span><span class="p">,</span> <span class="mf">1.1f</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="n">Vector</span> <span class="nf">powerup</span><span class="p">(</span><span class="mf">1.1f</span><span class="p">,</span> <span class="mf">1.1f</span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果我们想要计算一个<code>position + speed * powerup</code>的结果，在Java等语言中只能写成这样：<code>Vector result1 = position.Add(speed.Multiply(powerup))</code>，这个写法看看就不知道到底在做啥数学运算了，很容易看晕如果更复杂的话，我们只想要直观的计算，而不想看到这样的方法调用。好消息是，C++中的<strong>操作符重载</strong>在这种场景下就非常方便了，我们改写一下二维向量类：</p>
 <div class="highlight"><div class="chroma">
@@ -1397,8 +1372,7 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">Vector</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这时候我们只需要这样调用即可：<code>Vector result2 = position + speed * powerup</code></p>
 <p>是不是简单太多了。当然我们还可以改写<code>std::cout &lt;&lt; </code>中的<code>&lt;&lt;</code>操作符来达到直接输出这个二维向量的功能，以及重写<code>==</code>操作符来达到比较两个二维向量的功能。</p>
@@ -1458,8 +1432,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Entity</span><span class="o">*</span> <span class="n">e_ptr</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们就可以直接创建这样一个作用域指针<code>ScopedPtr e = new Entity()</code>，自动在作用域结束后就会释放掉<code>Entity</code>变量所占的空间。</p>
 <p>当然智能指针的功能更加强大，我们这里只是简单的演示它的一个小功能。</p>
@@ -1499,8 +1472,7 @@
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// std::unique_ptr&lt;Entity&gt; entity(new Entity()); // 不推荐写法
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span> <span class="n">entity</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// 推荐写法   
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里申请<code>unique_ptr</code>指向的空间时推荐使用<code>make_unique</code>申请空间，因为会更加安全。一开始 C++11 只有 <code>make_shared</code>，没有 <code>make_unique</code>，是因为 <code>make_unique</code> 没有性能优势（不像 <code>make_shared</code> 可以少分配一次内存），但后来大家发现安全性问题太多，于是 C++14 才正式引入。</p>
 <p>原因就是如果直接<code>std::unique_ptr&lt;Entity&gt; entity(new Entity())</code>，那么假设在堆上申请完<code>new Entity()</code>空间后，还没来得及构造<code>std::unique_ptr&lt;Entity&gt; entity</code>指向刚刚申请的空间，就出现异常，那么申请的空间就忘记自动释放了，造成了内存泄漏。而如果使用<code> std::make_unique&lt;Entity&gt;()</code>来申请内存，那么就能保证不会出现刚刚的问题。</p>
@@ -1591,8 +1563,7 @@
 </span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">getBuffer</span><span class="p">()</span> <span class="p">{</span>              <span class="c1">// 打印 buffer 内容
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">buffer</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果我们这样调用，程序会发生什么：</p>
 <div class="highlight"><div class="chroma">
@@ -1610,8 +1581,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">second</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">first</span><span class="p">.</span><span class="n">getBuffer</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">second</span><span class="p">.</span><span class="n">getBuffer</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>答案是：在打印完两次&quot;thising&quot;之后，程序出现了未知的错误，程序崩溃了！</p>
 <p>是不是非常的<em>Interesting?</em></p>
@@ -1640,8 +1610,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">A</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 这里写如何从 other 复制成员
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里如果说我们没有显示去重写这个拷贝构造函数，编译器就会默认帮我们生成一个<strong>默认的浅拷贝构造函数</strong>。</p>
 <p>那么根据浅拷贝的定义，就很容易知道<code>first.buffer</code>和<code>second.buffer</code>其实指向同一片内存区域，因此在函数运行结束后，会调用<strong>2次</strong>析构函数，对同一块内存区域释放两次！因此出现了未定义行为，导致了程序崩溃。</p>
@@ -1699,8 +1668,7 @@
 </span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">getBuffer</span><span class="p">()</span> <span class="p">{</span> 
 </span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">buffer</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时再次运行之前的<code>main</code>函数，便不会报错了，由此大功告成</p>
 <h3 id="126-vector">1.26 vector</h3>
@@ -1749,8 +1717,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Q.</strong> 请问<code>do a copy</code>会被打印多少次呢？</p>
 <p><strong>A.</strong> 6次！是不是很神奇，卧槽为啥会被复制了6次呢？这不得非常的废时间，因为对象的复制操作其实挺慢的。</p>
@@ -1775,8 +1742,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行后果然，只打印了3次了！</p>
 <p>那么这3次又是哪里来的呢？这是由于当我们使用<code>push_back(Vertex(1, 2, 3))</code>时，<code>Vertex(1, 2, 3)</code>分配的空间是在<code>main</code>中的，而<code>std::vector</code>的空间是独有的，那么就会出现一次复制，将<code>Vertex(1, 2, 3)</code>从外面拷贝到<code>std::vector</code>的空间中。<code>push_back</code>总共执行了3次，所以这里也就打印了3次啊！</p>
@@ -1801,8 +1767,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">vertices</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>非常完美！现在什么都不打印了，说明一次都没有复制了。</p>
 <h3 id="127-pair--tuple">1.27 pair &amp;&amp; tuple</h3>
@@ -1883,8 +1848,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Array</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="n">m_Array</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>同时我们要明白：模版不应该被滥用，当发现错误的时候，模版调试时是比较困难的，同时可读性也不如重载，但是它足够简洁</p>
 <h3 id="129-function-pointer">1.29 function pointer</h3>
@@ -1983,8 +1947,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">[</span><span class="n">capture</span><span class="p">](</span><span class="n">parameter_list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">return_type</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">function_body</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里的捕获列表（capture）有下面几种类型：</p>
 <table>
@@ -2101,8 +2064,7 @@
 </span></span><span class="line"><span class="cl">        <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>你感觉上面的代码会有问题吗？</p>
 <p>你们看，其实 dfs 作为一个函数名，lambda表达式内部是感知不到的呀！所以会报错：</p>
@@ -2115,8 +2077,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">main</span><span class="p">.</span><span class="nl">cc</span><span class="p">:</span><span class="mi">24</span><span class="o">:</span><span class="mi">9</span><span class="o">:</span> <span class="nl">error</span><span class="p">:</span> <span class="n">variable</span> <span class="err">&#39;</span><span class="n">dfs</span><span class="err">&#39;</span> <span class="n">declared</span> <span class="n">with</span> <span class="n">deduced</span> <span class="n">type</span> <span class="err">&#39;</span><span class="k">auto</span><span class="err">&#39;</span> <span class="n">cannot</span> <span class="n">appear</span> <span class="n">in</span> <span class="n">its</span> <span class="n">own</span> <span class="n">initializer</span>
 </span></span><span class="line"><span class="cl">   <span class="mi">24</span> <span class="o">|</span>         <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">      <span class="o">|</span>         <span class="o">^</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">      <span class="o">|</span>         <span class="o">^</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这时候我们得将它作为参数传递进来，才能让函数感知到它本身的存在</p>
 <p>c++23之前，我们需要写成下面这样：</p>
@@ -2171,8 +2132,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="n">dfs</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>每次都得把函数本身传递进来，很不优雅，于是 C++23 引入了新语法：显式对象参数（deducing this），现在我们可以写成：</p>
 <div class="highlight"><div class="chroma">
@@ -2226,8 +2186,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="131-namespace">1.31 namespace</h3>
 <p><strong>命名空间</strong>是c++中有的而c中没有的，这个特性确实是大型软件开发时必备的特性。</p>
@@ -2396,8 +2355,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">...)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">...)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们需要传入一个函数<code>func</code>，后面的<code>args</code>是这个函数的传参。</p>
 <p>当然这个传参有两种情况:</p>
@@ -2540,8 +2498,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">buf</span> <span class="o">=</span> <span class="n">receive_from_socket</span><span class="p">();</span> <span class="c1">// 接收到一块原始二进制数据
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// reinterpret_cast直接把buffer解释成结构体指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">header</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MessageHeader</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">header</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">MessageHeader</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="134-union">1.34 union</h3>
 <p><code>union</code>（联合体）是一种特殊的类类型（类似于 <code>struct</code>），它的所有成员 <strong>共用同一段内存空间</strong>（<code>union</code> 所占的内存大小 == 其最大成员的大小）。也就是说，一个 <code>union</code> 在任意时刻只能“存”一个成员的值。</p>
@@ -2698,8 +2655,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">poly</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">poly</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Q.</strong> 你认为输出的结果是什么？</p>
 <p>答案是：</p>
@@ -2730,8 +2686,7 @@
 </span></span><span class="line"><span class="cl">----------------
 </span></span><span class="line"><span class="cl">Base: constructor
 </span></span><span class="line"><span class="cl">Derived: constructor
-</span></span><span class="line"><span class="cl">Base: destructor
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">Base: destructor</span></span></code></pre></td></tr></table>
 </div>
 </div><p>从输出中我们可以看出来，如果我们这样申明：<code>Derived* derived = new Derived();</code>，那么当结束生命周期的时候，就是我们想要的结果：<strong>同时调用子类和父类的析构函数</strong>。而如果我们是使用<strong>多态</strong>的方式来生命：<code>Base* poly = new Derived();</code>，此时当结束生命周期时，很神奇的是，编译器似乎<em>不智能</em>了，只调用声明的类型（父类）的析构函数，此时实际类型（子类）的析构函数给遗漏掉了，直接造成了<strong>内存泄漏</strong>！</p>
 <p>聪明的你很快发现了，这种情况和我们之前使用虚函数方法的场景很像，但是这里有一点不一样，虚函数方法是通过子类重写函数的映射表<code>VTABLE</code>来进行动态分配，但是这里不是重写方法，而是同时执行这两个析构函数。</p>
@@ -2805,8 +2760,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">poly</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">poly</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时输出的就是我们想要的了：</p>
 <div class="highlight"><div class="chroma">
@@ -2838,8 +2792,7 @@
 </span></span><span class="line"><span class="cl">Base: constructor
 </span></span><span class="line"><span class="cl">Derived: constructor
 </span></span><span class="line"><span class="cl">Derived: destructor
-</span></span><span class="line"><span class="cl">Base: destructor
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">Base: destructor</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>因此</strong>，如果我们想要一个类允许被<strong>继承</strong>，<strong>一定要将父类的虚函数申明为虚函数</strong>，否则就没有人可以安全的拓展继承这个类，甚至包括你自己！</p>
 <h3 id="136-casting">1.36 casting</h3>
@@ -2858,8 +2811,7 @@
 </span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>多么的优雅、简单、暴力美学（不是）</p>
 <p>它的问题其实非常多：</p>
@@ -2919,8 +2871,7 @@
 </span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>也可以将 <code>void*</code> 转为具体类型：</p>
 <div class="highlight"><div class="chroma">
@@ -2930,8 +2881,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">...;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">ip</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">ip</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>但是 <code>static_cast</code> 对于基类指针 → 派生类指针的情况，是不安全的，需要使用下面的 <code>dynamic_cast</code></p>
 <ol start="2">
@@ -2955,8 +2905,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 转换成功
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="3">
 <li>接下来我们要了解的是<code>const_cast</code>，它的作用是移除 <code>const</code></li>

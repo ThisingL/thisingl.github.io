@@ -169,8 +169,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh user@hostname        // 例如：ssh lx@66.166.166.166
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh user@hostname        // 例如：ssh lx@66.166.166.166</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>user</code>: 用户名(如root)</li>
@@ -189,8 +188,7 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">The authenticity of host <span class="s1">&#39;66.188.185.66 (66.188.185.66)&#39;</span> can<span class="err">&#39;</span>t be established.
 </span></span><span class="line"><span class="cl">ED25519 key fingerprint is SHA256:SZfhynS8auEJWvEIyecTGm8m8VeflY1g+s8gzJ88PRI.
 </span></span><span class="line"><span class="cl">This key is not known by any other names
-</span></span><span class="line"><span class="cl">Are you sure you want to <span class="k">continue</span> connecting <span class="o">(</span>yes/no/<span class="o">[</span>fingerprint<span class="o">])</span>?
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">Are you sure you want to <span class="k">continue</span> connecting <span class="o">(</span>yes/no/<span class="o">[</span>fingerprint<span class="o">])</span>?</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输入<code>yes</code>，然后回车即可。</p>
 <p>这样会将该服务器的信息记录在<code>~/.ssh/known_hosts</code>文件中。</p>
@@ -201,8 +199,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh user@hostname -p <span class="m">22</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh user@hostname -p <span class="m">22</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>登录成功后，创建<code>lx</code>用户：</p>
 <div class="highlight"><div class="chroma">
@@ -212,8 +209,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">adduser lx  <span class="c1"># 创建用户lx</span>
-</span></span><span class="line"><span class="cl">usermod -aG sudo lx  <span class="c1"># 给用户lx分配sudo权限</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">usermod -aG sudo lx  <span class="c1"># 给用户lx分配sudo权限</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>切换到<code>lx</code>用户：</p>
 <div class="highlight"><div class="chroma">
@@ -221,8 +217,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">su lx <span class="c1">#切换到lx用户</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">su lx <span class="c1">#切换到lx用户</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>下次就可以直接ssh到新用户 <code>lx</code> 来登录到您的云服务器（实现多用户使用同一云服务器）</p>
 <hr>
@@ -248,8 +243,7 @@
 </span></span><span class="line"><span class="cl">	<span class="c1"># Port 20000 这里我们没有修改端口号，所以不用加，但是后面的docker连接就需要加了</span>
 </span></span><span class="line"><span class="cl">Host myserver2
 </span></span><span class="line"><span class="cl">    HostName xxx.xxx.xxx.xxx <span class="c1"># IP地址或域名</span>
-</span></span><span class="line"><span class="cl">    User root <span class="c1"># 用户名</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">    User root <span class="c1"># 用户名</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>之后再使用服务器时，可以直接使用别名<code>myserver1</code>、<code>myserver2</code>。</p>
 <h5 id="免密登录">免密登录</h5>
@@ -259,8 +253,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh-keygen
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh-keygen</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后一直回车即可。</p>
 <p>执行结束后，<code>~/.ssh/</code>目录下会多两个文件：</p>
@@ -276,8 +269,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh-copy-id myserver1
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh-copy-id myserver1</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h4 id="简易安全配置">简易安全配置</h4>
@@ -287,8 +279,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo vim /var/log/auth.log
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo vim /var/log/auth.log</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>不出意外会看到很多类似如下的日志</p></blockquote>
@@ -305,8 +296,7 @@
 </span></span><span class="line"><span class="cl">Failed password <span class="k">for</span> invalid user admin from 183.146.30.163 port <span class="m">22545</span> ssh2
 </span></span><span class="line"><span class="cl">Invalid user tester from 101.254.217.219 port <span class="m">56540</span>
 </span></span><span class="line"><span class="cl">pam_unix<span class="o">(</span>sshd:auth<span class="o">)</span>: check pass<span class="p">;</span> user unknown
-</span></span><span class="line"><span class="cl">pam_unix<span class="o">(</span>sshd:auth<span class="o">)</span>: authentication failure<span class="p">;</span> <span class="nv">logname</span><span class="o">=</span> <span class="nv">uid</span><span class="o">=</span><span class="m">0</span> <span class="nv">euid</span><span class="o">=</span><span class="m">0</span> <span class="nv">tty</span><span class="o">=</span>ssh <span class="nv">ruser</span><span class="o">=</span> <span class="nv">rhost</span><span class="o">=</span>103.61.8.34
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">pam_unix<span class="o">(</span>sshd:auth<span class="o">)</span>: authentication failure<span class="p">;</span> <span class="nv">logname</span><span class="o">=</span> <span class="nv">uid</span><span class="o">=</span><span class="m">0</span> <span class="nv">euid</span><span class="o">=</span><span class="m">0</span> <span class="nv">tty</span><span class="o">=</span>ssh <span class="nv">ruser</span><span class="o">=</span> <span class="nv">rhost</span><span class="o">=</span>103.61.8.34</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后可以统计有多少人在暴力破解root密码错误登录，展示错误次数和ip</p>
 <div class="highlight"><div class="chroma">
@@ -314,8 +304,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo grep <span class="s2">&#34;Failed password for root&#34;</span> /var/log/auth.log <span class="p">|</span> awk <span class="s1">&#39;{print $11}&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -nr <span class="p">|</span> more
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo grep <span class="s2">&#34;Failed password for root&#34;</span> /var/log/auth.log <span class="p">|</span> awk <span class="s1">&#39;{print $11}&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -nr <span class="p">|</span> more</span></span></code></pre></td></tr></table>
 </div>
 </div><p>统计有多少暴力猜用户名的</p>
 <div class="highlight"><div class="chroma">
@@ -323,8 +312,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo grep <span class="s2">&#34;Failed password for invalid user&#34;</span> /var/log/auth.log <span class="p">|</span> awk <span class="s1">&#39;{print $13}&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -nr <span class="p">|</span> more
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo grep <span class="s2">&#34;Failed password for invalid user&#34;</span> /var/log/auth.log <span class="p">|</span> awk <span class="s1">&#39;{print $13}&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -nr <span class="p">|</span> more</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="禁止ssh的root用户登录">禁止SSH的root用户登录</h5>
 <p>修改 <code>/etc/ssh/sshd_config</code>文件</p>
@@ -334,8 +322,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak</span></span></code></pre></td></tr></table>
 </div>
 </div><p>禁止以root用户身份通过 SSH 登录</p>
 <div class="highlight"><div class="chroma">
@@ -343,8 +330,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">PermitRootLogin no
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">PermitRootLogin no</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="设置ssh单次登录限制">设置SSH单次登录限制</h5>
 <div class="highlight"><div class="chroma">
@@ -356,8 +342,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">LogLevel INFO       <span class="c1">#将LogLevel设置为INFO,记录登录和注销活动</span>
 </span></span><span class="line"><span class="cl">MaxAuthTries <span class="m">3</span>      <span class="c1">#限制单次登录会话的最大身份验证尝试次数</span>
-</span></span><span class="line"><span class="cl">LoginGraceTime <span class="m">20</span>   <span class="c1">#缩短单次的登录宽限期，即ssh登录必须完成身份验证的时间 单位是秒</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">LoginGraceTime <span class="m">20</span>   <span class="c1">#缩短单次的登录宽限期，即ssh登录必须完成身份验证的时间 单位是秒</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>重启ssh服务 <code>sudo service ssh restart</code></p>
 <h5 id="禁用密码登陆使用rsa私钥登录">禁用密码登陆，使用RSA私钥登录</h5>
@@ -368,8 +353,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh-keygen <span class="c1">#在客户端生成密钥</span>
-</span></span><span class="line"><span class="cl">ssh-copy-id myserver1 <span class="c1">#将公钥添加至服务端</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">ssh-copy-id myserver1 <span class="c1">#将公钥添加至服务端</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>还需要配置服务端</p>
 <p>我们向<code>/etc/ssh/sshd_config</code>写入以下内容：</p>
@@ -380,8 +364,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">PasswordAuthentication no <span class="c1">#禁止密码认证</span>
-</span></span><span class="line"><span class="cl">PermitEmptyPasswords no <span class="c1">#禁止空密码用户登录</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">PermitEmptyPasswords no <span class="c1">#禁止空密码用户登录</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>重启ssh服务<code> sudo service ssh restart</code></p>
 <hr>
@@ -395,8 +378,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get update
-</span></span><span class="line"><span class="cl">sudo apt-get install tmux
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">sudo apt-get install tmux</span></span></code></pre></td></tr></table>
 </div>
 </div><p>将本地配置通过<code>scp</code>传到新服务器上：</p>
 <div class="highlight"><div class="chroma">
@@ -404,8 +386,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">scp .vimrc .tmux.conf .bashrc server_name:   <span class="c1"># server_name需要换成自己配置的别名（！！！注意目的地址后面要有冒号：） </span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">scp .vimrc .tmux.conf .bashrc server_name:   <span class="c1"># server_name需要换成自己配置的别名（！！！注意目的地址后面要有冒号：） </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>打开tmux。(养成好习惯，所有工作都在tmux里进行，防止意外关闭终端后，工作进度丢失)</p>
 <blockquote>
@@ -418,8 +399,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo usermod -aG docker <span class="nv">$USER</span>         <span class="c1"># 这里USER不用改成lx，因为$USER会自动修改成当前的用户名</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo usermod -aG docker <span class="nv">$USER</span>         <span class="c1"># 这里USER不用改成lx，因为$USER会自动修改成当前的用户名</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>执行完此操作后，需要退出服务器，再重新登录回来，才可以省去<code>sudo</code>权限。</p>
 <h5 id="镜像images">镜像（images）</h5>
@@ -482,8 +462,7 @@
 </span></span><span class="line"><span class="cl">docker run -p 20000:22 --name my_docker_server -itd docker_lesson:1.0  <span class="c1"># 创建并运行镜像，将docker内的22(ssh)端口映射到外部的20000端口，docker_lesson:1.0是REPOSITORY:TAG</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">docker attach my_docker_server  <span class="c1"># 进入创建的docker容器</span>
-</span></span><span class="line"><span class="cl">passwd  <span class="c1"># 设置root密码</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">passwd  <span class="c1"># 设置root密码</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>去云平台控制台中修改安全组配置，放行端口<code>20000</code>。</p>
 <p>返回Terminal，即可通过<code>ssh</code>登录自己的<code>docker</code>容器：</p>
@@ -492,8 +471,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh root@xxx.xxx.xxx.xxx -p <span class="m">20000</span>  <span class="c1"># 将xxx.xxx.xxx.xxx替换成自己租的服务器的IP地址</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh root@xxx.xxx.xxx.xxx -p <span class="m">20000</span>  <span class="c1"># 将xxx.xxx.xxx.xxx替换成自己租的服务器的IP地址</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后，可以仿照上面的<em>创建工作用户并赋予权限</em>，创建工作账户<code>lx</code>。</p>
 <p>最后，可以参考上面的<em>配置别名和免密登录方式</em>配置<code>docker</code>容器的别名和免密登录。</p>
@@ -506,8 +484,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install mysql-server 
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install mysql-server </span></span></code></pre></td></tr></table>
 </div>
 </div><p>启动：</p>
 <div class="highlight"><div class="chroma">
@@ -515,8 +492,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo service mysql start
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo service mysql start</span></span></code></pre></td></tr></table>
 </div>
 </div><p>登录mysql:</p>
 <div class="highlight"><div class="chroma">
@@ -524,8 +500,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">sudo</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">root</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">sudo</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">root</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>设置<code>root</code>用户的密码：</p>
 <div class="highlight"><div class="chroma">
@@ -533,8 +508,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">caching_sha2_password</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;yourpasswd&#39;</span><span class="p">;</span><span class="w">         </span><span class="c1">#yourpasswd需要改成你的密码
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">caching_sha2_password</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;yourpasswd&#39;</span><span class="p">;</span><span class="w">         </span><span class="c1">#yourpasswd需要改成你的密码</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>之后就得输入密码登录了：</p>
 <div class="highlight"><div class="chroma">
@@ -542,8 +516,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mysql -u root -p
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mysql -u root -p</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="安装java-17">安装Java 17</h5>
 <div class="highlight"><div class="chroma">
@@ -551,8 +524,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install openjdk-17-jdk
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install openjdk-17-jdk</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="打包后端">打包后端</h5>
 <p>pom.xml中添加配置：</p>
@@ -605,8 +577,7 @@
 </span></span><span class="line"><span class="cl">            <span class="nt">&lt;/executions&gt;</span>
 </span></span><span class="line"><span class="cl">        <span class="nt">&lt;/plugin&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;/plugins&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;/build&gt;</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/build&gt;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后点击Maven中的<code>clean</code>和<code>build</code>，将代码打包成jar包，通过<code>scp</code>传输到服务器，再在服务器端使用命令行进行运行：</p>
 <div class="highlight"><div class="chroma">
@@ -614,8 +585,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">java -jar xxxxxx.jar 
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">java -jar xxxxxx.jar </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="打包前端">打包前端</h5>
 <p>前端所有的原来的<code>url: &quot;http://127.0.0.1:3000/api/xxxx&quot;</code>,都得换成你的实际ip：<code>http://47.116.187.43/api/xxxxx</code></p>
@@ -645,8 +615,7 @@
 </span></span><span class="line"><span class="cl">      <span class="n">splitChunks</span><span class="p">:</span> <span class="bp">false</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">})</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">})</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="配置nginx">配置Nginx</h5>
 <blockquote>
@@ -777,8 +746,7 @@
 </span></span><span class="line"><span class="cl">            proxy_read_timeout 36000s<span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
 </span></span><span class="line"><span class="cl">	<span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>启动nginx:<code>sudo /etc/init.d/nginx start</code></p>
 <p>查看错误信息:<code>sudo cat /var/log/nginx/error.log</code></p>

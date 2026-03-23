@@ -80,3 +80,29 @@ jQuery(document).ready(function($) {
 		
     });
 });
+
+/* 代码块自定义标题支持
+ * 读取 .chroma[data-title] 并应用到 .code-title 上，
+ * 覆盖 CSS 默认的语言名显示（如 "C++"）。
+ *
+ * 注意：theme.js 的 initHighlight()（负责创建 .code-header）也在 DOMContentLoaded 中执行，
+ * 且 custom.js 的 script 标签在 theme.js 之后，因此同一事件队列中 custom.js 的监听器
+ * 会排在 theme.js 的监听器之后，保证 .code-header 已存在。
+ */
+document.addEventListener('DOMContentLoaded', function applyCustomCodeTitles() {
+    document.querySelectorAll('.highlight > .chroma[data-title]').forEach(function($chroma) {
+        var customTitle = $chroma.getAttribute('data-title');
+        if (!customTitle) return;
+
+        var $header = $chroma.querySelector('.code-header');
+        if (!$header) return;
+
+        var $titleSpan = $header.querySelector('.code-title');
+        if (!$titleSpan) return;
+
+        // 标记类：CSS 通过此类激活自定义标题样式
+        $header.classList.add('has-custom-title');
+        // 将标题写入 data 属性，供 CSS attr() 读取
+        $titleSpan.setAttribute('data-custom-title', customTitle);
+    });
+});

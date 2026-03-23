@@ -210,8 +210,7 @@
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="s">&#34;math&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="隔离级别">隔离级别</h4>
 <p>Go 为了简洁，不像其他语言一样使用 <code>private</code>、<code>public</code>、<code>protected</code> 来更精细化的区分可见性，这也是因为 Go 中神奇的并没有 <code>class</code> 的概念。</p>
@@ -249,8 +248,7 @@
 </span></span><span class="line"><span class="cl"><span class="nx">a</span> <span class="p">=</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 等价于下面写法：</span>
-</span></span><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="mi">1</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="mi">1</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="函数">函数</h4>
 <p>Go 函数写法是这样的：</p>
@@ -271,8 +269,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">add</span> <span class="p">(</span><span class="nx">a</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这种将变量类型写在变量类型后面真的是第一次见，（参考这篇关于 <a href="http://blog.go-zh.org/gos-declaration-syntax" target="_blank" rel="noopener noreffer ">Go 声明语法</a> 的文章，了解为何使用这种类型声明的形式。）</p>
 <p>当有连续多个函数的形参的变量类型一样，可以省略前面的所有变量类型，只保留最后一个</p>
@@ -285,8 +282,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">add</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Go 中的函数可以返回任意多个值：</p>
 <div class="highlight"><div class="chroma">
@@ -298,8 +294,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">calculate</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="类型转换">类型转换</h4>
 <p>Go 中是通过表达式 <code>T(v)</code> 将值 <code>v</code> 转换为类型 <code>T</code>，这个写法倒是和其他语言不一样。</p>
@@ -311,8 +306,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="nx">j</span> <span class="o">:=</span> <span class="nb">float</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="nx">j</span> <span class="o">:=</span> <span class="nb">float</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="for-循环">for 循环</h4>
 <p>Go 中没有 <code>while</code> 循环，只有 <code>for</code> 循环，因为一切都是为了简洁优雅。</p>
@@ -328,8 +322,7 @@
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span> <span class="o">++</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果去掉初始化语句和后置语句，那么用法就和 <code>while</code> 完全一样了：</p>
 <div class="highlight"><div class="chroma">
@@ -343,8 +336,7 @@
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">sum</span> <span class="o">:=</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nx">sum</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">sum</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果想要表示出无限循环，就可以直接省略循环条件即可：</p>
 <div class="highlight"><div class="chroma">
@@ -358,8 +350,7 @@
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">i</span> <span class="o">++</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="if-条件判断">if 条件判断</h4>
 <p>Go 的 <code>if</code> 语句与 <code>for</code> 循环类似，表达式外无需小括号 <code>( )</code>，而大括号 <code>{ }</code> 则是必须的。</p>
@@ -388,8 +379,7 @@
 </span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;world&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>但其实它的很多作用在于保证某些行为一定会被执行，就像<em>并发/锁</em>中我们用 <code>defer c.mu.Unlock()</code> 来保证最后会释放互斥锁。</p>
 <p>推迟调用的函数调用会被压入一个栈中，当外层函数返回时，被推迟调用的函数调用会按照<strong>后进先出</strong>的顺序调用</p>
@@ -424,8 +414,7 @@
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">*</span><span class="nx">p</span><span class="p">)</span> <span class="c1">// 通过指针读取 i 的值</span>
 </span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="nx">p</span> <span class="p">=</span> <span class="mi">2</span>         <span class="c1">// 通过指针设置 i 的值</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>  <span class="c1">// 查看 i 的值</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="结构体">结构体</h4>
 <p><code>struct</code> 的用法和 C++ 也基本一样</p>
@@ -440,8 +429,7 @@
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Vertex</span> <span class="kd">struct</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">x</span> <span class="kt">int</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">y</span> <span class="kt">int</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>访问结构体中的字段通过 <code>.</code> 来访问</p>
 <div class="highlight"><div class="chroma">
@@ -453,8 +441,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">v</span> <span class="o">:=</span> <span class="nx">Vertex</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">v</span><span class="p">.</span><span class="nx">x</span> <span class="p">=</span> <span class="mi">3</span>
-</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>以及理论上，如果使用结构体指针来访问结构体中的字段，就需要写成 <code>(*p).x</code>，但是和 C++ 中额外提供了更简洁的语法糖 <code>p-&gt;x</code> 一样，Go 中也可以直接通过 <code>p.x</code> 来让结构体指针访问结构体中的字段</p>
 <p>我们也可以只初始化结构体中的部分字段：</p>
@@ -465,8 +452,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">v1</span> <span class="o">:=</span> <span class="nx">Vertex</span><span class="p">{</span><span class="nx">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span> <span class="c1">// y 会被赋默认值</span>
-</span></span><span class="line"><span class="cl"><span class="nx">v2</span> <span class="o">:=</span> <span class="nx">Vertex</span><span class="p">{}</span>     <span class="c1">//x, y 都会被赋默认值</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="nx">v2</span> <span class="o">:=</span> <span class="nx">Vertex</span><span class="p">{}</span>     <span class="c1">//x, y 都会被赋默认值</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="数组">数组</h4>
 <p>类型 <code>T</code> 的数组写为 <code>[n]T</code>，比如 10 个整数的数组可以声明为 <code>var a [10]int</code></p>
@@ -499,8 +485,7 @@
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">a</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">a</span><span class="p">[:]</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="nx">a</span><span class="p">[:]</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="5">
 <li>
@@ -534,8 +519,7 @@
 </span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">pow</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>当然我们如果只想要实际的值，可以通过为值赋予 <code>_</code> 来忽略它:</p>
 <div class="highlight"><div class="chroma">
@@ -561,8 +545,7 @@
 </span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">pow</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -576,8 +559,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">m</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">m</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>插入或者修改值: <code>m[key] = value</code></li>
@@ -633,8 +615,7 @@
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">v</span> <span class="o">:=</span> <span class="nx">Vertex</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nf">Abs</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们也可以定义接收者为<strong>指针</strong>类型，这样该方法就可以修改类型内部的值了。</p>
 <div class="highlight"><div class="chroma">
@@ -680,8 +661,7 @@
 </span></span><span class="line"><span class="cl">	<span class="nx">v</span> <span class="o">:=</span> <span class="nx">Vertex</span><span class="p">{</span><span class="nx">X</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">Y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">v</span><span class="p">.</span><span class="nf">Abs</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">Z</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="接口">接口</h4>
 <p>和其他语言中的接口有一点点不一样，关键词也是 <code>interface</code>，代码如下：</p>
@@ -740,8 +720,7 @@
 </span></span><span class="line"><span class="cl">	<span class="nx">v</span> <span class="o">:=</span> <span class="nx">Vertex</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">a</span> <span class="p">=</span> <span class="nx">v</span>    <span class="c1">// v 实现了接口方法</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nf">Abs</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Go 中的接口实现是一种隐式实现，所以无需关键词来标明实现了哪个接口的方法</p>
 <h3 id="并发">并发</h3>
@@ -788,8 +767,7 @@
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">say</span><span class="p">(</span><span class="s">&#34;world&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="nf">say</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="信道">信道</h4>
 <p>多线程编程需要对共享数据进行同步，也就是进行 data race，有一个简单的方法就是使用信道。</p>
@@ -831,8 +809,7 @@
 </span></span><span class="line"><span class="cl">		<span class="k">break</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>注意：</strong> 只应该由发送方关闭信道，而不应该由接收方。因为如果向一个已经关闭的信道发送数据会引发程序panic。</p>
 <p><strong>还要注意：</strong> 信道与文件不同，通常情况下无需关闭它们。只有在必须通过关闭信道来通知接收方不再有新的发送的值的时候才有必要关闭，例如终止一个 <code>range</code> 循环。</p>
@@ -884,8 +861,7 @@
 </span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">c</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -909,8 +885,7 @@
 </span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="nx">j</span> <span class="o">&lt;-</span> <span class="nx">quit</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">			<span class="k">break</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -1001,8 +976,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nf">Value</span><span class="p">(</span><span class="s">&#34;k&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>​</p>
 <h4 id="练习题">练习题</h4>
@@ -1017,8 +991,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">go</span> <span class="nf">Walk</span><span class="p">(</span><span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nx">ch</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">go</span> <span class="nf">Walk</span><span class="p">(</span><span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nx">ch</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后从信道中读取并打印 10 个值。应当是数字 1, 2, 3, &hellip;, 10.</p>
 <p><strong>3.</strong> 用 <code>Walk</code> 实现 <code>Same</code> 函数来检测 <code>t1</code> 和 <code>t2</code> 是否存储了相同的值。</p>
@@ -1127,8 +1100,7 @@
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Same</span><span class="p">(</span><span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Same</span><span class="p">(</span><span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">

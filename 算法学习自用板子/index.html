@@ -1144,8 +1144,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5
-</span></span><span class="line"><span class="cl">3 1 2 4 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 1 2 4 5</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出样例：</p>
 <div class="highlight"><div class="chroma">
@@ -1153,8 +1152,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 2 3 4 5
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 2 3 4 5</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-2">算法设计</h4>
@@ -1190,8 +1188,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">quick_sort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">quick_sort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="完整-c-代码-2">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -1271,8 +1268,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="二分查找">二分查找</h2>
@@ -1307,8 +1303,7 @@
 </span></span><span class="line"><span class="cl">1 2 2 3 3 4
 </span></span><span class="line"><span class="cl">3
 </span></span><span class="line"><span class="cl">4
-</span></span><span class="line"><span class="cl">5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">5</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-1">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -1320,8 +1315,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3 4
 </span></span><span class="line"><span class="cl">5 5
-</span></span><span class="line"><span class="cl">-1 -1
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">-1 -1</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-3">算法设计</h4>
@@ -1390,8 +1384,7 @@
 </span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>注：模板中使用了右移运算 <span class="math">$&gt;&gt;1$</span>，而不是整数除法 <span class="math">$/ 2$</span>。这是因为右移运算是向下取整，而整数除法是向 <span class="math">$0$</span> 取整，当二分区间出现负数时后者会出 bug。</p></blockquote>
@@ -1446,8 +1439,7 @@ $$</span><p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>                      <span class="c1">// 区间缩小为[l, mid - 1]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>根据循环不变量， <span class="math">$R&#43;1$</span> 是我们要找的答案，又由于循环终止条件 <span class="math">$L=R&#43;1$</span>，故答案也可以直接用 <span class="math">$L$</span> 表示。</p>
 <p>下面我们来讨论常见的四种形式：<span class="math">$\ \ge,\ \le,\ &lt;$</span></p>
@@ -1552,8 +1544,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">binarySearch</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="拓展">拓展</h4>
 <blockquote>
@@ -1572,8 +1563,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1000.00
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1000.00</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-2">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -1581,8 +1571,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10.000000
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10.000000</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h4 id="算法设计-4">算法设计</h4>
@@ -1665,8 +1654,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.6f&#34;</span><span class="p">,</span> <span class="n">l</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>循环固定次数版本</p>
 <div class="highlight"><div class="chroma">
@@ -1708,8 +1696,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.6f&#34;</span><span class="p">,</span> <span class="n">l</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <hr>
@@ -1733,8 +1720,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">12
-</span></span><span class="line"><span class="cl">23
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">23</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出样例：</p>
 <div class="highlight"><div class="chroma">
@@ -1742,8 +1728,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">35
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">35</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-5">算法设计</h4>
@@ -1781,8 +1766,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">reverse</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">res</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="完整-c-代码-5">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -1813,8 +1797,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">36
-</span></span><span class="line"><span class="cl">3
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出样例：</p>
 <div class="highlight"><div class="chroma">
@@ -1822,8 +1805,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">108
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">108</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-6">算法设计</h4>
@@ -1897,8 +1879,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">idx</span> <span class="o">++</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">idx</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="完整-c-代码-6">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -1945,8 +1926,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-3">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -1966,8 +1946,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">1
 </span></span><span class="line"><span class="cl">1 3
 </span></span><span class="line"><span class="cl">1 2
-</span></span><span class="line"><span class="cl">1 2 3
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 2 3</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-7">算法设计</h4>
@@ -2029,8 +2008,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-93-递归实现组合型枚举">AcWing 93. 递归实现组合型枚举</h3>
@@ -2054,8 +2032,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5 3
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5 3</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-4">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -2081,8 +2058,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 3 4 
 </span></span><span class="line"><span class="cl">2 3 5 
 </span></span><span class="line"><span class="cl">2 4 5 
-</span></span><span class="line"><span class="cl">3 4 5 
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 4 5 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>思考题</strong>：如果要求使用非递归方法，该怎么做呢？</p></blockquote>
 <h4 id="算法设计-8">算法设计</h4>
@@ -2153,8 +2129,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>非递归版本代码：</p>
 <div class="highlight"><div class="chroma">
@@ -2302,8 +2277,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-94-递归实现排列型枚举">AcWing 94. 递归实现排列型枚举</h3>
@@ -2325,8 +2299,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-5">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -2344,8 +2317,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 1 3
 </span></span><span class="line"><span class="cl">2 3 1
 </span></span><span class="line"><span class="cl">3 1 2
-</span></span><span class="line"><span class="cl">3 2 1
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 2 1</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-9">算法设计</h4>
@@ -2422,8 +2394,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="前缀和">前缀和</h2>
@@ -2457,8 +2428,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 1 3 6 4
 </span></span><span class="line"><span class="cl">1 2
 </span></span><span class="line"><span class="cl">1 3
-</span></span><span class="line"><span class="cl">2 4
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">2 4</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-6">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -2470,8 +2440,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
 </span></span><span class="line"><span class="cl">6
-</span></span><span class="line"><span class="cl">10
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">10</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-10">算法设计</h4>
@@ -2533,8 +2502,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="拓展-1">拓展</h4>
 <blockquote>
@@ -2571,8 +2539,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 1 2 3
 </span></span><span class="line"><span class="cl">1 1 2 2
 </span></span><span class="line"><span class="cl">2 1 3 4
-</span></span><span class="line"><span class="cl">1 3 3 4
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 3 3 4</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-7">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -2584,8 +2551,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">17
 </span></span><span class="line"><span class="cl">27
-</span></span><span class="line"><span class="cl">21
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">21</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="算法剖析">算法剖析</h4>
 <p>这是一道经典的二维前缀和模板题，这里的最终表达式有点像概率论里面那个二维联合分布函数的味道。</p>
@@ -2651,8 +2617,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">       <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="n">x2</span><span class="p">][</span><span class="n">y2</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">y2</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="n">x2</span><span class="p">][</span><span class="n">y1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">y1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>
 </span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <hr>
@@ -2681,8 +2646,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2
 </span></span><span class="line"><span class="cl">3 2 5
-</span></span><span class="line"><span class="cl">4 3 9
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">4 3 9</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-8">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -2692,8 +2656,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4
-</span></span><span class="line"><span class="cl">1
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <hr>
@@ -2729,8 +2692,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">1 2 2 1 2 1
 </span></span><span class="line"><span class="cl">1 3 1
 </span></span><span class="line"><span class="cl">3 5 1
-</span></span><span class="line"><span class="cl">1 6 1
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 6 1</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-9">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -2738,8 +2700,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3 4 5 3 4 2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3 4 5 3 4 2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-11">算法设计</h4>
@@ -2819,8 +2780,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="优美解法-c-代码">优美解法 C++ 代码</h4>
 <p>一开始 <span class="math">$A, B$</span> 数组初值都为0，已经满足差分定义了。</p>
@@ -2902,8 +2862,7 @@ $$</span><p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="双指针">双指针</h2>
@@ -2935,8 +2894,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4 5 6
 </span></span><span class="line"><span class="cl">1 2 4 7
-</span></span><span class="line"><span class="cl">3 4 6 8 9
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 4 6 8 9</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-10">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -2944,8 +2902,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 1
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 1</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-12">算法设计</h4>
@@ -3028,8 +2985,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="滑动窗口">滑动窗口</h2>
@@ -3050,8 +3006,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;abciiidef&#34;, k = 3
 </span></span><span class="line"><span class="cl">输出：3
-</span></span><span class="line"><span class="cl">解释：子字符串 &#34;iii&#34; 包含 3 个元音字母。
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">解释：子字符串 &#34;iii&#34; 包含 3 个元音字母。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>示例 2：</strong></p>
 <div class="highlight"><div class="chroma">
@@ -3063,8 +3018,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;aeiou&#34;, k = 2
 </span></span><span class="line"><span class="cl">输出：2
-</span></span><span class="line"><span class="cl">解释：任意长度为 2 的子字符串都包含 2 个元音字母。
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">解释：任意长度为 2 的子字符串都包含 2 个元音字母。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>示例 3：</strong></p>
 <div class="highlight"><div class="chroma">
@@ -3076,8 +3030,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;leetcode&#34;, k = 3
 </span></span><span class="line"><span class="cl">输出：2
-</span></span><span class="line"><span class="cl">解释：&#34;lee&#34;、&#34;eet&#34; 和 &#34;ode&#34; 都包含 2 个元音字母。
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">解释：&#34;lee&#34;、&#34;eet&#34; 和 &#34;ode&#34; 都包含 2 个元音字母。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>示例 4：</strong></p>
 <div class="highlight"><div class="chroma">
@@ -3089,8 +3042,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;rhythms&#34;, k = 4
 </span></span><span class="line"><span class="cl">输出：0
-</span></span><span class="line"><span class="cl">解释：字符串 s 中不含任何元音字母。
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">解释：字符串 s 中不含任何元音字母。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>示例 5：</strong></p>
 <div class="highlight"><div class="chroma">
@@ -3100,8 +3052,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;tryhard&#34;, k = 4
-</span></span><span class="line"><span class="cl">输出：1
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">输出：1</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>提示：</strong></p>
 <ul>
@@ -3144,8 +3095,7 @@ $$</span><p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
 </span></span><span class="line"><span class="cl">    <span class="c1">// 5. 拓展左边界
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="完整-c-代码-11">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -3211,8 +3161,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mx</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="leetcode-3-无重复字符的最长子串">LeetCode 3. 无重复字符的最长子串</h3>
@@ -3230,8 +3179,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入: s = &#34;abcabcbb&#34;
 </span></span><span class="line"><span class="cl">输出: 3 
-</span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;abc&#34;，所以其长度为 3。
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;abc&#34;，所以其长度为 3。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>示例 2:</strong></p>
 <div class="highlight"><div class="chroma">
@@ -3243,8 +3191,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入: s = &#34;bbbbb&#34;
 </span></span><span class="line"><span class="cl">输出: 1
-</span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;b&#34;，所以其长度为 1。
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;b&#34;，所以其长度为 1。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>示例 3:</strong></p>
 <div class="highlight"><div class="chroma">
@@ -3258,8 +3205,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入: s = &#34;pwwkew&#34;
 </span></span><span class="line"><span class="cl">输出: 3
 </span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;wke&#34;，所以其长度为 3。
-</span></span><span class="line"><span class="cl">    请注意，你的答案必须是 子串 的长度，&#34;pwke&#34; 是一个子序列，不是子串。
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">    请注意，你的答案必须是 子串 的长度，&#34;pwke&#34; 是一个子序列，不是子串。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>提示：</strong></p>
 <ul>
@@ -3299,8 +3245,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"> <span class="c1">// 3. 区间[left,right]符合题意，统计相关信息
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="完整-c-代码-12">完整 C++ 代码</h4>
@@ -3339,8 +3284,7 @@ $$</span><p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="位运算">位运算</h2>
@@ -3365,8 +3309,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5
-</span></span><span class="line"><span class="cl">1 2 3 4 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 2 3 4 5</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-11">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -3374,8 +3317,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 1 2 1 2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 1 2 1 2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-15">算法设计</h4>
@@ -3450,8 +3392,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="离散化">离散化</h2>
@@ -3489,8 +3430,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 4
 </span></span><span class="line"><span class="cl">5 6
 </span></span><span class="line"><span class="cl">7 8
-</span></span><span class="line"><span class="cl">7 9
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">7 9</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-12">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -3498,8 +3438,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-16">算法设计</h4>
@@ -3578,8 +3517,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="构造">构造</h2>
@@ -3604,8 +3542,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">36
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">36</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-13">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -3613,8 +3550,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">14930352
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">14930352</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-17">算法设计</h4>
@@ -3661,8 +3597,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="单链表">单链表</h2>
@@ -3717,8 +3652,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">I 4 5
 </span></span><span class="line"><span class="cl">I 4 5
 </span></span><span class="line"><span class="cl">I 3 4
-</span></span><span class="line"><span class="cl">D 6
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">D 6</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-14">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -3726,8 +3660,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">6 4 6 5
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">6 4 6 5</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-18">算法设计</h4>
@@ -3897,8 +3830,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>           <span class="c1">// 标准的遍历方式
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="单调栈">单调栈</h2>
@@ -3923,8 +3855,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5
-</span></span><span class="line"><span class="cl">3 4 2 7 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 4 2 7 5</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-15">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -3932,8 +3863,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-1 3 -1 2 2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-1 3 -1 2 2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-19">算法设计</h4>
@@ -4019,8 +3949,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">left</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="单调队列">单调队列</h2>
@@ -4093,8 +4022,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8 3
-</span></span><span class="line"><span class="cl">1 3 -1 -3 5 3 6 7
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 3 -1 -3 5 3 6 7</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-16">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -4104,8 +4032,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-1 -3 -3 -3 3 3
-</span></span><span class="line"><span class="cl">3 3 5 5 6 7
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 3 5 5 6 7</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-20">算法设计</h4>
@@ -4147,8 +4074,7 @@ $$</span><p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">()]);</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 4.判断队首有没有出队
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">que</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>同理可以求最大值，这里我们就不再赘述。</p>
 <h4 id="完整-c-代码-18">完整 C++ 代码</h4>
@@ -4223,8 +4149,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="n">hh</span><span class="p">]]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="kmp">KMP</h2>
@@ -4258,8 +4183,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
 </span></span><span class="line"><span class="cl">aba
 </span></span><span class="line"><span class="cl">5
-</span></span><span class="line"><span class="cl">ababa
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">ababa</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-17">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -4267,8 +4191,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0 2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0 2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-21">算法设计</h4>
@@ -4296,8 +4219,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>  <span class="n">j</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>   <span class="c1">// 只要j没有退回起点,并且p[i]和p[j+1]不匹配,就可以通过next数组更新j
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="n">j</span><span class="o">++</span><span class="p">;</span>   <span class="c1">// 如果最终p[i]和p[j+1]相等,那么最长前后缀size就可以+1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ne</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>                   <span class="c1">// 最后更新一下ne[i]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><span class="math">$每一次将字符串的s[i]和模式串的p[j &#43; 1]进行匹配$</span></p>
 <div class="highlight"><div class="chroma">
@@ -4325,8 +4247,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="n">i</span> <span class="o">-</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>                <span class="c1">// 匹配成功,这里是根据题目要求的输出所有出现位置的起始下标（下标从0开始计数）
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">j</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>                           <span class="c1">// 此时依旧使用next数组来更新使得省去已知匹配的前后缀
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><span class="math">$ \text{KMP} 算法可以视作状态机模型:基于字符串p的\text{KMP}自动机接受且仅接受以p为后缀的字符串，其接受状态为|p|。 $</span>
 <span class="math">$转移函数:$</span></p>
@@ -4411,8 +4332,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">j</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>                           <span class="c1">// 此时依旧使用next数组来更新使得省去已知匹配的前后缀
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="字典树">字典树</h2>
@@ -4450,8 +4370,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 </span></span><span class="line"><span class="cl">Q abc
 </span></span><span class="line"><span class="cl">Q ab
 </span></span><span class="line"><span class="cl">I ab
-</span></span><span class="line"><span class="cl">Q ab
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">Q ab</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-18">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -4463,8 +4382,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1
 </span></span><span class="line"><span class="cl">0
-</span></span><span class="line"><span class="cl">1
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-22">算法设计</h4>
@@ -4555,8 +4473,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">cnt</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>             
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>链表版本：</p>
 <div class="highlight"><div class="chroma">
@@ -4664,8 +4581,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="完整-c-代码-20">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -4787,8 +4703,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">t</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// 调用结构体的查询方法
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="并查集">并查集</h2>
@@ -4839,8 +4754,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 </span></span><span class="line"><span class="cl">C 2 8
 </span></span><span class="line"><span class="cl">I 6
 </span></span><span class="line"><span class="cl">PM
-</span></span><span class="line"><span class="cl">DM
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">DM</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-19">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -4850,8 +4764,7 @@ ne(\pi(i), c), &amp; \text{if } p[i&#43;1] \neq c \land i &gt; 0
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-10
-</span></span><span class="line"><span class="cl">6
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">6</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-23">算法设计</h4>
@@ -5008,8 +4921,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">down</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -5192,8 +5104,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">up</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">down</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>   <span class="c1">// 本来是需要判断修改后变大还是变小来判断需要什么操作，我们这里为了简单直接两个都做了,最多只会执行其中一个
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="完整-c-代码-21">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -5427,8 +5338,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">k</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">heap</span><span class="p">.</span><span class="n">modify</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="树状数组">树状数组</h2>
@@ -5487,8 +5397,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">Q 1
 </span></span><span class="line"><span class="cl">Q 1
 </span></span><span class="line"><span class="cl">Q 3
-</span></span><span class="line"><span class="cl">A 99
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">A 99</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-20">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -5506,8 +5415,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">97
 </span></span><span class="line"><span class="cl">60
 </span></span><span class="line"><span class="cl">60
-</span></span><span class="line"><span class="cl">97
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">97</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="样例解释">样例解释</h4>
 <p>最后的序列是 <span class="math">$97,14,60,96$</span>。</p></blockquote>
@@ -5635,8 +5543,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>来不及更新支持区间修改的有懒标记版本的线段树结构体模板，因为今天是一年的ddl了                     ——2024.12.31 23:05</p></blockquote>
@@ -5798,8 +5705,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="平衡树">平衡树</h2>
@@ -5843,8 +5749,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-21">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -5868,8 +5773,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">..Q.
 </span></span><span class="line"><span class="cl">Q...
 </span></span><span class="line"><span class="cl">...Q
-</span></span><span class="line"><span class="cl">.Q..
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">.Q..</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-25">算法设计</h4>
@@ -5995,8 +5899,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">            <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-165-小猫爬山">AcWing 165. 小猫爬山</h3>
@@ -6033,8 +5936,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2
 </span></span><span class="line"><span class="cl">1994
 </span></span><span class="line"><span class="cl">12
-</span></span><span class="line"><span class="cl">29
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">29</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-22">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -6042,8 +5944,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-26">算法设计</h4>
@@ -6212,8 +6113,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="bfs">BFS</h2>
@@ -6268,8 +6168,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">            <span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="树与图">树与图</h2>
@@ -6309,8 +6208,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 5
 </span></span><span class="line"><span class="cl">4 3
 </span></span><span class="line"><span class="cl">3 9
-</span></span><span class="line"><span class="cl">4 6
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">4 6</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-23">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -6318,8 +6216,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-27">算法设计</h4>
@@ -6407,8 +6304,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">memset</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">h</span><span class="p">);</span>            <span class="c1">// 仿造链表初始化，将所以h都初始化为-1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>这里我们给出更易于理解和好写的vector版本，速度稍微慢一丢丢</p>
@@ -6563,8 +6459,7 @@ $$</span><p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="最短路">最短路</h2>
@@ -6692,8 +6587,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dist</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>复杂度分析</p>
 <ul>
@@ -6778,8 +6672,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dist</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>复杂度分析</p>
 <ul>
@@ -6896,8 +6789,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mx</span> <span class="o">==</span> <span class="n">INF</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="n">mx</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="多源最短路径">多源最短路径</h3>
 <h4 id="leetcode-1334-阈值距离内邻居最少的城市">LeetCode 1334. 阈值距离内邻居最少的城市</h4>
@@ -7063,8 +6955,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mn_idx</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>复杂度分析：</p>
 <ul>
@@ -7188,8 +7079,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mn_idx</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>复杂度分析：</p>
 <ul>
@@ -7311,8 +7201,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mn_idx</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>复杂度分析：</p>
 <ul>
@@ -7388,8 +7277,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>复杂度分析：</p>
 <ul>
@@ -7512,8 +7400,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mn_idx</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="两点间最短路径">两点间最短路径</h3>
 <hr>
@@ -7548,8 +7435,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">0 0
 </span></span><span class="line"><span class="cl">0 10000
 </span></span><span class="line"><span class="cl">10000 10000
-</span></span><span class="line"><span class="cl">10000 0
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">10000 0</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-24">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -7557,8 +7443,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">28284
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">28284</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote></blockquote>
 <h2 id="爬山法">爬山法</h2>
@@ -7638,8 +7523,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>              <span class="c1">// 注意这里是体积恰好为i的情况，所以最大值就不只是简单的dp[m]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>      <span class="c1">// 需要一层循环求结果
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p>dp[i]:表示当体积<code>≥i</code>的所有情况集合下的最小价值[如<strong>AcWing1020. 潜水员</strong>等]</p>
@@ -7713,8 +7597,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2  5  7  15 17
 </span></span><span class="line"><span class="cl">6  8  9  18 20
 </span></span><span class="line"><span class="cl">10 11 12 19 21
-</span></span><span class="line"><span class="cl">20 23 25 29 33
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">20 23 25 29 33</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-25">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -7722,8 +7605,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">109
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">109</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-30">算法设计</h4>
@@ -7782,8 +7664,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="最长上升子序列模型">最长上升子序列模型</h2>
@@ -7807,8 +7688,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">7
-</span></span><span class="line"><span class="cl">3 1 2 1 8 5 6
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 1 2 1 8 5 6</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-26">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -7816,8 +7696,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-31">算法设计</h4>
@@ -7874,8 +7753,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="背包模型">背包模型</h2>
@@ -7909,8 +7787,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">1 2
 </span></span><span class="line"><span class="cl">2 4
 </span></span><span class="line"><span class="cl">3 4
-</span></span><span class="line"><span class="cl">4 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">4 5</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="输出样例-27">输出样例：</h5>
 <div class="highlight"><div class="chroma">
@@ -7918,8 +7795,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-32">算法设计</h4>
@@ -7984,8 +7860,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">nn</span><span class="p">][</span><span class="n">vv</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-3-完全背包问题">AcWing 3. 完全背包问题</h3>
@@ -8018,8 +7893,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">1 2
 </span></span><span class="line"><span class="cl">2 4
 </span></span><span class="line"><span class="cl">3 4
-</span></span><span class="line"><span class="cl">4 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">4 5</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="输出样例-28">输出样例：</h5>
 <div class="highlight"><div class="chroma">
@@ -8027,8 +7901,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-33">算法设计</h4>
@@ -8094,8 +7967,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">nn</span><span class="p">][</span><span class="n">vv</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>优化后 <span class="math">$O(n^2)$</span></p>
 <div class="highlight"><div class="chroma">
@@ -8163,8 +8035,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">nn</span><span class="p">][</span><span class="n">vv</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-4-多重背包问题-i">AcWing 4. 多重背包问题 I</h3>
@@ -8196,8 +8067,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">1 2 3
 </span></span><span class="line"><span class="cl">2 4 1
 </span></span><span class="line"><span class="cl">3 4 3
-</span></span><span class="line"><span class="cl">4 5 2
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">4 5 2</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-29">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -8205,8 +8075,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-34">算法设计</h4>
@@ -8271,8 +8140,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">nn</span><span class="p">][</span><span class="n">vv</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-5-多重背包问题-ii">AcWing 5. 多重背包问题 II</h3>
@@ -8307,8 +8175,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">1 2 3
 </span></span><span class="line"><span class="cl">2 4 1
 </span></span><span class="line"><span class="cl">3 4 3
-</span></span><span class="line"><span class="cl">4 5 2
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">4 5 2</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-30">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -8316,8 +8183,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-35">算法设计</h4>
@@ -8393,8 +8259,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="状态机模型">状态机模型</h2>
@@ -8422,8 +8287,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5
-</span></span><span class="line"><span class="cl">1 2 3 0 2
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 2 3 0 2</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-31">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -8431,8 +8295,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-36">算法设计</h4>
@@ -8493,8 +8356,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="状态压缩dp">状态压缩DP</h2>
@@ -8516,8 +8378,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3 2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3 2</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-32">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -8525,8 +8386,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">16
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">16</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <hr>
@@ -8663,8 +8523,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">res</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>进一步思考：如果我们把所有可能符合的值在预处理阶段存下来，那么我们在最终状态转移的时候，岂不是其实只需要在这些值里进行遍历，那么时间复杂度就可以进一步降低。</p>
 <h4 id="优化版本-c-代码">优化版本 C++ 代码</h4>
@@ -8833,8 +8692,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">res</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>         <span class="c1">// 或是更简单的在上一步循环时到 i&lt;=n+1 结束，此时 res=dp[n+1][0]; 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-91-最短hamilton路径">AcWing 91. 最短Hamilton路径</h3>
@@ -8868,8 +8726,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 0 6 5 3
 </span></span><span class="line"><span class="cl">4 6 0 8 3
 </span></span><span class="line"><span class="cl">5 5 8 0 5
-</span></span><span class="line"><span class="cl">1 3 3 5 0
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 3 3 5 0</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-33">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -8877,8 +8734,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">18
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">18</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-38">算法设计</h4>
@@ -8917,8 +8773,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4
-</span></span><span class="line"><span class="cl">1 3 5 2
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 3 5 2</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="输出样例-34">输出样例：</h5>
 <div class="highlight"><div class="chroma">
@@ -8926,8 +8781,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">22
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">22</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <hr>
@@ -8949,8 +8803,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">     for (int L = 1; L + len - 1 &lt;= n; L++)              // 然后枚举左端点
 </span></span><span class="line"><span class="cl">     {
 </span></span><span class="line"><span class="cl">		R = L + len - 1;                                 // 就可以推出右端点
-</span></span><span class="line"><span class="cl">     }
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">     }</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>记忆化搜索：主要针对二维及以上的情况</li>
@@ -9052,8 +8905,7 @@ $$</span><p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//     }
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="拓展-2">拓展</h4>
 <p>本题其实是还有一道变式</p>
@@ -9087,8 +8939,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4
-</span></span><span class="line"><span class="cl">2 3 5 10
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">2 3 5 10</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-35">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -9096,8 +8947,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">710
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">710</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h4 id="算法设计-40">算法设计</h4>
@@ -9198,8 +9048,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>
 </span></span><span class="line"><span class="cl">   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <hr>
@@ -9232,8 +9081,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5
-</span></span><span class="line"><span class="cl">5 7 1 2 10
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">5 7 1 2 10</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="输出样例-36">输出样例：</h5>
 <div class="highlight"><div class="chroma">
@@ -9243,8 +9091,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">145
-</span></span><span class="line"><span class="cl">3 1 2 4 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 1 2 4 5</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-41">算法设计</h4>
@@ -9365,8 +9212,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="树形dp">树形DP</h2>
@@ -9403,8 +9249,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">1 4 5
 </span></span><span class="line"><span class="cl">6 3 9
 </span></span><span class="line"><span class="cl">2 6 8
-</span></span><span class="line"><span class="cl">6 1 7
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">6 1 7</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-37">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -9412,8 +9257,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">22
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">22</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-42">算法设计</h4>
@@ -9552,8 +9396,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>      <span class="c1">// 初始时没有父节点，就传入-1表示
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>当然也可以仿造我们第三章树与图这章的写法，使用 <span class="math">$\text{st}$</span> 数组来防止走回头路：</p>
 <div class="highlight"><div class="chroma">
@@ -9671,8 +9514,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="拓展-3">拓展</h4>
 <p>刚刚的一道题其实是利用子节点信息去逐步更新父节点信息，但是还有一些更变态的题目还需要再利用父节点信息去更新子节点信息，我们一起来看看下面收录的这道题吧。</p>
@@ -9703,8 +9545,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">2 1 1 
 </span></span><span class="line"><span class="cl">3 2 1 
 </span></span><span class="line"><span class="cl">4 3 1 
-</span></span><span class="line"><span class="cl">5 1 1
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">5 1 1</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-38">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -9712,8 +9553,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h4 id="算法设计-43">算法设计</h4>
@@ -9751,8 +9591,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 9
-</span></span><span class="line"><span class="cl">1 19
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">1 19</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-39">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -9762,8 +9601,7 @@ $$</span><p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">9
-</span></span><span class="line"><span class="cl">18
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">18</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-44">算法设计</h4>
@@ -9867,8 +9705,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cin</span>  <span class="o">&gt;&gt;</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="n">r</span> <span class="o">&gt;&gt;</span> <span class="n">K</span> <span class="o">&gt;&gt;</span> <span class="n">B</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">count</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-</span> <span class="n">count</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="完整-c-代码-36">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -9980,8 +9817,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">count</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-</span> <span class="n">count</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="记忆化搜索">记忆化搜索</h2>
@@ -10015,8 +9851,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">14 23 22 21 8
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">13 12 11 10 9
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">13 12 11 10 9</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在给定矩阵中，一条可行的滑行轨迹为 <span class="math">$24−17−2−1$</span>。</p>
 <p>在给定矩阵中，最长的滑行轨迹为 <span class="math">$25−24−23−…−3−2−1$</span>，沿途共经过 <span class="math">$25$</span> 个区域。</p>
@@ -10045,8 +9880,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">16 17 18 19 6
 </span></span><span class="line"><span class="cl">15 24 25 20 7
 </span></span><span class="line"><span class="cl">14 23 22 21 8
-</span></span><span class="line"><span class="cl">13 12 11 10 9
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">13 12 11 10 9</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-40">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -10054,8 +9888,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">25
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">25</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-45">算法设计</h4>
@@ -10153,8 +9986,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="第六章-贪心">第六章 贪心</h1>
@@ -10186,8 +10018,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
 </span></span><span class="line"><span class="cl">-1 1
 </span></span><span class="line"><span class="cl">2 4
-</span></span><span class="line"><span class="cl">3 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 5</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-41">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -10195,8 +10026,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-46">算法设计</h4>
@@ -10291,8 +10121,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="acwing-906-区间分组">AcWing 906. 区间分组</h3>
@@ -10321,8 +10150,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
 </span></span><span class="line"><span class="cl">-1 1
 </span></span><span class="line"><span class="cl">2 4
-</span></span><span class="line"><span class="cl">3 5
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 5</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-42">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -10330,8 +10158,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-47">算法设计</h4>
@@ -10457,8 +10284,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">heap</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>优美解法代码：</p>
 <div class="highlight"><div class="chroma">
@@ -10522,8 +10348,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="推公式">推公式</h2>
@@ -10559,8 +10384,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
 </span></span><span class="line"><span class="cl">10 3
 </span></span><span class="line"><span class="cl">2 5
-</span></span><span class="line"><span class="cl">3 3
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">3 3</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="输出样例-43">输出样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -10568,8 +10392,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h4 id="算法设计-48">算法设计</h4>
@@ -10715,8 +10538,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="第七章-时空复杂度分析">第七章 时空复杂度分析</h1>

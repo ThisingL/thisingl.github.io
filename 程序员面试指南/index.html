@@ -691,8 +691,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">().</span><span class="na">format</span><span class="p">(</span><span class="n">DateTimeFormatter</span><span class="p">.</span><span class="na">ofPattern</span><span class="p">(</span><span class="s">&#34;yyyy:MM:dd&#34;</span><span class="p">));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">long</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">increment</span><span class="p">(</span><span class="s">&#34;icr:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">keyPrefix</span><span class="w"> </span><span class="o">+</span><span class="s">&#34;:&#34;</span><span class="o">+</span><span class="w"> </span><span class="n">date</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">long</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">increment</span><span class="p">(</span><span class="s">&#34;icr:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">keyPrefix</span><span class="w"> </span><span class="o">+</span><span class="s">&#34;:&#34;</span><span class="o">+</span><span class="w"> </span><span class="n">date</span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <del>
@@ -834,8 +833,7 @@
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">vector</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果我们有线程 a 和线程 b,它们一个在不停的修改 x,一个在不停的修改 y，请问会有性能问题吗？</p>
 <p><strong>A:</strong> 会有的。因为现代的 CPU cache line 一般为 64 字节，所以整个 vector 会在同一个 CPU cache line 里。</p>
@@ -953,8 +951,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}).</span><span class="na">start</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1041,8 +1038,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">printABCUsingLock</span><span class="p">.</span><span class="na">printLetter</span><span class="p">(</span><span class="s">&#34;C&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}).</span><span class="na">start</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="交替打印1-100">交替打印1-100</h3>
 <div class="highlight"><div class="chroma">
@@ -1158,8 +1154,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">print100UsingLock</span><span class="p">.</span><span class="na">printNumber</span><span class="p">(</span><span class="n">2</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}).</span><span class="na">start</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="网络">网络</h2>
@@ -1406,8 +1401,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 6. 关闭连接</span>
 </span></span><span class="line"><span class="cl"><span class="n">client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 7. (可选) 回到步骤4接收新连接 或 关闭服务器Socket</span>
-</span></span><span class="line"><span class="cl"><span class="n">server_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="n">server_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -1435,8 +1429,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">client_socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Hello Server!&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">client_socket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 4. 关闭连接</span>
-</span></span><span class="line"><span class="cl"><span class="n">client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="n">client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -1975,8 +1968,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 遵循范式：拆分为多表
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="p">(</span><span class="n">student_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">student_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">));</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">courses</span><span class="w"> </span><span class="p">(</span><span class="n">course_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">course_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"> </span><span class="n">teacher</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">enrollments</span><span class="w"> </span><span class="p">(</span><span class="n">student_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">enrollments</span><span class="w"> </span><span class="p">(</span><span class="n">student_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2003,8 +1995,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">courses</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">teacher_office</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A栋302&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">teacher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;王老师&#39;</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 范式设计（只需改一处）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">teachers</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">office</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A栋302&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">teacher_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;王老师&#39;</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">teachers</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">office</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A栋302&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">teacher_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;王老师&#39;</span><span class="p">;</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2032,8 +2023,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1">-- 如果“新教师”未授课，无法插入到课程表中。
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 范式设计下：
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">teachers</span><span class="w"> </span><span class="p">(</span><span class="n">teacher_name</span><span class="p">,</span><span class="w"> </span><span class="n">office</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;赵老师&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;D栋101&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">-- 允许独立插入
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">teachers</span><span class="w"> </span><span class="p">(</span><span class="n">teacher_name</span><span class="p">,</span><span class="w"> </span><span class="n">office</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;赵老师&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;D栋101&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">-- 允许独立插入</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2059,8 +2049,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">bad_table</span><span class="w"> </span><span class="p">(</span><span class="n">course_name</span><span class="p">,</span><span class="w"> </span><span class="n">credit</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;数学&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="c1">-- 矛盾！
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 范式设计（学分唯一）：
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">courses</span><span class="w"> </span><span class="p">(</span><span class="n">course_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">credit</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">courses</span><span class="w"> </span><span class="p">(</span><span class="n">course_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">credit</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2080,8 +2069,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 反范式设计：新增“课程类型”字段需修改所有相关行。
 </span></span></span><span class="line"><span class="cl"><span class="c1">-- 范式设计：只需在「课程表」中加一列。
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">courses</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">course_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">courses</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">course_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2222,8 +2210,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_VALUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">100</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// MAX_VALUE = 200; // 编译错误，不能修改final变量</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">//</span><span class="w"> </span><span class="n">MAX_VALUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">200</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">编译错误</span><span class="err">，</span><span class="n">不能修改final变量</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="引用类型变量">引用类型变量</h6>
 <ul>
@@ -2238,8 +2225,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">final</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 允许</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// list = new ArrayList&lt;&gt;(); // 编译错误，不能重新赋值</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">//</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">编译错误</span><span class="err">，</span><span class="n">不能重新赋值</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="2-final修饰方法">2. final修饰方法</h5>
 <ul>
@@ -2269,8 +2255,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">Child</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Parent</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// @Override</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// public void show() {} // 编译错误，不能重写final方法</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="3-final修饰类">3. final修饰类</h5>
 <ul>
@@ -2290,8 +2275,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 工具类方法</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// class MyStringUtils extends StringUtils {} // 编译错误</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">//</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyStringUtils</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StringUtils</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">编译错误</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="4-final参数">4. final参数</h5>
 <ul>
@@ -2306,8 +2290,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// value = 10; // 编译错误</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="5-final与并发编程">5. final与并发编程</h5>
 <ul>
@@ -2370,8 +2353,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">queueCapacity</span><span class="p">),</span><span class="w"> </span><span class="c1">// 工作队列</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">CustomThreadFactory</span><span class="p">(),</span><span class="w"> </span><span class="c1">// 自定义线程工厂</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">CustomRejectedExecutionHandler</span><span class="p">()</span><span class="w"> </span><span class="c1">// 自定义拒绝策略</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="2-参数配置经验">2. 参数配置经验</h5>
 <ul>
@@ -2512,8 +2494,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bashCopy Code# 设置缓存（带30分钟过期时间）
 </span></span><span class="line"><span class="cl">SET product:1001 <span class="s2">&#34;{name: &#39;Phone&#39;, price: 5999}&#34;</span> EX <span class="m">1800</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 查询缓存</span>
-</span></span><span class="line"><span class="cl">GET product:1001
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">GET product:1001</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -2545,8 +2526,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bashCopy Code# 存储用户会话
 </span></span><span class="line"><span class="cl">HSET session:user123 token <span class="s2">&#34;abc123&#34;</span> cart <span class="s2">&#34;[{id: 1, count: 2}]&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 设置30分钟过期</span>
-</span></span><span class="line"><span class="cl">EXPIRE session:user123 <span class="m">1800</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">EXPIRE session:user123 <span class="m">1800</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2571,8 +2551,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bashCopy Code# 添加玩家得分
 </span></span><span class="line"><span class="cl">ZADD leaderboard <span class="m">5000</span> <span class="s2">&#34;player1&#34;</span> <span class="m">4800</span> <span class="s2">&#34;player2&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 获取前10名</span>
-</span></span><span class="line"><span class="cl">ZREVRANGE leaderboard <span class="m">0</span> <span class="m">9</span> WITHSCORES
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">ZREVRANGE leaderboard <span class="m">0</span> <span class="m">9</span> WITHSCORES</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2597,8 +2576,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bashCopy Code# 生产者推送消息
 </span></span><span class="line"><span class="cl">LPUSH order:queue <span class="s2">&#34;order1001&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 消费者阻塞获取</span>
-</span></span><span class="line"><span class="cl">BRPOP order:queue <span class="m">30</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">BRPOP order:queue <span class="m">30</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -2626,8 +2604,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bashCopy Code# 加锁（设置唯一值防误删）
 </span></span><span class="line"><span class="cl">SET lock:stock <span class="m">1</span> NX EX <span class="m">10</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 释放锁（Lua脚本保证原子性）</span>
-</span></span><span class="line"><span class="cl">EVAL <span class="s2">&#34;if redis.call(&#39;get&#39;, KEYS) == ARGV then return redis.call(&#39;del&#39;, KEYS) else return 0 end&#34;</span> <span class="m">1</span> lock:stock <span class="m">1</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">EVAL <span class="s2">&#34;if redis.call(&#39;get&#39;, KEYS) == ARGV then return redis.call(&#39;del&#39;, KEYS) else return 0 end&#34;</span> <span class="m">1</span> lock:stock <span class="m">1</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2656,8 +2633,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 </span></span><span class="line"><span class="cl">PFCOUNT uv:20231001
 </span></span><span class="line"><span class="cl"><span class="c1"># Bitmap记录用户签到</span>
 </span></span><span class="line"><span class="cl">SETBIT sign:user123:202310 <span class="m">5</span> <span class="m">1</span>  <span class="c1"># 第5天签到</span>
-</span></span><span class="line"><span class="cl">BITCOUNT sign:user123:202310    <span class="c1"># 当月签到次数</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">BITCOUNT sign:user123:202310    <span class="c1"># 当月签到次数</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2731,8 +2707,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 </span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>     <span class="c1">// 已用长度
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">free</span><span class="p">;</span>    <span class="c1">// 空闲空间
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[];</span>  <span class="c1">// 字符数组
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2839,8 +2814,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在从节点配置文件中指定主节点</span>
-</span></span><span class="line"><span class="cl">replicaof &lt;master-ip&gt; &lt;master-port&gt;
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">replicaof &lt;master-ip&gt; &lt;master-port&gt;</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2895,8 +2869,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Sentinel 配置文件</span>
 </span></span><span class="line"><span class="cl">sentinel monitor mymaster 127.0.0.1 <span class="m">6379</span> <span class="m">2</span>  <span class="c1"># 监控名为 mymaster 的主节点，2 表示至少 2 个哨兵确认故障</span>
-</span></span><span class="line"><span class="cl">sentinel down-after-milliseconds mymaster <span class="m">5000</span>  <span class="c1"># 5 秒无响应视为下线</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">sentinel down-after-milliseconds mymaster <span class="m">5000</span>  <span class="c1"># 5 秒无响应视为下线</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2945,8 +2918,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动集群节点</span>
 </span></span><span class="line"><span class="cl">redis-server --cluster-enabled yes --cluster-config-file nodes.conf
 </span></span><span class="line"><span class="cl"><span class="c1"># 创建集群（3 主 3 从）</span>
-</span></span><span class="line"><span class="cl">redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 ... --cluster-replicas <span class="m">1</span>
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 ... --cluster-replicas <span class="m">1</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -3396,8 +3368,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="nf">getInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h5 id="2-懒汉式线程不安全--需加锁"><strong>2. 懒汉式（线程不安全 → 需加锁）</strong></h5>
@@ -3429,8 +3400,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h5 id="3-双重检查锁定dcl线程安全"><strong>3. 双重检查锁定（DCL，线程安全）</strong></h5>
@@ -3470,8 +3440,7 @@ ReentrantLock通过这种计数器的方式，实现了可重入锁的机制。�
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>关键点</strong>：</p>
 <ul>

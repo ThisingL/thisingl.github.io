@@ -207,8 +207,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git log --graph --oneline --decorate --all
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git log --graph --oneline --decorate --all</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后切换到main分支：</p>
 <div class="highlight"><div class="chroma">
@@ -216,8 +215,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout main
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout main</span></span></code></pre></td></tr></table>
 </div>
 </div><p>新建并切换分支：</p>
 <div class="highlight"><div class="chroma">
@@ -225,8 +223,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout -b &lt;新分支名&gt;
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout -b &lt;新分支名&gt;</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下面就可以在这个新的分支上进行愉快的开发了！</p>
 <h3 id="3-创建合并请求">3. 创建合并请求</h3>
@@ -326,8 +323,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; feat_slice <span class="o">(</span>non-fast-forward<span class="o">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; feat_slice <span class="o">(</span>non-fast-forward<span class="o">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="5">
 <li>强制推送</li>
@@ -339,8 +335,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git push -f origin master:feat_slice
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git push -f origin master:feat_slice</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样远程 <code>feat-slice</code> 就会被改写成 A–B–C。pr上也会出现<code>force-pushed</code>的相关显示：</p>
 <p>

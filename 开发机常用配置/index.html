@@ -170,8 +170,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz</span></span></code></pre></td></tr></table>
 </div>
 </div><p>传到内网机：</p>
 <div class="highlight"><div class="chroma">
@@ -179,8 +178,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp zsh-5.9.tar.xz dev:/tmp/
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp zsh-5.9.tar.xz dev:/tmp/</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="在内网机编译">在内网机编译</h4>
 <div class="highlight"><div class="chroma">
@@ -196,8 +194,7 @@
 </span></span><span class="line"><span class="cl">cd zsh-5.9
 </span></span><span class="line"><span class="cl">./configure --prefix=/usr/local/zsh
 </span></span><span class="line"><span class="cl">make -j$(nproc)
-</span></span><span class="line"><span class="cl">sudo make install
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">sudo make install</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装后：</p>
 <div class="highlight"><div class="chroma">
@@ -207,8 +204,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo /usr/local/zsh/bin/zsh | sudo tee -a /etc/shells
-</span></span><span class="line"><span class="cl">chsh -s /usr/local/zsh/bin/zsh
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">chsh -s /usr/local/zsh/bin/zsh</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="zsh-autosuggest自动灰色提示">zsh-autosuggest（自动灰色提示）</h4>
 <p>如果你想要那种：</p>
@@ -269,8 +265,7 @@
 </span></span><span class="line"><span class="cl">setopt APPEND_HISTORY
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 高级共享策略（推荐）</span>
-</span></span><span class="line"><span class="cl">setopt EXTENDED_HISTORY
-</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">setopt EXTENDED_HISTORY</span></span></code></pre></td></tr></table>
 </div>
 </div><p>保存后：</p>
 <div class="highlight"><div class="chroma">
@@ -278,8 +273,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">source</span> ~/.zshrc
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">source</span> ~/.zshrc</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="如何直接执行-zsh-autosuggestions-的提示命令"><strong>如何直接执行 zsh-autosuggestions 的提示命令</strong></h5>
 <p><strong>方式：按 →（右方向键）接受建议 + 回车</strong></p>

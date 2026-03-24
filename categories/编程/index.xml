@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 10 Mar 2026 19:19:31 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2026 21:24:23 +0800</lastBuildDate>
     <atom:link href="https://example.com/categories/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go学习笔记</title>
@@ -80,11 +80,11 @@
       <description>针对期末pdf复习的提示词</description>
     </item>
     <item>
-      <title>常用配置文件config汇总</title>
-      <link>https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</link>
+      <title>Dotfiles</title>
+      <link>https://example.com/dotfiles/</link>
       <pubDate>Thu, 19 Dec 2024 16:15:20 +0800</pubDate>
-      <guid>https://example.com/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config%E6%B1%87%E6%80%BB/</guid>
-      <description>配置文件：.tmux.conf、.vimrc</description>
+      <guid>https://example.com/dotfiles/</guid>
+      <description>常用配置文件 config 汇总：.tmux.conf、.vimrc</description>
     </item>
     <item>
       <title>Git常用命令</title>

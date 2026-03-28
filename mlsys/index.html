@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-03-24T21:24:23+08:00">
+    <meta property="article:modified_time" content="2026-03-28T13:41:23+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  12768 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-24T21:24:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  15611 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-28T13:41:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 12768 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 26 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 15611 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 32 分钟&nbsp;
     
 
     
@@ -1098,8 +1098,173 @@ $$</span><p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>那我们之前看到的也只是 <span class="math">$16 \times 16$</span> 的矩阵运算，现在的 LLM 中都是类似于 <span class="math">$2048 \times 2048$</span> 这样的大矩阵的运算，这是怎么做到的呢？</p>
-<img src="images/image-20260324210535589.png" alt="image-20260324210535589" style="zoom: 25%; display: block; margin: 0 auto;" />
+<img src="images/image-20260327110054505.png" alt="image-20260327110054505" style="zoom: 33%; display: block; margin: 0 auto;" />
 <p>本质上会通过硬件的多级缓存机制，通过分块去计算，最终通过 tensor core 去完成计算。</p>
+<p>假设我们要计算 <span class="math">$ \mathbb{R} ^ {M \times K} \times \mathbb{R} ^ {K \times N}$</span> 这两个大矩阵相乘，我们会将它：</p>
+<ul>
+<li>划分为 <span class="math">$ \mathbb{R} ^ {M\_tile \times K\_tile} \times \mathbb{R} ^ {K\_tile \times N\_tile}$</span> 的分块乘法</li>
+<li>块内计算利用 tensor core 做计算加速</li>
+</ul>
+<p>我们首先来看看朴素版本的矩阵乘法实现：</p>
+<p>由公式 <span class="math">$C_{i,j} = \sum_{k=0}^{K-1} A_{i,k} B_{k,j}$</span> 可得：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 矩阵乘法： R^{M×K} × R^{K×N} → R^{M×N}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>对于 CPU 来说，由于矩阵在内存中默认是按行连续存储，因此从缓存局部性来考虑，在行主序存储、且不做额外分块优化的朴素实现中，<span class="math">$i→k→j$</span> 往往具有更好的缓存局部性。</p></blockquote>
+<p>虽然这样计算满足了缓存局部性，但是面对大矩阵计算时，一行没办法全部都放入缓存时，这时候我们就要考虑用<strong>分块计算</strong>（tiling）来打满缓存，最大程度上利用完缓存的高速：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 矩阵乘法： R^{M×K} × R^{K×N} → R^{M×N}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m_begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">m_begin</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">m_begin</span> <span class="o">+=</span> <span class="n">M_tile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n_begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n_begin</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">n_begin</span> <span class="o">+=</span> <span class="n">N_tile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k_begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k_begin</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="n">k_begin</span> <span class="o">+=</span> <span class="n">K_tile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 用上面的朴素矩阵乘法计算分块（tile）矩阵: C = AxB
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M_tile</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">K_tile</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N_tile</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="kt">int</span> <span class="n">ii</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">m_begin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="kt">int</span> <span class="n">jj</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">n_begin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="kt">int</span> <span class="n">kk</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="n">k_begin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">C</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">kk</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">kk</span><span class="p">][</span><span class="n">jj</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>而为了充分利用上 GPU 并行计算的能力，刚刚的代码中的分块矩阵乘法就可以交给 CUDA 进行并行计算：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 矩阵乘法： R^{M×K} × R^{K×N} → R^{M×N}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m_begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">m_begin</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">m_begin</span> <span class="o">+=</span> <span class="n">M_tile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n_begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n_begin</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">n_begin</span> <span class="o">+=</span> <span class="n">N_tile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k_begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k_begin</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="n">k_begin</span> <span class="o">+=</span> <span class="n">K_tile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// compute by CUDA thread block: C = AxB
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>底层会将线程块 Thread block 进一步分成 warp-level Tiles</p>
+<ul>
+<li>把矩阵 <span class="math">$A$</span> 和 <span class="math">$B$</span> 加载到可复用的 SMEM 共享内存</li>
+<li>结果矩阵 <span class="math">$C$</span> 的计算分布在不同的 Warp 上</li>
+</ul>
+<img src="images/image-20260327110259273.png" alt="image-20260327110259273" style="zoom: 25%; display: block; margin: 0px auto;" />
+<p>我们再打开单个 Warp 来看看具体是怎么计算的：</p>
+<img src="images/image-20260327143215913.png" alt="image-20260327143215913" style="zoom: 36%; display: block; margin: 0px auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">xxx</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">xxx</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k_begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k_begin</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="n">k_begin</span> <span class="o">+=</span> <span class="n">K_tile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        		<span class="c1">// .. load A and B tiles to shared memory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>              
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M_tile</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">warp_m</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N_tile</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">warp_n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">K_tile</span><span class="p">;</span> <span class="n">k</span> <span class="o">+=</span> <span class="n">warp_n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                      	<span class="c1">// .. compute by CUDA thread warp: C = AxB
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>这里可能你会有点疑惑，我们刚刚不是分析按 <span class="math">$i→k→j$</span> 顺序进行计算是对缓存局部性最优的吗？为什么这里的顺序又变成了 <span class="math">$i→j→k$</span>。这是因为我们刚刚探讨的是对于 CPU 来说，主要的性能差异在于缓存命中，因此对于行顺序访问是最优的。</p>
+<p>但是对于 GPU 这种并行计算的场景下，更关键的就不是缓存命中对于单个请求的耗时了，而是数据复用的情况了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">线程 <span class="m">0</span> 计算 C<span class="o">[</span>0<span class="o">][</span>0<span class="o">]</span>：需要 A<span class="o">[</span>0<span class="o">][</span>0..Ktile<span class="o">]</span>, B<span class="o">[</span>0..Ktile<span class="o">][</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">线程 <span class="m">1</span> 计算 C<span class="o">[</span>0<span class="o">][</span>1<span class="o">]</span>：需要 A<span class="o">[</span>0<span class="o">][</span>0..Ktile<span class="o">]</span>, B<span class="o">[</span>0..Ktile<span class="o">][</span>1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">线程 <span class="m">2</span> 计算 C<span class="o">[</span>0<span class="o">][</span>2<span class="o">]</span>：需要 A<span class="o">[</span>0<span class="o">][</span>0..Ktile<span class="o">]</span>, B<span class="o">[</span>0..Ktile<span class="o">][</span>2<span class="o">]</span>
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">关键观察：
+</span></span><span class="line"><span class="cl">✓ 所有线程都读同一行的 A<span class="o">[</span>0<span class="o">][</span>*<span class="o">]</span>
+</span></span><span class="line"><span class="cl">✓ 每个线程读不同列的 B，但在共享内存中是连续的
+</span></span><span class="line"><span class="cl">✓ 每个线程的结果 C<span class="o">[</span>m<span class="o">][</span>n<span class="o">]</span> 保存在自己的寄存器里</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>​</p>
 <hr>
 <p>下面我们再来看看 Tensor Core 的历代发展：</p>
 <p>
@@ -1113,21 +1278,36 @@ $$</span><p>
             alt="/mlsys/images/image-20260324211257631.png" width="2118" height="564" />
     </a><figcaption class="image-caption">image-20260324211257631</figcaption>
     </figure></p>
+<p>自 Volta 架构时代起，英伟达的 GPU 架构已经明显地转向深度学习领域的优化和创新。2017 年，Volta 架构横空出世，其中引入的张量核心（Tensor Core）设计可谓划时代之作，这一设计专门针对深度学习计算进行了优化，通过执行融合乘法加法操作，大幅提升了计算效率。与前一代 Pascal 架构相比，Volta 架构在深度学习训练和推理方面的性能提升了 3 倍，这一飞跃性进步为深度学习的发展提供了强大的硬件支持。</p>
+<p>紧随其后，在一年后的 2018 年，英伟达发布了 Turing 架构，进一步增强了 Tensor Core 的功能。Turing 架构不仅延续了对浮点运算的优化，还新增了对 INT8、INT4、甚至是 Binary(INT1)等整数格式的支持。这一举措不仅使大范围混合精度训练成为可能，更将 GPU 的性能吞吐量推向了新的高度，较 Pascal GPU 提升了惊人的 32 倍。此外，Turing 架构还引入了先进的光线追踪(RT Core)技术。</p>
+<p>2020 年，Ampere 架构的推出再次刷新了人们对 Tensor Core 的认知。Ampere 架构新增了对 TF32 和 BF16 两种数据格式的支持，这些新的数据格式进一步提高了深度学习训练和推理的效率。同时，Ampere 架构引入了对稀疏矩阵计算的支持，在处理深度学习等现代计算任务时，稀疏矩阵是一种常见的数据类型，其特点是矩阵中包含大量零值元素。传统的计算方法在处理这类数据时往往效率低下，而 Ampere 架构通过专门的稀疏矩阵计算优化，实现了对这类数据的高效处理，从而大幅提升了计算效率并降低了能耗。此外，Ampere 架构还引入了 NVLink 技术，这一技术为 GPU 之间的通信提供了前所未有的高速通道。在深度学习等需要大规模并行计算的任务中，GPU 之间的数据交换往往成为性能瓶颈。而 NVLink 技术通过提供高带宽、低延迟的连接，使得 GPU 之间的数据传输更加高效，从而进一步提升了整个系统的计算性能。</p>
+<p>到了 2022 年，英伟达发布了专为深度学习设计的 Hopper 架构。Hopper 架构标志性的变化是引入了 FP8 张量核心，这一创新进一步加速了 AI 训练和推理过程。值得注意的是，Hopper 架构去除了 RT Core，以便为深度学习计算腾出更多空间，这一决策凸显了英伟达对深度学习领域的专注和投入。此外，Hopper 架构还引入了 Transformer 引擎，这使得它在处理如今广泛应用的 Transformer 模型时表现出色，进一步巩固了英伟达在深度学习硬件领域的领导地位。</p>
+<p>2024 年，英伟达推出了 Blackwell 架构为生成式 AI 带来了显著的飞跃。相较于 H100 GPU，GB200 Superchip 在处理 LLM 推理任务时，性能实现了高达 30 倍的惊人提升，同时在能耗方面也实现了高达 25 倍的优化。其中 GB200 Superchip 能够组合两个 Blackwell GPU，并与英伟达的 Grace 中央处理单元配对，支持 NVLink-C2C 互联。此外，Blackwell 还引入了第二代 Transformer 引擎，增强了对 FP4 和 FP6 精度的兼容性，显著降低了模型运行时的内存占用和带宽需求。此外，还引入了第五代 NVLink 技术，使每个 GPU 的带宽从 900 GB/s 增加到 1800 GB/s。</p>
+<p>总的来说，从 Volta 到 Blackwell，英伟达的 GPU 架构经历了一系列针对深度学习优化的重大创新和升级，每一次进步都在推动深度学习技术的边界。这些架构的发展不仅体现了英伟达在硬件设计方面的前瞻性，也为深度学习的研究和应用提供了强大的计算支持，促进了 AI 技术的快速发展。</p>
+<p>接下来，我们将逐一深入剖析每一代 Tensor Core 的独特之处，以揭示其背后的技术奥秘。</p>
+<blockquote>
+<p>TODO: 待补充每一代 GPU 的 Sub Core 设计细节&hellip;</p></blockquote>
+<p>下面我们再来看看 Tensor Core 实际硬件是如何设计的，才能在一个时钟周期完成 <span class="math">$4 \times 4$</span> 的矩阵运算 <span class="math">$D = A \times B &#43; C$</span></p>
+<p>我们先来看结果矩阵的一个元素 <span class="math">$D_{i,j}$</span> 是如何被计算出来的：
+</p>
+<span class="math">$$
+D_{i,j} = A_{i,0} B_{0,j} &#43; A_{i,1} B_{1,j} &#43; A_{i,2} B_{2,j} &#43; A_{i,3} B_{3,j}
+$$</span><p>
+计算元素 <span class="math">$D_{0,0}$</span> 时，内部模拟电路设计逻辑上等价于这样：</p>
+<img src="images/image-20260326172220898.png" alt="image-20260326172220898" style="zoom: 33%; display: block; margin: 0 auto;" />
+<p>当然实际单个 tensor core 小单元不可能真的有这么多个独立的加法和乘法单元，这只是逻辑上的单个结果矩阵元素的计算流程，但是我们可以通过下面的指令流水线技术来达到类似的并行度</p>
+<p>我们可以把结果矩阵元素的计算电路抽象为下面这样的一个<strong>电路单元</strong>：</p>
+<img src="images/image-20260326174346582.png" alt="image-20260326174346582" style="zoom:25%; display: block; margin: 0 auto;" />
+<p>接下来我们就可以利用许多个这样的电路单元，像“搭积木”一样，搭出我们想要的 Tensor Core 的电路了：</p>
+<img src="images/image-20260326175454029.png" alt="image-20260326175454029" style="zoom:30%; display: block; margin: 0 auto;" />
+<p>当然本质上也不会真的有这么多个独立的硬件电路，但是我们可以复用硬件资源，通过流水线技术达到逻辑图的效果</p>
+<p>实际电路中使用了<strong>指令流水线</strong>的优化方式，来提高执行大量计算时的效率。由于乘法执行单元和加法执行单元不一样，因此这两个可以并行，所以下一条指令的乘法执行时间就可以被上一条指令中的加法的时间给掩盖掉。这样实际感受就像有这么多个独立的硬件单元了一样：</p>
+<img src="images/image-20260326194618545.png" alt="image-20260326194618545" style="zoom:20%; display: block; margin: 0 auto;" />
 <h4 id="tpu">TPU</h4>
 <h3 id="网络">网络</h3>
 <h4 id="rdma">RDMA</h4>
 <p>RDMA(Remote Direct Memory Access)，远程直接内存访问。</p>
-<p>
-<figure><a class="lightgallery" href="/mlsys/images/e99e04c8dcd33b4bffb552036dd22996.png" title="e99e04c8dcd33b4bffb552036dd22996" data-thumbnail="/mlsys/images/e99e04c8dcd33b4bffb552036dd22996.png" data-sub-html="<h2> </h2><p>e99e04c8dcd33b4bffb552036dd22996</p>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/mlsys/images/e99e04c8dcd33b4bffb552036dd22996.png"
-            data-srcset="/mlsys/images/e99e04c8dcd33b4bffb552036dd22996.png, /mlsys/images/e99e04c8dcd33b4bffb552036dd22996.png 1.5x, /mlsys/images/e99e04c8dcd33b4bffb552036dd22996.png 2x"
-            data-sizes="auto"
-            alt="/mlsys/images/e99e04c8dcd33b4bffb552036dd22996.png" width="962" height="584" />
-    </a><figcaption class="image-caption">e99e04c8dcd33b4bffb552036dd22996</figcaption>
-    </figure></p>
+<img src="images/e99e04c8dcd33b4bffb552036dd22996.png" alt="e99e04c8dcd33b4bffb552036dd22996" style="zoom:50%; display: block; margin: 0 auto;" />
 <p>我们来捋一下<strong>传统网络数据</strong>传输需要哪些步骤：</p>
 <p>数据发送方：</p>
 <ul>
@@ -1363,8 +1543,8 @@ $$</span><p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-03-24&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/f9d55ede2e4698583311f4a3e696e34fe8305d77" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) f9d55ede2e4698583311f4a3e696e34fe8305d77: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>f9d55ed</a></span>
+                <span>更新于 2026-03-28&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/bffe71b4e857786edce7c2ebc86e57592ee6a6bd" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) bffe71b4e857786edce7c2ebc86e57592ee6a6bd: feat: 优化了引用块样式，并且增大正文行间距来优化阅读体验">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>bffe71b</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

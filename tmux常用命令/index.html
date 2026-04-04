@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-11-11T19:16:22+08:00">
-    <meta property="article:modified_time" content="2025-10-02T21:37:45+08:00">
+    <meta property="article:modified_time" content="2026-04-04T16:33:10+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  1118 ,
-        "url": "https:\/\/example.com\/tmux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\/","datePublished": "2024-11-11T19:16:22+08:00","dateModified": "2025-10-02T21:37:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  1153 ,
+        "url": "https:\/\/example.com\/tmux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\/","datePublished": "2024-11-11T19:16:22+08:00","dateModified": "2026-04-04T16:33:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,7 +117,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">tmux常用命令</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-11-11">2024-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1118 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-11-11">2024-11-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1153 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;
     
 
@@ -146,7 +146,8 @@
           <ul>
             <li><a href="#功能">功能：</a></li>
             <li><a href="#结构">结构：</a></li>
-            <li><a href="#操作">操作：</a></li>
+            <li><a href="#最佳实践">最佳实践</a></li>
+            <li><a href="#详细命令">详细命令：</a></li>
           </ul>
         </li>
       </ul>
@@ -193,7 +194,37 @@
 </span></span><span class="line"><span class="cl">     session <span class="m">2</span>
 </span></span><span class="line"><span class="cl">     ...</span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="操作">操作：</h3>
+</div><h3 id="最佳实践">最佳实践</h3>
+<ol>
+<li>创建名为 <code>feat_service</code> 的 session:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">tmux new -s feat_service</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>进入 <code>feat_service</code> session:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">tmux attach -t feat_service</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>列出所有 session:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">tmux ls</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="详细命令">详细命令：</h3>
 <p>我大概按照自己的使用频率，从高到底列举了大部分日常使用中用到的操作：</p>
 <p>(1) <code>tmux</code>：新建一个session，其中包含一个window，window中包含一个pane，pane里打开了一个shell对话框。</p>
 <p>(2) <code>tmux a</code>：打开之前挂起的session。</p>
@@ -227,8 +258,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-10-02&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/20d9bd8dbc9f07ff22f798073d4d6625e9391cf4" target="_blank" title="commit by JarVis(2055543978@qq.com) 20d9bd8dbc9f07ff22f798073d4d6625e9391cf4: docs: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>20d9bd8</a></span>
+                <span>更新于 2026-04-04&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/4cbc84daac16af837be219c308494e45ad0eff25" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 4cbc84daac16af837be219c308494e45ad0eff25: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4cbc84d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

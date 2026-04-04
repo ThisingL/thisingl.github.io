@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-03-30T17:29:26+08:00">
+    <meta property="article:modified_time" content="2026-04-04T16:33:10+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  21742 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-03-30T17:29:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  27651 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-04T16:33:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 21742 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 44 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 27651 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 56 分钟&nbsp;
     
 
     
@@ -181,8 +181,22 @@
             </li>
           </ul>
         </li>
-        <li><a href="#云原生资源编排与调度架构">云原生资源编排与调度架构</a></li>
-        <li><a href="#ai-编译计算架构">AI 编译计算架构</a></li>
+        <li><a href="#云原生资源编排与调度架构">云原生资源编排与调度架构</a>
+          <ul>
+            <li><a href="#k8s">K8S</a></li>
+          </ul>
+        </li>
+        <li><a href="#ai-编译计算架构">AI 编译计算架构</a>
+          <ul>
+            <li><a href="#传统编译器">传统编译器</a>
+              <ul>
+                <li><a href="#基本概念">基本概念</a></li>
+                <li><a href="#gcc">GCC</a></li>
+                <li><a href="#llvm">LLVM</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
         <li><a href="#大模型训练与推理系统架构">大模型训练与推理系统架构</a>
           <ul>
             <li><a href="#训练">训练</a></li>
@@ -199,8 +213,9 @@
 </nav></div>
             </div><div class="content" id="content"><blockquote>
 <h4 id="学习资源">学习资源：</h4>
-<p><a href="https://www.bilibili.com/video/BV1if421z713/?spm_id_from=333.1387.0.0&amp;vd_source=28da4325512cd6f10bf532b50cf2042a" target="_blank" rel="noopener noreffer ">ZOMI酱 AI系统系列视频</a>
-<a href="https://infrasys-ai.github.io/aisystem-docs/" target="_blank" rel="noopener noreffer ">AISystem 文字版</a></p></blockquote>
+<p><a href="https://www.bilibili.com/video/BV1if421z713/?spm_id_from=333.1387.0.0&amp;vd_source=28da4325512cd6f10bf532b50cf2042a" target="_blank" rel="noopener noreffer ">AI系统系列视频——ZOMI酱</a></p>
+<p><a href="https://infrasys-ai.github.io/aisystem-docs/" target="_blank" rel="noopener noreffer ">AI System 文字版</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/25587155209" target="_blank" rel="noopener noreffer ">写在 AI Infra 大基建的黄金时代</a></p></blockquote>
 <h1 id="mlsys">MLsys</h1>
 <p>先看一篇入门好文： <a href="/mlsys/images/AI-Infra%E6%80%BB%E8%A7%88%EF%BC%9A%E6%9E%84%E5%BB%BA%E6%94%AF%E6%92%91%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%8E%A8%E7%90%86%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%B9%B3%E5%8F%B0.pdf" rel="">AI-Infra 总览：构建支撑大规模训练与推理基础设施平台</a></p>
 <p>我们来看看一个完整的 AI Infra 的架构分别都有什么：</p>
@@ -1724,13 +1739,279 @@ $$</span><p>
 </ul>
 <p>而 iWARP 显然是为了再更宽泛的现有网络中使用，支持了广域网，同时由于 TCP 协议支持了流量和拥塞控制，因此不需要无损传输，当然性能也是最差的</p>
 <h2 id="云原生资源编排与调度架构">云原生资源编排与调度架构</h2>
+<h3 id="k8s">K8S</h3>
 <h2 id="ai-编译计算架构">AI 编译计算架构</h2>
+<p>编译技术是计算机科学皇冠上的一颗明珠，作为基础软件中的核心技术，程序员的终极追求是能够掌握编译器相关的技术。</p>
+<p>简单的说，编译器其实只是一段程序，它用来将编程语言 A 翻译成另外一种编程语言 B，上面将源代码翻译为目标代码的过程是叫作编译（compile）。完整的编译过程通常包含词法分析、语法分析、语义分析、中间代码生成、优化、目标代码生成等步骤。我们很难想象，在没有出现编译器的时候，程序员编程是有多么的困难。</p>
+<p>
+<figure><a class="lightgallery" href="/mlsys/images/image-20260403165357130.png" title="image-20260403165357130" data-thumbnail="/mlsys/images/image-20260403165357130.png" data-sub-html="<h2> </h2><p>image-20260403165357130</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/mlsys/images/image-20260403165357130.png"
+            data-srcset="/mlsys/images/image-20260403165357130.png, /mlsys/images/image-20260403165357130.png 1.5x, /mlsys/images/image-20260403165357130.png 2x"
+            data-sizes="auto"
+            alt="/mlsys/images/image-20260403165357130.png" width="1080" height="332" />
+    </a><figcaption class="image-caption">image-20260403165357130</figcaption>
+    </figure></p>
+<h3 id="传统编译器">传统编译器</h3>
+<h4 id="基本概念">基本概念</h4>
+<p>首先我们来了解一部分编译器的基本概念</p>
+<h5 id="compiler--interpreter">Compiler &amp;&amp; Interpreter</h5>
+<p>我们来看看什么是 Compiler 和 Interpreter:</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th><strong>Compiler 编译器</strong></th>
+          <th><strong>Interpreter 解释器</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>程序步骤</strong></td>
+          <td>1. 创建代码<br/>2. 将解析或分析所有语言语句的正确性<br/>3. 将源代码转换为机器码<br/>4. 链接到可运行程序<br/>5. 运行程序</td>
+          <td>1. 创建代码<br/>2. 没有文件链接或机器代码生成<br/>3. 源语句在执行过程中逐行执行</td>
+      </tr>
+      <tr>
+          <td><strong>Input</strong></td>
+          <td>整个程序</td>
+          <td>每次读取一行</td>
+      </tr>
+      <tr>
+          <td><strong>Output</strong></td>
+          <td>生成中间目标代码</td>
+          <td>不产生任何的中间代码</td>
+      </tr>
+      <tr>
+          <td><strong>工作机制</strong></td>
+          <td>编译在执行之前完成</td>
+          <td>编译和执行同时进行</td>
+      </tr>
+      <tr>
+          <td><strong>存储</strong></td>
+          <td>存储编译后的机器代码在机器上</td>
+          <td>不保存任何机器代码</td>
+      </tr>
+      <tr>
+          <td><strong>执行</strong></td>
+          <td>程序执行与编译是分开的，它只在整个输出程序编译后执行</td>
+          <td>程序执行是解释过程的一部分，因此是逐行执行的</td>
+      </tr>
+      <tr>
+          <td><strong>生成程序</strong></td>
+          <td>生成可以独立于原始程序运行的输出程序（以exe的形式）</td>
+          <td>不生成输出程序，所以他们在每次执行过程中都要评估源程序</td>
+      </tr>
+      <tr>
+          <td><strong>修改</strong></td>
+          <td>如果需要修改代码，则需要修改源代码，重新编译</td>
+          <td>直接修改就可运行</td>
+      </tr>
+      <tr>
+          <td><strong>运行速度</strong></td>
+          <td>快</td>
+          <td>慢</td>
+      </tr>
+      <tr>
+          <td><strong>内存</strong></td>
+          <td>内存需求更多的是由于目标代码的创建</td>
+          <td>它需要较少的内存，因为它不创建中间对象代码</td>
+      </tr>
+      <tr>
+          <td><strong>错误</strong></td>
+          <td>编译器在编译时显示所有错误和警告。因此，不修正错误就不能运行程序</td>
+          <td>解释器读取一条语句并显示错误。你必须纠正错误才能解释下一行</td>
+      </tr>
+      <tr>
+          <td><strong>错误监测</strong></td>
+          <td>难</td>
+          <td>容易</td>
+      </tr>
+      <tr>
+          <td><strong>编程语言</strong></td>
+          <td>C, C++, C#, Scala, Java</td>
+          <td>PHP, Perl, Python, Ruby</td>
+      </tr>
+  </tbody>
+</table>
+<p>目前主流如 LLVM 和 GCC 等经典的开源编译器的类型分为前端编译器、中间层编译器、后端编译器。</p>
+<ol>
+<li>编译器的分析阶段也称为前端编译器，将程序划分为基本的组成部分，检查代码的语法、语义和语法，然后生成中间代码。</li>
+<li>中间层主要是对源程序代码进行优化和分析，分析阶段包括词法分析、语义分析和语法分析；优化主要是优化中间代码，去掉冗余代码、子表达式消除等工作。</li>
+<li>编译器的合成阶段也称为后端，针对具体的硬件生成目标代码，合成阶段包括代码优化器和代码生成器。</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>AOT</th>
+          <th>JIT</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>全称</strong></td>
+          <td>Ahead of Time（提前编译）</td>
+          <td>Just in Time（即时编译）</td>
+      </tr>
+      <tr>
+          <td><strong>方式</strong></td>
+          <td>静态编译</td>
+          <td>动态解释</td>
+      </tr>
+      <tr>
+          <td><strong>核心组件</strong></td>
+          <td>编译器 Compiler</td>
+          <td>解释器 Interpreter</td>
+      </tr>
+      <tr>
+          <td><strong>区分方式</strong></td>
+          <td>代码执行前需要编译</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>优点</strong></td>
+          <td>1. 运行前完成编译，避免运行时的编译开销和内存消耗<br />2. 程序启动即可达到最高性能 <br />3. 整体执行效率更高</td>
+          <td>1. 可根据当前硬件环境实时生成最优机器指令 <br />2. 可根据程序运行状态动态优化指令序列 <br />3. 天然支持动态链接，灵活性更强 <br />4. 可根据进程内存实际情况动态调整代码，内存利用率更高</td>
+      </tr>
+      <tr>
+          <td><strong>缺点</strong></td>
+          <td>1. 提前编译会增加程序的安装/构建时间 <br />2. 需要持久化编译产物，占用更多磁盘和内存 <br />3. 难以支持动态特性，牺牲了高级语言的跨平台一致性</td>
+          <td>1. 编译过程占用运行时资源，可能导致程序卡顿 <br />2. 编译时间有限，部分代码无法完成深度优化 <br />3. 启动阶段需要识别热点代码，冷启动性能较差</td>
+      </tr>
+  </tbody>
+</table>
+<h5 id="pass">Pass</h5>
+<p><strong>Pass</strong> 是对<strong>编译对象</strong>（源代码或 IR）的一次<strong>完整</strong>遍历和处理。在编译器中，Pass 指所采用的一种结构化技术，用于完成编译对象的分析、优化或转换等功能。Pass 的执行就是编译器对编译单元进行分析和优化的过程，Pass 构建了这些过程所需要的分析结果。</p>
+<blockquote>
+<p>对于<strong>早期编译器</strong>，由于内存有限，不可能一次把所有事情做完，所以需要多次扫描源程序：</p>
+<p>源代码文件（存在磁带/磁盘上）</p>
+<ul>
+<li>第 1 遍扫描（Pass 1）：从头读到尾 → 做词法分析，生成 token 流</li>
+<li>第 2 遍扫描（Pass 2）：从头读到尾 → 做语法分析，生成语法树</li>
+<li>第 3 遍扫描（Pass 3）：从头读到尾 → 做语义检查，类型检查</li>
+<li>第 4 遍扫描（Pass 4）：从头读到尾 → 生成目标代码</li>
+</ul>
+<p>每一遍都是对整个程序从头到尾读一次，这就叫做 &ldquo;一次完整扫描&rdquo;。</p>
+<p>所以早期会说一个编译器是：</p>
+<ul>
+<li>单遍编译器（Single-Pass Compiler）：只扫描一遍就完成所有工作</li>
+<li>多遍编译器（Multi-Pass Compiler）：需要扫描多遍</li>
+</ul>
+<p>而在<strong>现代编译器</strong>（如 LLVM）中，Pass 不再直接扫描源代码文本了，而是扫描/处理 IR（中间表示）</p>
+<p>本质上一次 Pass 就是对整个编译对象从头到尾遍历一遍，做一件特定的事情，来完成某一类功能。早期扫描源代码，现代扫描 IR，本质是一样的。</p></blockquote>
+<p>一个 Pass 通常会完成一项较为独立的功能，例如 LoopUnroll Pass 会进行循环展开的操作。但 Pass 与 Pass 之间可能会存在一些依赖，部分 Pass 的执行会依赖于其它一些 Pass 的分析或者转换结果。</p>
+<p>现代编译器中，一般会采用分层、分段的结构模式，不管是在中间层还是后端，都存在若干条优化的 Pipeline，而这些 Pipeline，则是由一个个 Pass 组成的，对于这些 Pass 的管理，则是由 PassManager 完成的。</p>
+<p>在编译器 LLVM 中提供的 Pass 分为三类：Analysis pass、Transform pass 和 Utility pass。</p>
+<ul>
+<li><strong>Analysis Pass</strong>：计算相关 IR 单元的高层信息，但不对其进行修改。这些信息可以被其他 Pass 使用，或用于调试和程序可视化。换言之，Analysis Pass 会从对应的 IR 单元中挖掘出需要的信息，然后进行存储，并提供查询的接口，让其它 Pass 去访问其所存储的信息。同时，Analysis Pass 也会提供 invalidate 接口，因为当其它 Pass 修改了 IR 单元的内容后，可能会造成已获取的分析信息失效，此时需调用 invalidate 接口来告知编译器此 Analysis Pass 原先所存储的信息已失效。常见的 Analysis Pass 有 Basic Alias Analysis、Scalar Evolution Analysis 等。</li>
+<li><strong>Transform Pass</strong>：可以使用 Analysis Pass 的分析结果，然后以某种方式改变和优化 IR。此类 Pass 是会改变 IR 的内容的，可能会改变 IR 中的指令，也可能会改变 IR 中的控制流。例如 Inline Pass 会将一些函数进行 inline 的操作，从而减少函数调用，同时在 inline 后可能会暴露更多的优化机会。</li>
+<li><strong>Utility Pass</strong>：是一些功能性的实用程序，既不属于 Analysis Pass，也不属于 Transform Pass。例如，extract-blocks Pass 将 basic block 从模块中提取出来供 bug point 使用，它仅完成这项工作。</li>
+</ul>
+<h5 id="ir">IR</h5>
+<p>IR（Intermediate Representation）中间表示，是编译器中很重要的一种数据结构。编译器在完成前端工作以后，首先生成其自定义的 IR，并在此基础上执行各种优化算法，最后再生成目标代码。</p>
+<p>从广义上看，编译器运行过程中，各阶段产生的中间数据表示都可以统称为 IR。从狭义上讲，IR 是指编译器明确定义的一种具体的数据结构。这种数据结构存在两种等价的形式：一种是内存中的对象表示，供编译器程序直接操作；另一种是可读的文本表示，可以写入文件、供人阅读，也可以被编译器重新读入还原为内存对象。日常使用中，一般不严格区分这两种形式，统称为 IR。</p>
+<p>在编译原理中，通常将编译器分为<strong>前端</strong>和<strong>后端</strong>。其中，前端会对所输入的程序进行词法分析、语法分析、语义分析，然后生成中间表达形式 IR。后端会对 IR 进行优化，然后生成目标代码。</p>
+<p>当然，也有些人会感觉把优化器硬塞进&quot;后端&quot;其实不太舒服，因为很多优化（常量折叠、死代码消除等）跟目标机器完全无关，和后端做的指令选择、寄存器分配性质很不一样。所以后来业界更常用三段式划分。</p>
+<p>例如： LLVM 将编译器拆分为前端、优化器和后端三个部分，各部分通过一种统一的中间表示（IR）来衔接。前端负责将源代码翻译为 IR，优化器对 IR 进行变换和优化，后端再将 IR 转化为目标平台的机器码。</p>
+<p>LLVM IR 在内存中是一组 C++ 对象，其对应的文本形式称为 LLVM assembly language（也叫 LLVM language），保存为 <code>.ll</code> 文件。当我们谈论&quot;LLVM IR 的类型系统&quot;时，通常就是指 LLVM assembly language 中定义的那套类型语法。</p>
+<p>因此，编译器的前端，优化器，后端之间，唯一交换的数据结构类型就是 IR，通过 IR 来实现不同模块的解耦。有些 IR 还会为其专门起一个名字，比如：Open64 的 IR 通常叫做 WHIRL IR，方舟编译器的 IR 叫做 MAPLE IR，LLVM 则通常就称为 LLVM IR。</p>
+<hr>
+<p>IR 在通常情况下有两种用途：</p>
+<ul>
+<li>一种是用来做分析和变换</li>
+<li>一种是直接用于解释执行</li>
+</ul>
+<p>编译器中，基于 IR 的分析和处理工作，前期阶段可以基于一些抽象层次比较高的语义，此时所需的 IR 更接近源代码。而在编译器后期阶段，则会使用低层次的、更加接近目标代码的语义。基于上述从高到低的层次抽象，IR 可以归结为三层：高层 HIR、中间层 MIR 和底层 LIR。</p>
+<div class="mermaid" id="mermaid-1">flowchart LR
+    A["源代码\nC / Go / Rust / ..."]
+    
+    B["HIR\n还保留着源语言的特征\n比如 for 循环、数组下标访问\n结构体字段名 这些概念还在"]
+    
+    C["MIR\n两头都不沾\n源语言特征被抹掉了\n硬件细节还没引入\n只剩下通用的运算和控制流"]
+    
+    D["LIR\n已经很接近机器码\n出现了具体寄存器、指令格式\n调用约定这些硬件概念"]
+    
+    E["目标机器码"]
+
+    LB["靠近前端"]
+    LC["中间层"]
+    LD["靠近后端"]
+
+    A  --> B
+    B  --> C
+    C  --> D
+    D  --> E
+
+    LB --> B
+    LC --> C
+    LD --> D
+
+    style A  fill:#4a4a4a,color:#fff
+    style B  fill:#1a5276,color:#fff
+    style C  fill:#145a32,color:#fff
+    style D  fill:#6e2f1a,color:#fff
+    style E  fill:#4a4a4a,color:#fff
+    style LB fill:#none,color:#aaa,stroke:#aaa
+    style LC fill:#none,color:#aaa,stroke:#aaa
+    style LD fill:#none,color:#aaa,stroke:#aaa</div><ol>
+<li><strong>HIR</strong></li>
+</ol>
+<p>HIR（High IR）高层 IR，其主要负责基于源程序语言执行代码的分析和变换。假设要开发一款 IDE，主要功能包括：发现语法错误、分析符号之间的依赖关系（以便进行跳转、判断方法的重载等）、根据需要自动生成或修改一些代码（提供重构能力）。此时对 IR 的需求是能够准确表达源程序语言的语义即可。</p>
+<p>其实，AST 和符号表就可以满足上述需求。也就是说，AST 也可以算作一种特殊的 IR。如果要开发 IDE、代码翻译工具（从一门语言翻译到另一门语言）、代码生成工具、代码统计工具等，使用 AST（加上符号表）即可。基于 HIR，可以执行高层次的代码优化，比如常数折叠、内联关联等。在 Java 和 Go 的编译器中，有不少基于 AST 执行的优化工作。</p>
+<ol start="2">
+<li><strong>MIR</strong></li>
+</ol>
+<p>MIR（Middle IR），独立于源程序语言和硬件架构执行代码分析和具体优化。大量的优化算法是通用的，没有必要依赖源程序语言的语法和语义，也没有必要依赖具体的硬件架构。这些优化包括部分算术优化、常量和变量传播、死代码删除等，实现分析和优化功能。</p>
+<p>因为 MIR 跟源程序代码和目标程序代码都无关，所以在编译优化算法（Pass）过程中，通常是基于 MIR，比如三地址代码（Three Address Code，TAC）。</p>
+<ol start="3">
+<li><strong>LIR</strong></li>
+</ol>
+<p>LIR（Low IR），依赖于底层具体硬件架构做优化和代码生成。其指令通常可以与机器指令一一对应，比较容易翻译成机器指令或汇编代码。因为 LIR 体现了具体硬件（如 CPU）架构的底层特征，因此可以执行与具体 CPU 架构相关的优化。</p>
+<p>上面这种将 IR 阶段拆分为多层 IR 的方式和单层 IR 比较起来，具有较为明显的优点：</p>
+<ol>
+<li>可以提供更多的源程序语言的信息</li>
+<li>IR 表达上更加地灵活，更加方便优化</li>
+<li>使得优化算法和优化 Pass 执行更加高效</li>
+</ol>
+<p>如在 LLVM 编译器里，会根据抽象层次从高到低，采用了前后端分离的三段结构，这样在为编译器添加新的语言支持或者新的目标平台支持的时候，就十分方便，大大减小了工程开销。而 LLVM IR 在这种前后端分离的三段结构之中，主要分开了三层 IR，IR 在整个编译器中则起着重要的承上启下作用。从便于开发者编写程序代码的理解到便于硬件机器的理解。</p>
+<p>了解完基础概念以后，我们就该来看看两大编译器的“相爱相杀”了：</p>
+<img src="images/image-20260404155012305.png" alt="image-20260404155012305" style="zoom: 25%; display: block; margin: 0 auto;" />
+<h4 id="gcc">GCC</h4>
+<p>我们首先来看看 GCC 的起源：</p>
+<p>早期的 UNIX 系统是商业私有软件，用户无法自由查看和修改其源代码。1983 年，理查德·斯托曼发起了 GNU 计划，目标是开发一套完全自由开放的操作系统来替代 UNIX，计划中的操作系统命名为 GNU。这里的&quot;自由&quot;强调的不是免费，而是用户拥有查看、修改和分发源代码的权利——正如斯托曼所说：&ldquo;Free as in freedom, not as in free beer（自由如同言论自由，而非免费啤酒）。&rdquo;</p>
+<p>
+<figure><a class="lightgallery" href="/mlsys/images/image-20260404155433189.png" title="image-20260404155433189" data-thumbnail="/mlsys/images/image-20260404155433189.png" data-sub-html="<h2> </h2><p>image-20260404155433189</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/mlsys/images/image-20260404155433189.png"
+            data-srcset="/mlsys/images/image-20260404155433189.png, /mlsys/images/image-20260404155433189.png 1.5x, /mlsys/images/image-20260404155433189.png 2x"
+            data-sizes="auto"
+            alt="/mlsys/images/image-20260404155433189.png" width="2300" height="612" />
+    </a><figcaption class="image-caption">image-20260404155433189</figcaption>
+    </figure></p>
+<p>一个完整的操作系统不只需要内核，还需要编辑器、编译器、Shell 等大量配套工具来支持用户的日常使用。GNU 计划十几年来陆续开发了这些工具，其中许多至今仍被广泛使用，例如 GCC 编译器、Bash Shell、GNU Coreutils 等。GNU 计划也采用了部分当时已经可自由使用的软件，例如 TeX 排版系统和 X Window 视窗系统。这些软件后来也被移植到了其他操作系统平台上，包括 Microsoft Windows、BSD 家族、Solaris 及 macOS。</p>
+<p>不过，GNU 计划自己的内核 Hurd 一直未能成熟。1991 年，Linus Torvalds 独立开发的 Linux 内核填补了这个空缺。Linux 内核与 GNU 的用户态工具相结合，形成了今天广泛使用的 GNU/Linux 操作系统。GNU 计划本是为了开发一个完整的自由操作系统，最终虽然没能交出自己的内核，但它所开发的编译器、Shell 等基础工具却成为了整个开源世界的基石，广泛使用至今。</p>
+<p>GCC 是 GNU 计划中最成功的项目之一。它最初名为 GNU C Compiler，只能编译 C 语言，后来逐步扩展，支持了 C++、Fortran、Pascal、Objective-C、Java、Ada、Go 等多种语言，也因此更名为 GNU Compiler Collection（GNU 编译器集合）。</p>
+<p>GCC 原本使用 C 语言开发。后来随着 LLVM/Clang 的崛起带来竞争压力，GCC 社区加快了将自身代码库迁移至 C++ 的进程。GCC 核心开发者 Ian Lance Taylor 对此表示：C++ 不但性能不输给 C，还能设计出更好、更容易维护的程序。</p>
+<p>由于 GCC 已成为 GNU 系统的官方编译器（包括 GNU/Linux 家族），它也成为编译与构建其他操作系统的主要编译器，包括 BSD 家族、Mac OS X、NeXTSTEP 与 BeOS。GCC 通常是跨平台软件的编译器首选——有别于一般局限于特定系统与运行环境的编译器，GCC 在所有平台上都使用同一套前端和中间表示（IR），因此同一份代码在不同平台上使用 GCC 编译，有很大的机会得到正确一致的输出。</p>
+<h4 id="llvm">LLVM</h4>
+<p>Apple 早期一直使用 GCC 作为官方编译器。但随着发展，双方出现了矛盾：</p>
+<p>一方面，Apple 为 Objective-C 新增了许多语言特性，但 GCC 社区对这些特性的支持意愿不高。Apple 不得不基于 GCC 的某个版本维护自己的分支，导致其编译器版本逐渐落后于 GCC 官方版本。</p>
+<p>另一方面，Apple 希望以模块化的方式调用编译器的各个组件（如为 IDE 提供代码补全、语法高亮等功能），但 GCC 的架构耦合度很高，难以拆分为独立的库来使用。</p>
+<p>与此同时，另一个主人公 Chris Lattner 在伊利诺伊大学读 phd 期间（2000 年）发起了 LLVM 项目，探索模块化、可复用的编译器架构。Apple 看到了 LLVM 的潜力，于 2005 年将 Lattner 招入，并投入资源大力发展 LLVM。</p>
+<img src="images/image-20260404160749496.png" alt="image-20260404160749496" style="zoom:33%; display: block; margin: 0 auto;" />
+<p>最初，Apple 采用 GCC 前端 + LLVM 后端的过渡方案（称为 LLVM-GCC）。随后，Apple 支持开发了全新的 C/C++/Objective-C 前端——Clang，至此彻底摆脱了对 GCC 的依赖。</p>
+<p>LLVM (Low Level Virtual Machine) 的出现，可以让任意编程语言前端编译到一个 LLVM 的中间表示（IR），再由 LLVM 中的后端编译至具体硬件平台，并且可以分不同阶段实现优化。</p>
+<p>LLVM 极大地简化了编程语言编译器的开发过程，不同语言只需要实现语言到 LLVM IR 的前端编译程序，再调用 LLVM 后端编译器，就可以得到编译至任意平台的能力，而无需为不同的平台实现不同的编译器。如 Rust 和 Swift 语言的编译器就使用了 LLVM 作为后端。</p>
 <h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
 <h3 id="训练">训练</h3>
 <h3 id="推理">推理</h3>
 <h4 id="sglang">SGLang</h4>
 <p>一个专门用来学习 SGLang 框架的简化版本： <a href="https://github.com/gogongxt/nano-sglang" target="_blank" rel="noopener noreffer ">nano-sglang</a></p>
-<div class="mermaid" id="mermaid-1">sequenceDiagram
+<div class="mermaid" id="mermaid-2">sequenceDiagram
     participant 用户
     participant FastAPI as FastAPI Server
     participant Tokenizer as TokenizerManager
@@ -1778,8 +2059,8 @@ $$</span><p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-03-30&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/0ddaf4af98859e8bcf2d85b807f11250c01c89e8" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 0ddaf4af98859e8bcf2d85b807f11250c01c89e8: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>0ddaf4a</a></span>
+                <span>更新于 2026-04-04&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/4cbc84daac16af837be219c308494e45ad0eff25" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 4cbc84daac16af837be219c308494e45ad0eff25: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4cbc84d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-04-04T16:33:10+08:00">
+    <meta property="article:modified_time" content="2026-04-06T23:31:04+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  27651 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-04T16:33:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  33939 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-06T23:31:04+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 27651 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 56 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 33939 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 68 分钟&nbsp;
     
 
     
@@ -1913,7 +1913,7 @@ $$</span><p>
 <p>IR（Intermediate Representation）中间表示，是编译器中很重要的一种数据结构。编译器在完成前端工作以后，首先生成其自定义的 IR，并在此基础上执行各种优化算法，最后再生成目标代码。</p>
 <p>从广义上看，编译器运行过程中，各阶段产生的中间数据表示都可以统称为 IR。从狭义上讲，IR 是指编译器明确定义的一种具体的数据结构。这种数据结构存在两种等价的形式：一种是内存中的对象表示，供编译器程序直接操作；另一种是可读的文本表示，可以写入文件、供人阅读，也可以被编译器重新读入还原为内存对象。日常使用中，一般不严格区分这两种形式，统称为 IR。</p>
 <p>在编译原理中，通常将编译器分为<strong>前端</strong>和<strong>后端</strong>。其中，前端会对所输入的程序进行词法分析、语法分析、语义分析，然后生成中间表达形式 IR。后端会对 IR 进行优化，然后生成目标代码。</p>
-<p>当然，也有些人会感觉把优化器硬塞进&quot;后端&quot;其实不太舒服，因为很多优化（常量折叠、死代码消除等）跟目标机器完全无关，和后端做的指令选择、寄存器分配性质很不一样。所以后来业界更常用三段式划分。</p>
+<p>当然，也有些人会感觉把<strong>优化器</strong>硬塞进&quot;后端&quot;其实不太舒服，因为很多优化（常量折叠、死代码消除等）跟目标机器完全无关，和后端做的指令选择、寄存器分配性质很不一样。所以后来业界更常用三段式划分。</p>
 <p>例如： LLVM 将编译器拆分为前端、优化器和后端三个部分，各部分通过一种统一的中间表示（IR）来衔接。前端负责将源代码翻译为 IR，优化器对 IR 进行变换和优化，后端再将 IR 转化为目标平台的机器码。</p>
 <p>LLVM IR 在内存中是一组 C++ 对象，其对应的文本形式称为 LLVM assembly language（也叫 LLVM language），保存为 <code>.ll</code> 文件。当我们谈论&quot;LLVM IR 的类型系统&quot;时，通常就是指 LLVM assembly language 中定义的那套类型语法。</p>
 <p>因此，编译器的前端，优化器，后端之间，唯一交换的数据结构类型就是 IR，通过 IR 来实现不同模块的解耦。有些 IR 还会为其专门起一个名字，比如：Open64 的 IR 通常叫做 WHIRL IR，方舟编译器的 IR 叫做 MAPLE IR，LLVM 则通常就称为 LLVM IR。</p>
@@ -1976,7 +1976,55 @@ $$</span><p>
 <li>使得优化算法和优化 Pass 执行更加高效</li>
 </ol>
 <p>如在 LLVM 编译器里，会根据抽象层次从高到低，采用了前后端分离的三段结构，这样在为编译器添加新的语言支持或者新的目标平台支持的时候，就十分方便，大大减小了工程开销。而 LLVM IR 在这种前后端分离的三段结构之中，主要分开了三层 IR，IR 在整个编译器中则起着重要的承上启下作用。从便于开发者编写程序代码的理解到便于硬件机器的理解。</p>
-<p>了解完基础概念以后，我们就该来看看两大编译器的“相爱相杀”了：</p>
+<h5 id="完整构建流程">完整构建流程</h5>
+<blockquote>
+<p>我们首先需要区分编译器和工具链。</p>
+<p>编译器只是负责从源码 → 目标平台的机器码</p>
+<p>而用户使用却是需要从 源码 → 目标平台的可执行文件，这就需要一系列工具，不单单只有编译器，这样一个完整的构建流程需要的是完整的工具链。</p></blockquote>
+<p>接下来我们来看看，一个代码源文件，是怎么一步步的变成最终我们想要的可执行文件的？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GCC:
+</span></span><span class="line"><span class="cl">源代码 → [前端→RTL→后端] → .s → .o → 可执行文件
+</span></span><span class="line"><span class="cl">              ↑           ↑    ↑
+</span></span><span class="line"><span class="cl">            编译阶段      汇编   链接
+</span></span><span class="line"><span class="cl">           GCC内部IR
+</span></span><span class="line"><span class="cl">         不对外暴露，难以复用
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">LLVM:
+</span></span><span class="line"><span class="cl">源代码 → [前端→LLVM IR→优化→后端] → .s → .o → 可执行文件
+</span></span><span class="line"><span class="cl">                 ↑                ↑    ↑
+</span></span><span class="line"><span class="cl">               编译阶段           汇编  链接
+</span></span><span class="line"><span class="cl">            LLVM IR 对外暴露！
+</span></span><span class="line"><span class="cl">            可以单独保存/传输/优化</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们之前讲的编译器最核心的前端、优化器和后端，其实就是对应的上面编译阶段。</p>
+<p>一个源代码程序</p>
+<ol>
+<li>首先会被送入编译器，被编译成 <code>.s</code> 汇编代码</li>
+<li>然后再经过汇编器，变成 <code>.o</code> 二进制机器码，但是此时目标文件是不完整的，还有大量&quot;空白地址&quot;等待填写</li>
+<li>最后再经过链接器，变成我们要的对应平台的可执行文件</li>
+</ol>
+<blockquote>
+<p>对于 C 和 C++，由于历史原因，额外多了一步，也就是先将源代码通过<strong>预处理</strong>变成 <code>.i</code> 文件，然后才送入编译器，进行后续操作。这不是所有语言的必要操作，现代语言都是直接把源代码送入前端。</p>
+<p>以及对于现代的 Java 和 Python 等语言，它们不是传统的编译型语言，而是一种<strong>托管型语言</strong>。通过自己实现的 JVM/V8 等工具，来自己实现自己想要的。</p></blockquote>
+<p>而汇编器和链接器也有非常多的种类，可以指定搭配着使用。</p>
+<p>了解完上面的基础概念以后，接下来我们来看看现代编译器领域两大框架的“相爱相杀”：</p>
 <img src="images/image-20260404155012305.png" alt="image-20260404155012305" style="zoom: 25%; display: block; margin: 0 auto;" />
 <h4 id="gcc">GCC</h4>
 <p>我们首先来看看 GCC 的起源：</p>
@@ -1997,15 +2045,822 @@ $$</span><p>
 <p>GCC 是 GNU 计划中最成功的项目之一。它最初名为 GNU C Compiler，只能编译 C 语言，后来逐步扩展，支持了 C++、Fortran、Pascal、Objective-C、Java、Ada、Go 等多种语言，也因此更名为 GNU Compiler Collection（GNU 编译器集合）。</p>
 <p>GCC 原本使用 C 语言开发。后来随着 LLVM/Clang 的崛起带来竞争压力，GCC 社区加快了将自身代码库迁移至 C++ 的进程。GCC 核心开发者 Ian Lance Taylor 对此表示：C++ 不但性能不输给 C，还能设计出更好、更容易维护的程序。</p>
 <p>由于 GCC 已成为 GNU 系统的官方编译器（包括 GNU/Linux 家族），它也成为编译与构建其他操作系统的主要编译器，包括 BSD 家族、Mac OS X、NeXTSTEP 与 BeOS。GCC 通常是跨平台软件的编译器首选——有别于一般局限于特定系统与运行环境的编译器，GCC 在所有平台上都使用同一套前端和中间表示（IR），因此同一份代码在不同平台上使用 GCC 编译，有很大的机会得到正确一致的输出。</p>
+<p>对于 GCC 来说，它的前端和后端由于历史原因，是一种深度耦合的状态。因此如果想要支持 <span class="math">$M$</span> 种语言和 <span class="math">$N$</span> 种目标机，理论上就需要实现 <span class="math">$MN$</span> 种编译器。。。</p>
+<p>然后如果一个人想要重新设计一门语言，还想用 GCC 来编译，他就得又懂前端又懂优化又懂后端，这是什么天才？</p>
+<img src="images/image-20260405110608356.png" alt="image-20260405110608356" style="zoom:33%; display: block; margin: 0 auto;" />
+<p>因此现在的 GCC 源码已经超过 <span class="math">$1500$</span> 万行了，是现存最大的自由程序之一，已经快成为一座屎山代码了。</p>
+<p>当然 GCC 也是有它独特的优势的（不然用它的人也不傻）：</p>
+<ul>
+<li>由于 GCC 的历史比 LLVM 要长很多，因此 GCC 的架构支持要更多，很多冷门的嵌入式架构依旧只有 GCC 支持</li>
+<li>GCC 对于某些特定领域（如数值计算）深耕多年，速度比 LLVM 要快很多</li>
+<li>GCC 年龄大更成熟</li>
+<li>GCC 警告体系更精准</li>
+<li>以及由于 LLVM 都需要先从源语言转成 LLVM IR，大量的高级语言特性丢失了，这些可以被 GCC 利用从而进行加速</li>
+</ul>
+<p>当然我认为<strong>长期趋势是 LLVM 生态越来越强，但 GCC 在嵌入式和特定架构领域短期内不会被取代。</strong></p>
 <h4 id="llvm">LLVM</h4>
 <p>Apple 早期一直使用 GCC 作为官方编译器。但随着发展，双方出现了矛盾：</p>
 <p>一方面，Apple 为 Objective-C 新增了许多语言特性，但 GCC 社区对这些特性的支持意愿不高。Apple 不得不基于 GCC 的某个版本维护自己的分支，导致其编译器版本逐渐落后于 GCC 官方版本。</p>
 <p>另一方面，Apple 希望以模块化的方式调用编译器的各个组件（如为 IDE 提供代码补全、语法高亮等功能），但 GCC 的架构耦合度很高，难以拆分为独立的库来使用。</p>
-<p>与此同时，另一个主人公 Chris Lattner 在伊利诺伊大学读 phd 期间（2000 年）发起了 LLVM 项目，探索模块化、可复用的编译器架构。Apple 看到了 LLVM 的潜力，于 2005 年将 Lattner 招入，并投入资源大力发展 LLVM。</p>
+<p>与此同时，故事中的另一个主人公 Chris Lattner 在伊利诺伊大学读 phd 期间（2000 年）发起了 LLVM 项目，探索模块化、可复用的编译器架构。Apple 看到了 LLVM 的潜力，于 2005 年将 Lattner 招入，并投入资源大力发展 LLVM。</p>
 <img src="images/image-20260404160749496.png" alt="image-20260404160749496" style="zoom:33%; display: block; margin: 0 auto;" />
+<p>项目最初被命名为低级虚拟机（Low Level Virtual Machine）的首字母缩写。然而，随着 LLVM 项目的发展，该缩写引起了混淆，因为项目范围不仅局限于创建虚拟机。随着 LLVM 发展壮大，它成为了许多编译工具和低级工具技术的统称，这使得缩写变得不再合适。于是开发者决定摒弃缩写的含义，现在 LLVM 已经成为一个品牌，用于指代 LLVM 项目下的所有子项目，包括 LLVM 中介码（LLVM IR）、LLVM 调试工具、LLVM C++标准库等。</p>
 <p>最初，Apple 采用 GCC 前端 + LLVM 后端的过渡方案（称为 LLVM-GCC）。随后，Apple 支持开发了全新的 C/C++/Objective-C 前端——Clang，至此彻底摆脱了对 GCC 的依赖。</p>
 <p>LLVM (Low Level Virtual Machine) 的出现，可以让任意编程语言前端编译到一个 LLVM 的中间表示（IR），再由 LLVM 中的后端编译至具体硬件平台，并且可以分不同阶段实现优化。</p>
 <p>LLVM 极大地简化了编程语言编译器的开发过程，不同语言只需要实现语言到 LLVM IR 的前端编译程序，再调用 LLVM 后端编译器，就可以得到编译至任意平台的能力，而无需为不同的平台实现不同的编译器。如 Rust 和 Swift 语言的编译器就使用了 LLVM 作为后端。</p>
+<hr>
+<p>接下来我们拆开 LLVM，来看看它是怎么优雅的解决 GCC 的许多问题的。</p>
+<p>首先对比 GCC，LLVM 如果想要支持 <span class="math">$M$</span> 种语言和 <span class="math">$N$</span> 种目标机，理论上只需要实现 <span class="math">$M&#43;N$</span> 种编译器就可以了。它是通过设计了一个中间统一的 LLVM IR，来将前端和后端进行解耦，降低了系统整体的复杂度。</p>
+<img src="images/image-20260405165022720.png" alt="image-20260405165022720" style="zoom:33%; display: block; margin: 0 auto;" />
+<p>LLVM 基本架构如下：</p>
+<img src="images/image-20260406194938456.png" alt="image-20260406194938456" style="zoom:33%; display: block; margin: 0 auto;" />
+<p>值得注意的是，LLVM 并非使用单一的 IR 进行表达，前端传给优化层时传递的是一种 AST（Abstract Syntax Tree，抽象语法树）的 IR。因此 IR 是一种抽象表达，没有固定的形态。</p>
+<p>在中端优化完成之后会传一个 DAG（Directed Acyclic Graph，有向无环图）图的 IR 给后端，DAG 图能够非常有效的去表示硬件的指定的顺序。</p>
+<hr>
+<p>接下来我们将分别介绍 LLVM 的前端、优化器和后端是怎么实现的：</p>
+<h5 id="前端">前端</h5>
+<p>LLVM 的前端也就是将源代码变成统一的中间表示 LLVM IR 的过程。</p>
+<p>我们以经常作为 LLVM 前端使用的的 Clang 为例，看看具体发生了什么。</p>
+<p>Clang 是一个强大的编译器工具，作为 LLVM 的前端承担着将 C、C++ 和 Objective-C 语言代码转换为 LLVM 中间表示（IR）的任务。</p>
+<p>从上面的 LLVM 基本架构图可以看出来： 通过 Clang 的三个关键步骤：<strong>词法分析、语法分析和语义分析</strong>，源代码被逐步转化为高效的中间表示形式，为进一步的优化和目标代码生成做准备。</p>
+<ul>
+<li><em>词法分析</em>阶段负责将源代码分解为各种标记的流，例如关键字、标识符、运算符和常量等，这些标记构成了编程语言的基本单元。</li>
+<li><em>语法分析</em>阶段则负责根据编程语言的语法规则，将这些标记流组织成符合语言语法结构的语法树。</li>
+<li><em>语义分析</em>阶段则确保语法树的各部分之间的关系和含义是正确的，比如类型匹配、变量声明的范围等，以确保程序的正确性和可靠性。</li>
+</ul>
+<p>每个编程语言前端都会有自己的词法分析器、语法分析器和语义分析器，它们的任务是将程序员编写的源代码转换为通用的抽象语法树（AST），这样可以为后续的处理步骤提供统一的数据结构表示。AST 是程序的一个中间表示形式，它便于进行代码分析、优化和转换。</p>
+<p>下面我们来详细看看这几个阶段：</p>
+<h6 id="词法分析">词法分析</h6>
+<p>词法分析就是把源码字符流切割成有意义的最小单元(token)，来方便后续更深度的代码分析。</p>
+<p>我们来写一个简答的 C 语言程序：</p>
+<div class="highlight"><div class="chroma" data-title="add.c">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行以下命令对 <code>add.c</code> 文件进行词法分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">clang -cc1 -dump-tokens add.c</span></span></code></pre></td></tr></table>
+</div>
+</div><p>词法分析输出如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">int <span class="s1">&#39;int&#39;</span>	 <span class="o">[</span>StartOfLine<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:1:1&gt;
+</span></span><span class="line"><span class="cl">identifier <span class="s1">&#39;main&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:1:5&gt;
+</span></span><span class="line"><span class="cl">l_paren <span class="s1">&#39;(&#39;</span>		<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:1:9&gt;
+</span></span><span class="line"><span class="cl">r_paren <span class="s1">&#39;)&#39;</span>		<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:1:10&gt;
+</span></span><span class="line"><span class="cl">l_brace <span class="s1">&#39;{&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:1:12&gt;
+</span></span><span class="line"><span class="cl">int <span class="s1">&#39;int&#39;</span>	 <span class="o">[</span>StartOfLine<span class="o">]</span> <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:2:5&gt;
+</span></span><span class="line"><span class="cl">identifier <span class="s1">&#39;a&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:2:9&gt;
+</span></span><span class="line"><span class="cl">equal <span class="s1">&#39;=&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:2:11&gt;
+</span></span><span class="line"><span class="cl">numeric_constant <span class="s1">&#39;1&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:2:13&gt;
+</span></span><span class="line"><span class="cl">plus <span class="s1">&#39;+&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:2:15&gt;
+</span></span><span class="line"><span class="cl">numeric_constant <span class="s1">&#39;2&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:2:17&gt;
+</span></span><span class="line"><span class="cl">semi <span class="s1">&#39;;&#39;</span>		<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:2:18&gt;
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="s1">&#39;return&#39;</span>	 <span class="o">[</span>StartOfLine<span class="o">]</span> <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:3:5&gt;
+</span></span><span class="line"><span class="cl">identifier <span class="s1">&#39;a&#39;</span>	 <span class="o">[</span>LeadingSpace<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:3:12&gt;
+</span></span><span class="line"><span class="cl">semi <span class="s1">&#39;;&#39;</span>		<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:3:13&gt;
+</span></span><span class="line"><span class="cl">r_brace <span class="s1">&#39;}&#39;</span>	 <span class="o">[</span>StartOfLine<span class="o">]</span>	<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:4:1&gt;
+</span></span><span class="line"><span class="cl">eof <span class="s1">&#39;&#39;</span>		<span class="nv">Loc</span><span class="o">=</span>&lt;add.c:4:2&gt;</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>我们来逐行解读一下上面的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="ne">int</span> <span class="s1">&#39;int&#39;</span>    <span class="p">[</span><span class="n">StartOfLine</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>    <span class="err">│</span>        <span class="err">│</span>                <span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>    <span class="err">│</span>        <span class="err">│</span>                <span class="err">└──</span> <span class="err">第</span><span class="mi">1</span><span class="err">行第</span><span class="mi">1</span><span class="err">列</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>    <span class="err">│</span>        <span class="err">└──</span> <span class="err">这个</span><span class="n">Token在行首</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>    <span class="err">└──</span> <span class="err">实际文本是</span> <span class="s1">&#39;int&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">Token类型是关键字int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">identifier</span> <span class="s1">&#39;main&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>            <span class="err">│</span>        <span class="err">│</span>                <span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>            <span class="err">│</span>        <span class="err">│</span>                <span class="err">└──</span> <span class="err">第</span><span class="mi">1</span><span class="err">行第</span><span class="mi">5</span><span class="err">列</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>            <span class="err">│</span>        <span class="err">└──</span> <span class="err">前面有空格</span> <span class="p">(</span><span class="ne">int</span> <span class="err">和</span> <span class="n">main</span> <span class="err">之间</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>            <span class="err">└──</span> <span class="err">实际文本是</span> <span class="s1">&#39;main&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">Token类型是标识符</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">l_paren</span> <span class="s1">&#39;(&#39;</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">9</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">左括号，没有</span><span class="n">flag说明紧跟在main后面</span><span class="err">，没有空格</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r_paren</span> <span class="s1">&#39;)&#39;</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">右括号，紧跟左括号</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">l_brace</span> <span class="s1">&#39;{&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">12</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">左花括号，前面有空格</span> <span class="p">()</span> <span class="err">和</span> <span class="p">{</span> <span class="err">之间有空格</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ne">int</span> <span class="s1">&#39;int&#39;</span>    <span class="p">[</span><span class="n">StartOfLine</span><span class="p">]</span> <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">              <span class="err">│</span>              <span class="err">│</span>
+</span></span><span class="line"><span class="cl">              <span class="err">│</span>              <span class="err">└──</span> <span class="err">前面有空格（缩进）</span>
+</span></span><span class="line"><span class="cl">              <span class="err">└──</span> <span class="err">在行首</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">注意：同时有</span> <span class="n">StartOfLine</span> <span class="err">和</span> <span class="n">LeadingSpace</span>
+</span></span><span class="line"><span class="cl"><span class="err">→</span> <span class="err">说明这行有缩进（行首</span><span class="o">+</span><span class="err">有空格）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">identifier</span> <span class="s1">&#39;a&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">变量名</span> <span class="n">a</span><span class="err">，</span><span class="ne">int</span> <span class="err">和</span> <span class="n">a</span> <span class="err">之间有空格</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">equal</span> <span class="s1">&#39;=&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">11</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">赋值符号，前面有空格</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">numeric_constant</span> <span class="s1">&#39;1&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">13</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">数字字面量</span> <span class="mi">1</span><span class="err">，不是</span> <span class="n">integer</span><span class="err">！</span>
+</span></span><span class="line"><span class="cl">    <span class="err">因为词法分析阶段还不确定是</span><span class="n">int还是long</span>
+</span></span><span class="line"><span class="cl">    <span class="err">统一叫</span> <span class="n">numeric_constant</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">plus</span> <span class="s1">&#39;+&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">15</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">加号运算符</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">numeric_constant</span> <span class="s1">&#39;2&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">17</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">数字字面量</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="s1">&#39;return&#39;</span>    <span class="p">[</span><span class="n">StartOfLine</span><span class="p">]</span> <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">return关键字</span><span class="err">，行首</span><span class="o">+</span><span class="err">有缩进</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">identifier</span> <span class="s1">&#39;a&#39;</span>    <span class="p">[</span><span class="n">LeadingSpace</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">12</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">变量名</span> <span class="n">a</span><span class="err">，</span><span class="k">return</span> <span class="err">和</span> <span class="n">a</span> <span class="err">之间有空格</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">semi</span> <span class="s1">&#39;;&#39;</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">13</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">紧跟</span><span class="n">a</span><span class="err">，没有空格</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r_brace</span> <span class="s1">&#39;}&#39;</span>    <span class="p">[</span><span class="n">StartOfLine</span><span class="p">]</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">右花括号，在行首，第</span><span class="mi">1</span><span class="err">列</span>
+</span></span><span class="line"><span class="cl">    <span class="err">没有</span><span class="n">LeadingSpace</span> <span class="err">→</span> <span class="err">没有缩进，顶格写的</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">eof</span> <span class="s1">&#39;&#39;</span>    <span class="n">Loc</span><span class="o">=&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">文件结束标记</span>
+</span></span><span class="line"><span class="cl">    <span class="err">不是真实字符，是词法分析器自动添加的</span>
+</span></span><span class="line"><span class="cl">    <span class="err">告诉后续阶段</span><span class="s2">&#34;没有更多Token了&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">位置在</span><span class="p">}</span><span class="err">的下一列</span></span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>因此我们可以知道，词法分析器做了哪些事情：</p>
+<ol>
+<li>识别 Token 类型</li>
+<li>给每一个 Token 都附带位置信息（方便后面的代码分析和打印输出具体的报错位置信息等）</li>
+<li>去掉无意义的内容 (如空格、制表符、换行符、注释等)</li>
+</ol>
+<p>而这里具体的实现其实也很简单，也就是简单的字符串处理，从一段文本中进行 Token 提取，一道 mid 算法题吧</p>
+<p>当然，词法分析器的输出本质上还在内存中，它是以对象形式，类似于下面这样的 Token 对象流的形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Token</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TokenKind</span>  <span class="n">kind</span><span class="p">;</span>      <span class="c1">// Token类型枚举
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// 指向源码的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span>   <span class="n">length</span><span class="p">;</span>    <span class="c1">// Token长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">SourceLocation</span> <span class="n">loc</span><span class="p">;</span>   <span class="c1">// 位置信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span>   <span class="n">flags</span><span class="p">;</span>     <span class="c1">// StartOfLine等标志
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>当然， Clang 源码中实际的 Token 定义是和上面不一样的，它做了很多优化，可以参考 <code>clang/include/clang/Lex/Token.h</code>。比如它这里的位置信息就用 <code>offset</code> 偏移量来达到减少内存消耗，数据指针也做了一层类型封装。</p>
+<p>以及 Clang 的词法分析器是 pull 模式（按需拉取） 的，不是一次性生成全部 Token，而是 Parser 每次问 Lexer “给我下一个”，Lexer 才扫描出一个。这样做的好处是内存占用小，而且可以和预处理器（宏展开、#include）无缝配合。</p></blockquote>
+<p>做完上面这一切，我们就进入了语法分析器</p>
+<h6 id="语法分析">语法分析</h6>
+<p>有了上面词法分析输出的这么多 Token 流，我们就需要对这么多 Token 进行<strong>分组标记</strong>。</p>
+<p>词法分析给我们的是一个扁平的序列： <code> [int][a][=][1][+][2][;][return][a][;]</code></p>
+<p>这个序列是一维的,没有任何层次结构,我们并不知道哪些Token是一组的</p>
+<p>而这里计算机同样不知道如何分组——我们需要为它提供一套形式化的规则，即<strong>文法</strong>(我们在形式化方法中讲过)，语法分析器据此将 Token 序列组织成树形结构。</p>
+<p>这样语法分析器就可以一个个遍历读取 Token，针对比如 C 语言的文法进行匹配，然后匹配成这样一棵树：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">        声明语句
+</span></span><span class="line"><span class="cl">        /      \
+</span></span><span class="line"><span class="cl">    变量声明    初始值
+</span></span><span class="line"><span class="cl">    /    \        \
+</span></span><span class="line"><span class="cl">  int     a      加法表达式
+</span></span><span class="line"><span class="cl">                 /    \
+</span></span><span class="line"><span class="cl">                1      2</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样语法分析可以简单验证它的结构符不符合语法规则，检测出一些简单的语法错误。</p>
+<p>比如我们有这样一个文法规则： 声明语句  = 类型 变量名 = 表达式 ;</p>
+<p>然后我们再匹配 <code>int a = 1</code> 的时候就会发现它缺少 <code>;</code>，直接就可以报错。</p>
+<p>对于语法分析器而言，并不需要深入分析代码的含义，只需验证其结构是否符合语法规则。</p>
+<p>下面我们来实际看看一个代码的语法分析结果长什么样：</p>
+<p>执行以下命令对 <code>add.c</code> 文件进行语法分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">clang -fsyntax-only -Xclang -ast-dump add.c</span></span></code></pre></td></tr></table>
+</div>
+</div><p>语法分析输出如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">TranslationUnitDecl 0x8cd086008 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt;
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4000 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __int128_t <span class="s1">&#39;__int128&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0865d0 <span class="s1">&#39;__int128&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4070 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __uint128_t <span class="s1">&#39;unsigned __int128&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0865f0 <span class="s1">&#39;unsigned __int128&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4380 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __NSConstantString <span class="s1">&#39;struct __NSConstantString_tag&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-RecordType 0x8cd1b4150 <span class="s1">&#39;struct __NSConstantString_tag&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="sb">`</span>-Record 0x8cd1b40c8 <span class="s1">&#39;__NSConstantString_tag&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b43e8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVInt8_t <span class="s1">&#39;__SVInt8_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0867b0 <span class="s1">&#39;__SVInt8_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4450 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVInt16_t <span class="s1">&#39;__SVInt16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0867d0 <span class="s1">&#39;__SVInt16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b44b8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVInt32_t <span class="s1">&#39;__SVInt32_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0867f0 <span class="s1">&#39;__SVInt32_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4520 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVInt64_t <span class="s1">&#39;__SVInt64_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086810 <span class="s1">&#39;__SVInt64_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4588 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVUint8_t <span class="s1">&#39;__SVUint8_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086830 <span class="s1">&#39;__SVUint8_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b45f0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVUint16_t <span class="s1">&#39;__SVUint16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086850 <span class="s1">&#39;__SVUint16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4658 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVUint32_t <span class="s1">&#39;__SVUint32_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086870 <span class="s1">&#39;__SVUint32_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b46c0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVUint64_t <span class="s1">&#39;__SVUint64_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086890 <span class="s1">&#39;__SVUint64_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4728 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVFloat16_t <span class="s1">&#39;__SVFloat16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0868b0 <span class="s1">&#39;__SVFloat16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4790 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVFloat32_t <span class="s1">&#39;__SVFloat32_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0868d0 <span class="s1">&#39;__SVFloat32_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b47f8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVFloat64_t <span class="s1">&#39;__SVFloat64_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0868f0 <span class="s1">&#39;__SVFloat64_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4860 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVBfloat16_t <span class="s1">&#39;__SVBfloat16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086910 <span class="s1">&#39;__SVBfloat16_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b48c8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint8x2_t <span class="s1">&#39;__clang_svint8x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086930 <span class="s1">&#39;__clang_svint8x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4930 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint16x2_t <span class="s1">&#39;__clang_svint16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086950 <span class="s1">&#39;__clang_svint16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4998 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint32x2_t <span class="s1">&#39;__clang_svint32x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086970 <span class="s1">&#39;__clang_svint32x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4a00 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint64x2_t <span class="s1">&#39;__clang_svint64x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086990 <span class="s1">&#39;__clang_svint64x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4a68 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint8x2_t <span class="s1">&#39;__clang_svuint8x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0869b0 <span class="s1">&#39;__clang_svuint8x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4ad0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint16x2_t <span class="s1">&#39;__clang_svuint16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0869d0 <span class="s1">&#39;__clang_svuint16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4b38 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint32x2_t <span class="s1">&#39;__clang_svuint32x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd0869f0 <span class="s1">&#39;__clang_svuint32x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4ba0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint64x2_t <span class="s1">&#39;__clang_svuint64x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086a10 <span class="s1">&#39;__clang_svuint64x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4c08 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat16x2_t <span class="s1">&#39;__clang_svfloat16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086a30 <span class="s1">&#39;__clang_svfloat16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4c70 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat32x2_t <span class="s1">&#39;__clang_svfloat32x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086a50 <span class="s1">&#39;__clang_svfloat32x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4cd8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat64x2_t <span class="s1">&#39;__clang_svfloat64x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086a70 <span class="s1">&#39;__clang_svfloat64x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4d40 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svbfloat16x2_t <span class="s1">&#39;__clang_svbfloat16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086a90 <span class="s1">&#39;__clang_svbfloat16x2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4da8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint8x3_t <span class="s1">&#39;__clang_svint8x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086ab0 <span class="s1">&#39;__clang_svint8x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4e10 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint16x3_t <span class="s1">&#39;__clang_svint16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086ad0 <span class="s1">&#39;__clang_svint16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4e78 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint32x3_t <span class="s1">&#39;__clang_svint32x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086af0 <span class="s1">&#39;__clang_svint32x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4ee0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint64x3_t <span class="s1">&#39;__clang_svint64x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086b10 <span class="s1">&#39;__clang_svint64x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b4f48 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint8x3_t <span class="s1">&#39;__clang_svuint8x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086b30 <span class="s1">&#39;__clang_svuint8x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5000 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint16x3_t <span class="s1">&#39;__clang_svuint16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086b50 <span class="s1">&#39;__clang_svuint16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5068 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint32x3_t <span class="s1">&#39;__clang_svuint32x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086b70 <span class="s1">&#39;__clang_svuint32x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b50d0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint64x3_t <span class="s1">&#39;__clang_svuint64x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086b90 <span class="s1">&#39;__clang_svuint64x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5138 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat16x3_t <span class="s1">&#39;__clang_svfloat16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086bb0 <span class="s1">&#39;__clang_svfloat16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b51a0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat32x3_t <span class="s1">&#39;__clang_svfloat32x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086bd0 <span class="s1">&#39;__clang_svfloat32x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5208 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat64x3_t <span class="s1">&#39;__clang_svfloat64x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086bf0 <span class="s1">&#39;__clang_svfloat64x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5270 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svbfloat16x3_t <span class="s1">&#39;__clang_svbfloat16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086c10 <span class="s1">&#39;__clang_svbfloat16x3_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b52d8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint8x4_t <span class="s1">&#39;__clang_svint8x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086c30 <span class="s1">&#39;__clang_svint8x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5340 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint16x4_t <span class="s1">&#39;__clang_svint16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086c50 <span class="s1">&#39;__clang_svint16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b53a8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint32x4_t <span class="s1">&#39;__clang_svint32x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086c70 <span class="s1">&#39;__clang_svint32x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5410 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svint64x4_t <span class="s1">&#39;__clang_svint64x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086c90 <span class="s1">&#39;__clang_svint64x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5478 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint8x4_t <span class="s1">&#39;__clang_svuint8x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086cb0 <span class="s1">&#39;__clang_svuint8x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b54e0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint16x4_t <span class="s1">&#39;__clang_svuint16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086cd0 <span class="s1">&#39;__clang_svuint16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5548 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint32x4_t <span class="s1">&#39;__clang_svuint32x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086cf0 <span class="s1">&#39;__clang_svuint32x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b55b0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svuint64x4_t <span class="s1">&#39;__clang_svuint64x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086d10 <span class="s1">&#39;__clang_svuint64x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5618 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat16x4_t <span class="s1">&#39;__clang_svfloat16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086d30 <span class="s1">&#39;__clang_svfloat16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5680 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat32x4_t <span class="s1">&#39;__clang_svfloat32x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086d50 <span class="s1">&#39;__clang_svfloat32x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b56e8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svfloat64x4_t <span class="s1">&#39;__clang_svfloat64x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086d70 <span class="s1">&#39;__clang_svfloat64x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5750 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svbfloat16x4_t <span class="s1">&#39;__clang_svbfloat16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086d90 <span class="s1">&#39;__clang_svbfloat16x4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b57b8 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVBool_t <span class="s1">&#39;__SVBool_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086db0 <span class="s1">&#39;__SVBool_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5820 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svboolx2_t <span class="s1">&#39;__clang_svboolx2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086dd0 <span class="s1">&#39;__clang_svboolx2_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b5888 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __clang_svboolx4_t <span class="s1">&#39;__clang_svboolx4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086df0 <span class="s1">&#39;__clang_svboolx4_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd1b58f0 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __SVCount_t <span class="s1">&#39;__SVCount_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-BuiltinType 0x8cd086e10 <span class="s1">&#39;__SVCount_t&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd086f08 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __builtin_ms_va_list <span class="s1">&#39;char *&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-PointerType 0x8cd086ec0 <span class="s1">&#39;char *&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="sb">`</span>-BuiltinType 0x8cd0860b0 <span class="s1">&#39;char&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>-TypedefDecl 0x8cd086f78 <span class="s">&lt;&lt;invalid sloc&gt;&gt; &lt;invalid</span> sloc&gt; implicit __builtin_va_list <span class="s1">&#39;char *&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="sb">`</span>-PointerType 0x8cd086ec0 <span class="s1">&#39;char *&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="sb">`</span>-BuiltinType 0x8cd0860b0 <span class="s1">&#39;char&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="sb">`</span>-FunctionDecl 0x8cd1b59a8 &lt;add.c:1:1, line:4:1&gt; line:1:5 main <span class="s1">&#39;int ()&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="sb">`</span>-CompoundStmt 0x8cd1b5bd8 &lt;col:12, line:4:1&gt;
+</span></span><span class="line"><span class="cl">    <span class="p">|</span>-DeclStmt 0x8cd1b5b78 &lt;line:2:5, col:18&gt;
+</span></span><span class="line"><span class="cl">    <span class="p">|</span> <span class="sb">`</span>-VarDecl 0x8cd1b5ab0 &lt;col:5, col:17&gt; col:9 used a <span class="s1">&#39;int&#39;</span> cinit
+</span></span><span class="line"><span class="cl">    <span class="p">|</span>   <span class="sb">`</span>-BinaryOperator 0x8cd1b5b58 &lt;col:13, col:17&gt; <span class="s1">&#39;int&#39;</span> <span class="s1">&#39;+&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">|</span>     <span class="p">|</span>-IntegerLiteral 0x8cd1b5b18 &lt;col:13&gt; <span class="s1">&#39;int&#39;</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">|</span>     <span class="sb">`</span>-IntegerLiteral 0x8cd1b5b38 &lt;col:17&gt; <span class="s1">&#39;int&#39;</span> <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    <span class="sb">`</span>-ReturnStmt 0x8cd1b5bc8 &lt;line:3:5, col:12&gt;
+</span></span><span class="line"><span class="cl">      <span class="sb">`</span>-ImplicitCastExpr 0x8cd1b5bb0 &lt;col:12&gt; <span class="s1">&#39;int&#39;</span> &lt;LValueToRValue&gt;
+</span></span><span class="line"><span class="cl">        <span class="sb">`</span>-DeclRefExpr 0x8cd1b5b90 &lt;col:12&gt; <span class="s1">&#39;int&#39;</span> lvalue Var 0x8cd1b5ab0 <span class="s1">&#39;a&#39;</span> <span class="s1">&#39;int&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>不要看上面输出这么多怎么这么复杂，我们来逐行分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">前半部分：</span><span class="p">(</span><span class="err">你真正的代码之前</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">TypedefDecl</span> <span class="n">implicit</span> <span class="n">__int128_t</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">TypedefDecl</span> <span class="n">implicit</span> <span class="n">__uint128_t</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">TypedefDecl</span> <span class="n">implicit</span> <span class="n">__SVInt8_t</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">TypedefDecl</span> <span class="n">implicit</span> <span class="n">__SVInt16_t</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span> <span class="err">一大堆</span> <span class="n">implicit</span>
+</span></span><span class="line"><span class="cl">                <span class="err">↑</span>
+</span></span><span class="line"><span class="cl">          <span class="err">注意这个关键词！</span>
+</span></span><span class="line"><span class="cl">          <span class="err">全部都是</span> <span class="n">implicit</span> <span class="o">=</span> <span class="err">编译器自动注入的，不是你写的</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Clang</span> <span class="err">在处理任何文件之前会先向</span> <span class="n">AST</span> <span class="err">注入所有内置类型</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">后半部分：</span><span class="p">(</span><span class="err">你真正的代码</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">FunctionDecl</span> <span class="n">main</span>   <span class="err">←</span> <span class="err">这才是你的代码！</span>
+</span></span><span class="line"><span class="cl">    <span class="err">└──</span> <span class="n">CompoundStmt</span>
+</span></span><span class="line"><span class="cl">        <span class="err">├──</span> <span class="n">DeclStmt</span> <span class="p">(</span><span class="ne">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="err">└──</span> <span class="n">ReturnStmt</span> <span class="p">(</span><span class="k">return</span> <span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl"><span class="err">`</span><span class="o">-</span><span class="n">FunctionDecl</span> <span class="mh">0x8cd1b59a8</span> <span class="o">&lt;</span><span class="n">add</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;</span> <span class="n">line</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span> <span class="n">main</span>  <span class="s1">&#39;int ()&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="err">↑</span>             <span class="err">↑</span>            <span class="err">↑</span>                      <span class="err">↑</span>        <span class="err">↑</span>      <span class="err">↑</span>
+</span></span><span class="line"><span class="cl"> <span class="err">└─</span> <span class="err">`</span> <span class="err">表示</span>      <span class="err">└─</span> <span class="err">这个节点</span>   <span class="err">└─</span> <span class="err">这个函数在源码中</span>       <span class="err">└─</span> <span class="err">函数名</span> <span class="err">└─</span> <span class="err">函数</span> <span class="err">└─</span> <span class="err">节点</span>
+</span></span><span class="line"><span class="cl">    <span class="err">最后一个</span>       <span class="err">在内存中</span>       <span class="err">的完整范围</span>               <span class="err">出现的</span>    <span class="err">类型</span>    <span class="err">类型</span>
+</span></span><span class="line"><span class="cl">    <span class="err">子节点</span>         <span class="err">的地址</span>        <span class="err">从</span><span class="n">add</span><span class="o">.</span><span class="n">c第1行第1列</span>        <span class="err">位置在</span>   
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="err">没有兄弟</span><span class="p">)</span>     <span class="p">(</span><span class="err">调试用</span><span class="p">)</span>      <span class="err">到第</span><span class="mi">4</span><span class="err">行第</span><span class="mi">1</span><span class="err">列</span><span class="p">(</span><span class="err">大括号</span><span class="p">})</span>    <span class="err">第</span><span class="mi">1</span><span class="err">行第</span><span class="mi">5</span><span class="err">列</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">即整个函数体的范围</span>        <span class="p">(</span><span class="n">int后面空格后的main</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               
+</span></span><span class="line"><span class="cl">    <span class="err">`</span><span class="o">-</span><span class="n">CompoundStmt</span> <span class="mh">0x8cd1b5bd8</span> <span class="o">&lt;</span><span class="n">col</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">     <span class="err">↑</span>             <span class="err">↑</span>            <span class="err">↑</span>
+</span></span><span class="line"><span class="cl">     <span class="err">└─</span> <span class="n">FunctionDecl</span> <span class="err">└─</span> <span class="err">内存地址</span>  <span class="err">└─</span> <span class="err">范围：从</span><span class="n">col</span><span class="p">:</span><span class="mi">12</span><span class="err">到</span><span class="n">line</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="err">的最后一个</span>                   <span class="n">col</span><span class="p">:</span><span class="mi">12</span> <span class="o">=</span> <span class="err">第</span><span class="mi">1</span><span class="err">行第</span><span class="mi">12</span><span class="err">列</span> <span class="err">就是</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">子节点</span>                       <span class="n">line</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span> <span class="o">=</span> <span class="err">第</span><span class="mi">4</span><span class="err">行第</span><span class="mi">1</span><span class="err">列</span> <span class="err">就是</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">|-</span><span class="n">DeclStmt</span> <span class="mh">0x8cd1b5b78</span> <span class="o">&lt;</span><span class="n">line</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span><span class="mi">18</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="err">↑</span>                      <span class="err">↑</span>
+</span></span><span class="line"><span class="cl">         <span class="err">└─</span> <span class="o">|</span> <span class="err">表示还有兄弟节点</span>    <span class="err">└─</span> <span class="err">范围：第</span><span class="mi">2</span><span class="err">行第</span><span class="mi">5</span><span class="err">列</span> <span class="err">到</span> <span class="err">第</span><span class="mi">2</span><span class="err">行第</span><span class="mi">18</span><span class="err">列</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="err">后面还有</span><span class="n">ReturnStmt</span><span class="p">)</span>     <span class="err">即整个</span> <span class="ne">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span> <span class="err">这一行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="o">|</span> <span class="err">`</span><span class="o">-</span><span class="n">VarDecl</span> <span class="mh">0x8cd1b5ab0</span> <span class="o">&lt;</span><span class="n">col</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span><span class="mi">17</span><span class="o">&gt;</span> <span class="n">col</span><span class="p">:</span><span class="mi">9</span> <span class="n">used</span> <span class="n">a</span> <span class="s1">&#39;int&#39;</span> <span class="n">cinit</span>
+</span></span><span class="line"><span class="cl">              <span class="err">↑</span>                      <span class="err">↑</span>               <span class="err">↑</span>     <span class="err">↑</span>    <span class="err">↑</span>  <span class="err">↑</span>    <span class="err">↑</span>
+</span></span><span class="line"><span class="cl">              <span class="err">└─</span> <span class="n">DeclStmt的</span>          <span class="err">└─</span> <span class="err">整个声明的</span>   <span class="err">└─变量名</span> <span class="err">└─该变量</span>  <span class="err">└─类型</span> <span class="err">└─有初始</span>
+</span></span><span class="line"><span class="cl">                 <span class="err">最后子节点</span>              <span class="err">范围</span>            <span class="s1">&#39;a&#39;</span><span class="err">的</span>   <span class="err">被使用</span>      <span class="err">值</span>
+</span></span><span class="line"><span class="cl">                                        <span class="n">col</span><span class="p">:</span><span class="mi">5</span><span class="o">=</span><span class="n">int起始</span>  <span class="err">精确位置</span>  <span class="err">过</span>          <span class="p">(</span><span class="n">cinit</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">                                        <span class="n">col</span><span class="p">:</span><span class="mi">17</span><span class="o">=</span><span class="mi">2</span><span class="err">结束</span>   <span class="err">第</span><span class="mi">9</span><span class="err">列</span>             <span class="n">constructor</span>
+</span></span><span class="line"><span class="cl">                                                                            <span class="n">init</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="o">...</span>
+</span></span><span class="line"><span class="cl">           <span class="o">...</span>
+</span></span><span class="line"><span class="cl">           <span class="o">...</span>
+</span></span><span class="line"><span class="cl">           
+</span></span><span class="line"><span class="cl">                   <span class="err">`</span><span class="o">-</span><span class="n">DeclRefExpr</span> <span class="mh">0x8cd1b5b90</span> <span class="o">&lt;</span><span class="n">col</span><span class="p">:</span><span class="mi">12</span><span class="o">&gt;</span> <span class="s1">&#39;int&#39;</span> <span class="n">lvalue</span> <span class="n">Var</span> <span class="mh">0x8cd1b5ab0</span> <span class="s1">&#39;a&#39;</span> <span class="s1">&#39;int&#39;</span>
+</span></span><span class="line"><span class="cl">                                   <span class="err">↑</span>        <span class="err">↑</span>     <span class="err">↑</span>      <span class="err">↑</span>               <span class="err">↑</span>   <span class="err">↑</span>
+</span></span><span class="line"><span class="cl">                                   <span class="err">└─位置</span>   <span class="err">└─类型</span> <span class="err">└─这是</span>  <span class="err">└─指向的变量</span>     <span class="err">└─变量</span> <span class="err">└─变量</span>
+</span></span><span class="line"><span class="cl">                                    <span class="n">col</span><span class="p">:</span><span class="mi">12</span>   <span class="ne">int</span>    <span class="err">左值</span>     <span class="err">的内存地址</span>       <span class="err">名</span>     <span class="err">类型</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">(</span><span class="n">a处</span><span class="p">)</span>           <span class="p">(</span><span class="err">还没</span>                    <span class="s1">&#39;a&#39;</span>    <span class="ne">int</span>
+</span></span><span class="line"><span class="cl">                                                    <span class="err">转换前</span><span class="p">)</span>                                                   
+</span></span><span class="line"><span class="cl">                     <span class="err">注意：</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Var</span> <span class="mh">0x8cd1b5ab0</span> <span class="s1">&#39;a&#39;</span> <span class="s1">&#39;int&#39;</span>
+</span></span><span class="line"><span class="cl">                            <span class="err">↑</span>
+</span></span><span class="line"><span class="cl">                            <span class="err">这个地址和第四行</span> <span class="n">VarDecl</span> <span class="mh">0x8cd1b5ab0</span> <span class="err">完全一样！</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                        <span class="err">说明：</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">DeclRefExpr</span> <span class="err">引用的就是之前声明的那个</span> <span class="n">VarDecl</span>
+</span></span><span class="line"><span class="cl">                        <span class="err">两个节点通过地址互相关联！</span>
+</span></span><span class="line"><span class="cl">                        <span class="err">这就是</span> <span class="n">AST</span> <span class="err">中的引用关系</span></span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>以上输出结果反映了对源代码进行语法分析后得到的抽象语法树（AST）。AST 是对源代码结构的一种抽象表示，其中各种节点代表了源代码中的不同语法结构，如声明、定义、表达式等。这些节点包括：</p>
+<ul>
+<li>
+<p><code>TranslationUnitDecl</code>:表示翻译单元节点，是整棵 AST 的根节点，对应一个完整的源文件，所有函数声明、全局变量声明以及编译器内置类型声明都作为其子节点挂载在此节点之下。</p>
+</li>
+<li>
+<p><code>FunctionDecl</code>：表示函数声明节点，包括函数名称、返回类型和参数信息。</p>
+</li>
+<li>
+<p><code>CompoundStmt</code>：表示由花括号 <code>{ }</code> 包裹的语句块，即函数体，内部可包含若干条子语句。</p>
+</li>
+<li>
+<p><code>DeclStmt</code>：表示声明语句，用于包裹一个或多个变量声明节点。</p>
+</li>
+<li>
+<p><code>VarDecl</code>：表示变量声明节点，包括变量名称、类型和初始化方式，<code>used</code> 标注表示该变量在后续代码中被引用，<code>cinit</code> 标注表示该变量含有初始化表达式。</p>
+</li>
+<li>
+<p><code>BinaryOperator</code>：表示二元运算表达式节点，包括运算符类型和运算结果的类型。</p>
+</li>
+<li>
+<p><code>IntegerLiteral</code>：表示整数字面量节点，记录字面量的具体数值和类型信息。</p>
+</li>
+<li>
+<p><code>ReturnStmt</code>：表示返回语句节点，包含一个子表达式作为返回值。</p>
+</li>
+<li>
+<p><code>ImplicitCastExpr</code>：表示编译器自动插入的隐式类型转换节点，源代码中无对应的显式代码，<code>LValueToRValue</code> 表示将左值（内存地址）自动转换为右值（地址中存储的具体数值）。</p>
+</li>
+<li>
+<p><code>DeclRefExpr</code>：表示对已声明变量的引用节点，内部通过地址指回对应的 <code>VarDecl</code> 节点，建立变量使用和变量声明之间的关联关系。</p>
+</li>
+<li>
+<p>函数调用表达式、声明引用表达式和隐式类型转换表达式等，用于描述不同的语法结构。</p>
+</li>
+<li>
+<p>各种属性信息，如内联属性和 DLL 导入属性，用于描述代码的特性和行为。</p>
+</li>
+</ul>
+<p>这些节点之间通过边相连，反映了它们在源代码中的关系和层次。AST 为进一步的语义分析和编译过程提供了基础，是编译器理解和处理源代码的重要工具。</p>
+<p>它的 AST 的图形样式也就长这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                       TranslationUnitDecl 
+</span></span><span class="line"><span class="cl">                             │
+</span></span><span class="line"><span class="cl">                       FunctionDecl
+</span></span><span class="line"><span class="cl">                        main &#39;int()&#39;
+</span></span><span class="line"><span class="cl">                             │
+</span></span><span class="line"><span class="cl">                        CompoundStmt
+</span></span><span class="line"><span class="cl">                        /           \
+</span></span><span class="line"><span class="cl">                       /             \
+</span></span><span class="line"><span class="cl">                  DeclStmt         ReturnStmt
+</span></span><span class="line"><span class="cl">                     │                 │
+</span></span><span class="line"><span class="cl">                  VarDecl          ImplicitCastExpr
+</span></span><span class="line"><span class="cl">                  &#39;a&#39; int          LValueToRValue
+</span></span><span class="line"><span class="cl">                     │                 │
+</span></span><span class="line"><span class="cl">               BinaryOperator      DeclRefExpr
+</span></span><span class="line"><span class="cl">                 &#39;int&#39;  &#39;+&#39;          Var &#39;a&#39;
+</span></span><span class="line"><span class="cl">                 /         \
+</span></span><span class="line"><span class="cl">                /           \
+</span></span><span class="line"><span class="cl">        IntegerLiteral   IntegerLiteral
+</span></span><span class="line"><span class="cl">         &#39;int&#39;  1          &#39;int&#39;  2</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>其实这里也有工具直接提供 AST 的图形视图，直接运行 <code>clang -fsyntax-only -Xclang -ast-view add.c</code> 命令。但是需要 Clang Debug 版本以及 Graphviz 库，我的本地暂时没有就不演示了。</p></blockquote>
 <h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
 <h3 id="训练">训练</h3>
 <h3 id="推理">推理</h3>
@@ -2059,8 +2914,8 @@ $$</span><p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-04-04&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/4cbc84daac16af837be219c308494e45ad0eff25" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 4cbc84daac16af837be219c308494e45ad0eff25: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4cbc84d</a></span>
+                <span>更新于 2026-04-06&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/df9a2fa0b3fadd240dce8bb835fe9278be36d6c0" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) df9a2fa0b3fadd240dce8bb835fe9278be36d6c0: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>df9a2fa</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

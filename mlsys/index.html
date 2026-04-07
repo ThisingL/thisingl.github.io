@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-04-06T23:31:04+08:00">
+    <meta property="article:modified_time" content="2026-04-07T19:48:48+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  33939 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-06T23:31:04+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  43059 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-07T19:48:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 33939 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 68 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 43059 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 86 分钟&nbsp;
     
 
     
@@ -195,6 +195,7 @@
                 <li><a href="#llvm">LLVM</a></li>
               </ul>
             </li>
+            <li><a href="#ai-编译器">AI 编译器</a></li>
           </ul>
         </li>
         <li><a href="#大模型训练与推理系统架构">大模型训练与推理系统架构</a>
@@ -2371,9 +2372,250 @@ $$</span><p>
 </div><p>这样语法分析可以简单验证它的结构符不符合语法规则，检测出一些简单的语法错误。</p>
 <p>比如我们有这样一个文法规则： 声明语句  = 类型 变量名 = 表达式 ;</p>
 <p>然后我们再匹配 <code>int a = 1</code> 的时候就会发现它缺少 <code>;</code>，直接就可以报错。</p>
-<p>对于语法分析器而言，并不需要深入分析代码的含义，只需验证其结构是否符合语法规则。</p>
-<p>下面我们来实际看看一个代码的语法分析结果长什么样：</p>
-<p>执行以下命令对 <code>add.c</code> 文件进行语法分析：</p>
+<p>对于语法分析器而言，并不需要深入分析代码的含义，只需验证其代码结构是否符合语法规则。</p>
+<blockquote>
+<p>这里我们需要说明的是，由于 Clang 的设计里，语法分析和语义分析是交织在一起的，边语法分析边语义分，解析一个节点，立刻做语义检查，两者同时进行。因此我们无法单独拿到语法分析的 AST 结果，因此也无法实际看看语法分析的结果。</p></blockquote>
+<p>这样的一棵 AST 树似乎已经足够完善了，但是其实只是对代码结构进行了检验，代码的基本语法没问题了，它的含义和逻辑依旧有可能是错的。比如对同样的变量名声明了两次，这种错误就无法通过简单的文法来发现。</p>
+<p>以及假设我们有 <code>a = b + 1</code> 这样的语句，由于我们在构建 AST 树的时候是通过一条语句一条语句的进行构建，因此也没有信息表示这里的 <code>a</code> 和 <code>b</code> 分别是什么类型的？这需要我们维护一份当前已有的符号信息，也就是我们下面在语义器中设计的符号表。因此还需要对这棵 AST 树进行信息的补充完善，这也就是我们下面的语义分析阶段做的事情。</p>
+<h6 id="语义分析">语义分析</h6>
+<p>刚刚的语法分析器我们可以理解为构建这样一棵 AST 树，而下一步就是把这棵 AST 树送入语义分析器进行更深度的逻辑检查和补充完善，为后续生成 IR 做准备。</p>
+<p>我们可以简单的认为： <strong>语义分析器</strong> = <strong>符号表</strong> (记录所有声明) + <strong>类型系统</strong> (知道所有类型规则) + <strong>AST遍历</strong> (逐节点检查)</p>
+<p>我们的语义分析需要对 AST 树上的每个节点，进行类型检查，同时在遍历节点时维护当前的符号表，方便进行判断。</p>
+<p>符号表很简单，其实就是语义分析器内部会维护类似于下面这张表格，来方便我们在进行 AST 遍历时借助符号表来检验代码是否符合语言类型系统。</p>
+<table>
+  <thead>
+      <tr>
+          <th>名字</th>
+          <th>类型</th>
+          <th>AST节点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>a</td>
+          <td>int</td>
+          <td>VarDecl</td>
+      </tr>
+      <tr>
+          <td>add</td>
+          <td>函数</td>
+          <td>FuncDecl</td>
+      </tr>
+  </tbody>
+</table>
+<p>这样的话哪怕我们的定义变量和实际使用变量距离非常远，也可以通过这个符号表，来知道当前使用的变量是什么类型，来检查是否符合我们的类型系统，同时给当前使用变量的 AST 子树进行类型补充等。</p>
+<p>当然，实际编程中我们经常会遇到更为复杂的<strong>作用域嵌套</strong>问题，比如我们有这样一段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>          <span class="c1">// 全局作用域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>        <span class="c1">// 进入 main 作用域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>      <span class="c1">// main 里的 x，覆盖全局 x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>               <span class="c1">// 进入内层作用域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// 内层 x，覆盖 main 的 x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 这里用 x → 找到内层 x=3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>               <span class="c1">// 退出内层作用域，内层 x 消失
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 这里用 x → 找到 main 的 x=2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>                   <span class="c1">// 退出 main 作用域
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 这里用 x → 找到全局 x=1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时我们会发现单个符号表就不够用，那么有人会说，我们给上面的表再加上一个列来记录它的作用域不就好了？</p>
+<p>但是仔细想想，这种方案会引入更多的问题和复杂度：</p>
+<ul>
+<li>
+<p>比如如果有两个不同的文件都有同名函数怎么办？</p>
+</li>
+<li>
+<p>匿名块 {} 如何命名？如何为每个 {} 生成唯一 ID？</p>
+</li>
+<li>
+<p>查找变量时需要知道&quot;当前在哪个作用域&quot;以及&quot;它的所有祖先作用域是什么&quot;，一列扁平的标识无法表达这种嵌套层级关系</p>
+</li>
+<li>
+<p>退出作用域时需要遍历整张表删除相关条目，效率低下</p>
+</li>
+</ul>
+<blockquote>
+<p>这里可能有人会有疑问，两个 C 代码文件有同名函数不就是语法错误吗？不不不，我们要知道对于 C 语言来说每个代码文件是独立编译的，所以在编译期间不会产生问题，因为两个文件互相是透明的。但是聪明的你会说，我真的遇到过这个报错啊？</p>
+<p>这是因为实际冲突发生在链接阶段： a.o + b.o → 链接器(ld) → 报错！</p>
+<p>链接器要把所有 .o 合并成可执行文件，此时它发现两个 .o 里都导出了一个叫 foo 的符号，违反了 ODR（One Definition Rule，单一定义规则）</p>
+<p>以及对于其他语言比如 Go 来说，它就不是每次对每个文件独立编译了，而是按照 package，所以直接编译期就会报错。</p></blockquote>
+<p>聪明的你会发现，这种后进先出的嵌套模式，是不是和栈这种数据结构很像？</p>
+<p>因此我们可以利用栈来完美解决上面的问题：</p>
+<ol>
+<li>当我们进入一个新的作用域时，就压入一个空的符号表；</li>
+<li>每次查找符号时从栈顶向下逐层搜索；新增声明只写入栈顶的符号表</li>
+<li>出栈时直接弹出当前符号表即可</li>
+</ol>
+<p>因此上面的代码的符号表变化可以理解为下面这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">开始：
+</span></span><span class="line"><span class="cl">┌──────────────┐
+</span></span><span class="line"><span class="cl">│  全局符号表    │
+</span></span><span class="line"><span class="cl">└──────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">声明 x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──────────────┐
+</span></span><span class="line"><span class="cl">│  x → int     │
+</span></span><span class="line"><span class="cl">└──────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">进入 main()：
+</span></span><span class="line"><span class="cl">┌──────────────┐ ← 新压入，空的
+</span></span><span class="line"><span class="cl">│  main符号表   │
+</span></span><span class="line"><span class="cl">├──────────────┤
+</span></span><span class="line"><span class="cl">│  全局符号表    │
+</span></span><span class="line"><span class="cl">└──────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">在main里声明 int x：
+</span></span><span class="line"><span class="cl">┌──────────────┐
+</span></span><span class="line"><span class="cl">│  x → int     │ ← 加入当前栈顶
+</span></span><span class="line"><span class="cl">├──────────────┤
+</span></span><span class="line"><span class="cl">│  全局符号表    │
+</span></span><span class="line"><span class="cl">└──────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">进入内层 {}：
+</span></span><span class="line"><span class="cl">┌──────────────┐ ← 又压入新的空表
+</span></span><span class="line"><span class="cl">│  内层符号表    │ 
+</span></span><span class="line"><span class="cl">├──────────────┤
+</span></span><span class="line"><span class="cl">│  x → int     │
+</span></span><span class="line"><span class="cl">├──────────────┤
+</span></span><span class="line"><span class="cl">│  全局符号表    │
+</span></span><span class="line"><span class="cl">└──────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">再内层又声明 int x:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──────────────┐ 
+</span></span><span class="line"><span class="cl">│  x → int     │
+</span></span><span class="line"><span class="cl">├──────────────┤
+</span></span><span class="line"><span class="cl">│  main符号表   │
+</span></span><span class="line"><span class="cl">├──────────────┤
+</span></span><span class="line"><span class="cl">│  全局符号表    │
+</span></span><span class="line"><span class="cl">└──────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">退出内层 {}：
+</span></span><span class="line"><span class="cl">┌──────────────┐ ← 弹出内层符号表
+</span></span><span class="line"><span class="cl">│  main符号表    │
+</span></span><span class="line"><span class="cl">├──────────────┤
+</span></span><span class="line"><span class="cl">│  全局符号表    │
+</span></span><span class="line"><span class="cl">└──────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">退出 main()：
+</span></span><span class="line"><span class="cl">┌──────────────┐ ← 弹出main符号表
+</span></span><span class="line"><span class="cl">│  全局符号表    │
+</span></span><span class="line"><span class="cl">└──────────────┘</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而我们的类型系统可以简单理解为一套规则表，语义分析器遍历每个 AST 节点时都去查这张表：</p>
+<table>
+  <thead>
+      <tr>
+          <th>遇到的情况</th>
+          <th>查表问</th>
+          <th>结果</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>int + float</td>
+          <td>这两个类型能做加法吗？</td>
+          <td>能，把 int 提升为 float</td>
+      </tr>
+      <tr>
+          <td>int = char*</td>
+          <td>这两个类型能赋值吗？</td>
+          <td>不能，报错</td>
+      </tr>
+      <tr>
+          <td>foo(int, float) 传了 (int)</td>
+          <td>参数匹配吗？</td>
+          <td>数量不对，报错</td>
+      </tr>
+      <tr>
+          <td>return a 中 a 是左值</td>
+          <td>能直接返回吗？</td>
+          <td>不能，插入 LValueToRValue 转换</td>
+      </tr>
+      <tr>
+          <td>修改 const 变量</td>
+          <td>允许吗？</td>
+          <td>不允许，报错</td>
+      </tr>
+  </tbody>
+</table>
+<p>理解了上面的细节，接下来我们实际看看一个代码的 AST 结果长什么样：</p>
+<p>执行以下命令对 <code>add.c</code> 文件进行语法分析和语义分析：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2381,7 +2623,7 @@ $$</span><p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">clang -fsyntax-only -Xclang -ast-dump add.c</span></span></code></pre></td></tr></table>
 </div>
-</div><p>语法分析输出如下：</p>
+</div><p>语法分析和语义分析输出如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -2759,11 +3001,11 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">           <span class="o">...</span>
 </span></span><span class="line"><span class="cl">           
 </span></span><span class="line"><span class="cl">                   <span class="err">`</span><span class="o">-</span><span class="n">DeclRefExpr</span> <span class="mh">0x8cd1b5b90</span> <span class="o">&lt;</span><span class="n">col</span><span class="p">:</span><span class="mi">12</span><span class="o">&gt;</span> <span class="s1">&#39;int&#39;</span> <span class="n">lvalue</span> <span class="n">Var</span> <span class="mh">0x8cd1b5ab0</span> <span class="s1">&#39;a&#39;</span> <span class="s1">&#39;int&#39;</span>
-</span></span><span class="line"><span class="cl">                                   <span class="err">↑</span>        <span class="err">↑</span>     <span class="err">↑</span>      <span class="err">↑</span>               <span class="err">↑</span>   <span class="err">↑</span>
-</span></span><span class="line"><span class="cl">                                   <span class="err">└─位置</span>   <span class="err">└─类型</span> <span class="err">└─这是</span>  <span class="err">└─指向的变量</span>     <span class="err">└─变量</span> <span class="err">└─变量</span>
-</span></span><span class="line"><span class="cl">                                    <span class="n">col</span><span class="p">:</span><span class="mi">12</span>   <span class="ne">int</span>    <span class="err">左值</span>     <span class="err">的内存地址</span>       <span class="err">名</span>     <span class="err">类型</span>
-</span></span><span class="line"><span class="cl">                                    <span class="p">(</span><span class="n">a处</span><span class="p">)</span>           <span class="p">(</span><span class="err">还没</span>                    <span class="s1">&#39;a&#39;</span>    <span class="ne">int</span>
-</span></span><span class="line"><span class="cl">                                                    <span class="err">转换前</span><span class="p">)</span>                                                   
+</span></span><span class="line"><span class="cl">                                   <span class="err">↑</span>                   <span class="err">↑</span>     <span class="err">↑</span>      <span class="err">↑</span>               <span class="err">↑</span>   <span class="err">↑</span>
+</span></span><span class="line"><span class="cl">                                   <span class="err">└─位置</span>               <span class="err">└─类型</span> <span class="err">└─这是</span>  <span class="err">└─指向的变量</span>     <span class="err">└─变量</span> <span class="err">└─变量</span>
+</span></span><span class="line"><span class="cl">                                    <span class="n">col</span><span class="p">:</span><span class="mi">12</span>              <span class="ne">int</span>    <span class="err">左值</span>     <span class="err">的内存地址</span>       <span class="err">名</span>     <span class="err">类型</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">(</span><span class="n">a处</span><span class="p">)</span>                      <span class="p">(</span><span class="err">还没</span>                    <span class="s1">&#39;a&#39;</span>    <span class="ne">int</span>
+</span></span><span class="line"><span class="cl">                                                               <span class="err">转换前</span><span class="p">)</span>                                                   
 </span></span><span class="line"><span class="cl">                     <span class="err">注意：</span>
 </span></span><span class="line"><span class="cl">                        <span class="n">Var</span> <span class="mh">0x8cd1b5ab0</span> <span class="s1">&#39;a&#39;</span> <span class="s1">&#39;int&#39;</span>
 </span></span><span class="line"><span class="cl">                            <span class="err">↑</span>
@@ -2775,7 +3017,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">                        <span class="err">这就是</span> <span class="n">AST</span> <span class="err">中的引用关系</span></span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<p>以上输出结果反映了对源代码进行语法分析后得到的抽象语法树（AST）。AST 是对源代码结构的一种抽象表示，其中各种节点代表了源代码中的不同语法结构，如声明、定义、表达式等。这些节点包括：</p>
+<p>以上输出结果反映了对源代码进行语法分析和语义分析后得到的抽象语法树（AST）。AST 是对源代码结构的一种抽象表示，其中各种节点代表了源代码中的不同语法结构，如声明、定义、表达式等。这些节点包括：</p>
 <ul>
 <li>
 <p><code>TranslationUnitDecl</code>:表示翻译单元节点，是整棵 AST 的根节点，对应一个完整的源文件，所有函数声明、全局变量声明以及编译器内置类型声明都作为其子节点挂载在此节点之下。</p>
@@ -2861,6 +3103,472 @@ $$</span><p>
 </div>
 </div><blockquote>
 <p>其实这里也有工具直接提供 AST 的图形视图，直接运行 <code>clang -fsyntax-only -Xclang -ast-view add.c</code> 命令。但是需要 Clang Debug 版本以及 Graphviz 库，我的本地暂时没有就不演示了。</p></blockquote>
+<p>语义分析器的最终输出是类型无误的 AST，接下来还需要将它转换成 LLVM IR，然后才可以将它交给优化器去进行 IR 优化。</p>
+<h6 id="ir-生成">IR 生成</h6>
+<p>AST 还带着很多源语言的特征：</p>
+<ul>
+<li>for 循环节点</li>
+<li>if 语句节点</li>
+<li>while 循环节点</li>
+<li>class 定义节点 &hellip;</li>
+</ul>
+<p>这些都是高级语言概念，IR 不认识这些， IR 只认识这些基本操作：算术运算、比较、跳转、内存读写、函数调用。因此需要把高级概念&quot;降级&quot;成这些基本操作</p>
+<p>LLVM IR 具有三种表示形式，这三种中间格式是完全等价的：</p>
+<ul>
+<li>内存中的 C++ 对象表示（编译器实际操作的就是这些对象，所有优化 Pass 都直接作用于它们）</li>
+<li>在硬盘上存储的二进制中间语言（格式为 <code>.bc</code>）</li>
+<li>人类可读的文本形式（格式为 <code>.ll</code>）</li>
+</ul>
+<p>本质上，编译器始终在内存中以 C++ 对象的形式操作和变换 LLVM IR，只是也提供了命令来让它可以直接落盘成文件形式，其中有纯二进制和方便人类阅读的文本形式，这样人们就可以通过阅读 <code>.ll</code> 文件来看看是否符合预期。</p>
+<p>因此它们是等价的，所以可以随意进行互相转换：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># .bc ↔ .ll 互转</span>
+</span></span><span class="line"><span class="cl">llvm-dis add.bc -o add.ll    <span class="c1"># 二进制 → 文本</span>
+</span></span><span class="line"><span class="cl">llvm-as  add.ll -o add.bc    <span class="c1"># 文本 → 二进制</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下里我们来看看 LLVM IR 文件到底长什么样，执行以下命令对 <code>add.c</code> 文件输出人类可读的 <code>.ll</code> 格式的 LLVM IR 文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">clang -emit-llvm -S add.c -o add.ll</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编译完成后，生成的 <code>.ll</code> 文件内容如下：</p>
+<div class="highlight"><div class="chroma" data-title="add.ll">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">;</span> <span class="n">ModuleID</span> <span class="o">=</span> <span class="s1">&#39;add.c&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">source_filename</span> <span class="o">=</span> <span class="s2">&#34;add.c&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">target</span> <span class="n">datalayout</span> <span class="o">=</span> <span class="s2">&#34;e-m:o-i64:64-i128:128-n32:64-S128-Fn32&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">target</span> <span class="n">triple</span> <span class="o">=</span> <span class="s2">&#34;arm64-apple-macosx26.0.0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">Function</span> <span class="n">Attrs</span><span class="p">:</span> <span class="n">noinline</span> <span class="n">nounwind</span> <span class="n">optnone</span> <span class="n">ssp</span> <span class="n">uwtable</span><span class="p">(</span><span class="n">sync</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">i32</span> <span class="err">@</span><span class="n">main</span><span class="p">()</span> <span class="c1">#0 {</span>
+</span></span><span class="line"><span class="cl">  <span class="o">%</span><span class="mi">1</span> <span class="o">=</span> <span class="n">alloca</span> <span class="n">i32</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">  <span class="o">%</span><span class="mi">2</span> <span class="o">=</span> <span class="n">alloca</span> <span class="n">i32</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">  <span class="n">store</span> <span class="n">i32</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ptr</span> <span class="o">%</span><span class="mi">1</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">  <span class="n">store</span> <span class="n">i32</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ptr</span> <span class="o">%</span><span class="mi">2</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">  <span class="o">%</span><span class="mi">3</span> <span class="o">=</span> <span class="nb">load</span> <span class="n">i32</span><span class="p">,</span> <span class="n">ptr</span> <span class="o">%</span><span class="mi">2</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ret</span> <span class="n">i32</span> <span class="o">%</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">attributes</span> <span class="c1">#0 = { noinline nounwind optnone ssp uwtable(sync) &#34;frame-pointer&#34;=&#34;non-leaf&#34; &#34;no-trapping-math&#34;=&#34;true&#34; &#34;probe-stack&#34;=&#34;__chkstk_darwin&#34; &#34;stack-protector-buffer-size&#34;=&#34;8&#34; &#34;target-cpu&#34;=&#34;apple-m1&#34; &#34;target-features&#34;=&#34;+aes,+altnzcv,+bti,+ccdp,+ccidx,+complxnum,+crc,+dit,+dotprod,+flagm,+fp-armv8,+fp16fml,+fptoint,+fullfp16,+jsconv,+lse,+neon,+pauth,+perfmon,+predres,+ras,+rcpc,+rdm,+sb,+sha2,+sha3,+specrestrict,+ssbs,+v8.1a,+v8.2a,+v8.3a,+v8.4a,+v8.5a,+v8a,+zcm,+zcz&#34; }</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="n">llvm</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">0</span><span class="p">,</span> <span class="o">!</span><span class="mi">1</span><span class="p">,</span> <span class="o">!</span><span class="mi">2</span><span class="p">,</span> <span class="o">!</span><span class="mi">3</span><span class="p">,</span> <span class="o">!</span><span class="mi">4</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="n">llvm</span><span class="o">.</span><span class="n">ident</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i32</span> <span class="mi">2</span><span class="p">,</span> <span class="o">!</span><span class="s2">&#34;SDK Version&#34;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span> <span class="n">x</span> <span class="n">i32</span><span class="p">]</span> <span class="p">[</span><span class="n">i32</span> <span class="mi">26</span><span class="p">,</span> <span class="n">i32</span> <span class="mi">2</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i32</span> <span class="mi">1</span><span class="p">,</span> <span class="o">!</span><span class="s2">&#34;wchar_size&#34;</span><span class="p">,</span> <span class="n">i32</span> <span class="mi">4</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="mi">2</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i32</span> <span class="mi">8</span><span class="p">,</span> <span class="o">!</span><span class="s2">&#34;PIC Level&#34;</span><span class="p">,</span> <span class="n">i32</span> <span class="mi">2</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="mi">3</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i32</span> <span class="mi">7</span><span class="p">,</span> <span class="o">!</span><span class="s2">&#34;uwtable&#34;</span><span class="p">,</span> <span class="n">i32</span> <span class="mi">1</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="mi">4</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i32</span> <span class="mi">7</span><span class="p">,</span> <span class="o">!</span><span class="s2">&#34;frame-pointer&#34;</span><span class="p">,</span> <span class="n">i32</span> <span class="mi">1</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="mi">5</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="s2">&#34;Apple clang version 17.0.0 (clang-1700.6.4.2)&#34;</span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 LLVM IR 中，所生成的 <code>.ll</code> 文件的基本语法为：</p>
+<ol>
+<li>指令以分号 <code>;</code> 开头表示注释</li>
+<li>全局表示以 <code>@</code> 开头，局部变量以 <code>%</code> 开头</li>
+<li>使用 <code>define</code> 关键字定义函数，在本例中定义了两个函数：<code>@test</code> 和 <code>@main</code></li>
+<li><code>alloca</code> 指令用于在堆栈上分配内存，类似于 C 语言中的变量声明</li>
+<li><code>store</code> 指令用于将值存储到指定地址</li>
+<li><code>load</code> 指令用于加载指定地址的值</li>
+<li><code>add</code> 指令用于对两个操作数进行加法运算</li>
+<li><code>i32</code> 表示 32 位（4 字节）整数类型</li>
+<li><code>align</code> 指定内存对齐方式</li>
+<li><code>ret</code> 指令用于从函数返回</li>
+</ol>
+<p>LLVM IR 的设计理念类似于精简指令集（RISC），这意味着它倾向于使用简单且数量有限的指令来完成各种操作。其指令集支持简单指令的线性序列，比如加法、减法、比较和条件分支等。这使得编译器可以很容易地对代码进行线性扫描和优化。</p>
+<p>LLVM IR 的设计原则：</p>
+<ol>
+<li>LLVM IR 采用 <strong>静态单赋值形式（SSA）</strong> 形式，每个变量在代码中只被赋值一次。SSA 简化的是数据流分析，进而帮助死代码消除、常量传播等。</li>
+<li>为了和硬件平台解耦，LLVM IR 层不限制寄存器数量，默认有无限的寄存器，实际的寄存器分配交给后端处理</li>
+<li>优化和扩展 LLVM IR 支持多种优化技术，包括常量折叠、循环优化和内联展开。它还支持通过插件和扩展添加自定义优化和分析。</li>
+<li>调试支持 LLVM IR 包含丰富的调试信息支持，可以生成调试符号和源代码映射，支持调试器如 GDB 和 LLDB。</li>
+</ol>
+<blockquote>
+<p>静态单赋值是指当程序中的每个变量都有且只有一个赋值语句时，称一个程序是 SSA 形式的。LLVM IR 中，每个变量都在使用前都必须先定义，且每个变量只能被赋值一次。</p>
+<p>为了支持 SSA，这也要求 LLVM IR 中的运算指令都得是<strong>三地址指令格式</strong>：</p>
+<p>也就是说每个三地址码指令都可以分解为一个四元组的形式： (运算符, 操作数 1, 操作数 2, 结果)</p>
+<p>不同类型的指令可以表示为不同的四元组格式：</p>
+<table>
+  <thead>
+      <tr>
+          <th>指令类型</th>
+          <th>指令格式</th>
+          <th>四元组表示</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>赋值指令</td>
+          <td>z = x</td>
+          <td>(<code>=</code>, <code>x</code>, , <code>z</code>)</td>
+      </tr>
+      <tr>
+          <td>算术指令</td>
+          <td>z = x op y</td>
+          <td>(<code>op</code>, <code>x</code>, <code>y</code>, <code>z</code>)</td>
+      </tr>
+      <tr>
+          <td>一元运算</td>
+          <td>z = op y</td>
+          <td>(<code>op</code>, <code>y</code>, , <code>z</code>)</td>
+      </tr>
+      <tr>
+          <td>条件跳转</td>
+          <td>if x goto L</td>
+          <td>(<code>if</code>, <code>x</code>, , <code>L</code>)</td>
+      </tr>
+      <tr>
+          <td>无条件跳转</td>
+          <td>goto L</td>
+          <td>(<code>goto</code>, , , <code>L</code>)</td>
+      </tr>
+      <tr>
+          <td>函数调用</td>
+          <td>z = call f(a, b)</td>
+          <td>(<code>call</code>, <code>f</code>, <code>(a,b)</code>, <code>z</code>)</td>
+      </tr>
+      <tr>
+          <td>返回指令</td>
+          <td>return x</td>
+          <td>(<code>return</code>, <code>x</code>, <code>, </code>)</td>
+      </tr>
+  </tbody>
+</table>
+<p>静态单赋值好处：</p>
+<ul>
+<li>
+<p>每个值都由单一的赋值操作定义，这使得我们可以轻松地从值的使用点直接追溯到其定义的指令。这种特性极大地方便了编译器进行正向和反向的编译过程。</p>
+</li>
+<li>
+<p>此外，由于静态单赋值（SSA）形式构建了一个简单的使用-定义链，即一个值到达其使用点的定义列表，这极大地简化了代码优化过程。在 SSA 形式下，编译器可以更直观地识别和处理变量的依赖关系，从而提高优化的效率和效果。</p>
+</li>
+</ul></blockquote>
+<h5 id="优化器">优化器</h5>
+<p>LLVM 中间表示（IR）是连接前端和后端的中枢，让 LLVM 能够解析多种源语言，为多种目标生成代码。前端产生 IR，而后端接收 IR。IR 也是大部分 LLVM 目标无关的优化发生的地方。</p>
+<p>LLVM 优化层在输入的时候是一个 AST 语法树转换成的 IR，输出的时候是一个优化完的 IR，输入到后端会被转换为 DAG 图。优化层每一种优化的方式叫做 pass，pass 就是对程序做一次遍历。</p>
+<p>优化通常由分析 Pass 和转换 Pass 组成。</p>
+<ul>
+<li><strong>分析 Pass（Analysis Pass）</strong>：分析 Pass 用于分析程序的特定属性或行为而不对程序进行修改。它们通常用于收集程序的信息或执行静态分析，以便其他 Pass 可以使用这些信息进行进一步的优化。分析 Pass 通常是只读的，不会修改程序代码。</li>
+<li><strong>转换 Pass（Transformation Pass）</strong>：转换 Pass 用于修改程序代码以进行优化或重构。它们会改变程序的结构或行为，以改善性能或满足特定的需求。转换 Pass 通常会应用各种优化技术来重写程序的部分或整体，以产生更高效的代码。</li>
+</ul>
+<p>分析 Pass 用于收集信息和了解程序的行为，而转换 Pass 则用于修改程序以实现优化或修改功能。在 LLVM 中，这两种 Pass 通常结合使用，以实现对程序进行全面优化和改进。</p>
+<p>优化过程需要执行以下代码：</p>
+<p>首先我们需要生成 <code>add.bc</code> 文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">clang -emit-llvm -c add.c -o add.bc</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后执行优化过程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">opt -passes<span class="o">=</span><span class="s1">&#39;instcount,adce,mdgc&#39;</span> -o add-tmp.bc add.bc -stats</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就可以生成 <code>add-tmp.bc</code> 文件，其中包含了优化后的 IR。</p>
+<p>转换 Pass 在做优化时，往往需要先知道一些分析结果。例如：</p>
+<ul>
+<li>&ldquo;这个变量在这里一定是常量吗？&rdquo; → 需要常量分析</li>
+<li>&ldquo;到达这个代码块，必须经过哪些其他代码块？&rdquo; → 需要支配树分析</li>
+</ul>
+<p>这就产生了 <strong>Pass 之间的依赖关系</strong>。在转换 Pass 和分析 Pass 之间，有两种主要的依赖类型：</p>
+<ol>
+<li>显式依赖</li>
+</ol>
+<p><strong>显式依赖</strong>是指：转换 Pass 通过代码<strong>明确声明</strong>自己需要哪些分析结果。</p>
+<p>声明方式有两步：</p>
+<p>第一步：在 Pass 的 <code>getAnalysisUsage()</code> 方法中注册依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">getAnalysisUsage</span><span class="p">(</span><span class="n">AnalysisUsage</span> <span class="o">&amp;</span><span class="n">AU</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 告诉 Pass 管理器：我需要 DominatorTree 这个分析结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">AU</span><span class="p">.</span><span class="n">addRequired</span><span class="o">&lt;</span><span class="n">DominatorTree</span><span class="o">&gt;</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>第二步：在运行时通过 <code>getAnalysis&lt;&gt;()</code> 获取分析结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 向 Pass 管理器索取针对函数 Func 的支配树分析结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">DominatorTree</span> <span class="o">&amp;</span><span class="n">DT</span> <span class="o">=</span> <span class="n">getAnalysis</span><span class="o">&lt;</span><span class="n">DominatorTree</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Func</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>当你注册了显式依赖之后，<strong>Pass 管理器会自动处理运行顺序</strong>，你不需要手动安排：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">你只需要声明：我的转换 Pass 依赖 DominatorTree 分析 Pass
+</span></span><span class="line"><span class="cl">                        ↓
+</span></span><span class="line"><span class="cl">        Pass 管理器读取到这个依赖声明
+</span></span><span class="line"><span class="cl">                        ↓
+</span></span><span class="line"><span class="cl">        自动将 DominatorTree 分析 Pass 安排在前面运行
+</span></span><span class="line"><span class="cl">                        ↓
+</span></span><span class="line"><span class="cl">        你的转换 Pass 运行时，分析结果已经准备好了
+</span></span><span class="line"><span class="cl">                        ↓
+</span></span><span class="line"><span class="cl">        直接调用 getAnalysis&lt;DominatorTree&gt;() 拿到现成结果使用</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>隐式依赖</li>
+</ol>
+<p>与显式依赖不同，<strong>隐式依赖不是 Pass 之间的依赖，而是 Pass 对 IR 代码形式的依赖</strong>。</p>
+<p>某些 Pass 在运行时，会假设 IR 代码<strong>已经是某种特定的形式或结构</strong>，如果 IR 不满足这个前提条件，Pass 就无法正确运行，甚至会产生错误的结果。</p>
+<p>这种依赖关系 <strong>Pass 管理器无法自动感知和处理</strong>，因为它不是&quot;需要某个分析结果&quot;，而是&quot;需要 IR 长成某个样子&quot;。</p>
+<p>需要手动地以正确的顺序把这个 Pass 加到 Pass 队列中，通过命令行工具(clang 或者 opt)或者 Pass 管理器。</p>
+<hr>
+<p>在编译优化中，不同的优化任务<strong>关注的代码范围是不同的</strong>：</p>
+<ul>
+<li>有些优化需要<strong>纵观整个程序</strong>才能做决策（如全局变量分析）</li>
+<li>有些优化只需要<strong>关注单个函数</strong>内部（如函数内的指令合并）</li>
+<li>有些优化只需要<strong>关注一个基本块</strong>（如基本块内的局部优化）</li>
+</ul>
+<p>如果所有 Pass 都以整个模块为粒度运行，会造成<strong>不必要的性能浪费</strong>。因此 LLVM 设计了不同粒度的 Pass 子类，让开发者根据优化需求选择最合适的粒度。</p>
+<p>当实现一个 Pass 时，你应该选择适合你的 Pass 的最佳粒度，适合此粒度的最佳子类，例如基于函数、模块、循环、强联通区域，等等。常见的这些子类如下：</p>
+<ul>
+<li><code>ModulePass</code>：这是最通用的 Pass；它一次分析整个模块，函数的次序不确定。它不限定使用者的行为，允许删除函数和其它修改。为了使用它，你需要写一个类继承 <code>ModulePass</code>，并重载 <code>runOnModule()</code> 方法。</li>
+<li><code>FunctionPass</code>：这个子类允许一次处理一个函数，处理函数的次序不确定。这是应用最多的 Pass 类型。它禁止修改外部函数、删除函数、删除全局变量。为了使用它，需要写一个它的子类，重载 <code>runOnFunction()</code> 方法。</li>
+<li><code>BasicBlockPass</code>：这个类的粒度是基本块。<code>FunctionPass</code> 类禁止的修改在这里也是禁止的。它还禁止修改或者删除外部基本块。使用者需要写一个类继承 <code>BasicBlockPass</code>，并重载它的 <code>runOnBasicBlock()</code> 方法。</li>
+</ul>
+<p>三种子类对比总结：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">对比项</th>
+          <th style="text-align: left">ModulePass</th>
+          <th style="text-align: left">FunctionPass</th>
+          <th style="text-align: left">BasicBlockPass</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>处理粒度</strong></td>
+          <td style="text-align: left">整个模块</td>
+          <td style="text-align: left">单个函数</td>
+          <td style="text-align: left">单个基本块</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>重载方法</strong></td>
+          <td style="text-align: left"><code>runOnModule()</code></td>
+          <td style="text-align: left"><code>runOnFunction()</code></td>
+          <td style="text-align: left"><code>runOnBasicBlock()</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>可见范围</strong></td>
+          <td style="text-align: left">所有函数和全局变量</td>
+          <td style="text-align: left">函数内所有基本块</td>
+          <td style="text-align: left">基本块内所有指令</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>可删除函数</strong></td>
+          <td style="text-align: left">✅ 允许</td>
+          <td style="text-align: left">❌ 禁止</td>
+          <td style="text-align: left">❌ 禁止</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>可删除全局变量</strong></td>
+          <td style="text-align: left">✅ 允许</td>
+          <td style="text-align: left">❌ 禁止</td>
+          <td style="text-align: left">❌ 禁止</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>可修改其他函数/块</strong></td>
+          <td style="text-align: left">✅ 允许</td>
+          <td style="text-align: left">❌ 禁止</td>
+          <td style="text-align: left">❌ 禁止</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>使用频率</strong></td>
+          <td style="text-align: left">较少</td>
+          <td style="text-align: left">最多</td>
+          <td style="text-align: left">较少</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>典型用途</strong></td>
+          <td style="text-align: left">全局分析、函数内联</td>
+          <td style="text-align: left">大多数优化</td>
+          <td style="text-align: left">块内局部优化</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>TODO: 继续补充有关 LLVM IR 内存模型的介绍</p></blockquote>
+<h5 id="后端">后端</h5>
+<p>LLVM 的后端是与特定硬件平台紧密相关的部分，它负责将经过优化的 LLVM IR 转换成目标代码，这个过程也被称为代码生成（Codegen）。不同硬件平台的后端实现了针对该平台的专门化指令集，例如 ARM 后端实现了针对 ARM 架构的汇编指令集，X86 后端实现了针对 X86 架构的汇编指令集，PowerPC 后端实现了针对 PowerPC 架构的汇编指令集。</p>
+<p>在代码生成过程中，LLVM 后端会根据目标硬件平台的特性和要求，将 LLVM IR 转换为适合该平台的机器码或汇编语言。这个过程涉及到指令选择（Instruction Selection）、寄存器分配（Register Allocation）、指令调度（Instruction Scheduling）等关键步骤，以确保生成的目标代码在目标平台上能够高效运行。</p>
+<p>整个后端流水线涉及到四种不同层次的指令表示，包括：</p>
+<ul>
+<li>内存中的 LLVM IR：LLVM 中间表现形式，提供了高级抽象的表示，用于描述程序的指令和数据流。</li>
+<li>SelectionDAG 节点：在编译优化阶段生成的一种抽象的数据结构，用以表示程序的计算过程，帮助优化器进行高效的指令选择和调度。</li>
+<li>Machinelnstr：机器相关的指令格式，用于描述特定目标架构下的指令集和操作码。</li>
+<li>MCInst：机器指令，是具体的目标代码表示，包含了特定架构下的二进制编码指令。</li>
+</ul>
+<p>在将 LLVM IR 转化为目标代码需要非常多的步骤，其 Pipeline 如下图所示：</p>
+<img src="images/image-20260407163424959.png" alt="image-20260407163424959" style="zoom: 33%; display: block; margin: 0 auto;" />
+<p>LLVM IR 会变成和后端很接近的一些指令、函数、全局变量和寄存器的具体表示，流水线越向下就越接近实际硬件的目标指令。其中白色的 Pass 是非必要 Pass，灰色的 Pass 是必要 Pass。</p>
+<hr>
+<p>下面我们来具体看看这几个关键的 Pass:</p>
+<h6 id="指令选择">指令选择</h6>
+<p>首先是<strong>指令选择（Instruction Selection）</strong>：</p>
+<p>指令选择的主要任务是将 LLVM IR 转换为 SelectionDAG，再经过合法化和模式匹配，最终生成目标平台特定的 MachineInstr 指令序列，实现从高级语言表示到底层机器指令的转换。</p>
+<p>具体来说，指令选择的过程包括以下几个关键步骤：</p>
+<ol>
+<li>将 LLVM IR 构建为初始的 SelectionDAG，每个 DAG 对应单一基本块内的计算过程，节点表示具体的操作，边表示操作之间的数据流依赖关系。</li>
+<li>对 DAG 进行<strong>合并优化（DAG Combine）</strong>，完成常量折叠等简单优化。</li>
+<li>进行<strong>合法化（Legalization）</strong>，将目标平台不支持的操作或数据类型转换为目标平台支持的形式。</li>
+<li>再次进行 DAG 合并优化，处理合法化引入的新节点。</li>
+<li>利用<strong>基于树的模式匹配</strong>算法，将 DAG 节点映射为目标平台的具体机器指令。</li>
+<li>对选出的指令进行调度，最终发射为 <strong>MachineInstr</strong> 序列。</li>
+</ol>
+<h6 id="指令调度">指令调度</h6>
+<p>接下来我们看看<strong>指令调度（Instruction Scheduling）</strong>：</p>
+<p>指令调度旨在通过重新排序程序中的指令来提高计算机程序的性能，分为 <strong>Pre-RA 调度</strong>和 <strong>Post-RA 调度</strong>两个阶段，两者以<strong>寄存器分配</strong>为分界点。寄存器分配是独立于指令调度的阶段，负责将虚拟寄存器映射到物理寄存器，三者共同构成后端代码生成的核心流程。</p>
+<p>在前寄存器分配调度（Pre-RA Scheduling）阶段，编译器会对程序中的指令进行排序，同时尝试发现能够并行执行的指令。这种并行执行可以提高程序的吞吐量和执行效率。在现代计算机体系结构中，由于存在多级缓存和流水线等技术，指令调度可以帮助减少指令执行的停顿，并充分利用硬件资源。</p>
+<p>一种常见的技术是基于数据依赖性进行指令调度。编译器会分析指令之间的数据依赖关系，然后将独立的指令重排序以并行执行，而不会改变程序的语义。这种优化可以通过重排指令来避免数据冒险（Data Hazard）和控制冒险（Control Hazard），从而提高程序的性能。</p>
+<p>在指令调度的过程中，编译器可能会引入一些额外的指令（如填充指令）或调整指令的执行顺序，以最大程度地利用计算资源。例如，可以调整指令的执行顺序，以便在执行整数运算的同时进行浮点运算，或者在内存访问受限时插入其他计算指令。</p>
+<p>Pre-RA 调度已经确定了较好的指令顺序，我们需要在这个顺序基础上做实际的<strong>寄存器分配</strong>（Register Allocation）。</p>
+<p>寄存器分配（Register Allocation）是编译器优化的重要步骤之一，其主要任务是将虚拟寄存器分配到有限数量的物理寄存器上，从而减少对内存的访问，提高程序的性能和效率。在 LLVM IR 中，寄存器分配的过程较为特殊，因为 LLVM IR 寄存器集是无限的，直到实施寄存器分配为止。</p>
+<p>在寄存器分配中，编译器会尝试将虚拟寄存器映射到物理寄存器上，以便在执行指令时能够直接访问这些寄存器而不必通过内存。然而，由于物理寄存器数量有限，当虚拟寄存器的数量超过物理寄存器时，就需要使用一些策略来处理这种溢出（Spill）情况，将部分寄存器的内容存储到内存中，并在需要时重新加载。</p>
+<p>寄存器分配算法可以分为多种类型，常见的包括：</p>
+<ol>
+<li><strong>贪心寄存器分配（Greedy Register Allocation）</strong>：LLVM 默认使用的算法。基于活跃区间（Live Interval）分析寄存器的使用范围，按优先级顺序处理各个活跃区间，并在必要时通过分裂（Split）活跃区间来减少溢出次数，相比简单的线性扫描能获得更高质量的分配结果。</li>
+<li><strong>迭代寄存器合并（Iterated Register Coalescing）</strong>：该算法尝试合并虚拟寄存器，使得原本需要分配到不同物理寄存器的虚拟寄存器可以合并到同一个物理寄存器上。这样可以减少溢出和重加载的次数，提高程序性能。</li>
+<li><strong>图着色（Graph Coloring）</strong>：基于图的寄存器分配算法，将寄存器分配问题转化为图着色问题。通过建立虚拟寄存器之间的冲突图，尝试对图进行着色，从而确定哪些虚拟寄存器可以分配到同一个物理寄存器上，以最小化溢出次数。</li>
+</ol>
+<p>寄存器分配在编译器优化中扮演着至关重要的角色，通过有效的寄存器分配算法可以显著提高程序的执行效率和性能。</p>
+<p>由于寄存器分配可能引入了新的 load/store 指令（溢出处理）因此还需要重新调度（Post-RA 调度），消除这些新指令带来的流水线停顿。</p>
+<p>在后寄存器分配调度（Post-RA Scheduling）阶段，编译器对已经分配了寄存器的机器代码进行进一步优化。此阶段的目标是最大化硬件资源的利用，减少指令执行的停顿，并优化寄存器的使用。具体包括：</p>
+<ul>
+<li><strong>处理资源冲突</strong>：调整指令顺序以避免资源冲突，例如寄存器使用冲突、流水线停顿等。</li>
+<li><strong>插入填充指令</strong>：在必要时插入填充指令（如 NOP 指令）以消除潜在的流水线停顿。</li>
+<li><strong>优化执行顺序</strong>：通过重新排列指令，使得整数运算、浮点运算、内存访问等能够并行执行，从而提高性能。</li>
+</ul>
+<h6 id="代码输出">代码输出</h6>
+<p>最后我们再来看看<strong>代码输出（Code Emission）</strong>：</p>
+<p>代码输出（Code Emission）是 LLVM 后端的最后一步，负责将已经优化好的 MachineInstr 转换为最终的输出形式 MCInst，输出汇编文本 <code>.s</code> 文件或直接生成二进制目标文件 <code>.o</code>。</p>
+<p>经过前面指令选择、Pre-RA 调度、寄存器分配、Post-RA 调度等阶段后，我们得到的 MachineInstr 已经非常接近真实机器指令了，但它仍然携带着一些后端框架层面的&quot;辅助信息&quot;，比如：</p>
+<ul>
+<li>栈帧引用（<code>%stack.0.a</code>）—— 还没算出具体的偏移量</li>
+<li>调试信息、注释</li>
+<li>一些伪指令（pseudo instruction）—— 不是真实的硬件指令，而是后端框架用来占位的</li>
+</ul>
+<p>代码输出阶段要做的就是把这些残留的抽象全部抹掉，变成纯粹的机器指令表示。</p>
+<p>MCInst 是 LLVM MC 层（Machine Code Layer）中的核心数据结构，它的结构非常简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MCInst</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="n">Opcode</span><span class="p">;</span>               <span class="c1">// 操作码（如 ARM64 的 ADDXri、MOVZWi）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">SmallVector</span><span class="o">&lt;</span><span class="n">MCOperand</span><span class="p">,</span> <span class="mi">8</span><span class="o">&gt;</span> <span class="n">Operands</span><span class="p">;</span>  <span class="c1">// 操作数列表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MCOperand</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">enum</span> <span class="p">{</span> <span class="n">kRegister</span><span class="p">,</span> <span class="n">kImmediate</span><span class="p">,</span> <span class="n">kExpr</span> <span class="p">}</span> <span class="n">Kind</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 要么是寄存器编号，要么是立即数，要么是一个待链接器解析的表达式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到，MCInst 里没有类型信息，没有栈帧引用，没有调试信息——它和真实的机器码已经是一一对应的关系了，区别仅仅在于一个是内存中的对象，一个是二进制编码。</p>
+<p>举个具体的例子，对于 <code>int a = 3</code> 中把 3 存到栈上这一步：</p>
+<table>
+  <thead>
+      <tr>
+          <th>阶段</th>
+          <th>表示</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>MachineInstr</td>
+          <td><code>STRWui %w8, %stack.0.a, 0</code></td>
+          <td>还在用栈帧符号 <code>%stack.0.a</code></td>
+      </tr>
+      <tr>
+          <td>MCInst</td>
+          <td><code>STR W8, [SP, #8]</code></td>
+          <td>栈帧已经被算成具体偏移量 <code>#8</code></td>
+      </tr>
+      <tr>
+          <td>二进制机器码</td>
+          <td><code>B9000BE8</code></td>
+          <td>和 MCInst 一一对应的 32 位编码</td>
+      </tr>
+  </tbody>
+</table>
+<p>最终 MCInst 会通过两条路径之一输出为文件：</p>
+<ul>
+<li>MCAsmStreamer：把 MCInst 翻译成汇编文本，写入 <code>.s</code> 文件</li>
+<li>MCObjectStreamer：把 MCInst 直接编码为二进制，写入 <code>.o</code> 目标文件（LLVM 内置汇编器）</li>
+</ul>
+<p>Clang 默认走第二条路径，直接生成 <code>.o</code> 而不经过 <code>.s</code>。这也是 LLVM 和 GCC 的一个区别——GCC 必须先生成 <code>.s</code> 再调用外部汇编器 as，而 LLVM 内置了汇编器，可以一步到位。</p>
+<p>学习完了传统的编译器的内容，接下来我们正式领略现代面向机器学习的 AI 编译器了。</p>
+<h3 id="ai-编译器">AI 编译器</h3>
 <h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
 <h3 id="训练">训练</h3>
 <h3 id="推理">推理</h3>
@@ -2914,8 +3622,8 @@ $$</span><p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-04-06&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/df9a2fa0b3fadd240dce8bb835fe9278be36d6c0" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) df9a2fa0b3fadd240dce8bb835fe9278be36d6c0: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>df9a2fa</a></span>
+                <span>更新于 2026-04-07&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/9c93c07169048c9fbc912c922147c8b65734a252" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 9c93c07169048c9fbc912c922147c8b65734a252: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>9c93c07</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

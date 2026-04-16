@@ -157,3 +157,83 @@ document.addEventListener('DOMContentLoaded', function applyCustomCodeTitles() {
         $titleSpan.setAttribute('data-custom-title', customTitle);
     });
 });
+
+/* 脚注悬浮预览 tooltip
+ * 鼠标悬停在 [1] 脚注引用上时，显示白色浮层预览脚注内容
+ * Hugo 渲染的脚注结构：
+ *   引用：<sup id="fnref:1"><a href="#fn:1" class="footnote-ref">1</a></sup>
+ *   内容：<li id="fn:1"><p>脚注内容</p></li>
+ */
+document.addEventListener('DOMContentLoaded', function initFootnoteTooltips() {
+    var tooltip = document.createElement('div');
+    tooltip.classList.add('footnote-tooltip');
+    tooltip.style.display = 'none';
+    document.body.appendChild(tooltip);
+
+    var hideTimeout = null;
+
+    function showTooltip(anchor, content) {
+        tooltip.innerHTML = content;
+        tooltip.style.display = 'block';
+
+        // 计算位置：在脚注引用上方居中
+        var rect = anchor.getBoundingClientRect();
+        var tooltipRect = tooltip.getBoundingClientRect();
+
+        var left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+        var top = rect.top - tooltipRect.height - 8;
+
+        // 如果上方放不下，就放在下方
+        if (top < 8) {
+            top = rect.bottom + 8;
+        }
+
+        // 防止左边超出视口
+        if (left < 8) left = 8;
+        // 防止右边超出视口
+        if (left + tooltipRect.width > window.innerWidth - 8) {
+            left = window.innerWidth - tooltipRect.width - 8;
+        }
+
+        tooltip.style.left = left + window.scrollX + 'px';
+        tooltip.style.top = top + window.scrollY + 'px';
+    }
+
+    function hideTooltip() {
+        tooltip.style.display = 'none';
+    }
+
+    // 为所有脚注引用绑定事件
+    document.querySelectorAll('a.footnote-ref').forEach(function(ref) {
+        var fnId = ref.getAttribute('href');
+        if (!fnId) return;
+
+        // 从页面底部的脚注区获取内容
+        // 注：fnId 形如 "#fn:1"，冒号在 CSS 选择器中是特殊字符，用 getElementById 规避
+        var fnLi = document.getElementById(fnId.replace('#', ''));
+        if (!fnLi) return;
+
+        // 提取脚注内容（去掉回跳链接）
+        var clone = fnLi.cloneNode(true);
+        // 移除 backref 链接
+        clone.querySelectorAll('.footnote-backref').forEach(function(el) { el.remove(); });
+        var content = clone.innerHTML;
+
+        ref.addEventListener('mouseenter', function() {
+            if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
+            showTooltip(ref, content);
+        });
+
+        ref.addEventListener('mouseleave', function() {
+            hideTimeout = setTimeout(hideTooltip, 200);
+        });
+    });
+
+    // tooltip 自身也需要能被鼠标 hover（方便用户选中/阅读长内容）
+    tooltip.addEventListener('mouseenter', function() {
+        if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
+    });
+    tooltip.addEventListener('mouseleave', function() {
+        hideTimeout = setTimeout(hideTooltip, 200);
+    });
+});

@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-10-25T14:40:14+08:00">
-    <meta property="article:modified_time" content="2025-06-29T13:13:06+08:00">
+    <meta property="article:modified_time" content="2026-04-16T16:06:56+08:00">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://example.com/images/logo.png">
 
@@ -37,8 +37,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "编程","wordcount":  381 ,
-        "url": "https:\/\/example.com\/markdown%E8%AF%AD%E6%B3%95\/","datePublished": "2024-10-25T14:40:14+08:00","dateModified": "2025-06-29T13:13:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "编程","wordcount":  528 ,
+        "url": "https:\/\/example.com\/markdown%E8%AF%AD%E6%B3%95\/","datePublished": "2024-10-25T14:40:14+08:00","dateModified": "2026-04-16T16:06:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -117,8 +117,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Markdown语法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-10-25">2024-10-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 381 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-10-25">2024-10-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 528 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;
     
 
     
@@ -156,6 +156,7 @@
                 <li><a href="#8分隔线">8.分隔线</a></li>
                 <li><a href="#9列表">9.列表</a></li>
                 <li><a href="#10-块注释">10. 块注释</a></li>
+                <li><a href="#11-脚注">11. 脚注</a></li>
                 <li><a href="#11-latex语法">11. LaTeX语法</a></li>
               </ul>
             </li>
@@ -196,6 +197,49 @@
 <h4 id="10-块注释">10. 块注释</h4>
 <blockquote>
 <p><code>&gt; </code></p></blockquote>
+<h4 id="11-脚注">11. 脚注</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">这是正文[^1]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[^1]: 这是脚注内容</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Markdown 脚注支持多行和复杂内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">正文内容[^1]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[^1]: 第一行内容
+</span></span><span class="line"><span class="cl">    第二行内容（前面加4个空格）
+</span></span><span class="line"><span class="cl">    第三行内容
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    还可以有段落（空一行再加4个空格）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    **加粗**、*斜体*、`代码` 都支持
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    - 列表项1
+</span></span><span class="line"><span class="cl">    - 列表项2</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关键是每行前面加4个空格表示属于同一个脚注。</p>
 <h4 id="11-latex语法">11. LaTeX语法</h4>
 <p><a href="https://blog.csdn.net/qq_17528659/article/details/82152530" target="_blank" rel="noopener noreffer ">LaTeX符号大全</a></p>
 <table>
@@ -313,8 +357,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2025-06-29&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/088b48098fb404a394a6cd3b4fccc490b9aa0852" target="_blank" title="commit by JarVis(2055543978@qq.com) 088b48098fb404a394a6cd3b4fccc490b9aa0852: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>088b480</a></span>
+                <span>更新于 2026-04-16&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/658358e440df95f3c0e348dc2a937a838775c228" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 658358e440df95f3c0e348dc2a937a838775c228: feat: 新增了脚注位置鼠标悬停弹出一个白色圆角卡片功能">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>658358e</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

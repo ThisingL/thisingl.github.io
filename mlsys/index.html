@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-04-13T18:48:36+08:00">
+    <meta property="article:modified_time" content="2026-04-16T16:06:56+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  43436 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-13T18:48:36+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  43490 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-16T16:06:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,7 +118,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 43436 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 43490 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 87 分钟&nbsp;
     
 
@@ -2352,7 +2352,7 @@ $$</span><p>
 <p>有了上面词法分析输出的这么多 Token 流，我们就需要对这么多 Token 进行<strong>分组标记</strong>。</p>
 <p>词法分析给我们的是一个扁平的序列： <code> [int][a][=][1][+][2][;][return][a][;]</code></p>
 <p>这个序列是一维的,没有任何层次结构,我们并不知道哪些Token是一组的</p>
-<p>而这里计算机同样不知道如何分组——我们需要为它提供一套形式化的规则，即<strong>文法</strong>(我们在形式化方法中讲过)，语法分析器据此将 Token 序列组织成树形结构。</p>
+<p>而这里计算机同样不知道如何分组——我们需要为它提供一套形式化的规则，即<strong>文法</strong>(我们在形式化方法<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>中讲过)，语法分析器据此将 Token 序列组织成树形结构。</p>
 <p>这样语法分析器就可以一个个遍历读取 Token，针对比如 C 语言的文法进行匹配，然后匹配成这样一棵树：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -3655,12 +3655,20 @@ $$</span><p>
     else 非流式输出
         Tokenizer-->>FastAPI: 返回完整结果
         FastAPI-->>用户: 返回最终结果
-    end</div></div><div class="post-footer" id="post-footer">
+    end</div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><strong>形式化方法</strong>可以在我的博客中搜索到，是研一选修的一门课程的笔记。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-04-13&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/ebadd0219911a68da307c7488e87cc25de85d34d" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) ebadd0219911a68da307c7488e87cc25de85d34d: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ebadd02</a></span>
+                <span>更新于 2026-04-16&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/658358e440df95f3c0e348dc2a937a838775c228" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 658358e440df95f3c0e348dc2a937a838775c228: feat: 新增了脚注位置鼠标悬停弹出一个白色圆角卡片功能">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>658358e</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

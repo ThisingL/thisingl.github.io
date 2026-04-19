@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-04-16T16:06:56+08:00">
+    <meta property="article:modified_time" content="2026-04-20T00:24:29+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  43490 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-16T16:06:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  47870 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-20T00:24:29+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 43490 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 87 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 47870 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 96 分钟&nbsp;
     
 
     
@@ -195,7 +195,12 @@
                 <li><a href="#llvm">LLVM</a></li>
               </ul>
             </li>
-            <li><a href="#ai-编译器">AI 编译器</a></li>
+            <li><a href="#ai-编译器">AI 编译器</a>
+              <ul>
+                <li><a href="#基础介绍">基础介绍</a></li>
+                <li><a href="#前端优化">前端优化</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li><a href="#大模型训练与推理系统架构">大模型训练与推理系统架构</a>
@@ -3573,6 +3578,86 @@ $$</span><p>
 <p>Clang 默认走第二条路径，直接生成 <code>.o</code> 而不经过 <code>.s</code>。这也是 LLVM 和 GCC 的一个区别——GCC 必须先生成 <code>.s</code> 再调用外部汇编器 as，而 LLVM 内置了汇编器，可以一步到位。</p>
 <p>学习完了传统的编译器的内容，接下来我们正式领略现代面向机器学习的 AI 编译器了。</p>
 <h3 id="ai-编译器">AI 编译器</h3>
+<h4 id="基础介绍">基础介绍</h4>
+<h5 id="ai-编译器的黄金时代">AI 编译器的黄金时代</h5>
+<p>图灵奖获得者 David Patterson<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 在 2019 年 5 月发表了一个名为“计算机架构新的黄金年代”的演讲，他通过回顾自 20 世纪 60 年代以来的计算机架构的发展，来介绍当前的难题与未来的机遇。他预测未来十年计算机架构领域将会迎来下一个黄金时代，就像 20 世纪 80 年代一样。</p>
+<p>David Patterson 介绍了从最初诞生的复杂指令计算机到精简指令计算机，再从单核处理器到多核处理器的发展，再到如今随着 AI 的飞速发展，DSA(Domain-specific architectures)迅速崛起，比如 AI 芯片、GPU 芯片以及 NPU 芯片，这些都是 DSA。他认为高级、特定于领域的语言和体系结构，将为计算机架构师带来一个新的黄金时代。</p>
+<p>类似的，LLVM 之父 Chris Lattner 在 2021 年 ASPLOS 会议的主题演讲中发表了名为“编译器的黄金时代”的演讲，主要分享了关于编译器的发展现状和未来、编程语言、加速器和摩尔定律失效论，并且讨论业内人士如何去协同创新，推动行业发展，实现处理器运行速度的大幅提升。</p>
+<p>Chris Lattner 认为世界出现了越来越多的专属硬件，同时也出现了各种各样的应用。尽管现在硬件越来越多样，硬件生态迅速壮大，但软件还是很难充分利用它们来提高性能。而且如果软硬件协同不到位，性能就会受到巨大影响，那不止是 <span class="math">$10\%$</span> 左右的浮动。</p>
+<p>AI 领域正经历着硬件的爆发式增长，这为 AI 应用的创新和扩展提供了强大的动力。随着各种不同的 AI 硬件的快速涌现，我们正面临一个软件碎片化的时代。软件碎片化意味着需要为不同的 AI 硬件平台开发和维护多种版本的基础软件，这无疑增加了研发和运营的成本。</p>
+<p>此外，AI 基础软件碎片化还可能导致用户体验的不一致，因为不同硬件上运行的基础软件可能在性能和功能上存在差异。这种不一致性不仅增加了用户的学习成本，也可能影响用户对品牌和产品的忠诚度。</p>
+<p>最终，软件碎片化的问题还可能反噬硬件行业本身。如果硬件制造商无法提供兼容和优化良好的软件解决方案，那么他们在市场上的竞争力将受到削弱。用户可能会选择那些能够提供更好软件支持的硬件产品，就像截至到目前为止大部分研究者仍然大量地使用英伟达的 GPU，而不是 DSA 架构的 AI 芯片。</p>
+<p>因此，硬件行业的参与者需要认识到 AI 基础软件碎片化的潜在风险，并采取措施来缓解这一问题。这可能包括开发更加通用和可移植的软件架构，或者与软件开发商合作，共同提供跨平台的解决方案。</p>
+<p>否则随着各种不同 AI 硬件的爆发式增长，会逐渐导致基础软件的碎片化，这种碎片化的发展带来了巨大成本，也会反噬 AI 硬件行业。</p>
+<p>回顾历史，自 90 年代以来，GCC 编译器的出现极大地解决了当时编译体系生态的碎片化问题，为软件开发带来了统一的标准和便利。随后，LLVM 的诞生进一步推动了整个编译器领域的发展，为不同硬件平台提供了强大的编译支持。</p>
+<p>在硬件领域，不同的芯片厂商纷纷推出了自家的芯片。为了充分发挥这些芯片的性能，必须有与之相匹配的编译器，将高级语言转化为机器码，让芯片的能力得到充分利用。</p>
+<p>当前，AI 编译器的发展阶段似乎回到了 GCC 出现之前的时代。每家 AI 芯片公司都在推出自己的 AI 编译器、框架甚至软件栈，市场上出现了极度碎片化的现象。</p>
+<p>Chris Lattner 预见，未来十年将是 AI 编译器快速发展的十年。随着技术的进步和市场的整合，新的技术将会出现，重新塑造编译器领域的格局。我们将迎来一个新的&quot;大一统&quot;时代，编译器领域将会经历一次全面的革新和整合。</p>
+<h5 id="ai-编译器-vs-传统编译器">AI 编译器 VS 传统编译器</h5>
+<p>大家可能会想： AI 程序和我们普通的程序，本质上最终都是通过指令运算，传统编译器也完全可以编译 AI 代码啊，那为什么要出现 AI 编译器？也就是 AI 编译器存在的意义究竟是什么？</p>
+<p>关键在于<strong>传统编译器不理解 AI 计算语义</strong>。</p>
+<p>还是以我们的“老熟人<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>”来举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">      <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>传统编译器看到这段代码，它只会局限于从<strong>语法层面</strong>来看待——这里有循环嵌套，我们可以：</p>
+<ul>
+<li>循环展开</li>
+<li>向量化（SIMD）</li>
+<li>寄存器分配</li>
+<li>基本的 cache 优化</li>
+</ul>
+<p>它不知道的是，从<strong>语义层面</strong>来看，这是一个矩阵乘法！</p>
+<ul>
+<li>可以用 Tensor Core 专用硬件</li>
+<li>可以和后面的 ReLU 融合成一个 kernel</li>
+<li>还可以用 Flash Attention 重写整个计算方式</li>
+</ul>
+<p>AI 编译器的核心价值就在于：<strong>不是做传统编译器做不到的事，而是做传统编译器不知道该做的事</strong>。传统编译器完全可以编译 AI 代码，但它<strong>不理解计算图的语义</strong>，无法做算子融合、Tensor Core 利用、全局内存优化这些高层优化，性能差距可能几十上百倍。</p>
+<blockquote>
+<p>这里可能有人会问：那为什么不把这些 AI 编译器独有的优化也融合到传统编译器里？难道普通的程序代码不能也这么优化吗？</p>
+<p>本质上还是因为<strong>优化需要语义，语义需要抽象层</strong>。传统代码在编译过程中丢失了高层语义，而AI 框架通过保留计算图级别的语义信息，使得高层优化成为可能。</p>
+<p>比如刚刚的矩阵乘法，AI 框架（如 PyTorch）则会写成： <code>C = torch.matmul(A, B)</code>，这就附带了矩阵乘法的语义，而不是传统编译器只能看出来是三层循环。AI 编译器为了支持现在 ML 程序中出现的大量独特的语义，提供了 AI 框架这一新的抽象层，然后对 AI 框架输出的计算图做优化。</p></blockquote>
+<p>因此传统编译器的使命是<strong>简化编程</strong>： 通过编译器，人类可以使用更容易理解的高级的语言来编程，而将代码转换成机器实际执行的机器码的过程，则被编译器给抽象了。</p>
+<p>而现代的 AI 编译器的使命则是<strong>优化性能</strong>，确保神经网络模型在硬件上高效运行。降低编程难度虽然也是 AI 编译器的目标之一，但相较于性能优化，它退居次要位置。</p>
+<p>所以 AI 编译器和传统编译器也就产生了很多异同：</p>
+<ul>
+<li>目标相同：AI 编译器与传统编译器都是通过自动化的方式进行程序优化和代码生成，从而节省大量的人力对不同底层硬件的手动优化。</li>
+<li>优化方式类似：在编译优化层，AI 编译器与传统编译器都是通过统一 IR 执行不同的 Pass 进行优化，从而提高程序执行时的性能。</li>
+<li>软件栈结构类似：它们都分成前端、优化、后端三段式，通过 IR 解耦前端和后端使得可以进行模块化表示。</li>
+<li>AI 编译器依赖传统编译器：AI 编译器对 Graph IR 进行优化后，将优化后的 IR 转化成传统编译器 IR，最后依赖传统编译器进行机器码生成。因为传统编译器经过几十年的发展已经趋于稳定，所以 AI 编译器的角色更像是对传统编译器的一种补充。</li>
+</ul>
+<p>在下面的图中，左侧展示了传统编译器的软件栈结构，右侧则呈现了 AI 编译器的架构。通过对比这两部分，我们可以清晰地辨识出它们之间的不同：</p>
+<p>
+<figure><a class="lightgallery" href="/mlsys/images/image-20260419001623403.png" title="image-20260419001623403" data-thumbnail="/mlsys/images/image-20260419001623403.png" data-sub-html="<h2> </h2><p>image-20260419001623403</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/mlsys/images/image-20260419001623403.png"
+            data-srcset="/mlsys/images/image-20260419001623403.png, /mlsys/images/image-20260419001623403.png 1.5x, /mlsys/images/image-20260419001623403.png 2x"
+            data-sizes="auto"
+            alt="/mlsys/images/image-20260419001623403.png" width="2250" height="1028" />
+    </a><figcaption class="image-caption">image-20260419001623403</figcaption>
+    </figure></p>
+<p>传统编译器的前端专注于对高级编程语言进行深入的语义分析、语法分析和词法分析，将源代码转化为中间表示（IR）。在中间阶段，编译器执行一系列优化 Pass，专门针对高级语言代码进行性能提升。而在后端，编译器负责处理代码的具体布局、寄存器分配等任务。</p>
+<p>相比之下，AI 编译器的架构则有显著的不同。它的前端主要负责将神经网络的 API 表达为计算图，这一过程涉及到模型的构建和转换。在中间优化阶段，AI 编译器专注于图算融合、算子融合、自动微分和并行切分等特定优化技术。后端则根据目标硬件平台，对 Kernel 进行定制化优化，确保代码在不同硬件上都能高效运行。在某些情况下，如 CPU 或 TPU 等芯片，AI 编译器甚至可能利用类似 LLVM 这样的传统编译器技术。AI 编译器在很多方面是站在传统编译器的肩膀上，它们之间形成了一种互补和协同的关系。</p>
+<blockquote>
+<p>这里我们还需要区分两个关键概念：<strong>算子</strong>和 <strong>Kernel</strong>。</p>
+<p>大家应该经常看到这两个名词，而且似乎发现它们的含义非常相似，都代表一种具体的运算操作，那么它们的区别到底是什么呢？</p>
+<p>这其实是从不同层的视角对同样事情的不同称呼。在 AI 框架中，<strong>算子</strong>是执行具体计算的操作单元，例如矩阵乘法、卷积、激活函数等，面向算法工程师，强调的是<strong>数学语义</strong>（做什么）。而 <strong>Kernel</strong> 通常指在底层硬件上执行特定计算任务的函数或代码块，由 AI 编译器层所关注，强调的是<strong>硬件实现</strong>（怎么做）。</p>
+<p>值得注意的是，两者并非简单的一对一关系。同一个算子（例如 Conv2d）根据输入大小、硬件型号的不同，可能对应完全不同的 Kernel 实现；反过来，多个算子（如 Conv → BatchNorm → ReLU）也可以被编译器<strong>融合成一个 Kernel</strong>，减少中间结果的显存读写，从而大幅提升性能。</p>
+<p>手写 Kernel 意味着开发者直接编写硬件级代码（如 CUDA），针对特定硬件架构的内存层次结构、线程组织等做极致优化，通常比框架自动生成的代码性能更高，但需要深入理解目标硬件的编程模型。</p></blockquote>
+<h5 id="ai-编译器架构">AI 编译器架构</h5>
 <blockquote>
 <p>首先我们来阅读一篇<strong>入门深度学习编译器必读</strong>的综述：<a href="/mlsys/images/The%20Deep%20Learning%20Compiler-%20A%20Comprehensive%20Survey.pdf" rel="">The Deep Learning Compiler: A Comprehensive Survey</a></p>
 <p>后续还可以继续深入阅读：</p>
@@ -3606,6 +3691,30 @@ $$</span><p>
       </tr>
   </tbody>
 </table></blockquote>
+<p>接下来我们看看现有 AI 编译器的整体架构：</p>
+<img src="images/image-20260419193909325.png" alt="image-20260419193909325" style="zoom: 50%; display: block; margin: 0 auto;" />
+<p>和传统编译器一样，AI 编译器也是分为<strong>编译器前端</strong>（Compiler Frontend）和<strong>编译器后端</strong>（Compiler Backend）两个主要部分。</p>
+<p>编译器前端（Compiler Frontend）主要负责接收和处理来自不同 AI 框架的模型，并将其转换为通用的中间表示（IR），进行初步的<strong>硬件无关</strong>的优化。</p>
+<p>编译器前端的组成展示在上图左侧部分：</p>
+<ul>
+<li>输入的神经网络模型格式可以来自多种框架（如 TensorFlow、PyTorch 等）；</li>
+<li>这些模型通过符号表示的转换（如 TVM、nGraph 等）生成计算图；</li>
+<li>高级 IR/图 IR（设备无关）包含了 DAG（有向无环图）和基于 let-binding 的表示形式以及张量计算；</li>
+<li>计算图先经过多种优化，如代数简化、操作融合、操作下沉、公共子表达式消除（CSE）、死代码消除（DCE）和静态内存规划等，得到初步优化的计算图；随后通过模式匹配和图重写等方法进一步优化，最终生成优化后的计算图；</li>
+<li>同时，编译器前端也提供了调试工具（如 IR dumping）可以以文本或 DAG 形式呈现。</li>
+</ul>
+<p>编译器后端（Compiler Backend）负责将优化后的计算图转换为特定硬件平台的低层次表示，并进行<strong>硬件相关</strong>优化和代码生成。</p>
+<p>编译器后端的组成展示在上图右侧部分：</p>
+<ul>
+<li>首先进行硬件特定的优化，包括内在映射、内存分配、内存延迟隐藏、循环优化、并行化等；</li>
+<li>这些优化通过自动调度（如多面体模型）和手动调度（如 Halide）进行；</li>
+<li>自动调优模块包含参数化、成本模型和参数搜索，旨在进一步优化性能；</li>
+<li>后端还利用内核库（如 Intel DNNL、NV cuDNN/TensorRT、AMD MIOpen 等）来提高效率；</li>
+<li>低级 IR/操作符 IR（设备相关）采用 Halide、多面体模型等独特的 IR 实现；</li>
+<li>编译方案支持即时（Just-In-Time）和提前（Ahead-Of-Time）编译；</li>
+<li>最终，代码生成模块将生成 LLVM、CUDA、OpenCL、OpenGL 等代码，以支持各种目标平台，包括 CPU（X86、ARM、RISC-V）、GPU（英伟达、AMD）、ASIC（TPU、Inferentia、NNP 等）和 DSP 等，从而适配越来越多的加速器。</li>
+</ul>
+<h4 id="前端优化">前端优化</h4>
 <h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
 <h3 id="训练">训练</h3>
 <h3 id="推理">推理</h3>
@@ -3661,14 +3770,20 @@ $$</span><p>
 <li id="fn:1">
 <p><strong>形式化方法</strong>可以在我的博客中搜索到，是研一选修的一门课程的笔记。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
+<li id="fn:2">
+<p>John Hennessy 和 David Patterson 是 2017 年图灵奖获得者，目前这两位学者都供职于谷歌，前者是谷歌母公司 Alphabet 的董事会主席，后者任谷歌杰出工程师，致力于研究机器学习和 AI 。他们更为人所知的就是共同完成的计算机系统结构学科「圣经」《计算机体系结构：量化研究方法》了。该讲座也是基于两人在 2019 年新发表的文章《计算机架构的新黄金时代》。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>这段代码我们在 GPU 一节中进行了深度剖析，讲解了 GPU 的 Tensor Core 是怎么对这种矩阵运算进行加速的。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-04-16&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/658358e440df95f3c0e348dc2a937a838775c228" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 658358e440df95f3c0e348dc2a937a838775c228: feat: 新增了脚注位置鼠标悬停弹出一个白色圆角卡片功能">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>658358e</a></span>
+                <span>更新于 2026-04-20&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/da902ade90f1e1e3118027ed39db7b3eecebbc90" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) da902ade90f1e1e3118027ed39db7b3eecebbc90: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>da902ad</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

@@ -505,11 +505,11 @@
             <input type="text" id="login" placeholder="建议不填" autocomplete="off" spellcheck="false">
           </div>
 
-          <!-- 主密码 -->
+          <!-- 私钥 -->
           <div class="form-group">
             <label for="master">私钥</label>
             <div class="password-wrapper">
-              <input type="password" id="master" placeholder="输入主密码" autocomplete="off">
+              <input type="password" id="master" placeholder="请输入私钥" autocomplete="off">
               <button type="button" class="toggle-password" onclick="togglePassword()" title="显示/隐藏密码">
                 <span id="eye-icon">👁</span>
               </button>
@@ -586,7 +586,7 @@
       </div>
 
       <div class="footer-info">
-        基于 PBKDF2-SHA256 算法 · 所有计算在本地完成，不传输任何数据
+        基于 PBKDF2-SHA256算法 — 所有计算在浏览器本地完成，不传输任何数据
       </div>
     </div>
   </div>
@@ -685,7 +685,7 @@
       var charset = getCharset();
 
       if (!site) { showToast('⚠️ 请输入网站'); document.getElementById('site').focus(); return; }
-      if (!master) { showToast('⚠️ 请输入主密码'); document.getElementById('master').focus(); return; }
+      if (!master) { showToast('⚠️ 请输入私钥'); document.getElementById('master').focus(); return; }
       if (!charset) { showToast('⚠️ 请至少勾选一种字符类型'); return; }
 
       var password = generatePassword(site, login, master, length, counter, charset);

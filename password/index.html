@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+  <title>私人密码库 - Thising'log</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      background: #FFFFFF;
+    }
+
+    /* ── 整体两栏布局 ── */
+    .page-layout {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── 左侧介绍区 ── */
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 60px 80px 0;
+    }
+    .hero-section h1 {
+      font-size: 60px;
+      font-weight: 900;
+      color: #1a1a2e;
+      line-height: 1.15;
+      margin-bottom: 26px;
+      letter-spacing: -0.5px;
+    }
+    .hero-section p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #555;
+      max-width: 600px;
+    }
+
+    /* ── 右侧卡片区 ── */
+    .card-section {
+      flex: 0 0 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0;
+    }
+
+    /* ── 卡片容器 ── */
+    .card {
+      width: 100%;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      overflow: visible;
+    }
+
+    /* ── 卡片顶部导航栏 ── */
+    .card-header {
+      background-color: #263238;
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .card-header svg { flex-shrink: 0; }
+    .card-header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: auto;
+      font-size: 13px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .card-header a:hover { opacity: 1; }
+
+    /* ── 卡片内容区 ── */
+    .card-body {
+      padding: 28px 28px 24px;
+    }
+
+    /* ── 表单区域 ── */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    /* ── 问号提示图标 ── */
+    .help-tip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #bbb;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: help;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .help-tip:hover { background: #999; }
+    .help-tip .tip-card {
+      display: none;
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 10px);
+      width: 230px;
+      padding: 10px 12px;
+      background: #263238;
+      color: #e0e0e0;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      z-index: 100;
+    }
+    .help-tip .tip-card::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 8px;
+      border: 6px solid transparent;
+      border-top-color: #263238;
+    }
+    .help-tip:hover .tip-card {
+      display: block;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+    .form-group input:focus {
+      border-color: #7986cb;
+      box-shadow: 0 0 0 2px rgba(121, 134, 203, 0.18);
+    }
+
+    /* ── 密码框容器（带眼睛图标） ── */
+    .password-wrapper {
+      position: relative;
+    }
+    .password-wrapper input {
+      padding-right: 42px;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #999;
+      font-size: 18px;
+      padding: 4px;
+      line-height: 1;
+    }
+    .toggle-password:hover { color: #555; }
+
+    /* ── 选项区域 ── */
+    .options-area {
+      margin-bottom: 20px;
+    }
+    .options-title-row {
+      display: flex;
+      align-items: baseline;  
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .options-title-row .title-checkboxes {
+      flex: 3;
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+    }
+    .options-title-row .title-number {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+    }
+    .options-value-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .options-value-row .checkbox-group {
+      flex: 3;
+      display: flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+    .options-value-row .number-field {
+      flex: 1;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      color: #444;
+      white-space: nowrap;
+    }
+    .checkbox-item input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .checkbox-item input[type="checkbox"]:checked {
+      background: #42a5f5;
+      border-color: #42a5f5;
+    }
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 9px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .number-field input[type="number"] {
+      width: 100%;
+      padding: 7px 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+      text-align: center;
+    }
+    .number-field input[type="number"]:focus {
+      border-color: #7986cb;
+      box-shadow: 0 0 0 2px rgba(121, 134, 203, 0.18);
+    }
+
+    /* ── 按钮行 ── */
+    .button-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .btn-primary {
+      flex: 5;
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: #4A97FF;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .btn-primary:hover {
+      background: #3a85eb;
+      box-shadow: 0 2px 8px rgba(121, 134, 203, 0.35);
+    }
+    .btn-primary:active { background: #2e73d6; }
+    .btn-primary.disabled {
+      background: #94B9FF;
+      cursor: default;
+      box-shadow: none;
+    }
+    .btn-primary.disabled:hover {
+      background: #94B9FF;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 10px 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover {
+      background: #f5f5f5;
+      border-color: #999;
+    }
+
+    /* ── 结果展示（三栏：显示 | 密码 | 复制） ── */
+    .result-area {
+      display: none;
+      align-items: stretch;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+    .result-area.has-result {
+      display: flex;
+    }
+    .result-toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 12px;
+      background: #fff;
+      border: none;
+      border-right: 1px solid #ddd;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #444;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .result-toggle-btn:hover { background: #f9f9f9; }
+    .result-toggle-btn svg { flex-shrink: 0; width: 16px; height: 16px; }
+    .result-password {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+      font-weight: 400;
+      color: #333;
+      letter-spacing: 1px;
+      word-break: break-all;
+      background: #f5f5f5;
+    }
+    .result-copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 12px;
+      background: #fff;
+      border: none;
+      border-left: 1px solid #ddd;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #444;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .result-copy-btn:hover { background: #f9f9f9; }
+    .result-copy-btn svg { flex-shrink: 0; }
+
+    /* ── 底部信息 ── */
+    .footer-info {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      margin-top: 10px;
+      padding: 8px 0;
+      line-height: 1.6;
+    }
+
+    /* ── Toast 提示 ── */
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #333;
+      color: #fff;
+      padding: 10px 28px;
+      border-radius: 4px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── 响应式 ── */
+    @media (max-width: 960px) {
+      .page-layout {
+        flex-direction: column;
+      }
+      .hero-section {
+        max-width: 100%;
+        padding: 48px 32px 32px;
+        text-align: center;
+        align-items: center;
+      }
+      .hero-section h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+      .hero-section p {
+        font-size: 16px;
+      }
+      .card-section {
+        flex: unset;
+        padding: 0 20px 40px;
+      }
+    }
+    @media (max-width: 560px) {
+      .hero-section {
+        padding: 32px 20px 24px;
+      }
+      .hero-section h1 {
+        font-size: 28px;
+      }
+      .card-body { padding: 24px 20px 20px; }
+      .options-row { flex-direction: column; gap: 16px; }
+      .option-section { width: 100%; }
+      .button-row { flex-direction: column; }
+      .btn-primary, .btn-secondary { flex: unset; }
+    }
+  </style>
+
+  <!-- 引入本地 crypto-js -->
+  <script src="crypto-js.js"></script>
+</head>
+<body>
+
+  <div class="page-layout">
+    <!-- 左侧介绍区 -->
+    <div class="hero-section">
+      <h1>Stateless password<br>manager</h1>
+      <p>
+        Stop wasting your time synchronizing your encrypted vault.<br>
+        Remember one master password to access your passwords,<br>
+        anywhere, anytime, from any device. No sync needed.
+      </p>
+    </div>
+
+    <!-- 右侧卡片区 -->
+    <div class="card-section">
+      <div class="card">
+        <!-- 顶部深色 header -->
+        <div class="card-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <circle cx="12" cy="16" r="1"/>
+          </svg>
+          <span>LessPass</span>
+          <a href="/">← 返回博客</a>
+        </div>
+
+        <!-- 卡片内容 -->
+        <div class="card-body">
+
+          <!-- 网站 -->
+          <div class="form-group">
+            <label for="site">网站</label>
+            <input type="text" id="site" placeholder="例如：github.com" autocomplete="off" spellcheck="false">
+          </div>
+
+          <!-- 登录名 -->
+          <div class="form-group">
+            <label for="login">登录名
+              <span class="help-tip">?
+                <span class="tip-card">建议不填。99%用户用不到，只是为了支持同一网站多个账号生成不同密码的功能。</span>
+              </span>
+            </label>
+            <input type="text" id="login" placeholder="建议不填" autocomplete="off" spellcheck="false">
+          </div>
+
+          <!-- 主密码 -->
+          <div class="form-group">
+            <label for="master">私钥</label>
+            <div class="password-wrapper">
+              <input type="password" id="master" placeholder="输入主密码" autocomplete="off">
+              <button type="button" class="toggle-password" onclick="togglePassword()" title="显示/隐藏密码">
+                <span id="eye-icon">👁</span>
+              </button>
+            </div>
+          </div>
+
+      <!-- 选项区域 -->
+      <div class="options-area">
+        <div class="options-title-row">
+          <span class="title-checkboxes">选项</span>
+          <span class="title-number">长度</span>
+          <span class="title-number">计数器
+             <span class="help-tip">?
+              <span class="tip-card">
+                  密码的"版本号"。<br>
+                  主要为了支持部分网站需要强制定期修改密码。
+                  当你需要为同一网站更换密码时，将计数器加 1 即可。<br>
+                  默认为 1 即可。
+              </span>
+            </span>
+          </span>
+        </div>
+        <div class="options-value-row">
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" id="opt-lower" checked> a–z
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="opt-upper" checked> A–Z
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="opt-digits" checked> 0–9
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="opt-symbols" checked> %!@
+            </label>
+          </div>
+          <div class="number-field">
+            <input type="number" id="length" value="16" min="6" max="64">
+          </div>
+          <div class="number-field">
+            <input type="number" id="counter" value="1" min="1" max="99">
+          </div>
+        </div>
+      </div>
+
+          <!-- 按钮行 -->
+          <div class="button-row">
+            <button class="btn-primary disabled" id="btn-generate" onclick="generate()">生成并复制</button>
+            <button class="btn-secondary" onclick="shareUrl()">分享</button>
+            <button class="btn-secondary" onclick="clearAll()">清除</button>
+          </div>
+
+          <!-- 结果展示（三栏式） -->
+          <div class="result-area" id="result-area">
+            <button class="result-toggle-btn" id="result-toggle" onclick="toggleResultVisibility()">
+              <svg id="eye-result-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span id="toggle-label">显示</span>
+            </button>
+            <div class="result-password" id="result-password">**********</div>
+            <button class="result-copy-btn" onclick="copyResult()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              复制
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="footer-info">
+        基于 PBKDF2-SHA256 算法 · 所有计算在本地完成，不传输任何数据
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ── 密码显示切换 ──
+    function togglePassword() {
+      var inp = document.getElementById('master');
+      var icon = document.getElementById('eye-icon');
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        icon.textContent = '🙈';
+      } else {
+        inp.type = 'password';
+        icon.textContent = '👁';
+      }
+    }
+
+    // ── Toast 提示 ──
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 2000);
+    }
+
+    // ── 构建字符集 ──
+    function getCharset() {
+      var cs = '';
+      if (document.getElementById('opt-lower').checked)   cs += 'abcdefghijklmnopqrstuvwxyz';
+      if (document.getElementById('opt-upper').checked)    cs += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      if (document.getElementById('opt-digits').checked)   cs += '0123456789';
+      if (document.getElementById('opt-symbols').checked)  cs += '%!@';
+      return cs;
+    }
+
+    // ── 核心：基于 PBKDF2 生成确定性密码 ──
+    function generatePassword(site, login, master, length, counter, charset) {
+      // 1. 组合 salt：site + login + counter（十六进制）
+      var salt = site + login + counter.toString(16);
+
+      // 2. PBKDF2 派生（100000 轮，输出 256 bits）
+      var derived = CryptoJS.PBKDF2(master, salt, {
+        keySize: 256 / 32,
+        iterations: 100000,
+        hasher: CryptoJS.algo.SHA256
+      });
+
+      // 3. 将派生结果转为大整数（简易实现：用 hex 逐步取模）
+      var hex = derived.toString(CryptoJS.enc.Hex);
+      var password = '';
+
+      var charsetLen = charset.length;
+      var pos = 0;
+      for (var i = 0; i < length; i++) {
+        var chunk = hex.substr(pos % hex.length, 8);
+        pos += 8;
+        var num = parseInt(chunk, 16);
+        password += charset[num % charsetLen];
+      }
+
+      // 4. 确保每个勾选的字符类型至少出现一次
+      var rules = [];
+      if (document.getElementById('opt-lower').checked)   rules.push('abcdefghijklmnopqrstuvwxyz');
+      if (document.getElementById('opt-upper').checked)    rules.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+      if (document.getElementById('opt-digits').checked)   rules.push('0123456789');
+      if (document.getElementById('opt-symbols').checked)  rules.push('%!@');
+
+      var pwArr = password.split('');
+      for (var r = 0; r < rules.length; r++) {
+        var ruleChars = rules[r];
+        var found = false;
+        for (var j = 0; j < pwArr.length; j++) {
+          if (ruleChars.indexOf(pwArr[j]) !== -1) { found = true; break; }
+        }
+        if (!found && pwArr.length > r) {
+          var extraChunk = hex.substr((pos + r * 4) % hex.length, 8);
+          var extraNum = parseInt(extraChunk, 16);
+          pwArr[r] = ruleChars[extraNum % ruleChars.length];
+        }
+      }
+
+      return pwArr.join('');
+    }
+
+    // ── 生成并复制 ──
+    function generate() {
+      var site    = document.getElementById('site').value.trim();
+      var login   = document.getElementById('login').value.trim();
+      var master  = document.getElementById('master').value;
+      var length  = parseInt(document.getElementById('length').value) || 16;
+      var counter = parseInt(document.getElementById('counter').value) || 1;
+      var charset = getCharset();
+
+      if (!site) { showToast('⚠️ 请输入网站'); document.getElementById('site').focus(); return; }
+      if (!master) { showToast('⚠️ 请输入主密码'); document.getElementById('master').focus(); return; }
+      if (!charset) { showToast('⚠️ 请至少勾选一种字符类型'); return; }
+
+      var password = generatePassword(site, login, master, length, counter, charset);
+
+      // 显示结果区域（默认遮掩）
+      currentPassword = password;
+      resultVisible = false;
+      document.getElementById('result-password').textContent = '*'.repeat(password.length);
+      document.getElementById('toggle-label').textContent = '显示';
+      document.getElementById('result-area').classList.add('has-result');
+
+      // 自动复制
+      copyToClipboard(password);
+      showToast('✅ 密码已生成并复制到剪贴板');
+    }
+
+    // ── 复制到剪贴板 ──
+    function copyToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+    }
+
+    var currentPassword = '';
+    var resultVisible = false;
+
+    function toggleResultVisibility() {
+      if (!currentPassword) return;
+      resultVisible = !resultVisible;
+      var display = document.getElementById('result-password');
+      var label = document.getElementById('toggle-label');
+      if (resultVisible) {
+        display.textContent = currentPassword;
+        label.textContent = '隐藏';
+      } else {
+        display.textContent = '*'.repeat(currentPassword.length);
+        label.textContent = '显示';
+      }
+    }
+
+    function copyResult() {
+      if (currentPassword) {
+        copyToClipboard(currentPassword);
+        showToast('✅ 已复制到剪贴板');
+      }
+    }
+
+    // ── 分享（将配置编码到 URL） ──
+    function shareUrl() {
+      var site    = document.getElementById('site').value.trim();
+      var login   = document.getElementById('login').value.trim();
+      var length  = document.getElementById('length').value;
+      var counter = document.getElementById('counter').value;
+      var lower   = document.getElementById('opt-lower').checked ? '1' : '0';
+      var upper   = document.getElementById('opt-upper').checked ? '1' : '0';
+      var digits  = document.getElementById('opt-digits').checked ? '1' : '0';
+      var symbols = document.getElementById('opt-symbols').checked ? '1' : '0';
+
+      var params = new URLSearchParams({
+        site: site, login: login, len: length, cnt: counter,
+        lc: lower, uc: upper, dg: digits, sym: symbols
+      });
+      var url = location.origin + location.pathname + '?' + params.toString();
+      copyToClipboard(url);
+      showToast('🔗 分享链接已复制');
+    }
+
+    // ── 从 URL 参数恢复配置 ──
+    function restoreFromUrl() {
+      var params = new URLSearchParams(location.search);
+      if (params.has('site'))  document.getElementById('site').value = params.get('site');
+      if (params.has('login')) document.getElementById('login').value = params.get('login');
+      if (params.has('len'))   document.getElementById('length').value = params.get('len');
+      if (params.has('cnt'))   document.getElementById('counter').value = params.get('cnt');
+      if (params.has('lc'))    document.getElementById('opt-lower').checked = params.get('lc') === '1';
+      if (params.has('uc'))    document.getElementById('opt-upper').checked = params.get('uc') === '1';
+      if (params.has('dg'))    document.getElementById('opt-digits').checked = params.get('dg') === '1';
+      if (params.has('sym'))   document.getElementById('opt-symbols').checked = params.get('sym') === '1';
+    }
+    restoreFromUrl();
+
+    // ── 清除 ──
+    function clearAll() {
+      document.getElementById('site').value = '';
+      document.getElementById('login').value = '';
+      document.getElementById('master').value = '';
+      document.getElementById('length').value = '16';
+      document.getElementById('counter').value = '1';
+      document.getElementById('opt-lower').checked = true;
+      document.getElementById('opt-upper').checked = true;
+      document.getElementById('opt-digits').checked = true;
+      document.getElementById('opt-symbols').checked = true;
+
+      currentPassword = '';
+      resultVisible = false;
+      document.getElementById('result-password').textContent = '**********';
+      document.getElementById('toggle-label').textContent = '显示';
+      document.getElementById('result-area').classList.remove('has-result');
+
+      document.getElementById('master').type = 'password';
+      document.getElementById('eye-icon').textContent = '👁';
+
+      // 清除 URL 参数
+      if (location.search) {
+        history.replaceState(null, '', location.pathname);
+      }
+      showToast('🗑️ 已清除');
+    }
+
+    // ── 按钮状态监听 ──
+    function updateBtnState() {
+      var site = document.getElementById('site').value.trim();
+      var master = document.getElementById('master').value;
+      var btn = document.getElementById('btn-generate');
+      if (site && master) {
+        btn.classList.remove('disabled');
+      } else {
+        btn.classList.add('disabled');
+      }
+    }
+    document.getElementById('site').addEventListener('input', updateBtnState);
+    document.getElementById('master').addEventListener('input', updateBtnState);
+    updateBtnState();
+
+    // ── 回车触发生成 ──
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+        e.preventDefault();
+        generate();
+      }
+    });
+  </script>
+
+</body>
+</html>

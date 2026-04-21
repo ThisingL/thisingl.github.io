@@ -14,8 +14,19 @@
       background: #FFFFFF;
     }
 
+    /* SVG 瓷砖背景 */
+    .tile-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     /* ── 整体两栏布局 ── */
     .page-layout {
+      position: relative;
+      z-index: 1;
       display: flex;
       min-height: 100vh;
       max-width: 1200px;
@@ -29,6 +40,12 @@
       flex-direction: column;
       justify-content: center;
       padding: 0 60px 80px 0;
+      perspective: 800px;
+    }
+    .hero-content {
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg);
+      transition: transform 0.15s ease-out;
     }
     .hero-section h1 {
       font-size: 60px;
@@ -52,15 +69,45 @@
       flex-direction: column;
       justify-content: center;
       padding: 40px 0;
+      perspective: 800px;
     }
 
     /* ── 卡片容器 ── */
     .card {
       width: 100%;
       background: #fff;
-      border-radius: 4px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
       overflow: visible;
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.06),
+        0 8px 24px rgba(0,0,0,0.08),
+        0 20px 60px rgba(0,0,0,0.10);
+      position: relative;
+    }
+    .card:hover {
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.08),
+        0 12px 32px rgba(0,0,0,0.12),
+        0 28px 72px rgba(0,0,0,0.14);
+    }
+
+    /* 光泽反射层 */
+    .card-glare {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border-radius: 8px;
+      pointer-events: none;
+      z-index: 10;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.15s ease-out;
+    }
+    .card:hover .card-glare {
+      opacity: 1;
     }
 
     /* ── 卡片顶部导航栏 ── */
@@ -73,6 +120,7 @@
       gap: 10px;
       font-size: 17px;
       font-weight: 600;
+      border-radius: 8px 8px 0 0;
       letter-spacing: 0.5px;
     }
     .card-header svg { flex-shrink: 0; }
@@ -164,6 +212,57 @@
     .form-group input:focus {
       border-color: #7986cb;
       box-shadow: 0 0 0 2px rgba(121, 134, 203, 0.18);
+    }
+
+    /* ── 网站搜索下拉框 ── */
+    .site-autocomplete {
+      position: relative;
+    }
+    .site-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: 220px;
+      overflow-y: auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+      z-index: 50;
+    }
+    .site-dropdown.open {
+      display: block;
+    }
+    .site-dropdown-item {
+      padding: 9px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #333;
+      transition: background 0.1s;
+    }
+    .site-dropdown-item:hover,
+    .site-dropdown-item.active {
+      background: #f0f4ff;
+    }
+    .site-dropdown-item .site-name {
+      font-weight: 500;
+    }
+    .site-dropdown-item .site-url {
+      color: #999;
+      font-size: 12px;
+      margin-left: auto;
+    }
+    .site-dropdown-empty {
+      padding: 12px;
+      font-size: 13px;
+      color: #999;
+      text-align: center;
     }
 
     /* ── 密码框容器（带眼睛图标） ── */
@@ -388,13 +487,19 @@
     .result-copy-btn svg { flex-shrink: 0; }
 
     /* ── 底部信息 ── */
+    .footer-info-wrapper {
+      perspective: 800px;
+      margin-top: 10px;
+      padding: 8px 0;
+    }
     .footer-info {
       text-align: center;
       font-size: 12px;
       color: #999;
-      margin-top: 10px;
-      padding: 8px 0;
       line-height: 1.6;
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg);
+      transition: transform 0.15s ease-out;
     }
 
     /* ── Toast 提示 ── */
@@ -461,20 +566,44 @@
 </head>
 <body>
 
+  <!-- SVG 瓷砖网格背景 -->
+  <svg class="tile-bg" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="tile-pattern" x="0" y="0" width="400" height="400" patternUnits="userSpaceOnUse">
+        <!-- 底色白 -->
+        <rect width="400" height="400" fill="#FFFFFF"/>
+        <!-- 网格线 -->
+        <line x1="0" y1="200" x2="400" y2="200" stroke="#e5e7eb" stroke-width="0.5"/>
+        <line x1="200" y1="0" x2="200" y2="400" stroke="#e5e7eb" stroke-width="0.5"/>
+        <line x1="0" y1="0" x2="400" y2="0" stroke="#e5e7eb" stroke-width="0.5"/>
+        <line x1="0" y1="400" x2="400" y2="400" stroke="#e5e7eb" stroke-width="0.5"/>
+        <line x1="0" y1="0" x2="0" y2="400" stroke="#e5e7eb" stroke-width="0.5"/>
+        <line x1="400" y1="0" x2="400" y2="400" stroke="#e5e7eb" stroke-width="0.5"/>
+        <!-- 有色块（交替分布） -->
+        <rect x="0" y="0" width="200" height="200" fill="#F9FAFC"/>
+        <rect x="200" y="200" width="200" height="200" fill="#FCFDFD"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#tile-pattern)" stroke-width="0"/>
+  </svg>
+
   <div class="page-layout">
     <!-- 左侧介绍区 -->
     <div class="hero-section">
-      <h1>Stateless password<br>manager</h1>
-      <p>
-        Stop wasting your time synchronizing your encrypted vault.<br>
-        Remember one master password to access your passwords,<br>
-        anywhere, anytime, from any device. No sync needed.
-      </p>
+      <div class="hero-content" id="hero3d">
+        <h1>One key,<br>All passwords</h1>
+        <p>
+          无需存储，无需同步，密码在本地实时计算生成。<br>
+          只需维护一个私钥，即可随时随地计算出各网站的密码。<br>
+          某个网站密码被攻击，也不影响你的私钥和其他网站的安全。
+        </p>
+      </div>
     </div>
 
     <!-- 右侧卡片区 -->
     <div class="card-section">
-      <div class="card">
+      <div class="card" id="card3d">
+        <div class="card-glare" id="card-glare"></div>
         <!-- 顶部深色 header -->
         <div class="card-header">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -482,7 +611,7 @@
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             <circle cx="12" cy="16" r="1"/>
           </svg>
-          <span>LessPass</span>
+          <span>1Password</span>
           <a href="/">← 返回博客</a>
         </div>
 
@@ -492,7 +621,10 @@
           <!-- 网站 -->
           <div class="form-group">
             <label for="site">网站</label>
-            <input type="text" id="site" placeholder="例如：github.com" autocomplete="off" spellcheck="false">
+            <div class="site-autocomplete">
+              <input type="text" id="site" placeholder="搜索或输入网站名称" autocomplete="off" spellcheck="false">
+              <div class="site-dropdown" id="site-dropdown"></div>
+            </div>
           </div>
 
           <!-- 登录名 -->
@@ -559,7 +691,6 @@
           <!-- 按钮行 -->
           <div class="button-row">
             <button class="btn-primary disabled" id="btn-generate" onclick="generate()">生成并复制</button>
-            <button class="btn-secondary" onclick="shareUrl()">分享</button>
             <button class="btn-secondary" onclick="clearAll()">清除</button>
           </div>
 
@@ -585,8 +716,10 @@
         </div>
       </div>
 
-      <div class="footer-info">
-        基于 PBKDF2-SHA256算法 — 所有计算在浏览器本地完成，不传输任何数据
+      <div class="footer-info-wrapper">
+        <div class="footer-info" id="footer3d">
+          基于 PBKDF2-SHA256算法 — 所有计算在浏览器本地完成，不传输任何数据
+        </div>
       </div>
     </div>
   </div>
@@ -595,6 +728,154 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    // ══════════════════════════════════════════════════
+    // 预设网站列表（方便后续维护，直接在此数组中添加即可）
+    // 格式：{ name: '显示名称', value: '用于计算密码的标准值' }
+    // ══════════════════════════════════════════════════
+    var SITE_LIST = [
+      { name: 'GitHub',         value: 'github.com' },
+      { name: 'Google',         value: 'google.com' },
+      { name: 'Gmail',          value: 'gmail.com' },
+      { name: 'YouTube',        value: 'youtube.com' },
+      { name: 'Facebook',       value: 'facebook.com' },
+      { name: 'Twitter / X',    value: 'x.com' },
+      { name: 'Instagram',      value: 'instagram.com' },
+      { name: 'Reddit',         value: 'reddit.com' },
+      { name: 'LinkedIn',       value: 'linkedin.com' },
+      { name: 'Discord',        value: 'discord.com' },
+      { name: 'Telegram',       value: 'telegram.org' },
+      { name: 'WhatsApp',       value: 'whatsapp.com' },
+      { name: 'Netflix',        value: 'netflix.com' },
+      { name: 'Spotify',        value: 'spotify.com' },
+      { name: 'Amazon',         value: 'amazon.com' },
+      { name: 'Apple',          value: 'apple.com' },
+      { name: 'Microsoft',      value: 'microsoft.com' },
+      { name: 'Outlook',        value: 'outlook.com' },
+      { name: 'Steam',          value: 'steam.com' },
+      { name: 'Epic Games',     value: 'epicgames.com' },
+      { name: 'PayPal',         value: 'paypal.com' },
+      { name: 'Notion',         value: 'notion.so' },
+      { name: 'Figma',          value: 'figma.com' },
+      { name: 'Vercel',         value: 'vercel.com' },
+      { name: 'Cloudflare',     value: 'cloudflare.com' },
+      { name: 'ChatGPT',        value: 'chatgpt.com' },
+      { name: 'Claude',         value: 'claude.ai' },
+      { name: 'Stack Overflow',  value: 'stackoverflow.com' },
+      { name: 'Hacker News',    value: 'news.ycombinator.com' },
+      { name: 'V2EX',           value: 'v2ex.com' },
+      { name: '淘宝',           value: 'taobao.com' },
+      { name: '京东',           value: 'jd.com' },
+      { name: '拼多多',         value: 'pinduoduo.com' },
+      { name: '美团',           value: 'meituan.com' },
+      { name: '支付宝',         value: 'alipay.com' },
+      { name: '微信',           value: 'weixin.qq.com' },
+      { name: 'QQ',             value: 'qq.com' },
+      { name: '微博',           value: 'weibo.com' },
+      { name: '知乎',           value: 'zhihu.com' },
+      { name: 'B站 / 哔哩哔哩', value: 'bilibili.com' },
+      { name: '豆瓣',           value: 'douban.com' },
+      { name: '网易',           value: '163.com' },
+      { name: '百度',           value: 'baidu.com' },
+      { name: '飞书',           value: 'feishu.cn' },
+      { name: '钉钉',           value: 'dingtalk.com' },
+      { name: '小红书',         value: 'xiaohongshu.com' },
+      { name: '抖音',           value: 'douyin.com' },
+    ];
+
+    // ── 网站搜索下拉联想 ──
+    (function() {
+      var input = document.getElementById('site');
+      var dropdown = document.getElementById('site-dropdown');
+      var activeIndex = -1;
+
+      function renderDropdown(query) {
+        var q = query.toLowerCase().trim();
+        var matches = [];
+
+        if (q.length === 0) {
+          // 输入为空时显示全部
+          matches = SITE_LIST.slice();
+        } else {
+          for (var i = 0; i < SITE_LIST.length; i++) {
+            var s = SITE_LIST[i];
+            if (s.name.toLowerCase().indexOf(q) !== -1 || s.value.toLowerCase().indexOf(q) !== -1) {
+              matches.push(s);
+            }
+          }
+        }
+
+        activeIndex = -1;
+        dropdown.innerHTML = '';
+
+        if (matches.length === 0) {
+          dropdown.innerHTML = '<div class="site-dropdown-empty">无匹配，将直接使用输入内容</div>';
+          dropdown.classList.add('open');
+          return;
+        }
+
+        for (var j = 0; j < matches.length; j++) {
+          var item = document.createElement('div');
+          item.className = 'site-dropdown-item';
+          item.setAttribute('data-value', matches[j].value);
+          item.innerHTML = '<span class="site-name">' + matches[j].name + '</span><span class="site-url">' + matches[j].value + '</span>';
+          item.addEventListener('mousedown', function(e) {
+            e.preventDefault(); // 阻止 blur 先触发
+            input.value = this.getAttribute('data-value');
+            dropdown.classList.remove('open');
+            input.dispatchEvent(new Event('input')); // 触发按钮状态更新
+          });
+          dropdown.appendChild(item);
+        }
+        dropdown.classList.add('open');
+      }
+
+      input.addEventListener('focus', function() {
+        renderDropdown(this.value);
+      });
+
+      input.addEventListener('input', function() {
+        renderDropdown(this.value);
+      });
+
+      input.addEventListener('blur', function() {
+        // 延迟关闭，让 mousedown 有机会触发
+        setTimeout(function() { dropdown.classList.remove('open'); }, 150);
+      });
+
+      // 键盘上下选择 + 回车确认
+      input.addEventListener('keydown', function(e) {
+        var items = dropdown.querySelectorAll('.site-dropdown-item');
+        if (!items.length || !dropdown.classList.contains('open')) return;
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          activeIndex = Math.min(activeIndex + 1, items.length - 1);
+          updateActive(items);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          activeIndex = Math.max(activeIndex - 1, 0);
+          updateActive(items);
+        } else if (e.key === 'Enter' && activeIndex >= 0) {
+          e.preventDefault();
+          e.stopPropagation();
+          input.value = items[activeIndex].getAttribute('data-value');
+          dropdown.classList.remove('open');
+          input.dispatchEvent(new Event('input'));
+        } else if (e.key === 'Escape') {
+          dropdown.classList.remove('open');
+        }
+      });
+
+      function updateActive(items) {
+        for (var k = 0; k < items.length; k++) {
+          items[k].classList.toggle('active', k === activeIndex);
+        }
+        if (activeIndex >= 0 && items[activeIndex]) {
+          items[activeIndex].scrollIntoView({ block: 'nearest' });
+        }
+      }
+    })();
+
     // ── 密码显示切换 ──
     function togglePassword() {
       var inp = document.getElementById('master');
@@ -631,22 +912,23 @@
       // 1. 组合 salt：site + login + counter（十六进制）
       var salt = site + login + counter.toString(16);
 
-      // 2. PBKDF2 派生（100000 轮，输出 256 bits）
+      // 2. PBKDF2 派生（100000 轮）
+      //    输出足够长的 key：每个密码字符需要 4 bytes (8 hex)，
+      //    所以输出 length * 4 bytes，确保不会循环复用
+      var keySize = Math.max(8, length + 4);  // keySize 以 32-bit word 为单位，额外 +4 留给 rule enforcement
       var derived = CryptoJS.PBKDF2(master, salt, {
-        keySize: 256 / 32,
+        keySize: keySize,
         iterations: 100000,
         hasher: CryptoJS.algo.SHA256
       });
 
-      // 3. 将派生结果转为大整数（简易实现：用 hex 逐步取模）
+      // 3. 每 8 个 hex 字符（32 bits）映射为一个密码字符
       var hex = derived.toString(CryptoJS.enc.Hex);
       var password = '';
 
       var charsetLen = charset.length;
-      var pos = 0;
       for (var i = 0; i < length; i++) {
-        var chunk = hex.substr(pos % hex.length, 8);
-        pos += 8;
+        var chunk = hex.substr(i * 8, 8);
         var num = parseInt(chunk, 16);
         password += charset[num % charsetLen];
       }
@@ -666,7 +948,7 @@
           if (ruleChars.indexOf(pwArr[j]) !== -1) { found = true; break; }
         }
         if (!found && pwArr.length > r) {
-          var extraChunk = hex.substr((pos + r * 4) % hex.length, 8);
+          var extraChunk = hex.substr((length + r) * 8, 8);
           var extraNum = parseInt(extraChunk, 16);
           pwArr[r] = ruleChars[extraNum % ruleChars.length];
         }
@@ -742,26 +1024,6 @@
       }
     }
 
-    // ── 分享（将配置编码到 URL） ──
-    function shareUrl() {
-      var site    = document.getElementById('site').value.trim();
-      var login   = document.getElementById('login').value.trim();
-      var length  = document.getElementById('length').value;
-      var counter = document.getElementById('counter').value;
-      var lower   = document.getElementById('opt-lower').checked ? '1' : '0';
-      var upper   = document.getElementById('opt-upper').checked ? '1' : '0';
-      var digits  = document.getElementById('opt-digits').checked ? '1' : '0';
-      var symbols = document.getElementById('opt-symbols').checked ? '1' : '0';
-
-      var params = new URLSearchParams({
-        site: site, login: login, len: length, cnt: counter,
-        lc: lower, uc: upper, dg: digits, sym: symbols
-      });
-      var url = location.origin + location.pathname + '?' + params.toString();
-      copyToClipboard(url);
-      showToast('🔗 分享链接已复制');
-    }
-
     // ── 从 URL 参数恢复配置 ──
     function restoreFromUrl() {
       var params = new URLSearchParams(location.search);
@@ -822,10 +1084,92 @@
     // ── 回车触发生成 ──
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+        // 如果下拉框正在打开，不触发生成（让下拉框自己处理）
+        var dd = document.getElementById('site-dropdown');
+        if (dd && dd.classList.contains('open')) return;
         e.preventDefault();
         generate();
       }
     });
+
+    // ── 3D 卡片倾斜效果 ──
+    (function() {
+      var card = document.getElementById('card3d');
+      var glare = document.getElementById('card-glare');
+      var maxTilt = 6; // 最大倾斜角度
+
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;   // 鼠标在卡片内的 x
+        var y = e.clientY - rect.top;    // 鼠标在卡片内的 y
+        var cx = rect.width / 2;
+        var cy = rect.height / 2;
+
+        // 计算倾斜角度（鼠标偏右 → 卡片右边下沉 → rotateY 为正）
+        var rotateY = ((x - cx) / cx) * maxTilt;
+        var rotateX = ((cy - y) / cy) * maxTilt;
+
+        card.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+
+        // 移动光泽跟随鼠标
+        var px = (x / rect.width) * 100;
+        var py = (y / rect.height) * 100;
+        glare.style.background = 'radial-gradient(circle at ' + px + '% ' + py + '%, rgba(255,255,255,0.20) 0%, transparent 55%)';
+      });
+
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        glare.style.background = 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25) 0%, transparent 60%)';
+      });
+    })();
+
+    // ── 3D 左侧文字倾斜效果 ──
+    (function() {
+      var hero = document.getElementById('hero3d');
+      var section = hero.parentElement;
+      var maxTilt = 4;
+
+      section.addEventListener('mousemove', function(e) {
+        var rect = section.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var cx = rect.width / 2;
+        var cy = rect.height / 2;
+
+        var rotateY = ((x - cx) / cx) * maxTilt;
+        var rotateX = ((cy - y) / cy) * maxTilt;
+
+        hero.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+      });
+
+      section.addEventListener('mouseleave', function() {
+        hero.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+    })();
+
+    // ── 3D 底部文字倾斜效果 ──
+    (function() {
+      var footer = document.getElementById('footer3d');
+      var wrapper = footer.parentElement;
+      var maxTilt = 4;
+
+      wrapper.addEventListener('mousemove', function(e) {
+        var rect = wrapper.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var cx = rect.width / 2;
+        var cy = rect.height / 2;
+
+        var rotateY = ((x - cx) / cx) * maxTilt;
+        var rotateX = ((cy - y) / cy) * maxTilt;
+
+        footer.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+      });
+
+      wrapper.addEventListener('mouseleave', function() {
+        footer.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+    })();
   </script>
 
 </body>

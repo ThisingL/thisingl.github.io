@@ -723,6 +723,7 @@
     // 格式：{ name: '显示名称', value: '用于计算密码的标准值' }
     // ══════════════════════════════════════════════════
     var SITE_LIST = [
+      // ── 国外应用 ──
       { name: 'Google',         value: 'google.com' },
       { name: 'GitHub',         value: 'github.com' },
       { name: 'Gmail',          value: 'gmail.com' },
@@ -753,12 +754,14 @@
       { name: 'Stack Overflow',  value: 'stackoverflow.com' },
       { name: 'Hacker News',    value: 'news.ycombinator.com' },
       { name: 'V2EX',           value: 'v2ex.com' },
+
+      // ── 国内应用 ──
       { name: '淘宝',           value: 'taobao.com' },
       { name: '京东',           value: 'jd.com' },
       { name: '拼多多',         value: 'pinduoduo.com' },
       { name: '美团',           value: 'meituan.com' },
       { name: '支付宝',         value: 'alipay.com' },
-      { name: '微信',           value: 'weixin.qq.com' },
+      { name: '微信 / WeChat',           value: 'weixin.qq.com' },
       { name: 'QQ',             value: 'qq.com' },
       { name: '微博',           value: 'weibo.com' },
       { name: '知乎',           value: 'zhihu.com' },
@@ -769,7 +772,25 @@
       { name: '飞书',           value: 'feishu.cn' },
       { name: '钉钉',           value: 'dingtalk.com' },
       { name: '小红书',         value: 'xiaohongshu.com' },
-      { name: '抖音',           value: 'douyin.com' },
+      { name: '抖音 / TikTok',           value: 'douyin.com' },
+
+      // ── 国内银行 ──
+      { name: '中国银行',       value: 'boc.cn' },
+      { name: '工商银行',       value: 'icbc.com.cn' },
+      { name: '建设银行',       value: 'ccb.com' },
+      { name: '农业银行',       value: 'abchina.com' },
+      { name: '交通银行',       value: 'bankcomm.com' },
+      { name: '招商银行',       value: 'cmbchina.com' },
+      { name: '浙商银行',       value: 'czbank.com' },
+      { name: '浦发银行',       value: 'spdb.com.cn' },
+      { name: '中信银行',       value: 'citicbank.com' },
+      { name: '光大银行',       value: 'cebbank.com' },
+      { name: '民生银行',       value: 'cmbc.com.cn' },
+      { name: '兴业银行',       value: 'cib.com.cn' },
+      { name: '平安银行',       value: 'bank.pingan.com' },
+      { name: '华夏银行',       value: 'hxb.com.cn' },
+      { name: '广发银行',       value: 'cgbchina.com.cn' },
+      { name: '邮储银行',       value: 'psbc.com' },
     ];
 
     // ── 网站搜索下拉联想 ──
@@ -777,6 +798,40 @@
       var input = document.getElementById('site');
       var dropdown = document.getElementById('site-dropdown');
       var activeIndex = -1;
+
+      // 模糊匹配：查询的每个字符按顺序出现在目标中即可
+      // 返回分数（越小越好），-1 表示不匹配
+      function fuzzyScore(target, query) {
+        var t = target.toLowerCase();
+        var q = query.toLowerCase();
+        // 完全包含（连续子串）→ 最高优先
+        if (t.indexOf(q) !== -1) return 0;
+        // 逐字符顺序匹配
+        var ti = 0;
+        var consecutive = 0, maxConsecutive = 0;
+        var lastMatchPos = -2;
+        for (var qi = 0; qi < q.length; qi++) {
+          var found = false;
+          while (ti < t.length) {
+            if (t[ti] === q[qi]) {
+              if (ti === lastMatchPos + 1) {
+                consecutive++;
+              } else {
+                consecutive = 1;
+              }
+              if (consecutive > maxConsecutive) maxConsecutive = consecutive;
+              lastMatchPos = ti;
+              ti++;
+              found = true;
+              break;
+            }
+            ti++;
+          }
+          if (!found) return -1; // 不匹配
+        }
+        // 分数：连续匹配越多越好 → 用查询长度减去最大连续数（越小越好）
+        return q.length - maxConsecutive;
+      }
 
       function renderDropdown(query) {
         var q = query.toLowerCase().trim();
@@ -786,11 +841,24 @@
           // 输入为空时显示全部
           matches = SITE_LIST.slice();
         } else {
+          var scored = [];
           for (var i = 0; i < SITE_LIST.length; i++) {
             var s = SITE_LIST[i];
-            if (s.name.toLowerCase().indexOf(q) !== -1 || s.value.toLowerCase().indexOf(q) !== -1) {
-              matches.push(s);
+            var nameScore = fuzzyScore(s.name, q);
+            var valueScore = fuzzyScore(s.value, q);
+            // 取两者中更好的分数
+            var best = -1;
+            if (nameScore !== -1 && valueScore !== -1) best = Math.min(nameScore, valueScore);
+            else if (nameScore !== -1) best = nameScore;
+            else if (valueScore !== -1) best = valueScore;
+            if (best !== -1) {
+              scored.push({ site: s, score: best });
             }
+          }
+          // 按分数排序（越小越好，即连续匹配越多越靠前）
+          scored.sort(function(a, b) { return a.score - b.score; });
+          for (var j = 0; j < scored.length; j++) {
+            matches.push(scored[j].site);
           }
         }
 

@@ -346,19 +346,19 @@
       flex-shrink: 0;
     }
     .checkbox-item input[type="checkbox"]:checked {
-      background: #42a5f5;
-      border-color: #42a5f5;
+      background: #2A73FE;
+      border-color: #2A73FE;
     }
     .checkbox-item input[type="checkbox"]:checked::after {
       content: '';
       position: absolute;
-      left: 4px;
-      top: 1px;
+      left: 50%;
+      top: 38%;
+      transform: translate(-50%, -50%) rotate(45deg);
       width: 5px;
       height: 9px;
       border: solid #fff;
       border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
     }
     .number-field input[type="number"] {
       width: 100%;
@@ -388,7 +388,7 @@
       font-size: 14px;
       font-weight: 600;
       color: #fff;
-      background: #4A97FF;
+      background: #2A73FE;
       border: none;
       border-radius: 4px;
       cursor: pointer;

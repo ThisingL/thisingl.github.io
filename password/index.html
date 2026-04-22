@@ -593,9 +593,9 @@
       <div class="hero-content" id="hero3d">
         <h1>One key,<br>All passwords</h1>
         <p>
-          无需存储，无需同步，密码在本地实时计算生成。<br>
-          只需维护一个私钥，即可随时随地计算出各网站的密码。<br>
-          某个网站密码被攻击，也不影响你的私钥和其他网站的安全。
+          无需存储，无需同步，密码在浏览器本地实时计算生成<br>
+          您只需维护一个私钥，即可随时随地计算出各网站的密码<br>
+          某个网站密码被攻击，也不影响您的私钥和其他网站的安全
         </p>
       </div>
     </div>
@@ -627,16 +627,6 @@
             </div>
           </div>
 
-          <!-- 登录名 -->
-          <div class="form-group">
-            <label for="login">登录名
-              <span class="help-tip">?
-                <span class="tip-card">建议不填。99%用户用不到，只是为了支持同一网站多个账号生成不同密码的功能。</span>
-              </span>
-            </label>
-            <input type="text" id="login" placeholder="建议不填" autocomplete="off" spellcheck="false">
-          </div>
-
           <!-- 私钥 -->
           <div class="form-group">
             <label for="master">私钥</label>
@@ -653,12 +643,12 @@
         <div class="options-title-row">
           <span class="title-checkboxes">选项</span>
           <span class="title-number">长度</span>
-          <span class="title-number">计数器
+          <span class="title-number">版本号
              <span class="help-tip">?
               <span class="tip-card">
                   密码的"版本号"。<br>
                   主要为了支持部分网站需要强制定期修改密码。
-                  当你需要为同一网站更换密码时，将计数器加 1 即可。<br>
+                  当需要为同一网站更换密码时，将版本号 +1 即可生成全新密码。<br>
                   默认为 1 即可。
               </span>
             </span>
@@ -733,8 +723,8 @@
     // 格式：{ name: '显示名称', value: '用于计算密码的标准值' }
     // ══════════════════════════════════════════════════
     var SITE_LIST = [
-      { name: 'GitHub',         value: 'github.com' },
       { name: 'Google',         value: 'google.com' },
+      { name: 'GitHub',         value: 'github.com' },
       { name: 'Gmail',          value: 'gmail.com' },
       { name: 'YouTube',        value: 'youtube.com' },
       { name: 'Facebook',       value: 'facebook.com' },
@@ -908,9 +898,9 @@
     }
 
     // ── 核心：基于 PBKDF2 生成确定性密码 ──
-    function generatePassword(site, login, master, length, counter, charset) {
-      // 1. 组合 salt：site + login + counter（十六进制）
-      var salt = site + login + counter.toString(16);
+    function generatePassword(site, master, length, counter, charset) {
+      // 1. 组合 salt：site + counter（十六进制）
+      var salt = site + counter.toString(16);
 
       // 2. PBKDF2 派生（100000 轮）
       //    输出足够长的 key：每个密码字符需要 4 bytes (8 hex)，
@@ -960,7 +950,6 @@
     // ── 生成并复制 ──
     function generate() {
       var site    = document.getElementById('site').value.trim();
-      var login   = document.getElementById('login').value.trim();
       var master  = document.getElementById('master').value;
       var length  = parseInt(document.getElementById('length').value) || 16;
       var counter = parseInt(document.getElementById('counter').value) || 1;
@@ -970,7 +959,7 @@
       if (!master) { showToast('⚠️ 请输入私钥'); document.getElementById('master').focus(); return; }
       if (!charset) { showToast('⚠️ 请至少勾选一种字符类型'); return; }
 
-      var password = generatePassword(site, login, master, length, counter, charset);
+      var password = generatePassword(site, master, length, counter, charset);
 
       // 显示结果区域（默认遮掩）
       currentPassword = password;
@@ -1028,7 +1017,6 @@
     function restoreFromUrl() {
       var params = new URLSearchParams(location.search);
       if (params.has('site'))  document.getElementById('site').value = params.get('site');
-      if (params.has('login')) document.getElementById('login').value = params.get('login');
       if (params.has('len'))   document.getElementById('length').value = params.get('len');
       if (params.has('cnt'))   document.getElementById('counter').value = params.get('cnt');
       if (params.has('lc'))    document.getElementById('opt-lower').checked = params.get('lc') === '1';
@@ -1041,7 +1029,6 @@
     // ── 清除 ──
     function clearAll() {
       document.getElementById('site').value = '';
-      document.getElementById('login').value = '';
       document.getElementById('master').value = '';
       document.getElementById('length').value = '16';
       document.getElementById('counter').value = '1';
@@ -1064,6 +1051,7 @@
         history.replaceState(null, '', location.pathname);
       }
       showToast('🗑️ 已清除');
+      updateBtnState();
     }
 
     // ── 按钮状态监听 ──

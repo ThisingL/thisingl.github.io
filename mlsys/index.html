@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-04-20T19:17:44+08:00">
+    <meta property="article:modified_time" content="2026-04-27T20:53:13+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  47992 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-20T19:17:44+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  62051 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-27T20:53:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 47992 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 96 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 62051 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 124 分钟&nbsp;
     
 
     
@@ -204,13 +204,26 @@
             </li>
           </ul>
         </li>
-        <li><a href="#大模型训练与推理系统架构">大模型训练与推理系统架构</a>
+        <li><a href="#ai-框架">AI 框架</a>
           <ul>
-            <li><a href="#ai-框架">AI 框架</a>
+            <li><a href="#ai-框架基础">AI 框架基础</a>
               <ul>
-                <li><a href="#计算图">计算图</a></li>
+                <li><a href="#通用逼近定理">通用逼近定理</a></li>
+                <li><a href="#梯度下降">梯度下降</a></li>
               </ul>
             </li>
+            <li><a href="#自动微分">自动微分</a>
+              <ul>
+                <li><a href="#计算机微分方式">计算机微分方式</a></li>
+                <li><a href="#微分计算模式">微分计算模式</a></li>
+                <li><a href="#动手实现自动微分">动手实现自动微分</a></li>
+              </ul>
+            </li>
+            <li><a href="#计算图">计算图</a></li>
+          </ul>
+        </li>
+        <li><a href="#大模型训推系统架构">大模型训推系统架构</a>
+          <ul>
             <li><a href="#大模型训练">大模型训练</a></li>
             <li><a href="#大模型推理">大模型推理</a>
               <ul>
@@ -3661,6 +3674,7 @@ $$</span><p>
 <p>这里我们还需要区分两个关键概念：<strong>算子</strong>和 <strong>Kernel</strong>。</p>
 <p>大家应该经常看到这两个名词，而且似乎发现它们的含义非常相似，都代表一种具体的运算操作，那么它们的区别到底是什么呢？</p>
 <p>这其实是从不同层的视角对同样事情的不同称呼。在 AI 框架中，<strong>算子</strong>是执行具体计算的操作单元，例如矩阵乘法、卷积、激活函数等，面向算法工程师，强调的是<strong>数学语义</strong>（做什么）。而 <strong>Kernel</strong> 通常指在底层硬件上执行特定计算任务的函数或代码块，由 AI 编译器层所关注，强调的是<strong>硬件实现</strong>（怎么做）。</p>
+<p>所以算子是硬件无关的，Kernel 是硬件相关的。</p>
 <p>值得注意的是，两者并非简单的一对一关系。同一个算子（例如 Conv2d）根据输入大小、硬件型号的不同，可能对应完全不同的 Kernel 实现；反过来，多个算子（如 Conv → BatchNorm → ReLU）也可以被编译器<strong>融合成一个 Kernel</strong>，减少中间结果的显存读写，从而大幅提升性能。</p>
 <p>手写 Kernel 意味着开发者直接编写硬件级代码（如 CUDA），针对特定硬件架构的内存层次结构、线程组织等做极致优化，通常比框架自动生成的代码性能更高，但需要深入理解目标硬件的编程模型。</p></blockquote>
 <h5 id="ai-编译器架构">AI 编译器架构</h5>
@@ -3722,18 +3736,814 @@ $$</span><p>
 </ul>
 <h4 id="前端优化">前端优化</h4>
 <blockquote>
-<p>具体的优化涉及到非常多的具体的 AI 框架的知识，建议先补充 AI 框架的内容再回来学习 AI 编译器底层是怎么优化的？</p></blockquote>
+<p>具体的优化涉及到非常多的具体的 AI 框架的知识，建议先补充 AI 框架基础再回来详细学习 AI 编译器底层是怎么优化的？</p></blockquote>
 <h4 id="后端优化">后端优化</h4>
-<h2 id="大模型训练与推理系统架构">大模型训练与推理系统架构</h2>
-<h3 id="ai-框架">AI 框架</h3>
-<h4 id="计算图">计算图</h4>
+<h2 id="ai-框架">AI 框架</h2>
+<h3 id="ai-框架基础">AI 框架基础</h3>
+<h4 id="通用逼近定理">通用逼近定理</h4>
+<p>首先我想聊一个重要的问题，也是现在所有神经网络的理论基础：为什么神经网络是有效的？</p>
+<p>答案或许藏在深度学习跌宕起伏的发展历史之中——那是一段关于信念与坚守的故事，也是 Hinton 用二十年冷板凳坐穿换来的答案。</p>
+<p>1958 年,Frank Rosenblatt<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> 发明感知机（Perceptron）。这一单层神经网络的结构与人脑神经元的连接方式惊人地相似，仿佛打开了通往真正智能的大门，在学术界和工业界引发了巨大轰动。媒体争相报道，宣称&quot;AI 时代即将到来&quot;，美国海军也随即投入大量资金资助相关研究。</p>
+<p>一开始设计的神经网络就像下图这样，每条神经元之间的连接通路上都存储一个参数 <span class="math">$w_{i,j}$</span>，并且每个神经元自己存储一个偏置 <span class="math">$b$</span>，计算一个输出 <span class="math">$y_j = \sum\limits_{i} w_{i,j} x_i &#43; b_j$</span> 到下一个神经元。</p>
+<img src="images/image-20260421175721561.png" alt="image-20260421175721561" style="zoom:36%; display: block; margin: 0 auto;" />
+<p>然而好景不长。1969 年，人工智能先驱 Marvin Minsky 和 Seymour Papert 出版了《感知机》一书，用严格的数学证明了单层感知机存在致命缺陷：<strong>它无法解决 XOR（异或）问题</strong>。同时他们暗示多层网络同样训练困难，计算不可行。</p>
+<p>所谓 XOR 问题，就是下面这张真值表：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">x1</th>
+          <th style="text-align: left">x2</th>
+          <th style="text-align: left">输出</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">0</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">0</td>
+      </tr>
+  </tbody>
+</table>
+<p>如下图所示，把这四个点画在二维平面上，你会发现<strong>无论怎么画一条直线，都无法把输出为 0 和输出为 1 的点分开</strong>。而单层感知机的本质就是一个线性分类器，它的决策边界永远是一条直线（或高维超平面），因此对于这类线性不可分的问题束手无策。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  x2
+</span></span><span class="line"><span class="cl">  ↑
+</span></span><span class="line"><span class="cl">1 |  O   X
+</span></span><span class="line"><span class="cl">  |
+</span></span><span class="line"><span class="cl">0 |  X   O
+</span></span><span class="line"><span class="cl">  └─────────→ x1
+</span></span><span class="line"><span class="cl">     0   1</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么加多几层网络是否能解决呢？很遗憾，如果每层都是纯线性变换，答案依然是不行&hellip;</p>
+<p>因为对于两层线性网络：
+</p>
+<span class="math">$$
+y_1 = W_1 x &#43; b_1 \\
+y_2 = W_2 y_1 &#43; b_2 
+= W_2(W_1 x &#43; b_1) &#43; b_2 
+= \underbrace{W_2 W_1}_{W} x &#43; \underbrace{W_2 b_1 &#43; b_2}_{b}
+$$</span><p>
+归纳到 <span class="math">$N$</span> 层：
+</p>
+<span class="math">$$
+y_n = W_n(\cdots W_2(W_1 x &#43; b_1) &#43; b_2 \cdots) &#43; b_n = Wx &#43; b
+$$</span><p>
+可得：<strong>无论叠多少层线性变换，结果等价于一层线性变换。</strong></p>
+<p>从线性代数角度理解的话就是，线性变换 = <strong>拉伸、旋转、平移</strong>，上面的点之间的相对关系其实并没有变，它做不到弯曲空间或者折叠空间。</p>
+<p>因此在二维情况下无法解决的 XOR 问题，我们叠加任意多的线性层作为隐藏层也无法解决。因为本质上这种叠加压根就是在做徒劳，网络的可解释性和表达能力都是一样的。</p>
+<p>也就是说虽然多层感知机理论上能解决更复杂的问题，但没有人知道怎么训练多层网络！大家只能做到训练单层网络，但是又被证明不够用。</p>
+<blockquote>
+<p>此时大家用来训练单层感知机的算法是 Rosenblatt 在 1958 年提出的感知机学习算法（Perceptron Learning Algorithm）。</p>
+<p>具体规则就是简单地：</p>
+<p><span class="math">$w = w &#43; \Delta w$</span></p>
+<p><span class="math">$\Delta w = lr \times (y_{\text{真实}} - y_{\text{预测}}) \times x$</span></p>
+<p>此时很明显如果有多层，我们压根不知道中间的隐藏层输出&quot;应该是多少&quot;？调整隐藏层参数也就无从谈起了</p>
+<p>而微分概念其实出现了非常非常多年了，但是由于各种历史原因，不限于学科壁垒、权威打压、计算机算力不够不好验证想法以及真正当时搞 AI 的人并没有多少，导致了很久的 AI 寒冬。</p></blockquote>
+<p>这本书的影响是毁灭性的。研究经费被大规模削减，大量研究员被迫转行，神经网络研究就此陷入了长达十余年的<strong>第一次 AI 寒冬</strong>。</p>
+<p>转机出现在 1986 年。Rumelhart、Hinton 和 Williams 发表了反向传播算法（Backpropagation）的论文，证明了<strong>多层神经网络是可以被训练的</strong>。更重要的是，他们的工作揭示了 Minsky 当年暗示&quot;多层网络也没用&quot;这一结论是错误的——只要在神经元中引入非线性激活函数，哪怕只有一个隐层，神经网络就能解决 XOR 这类非线性问题。</p>
+<p>解决方法其实也并不复杂。我们可以把单个神经元的计算拆成两步：</p>
+<p><span class="math">$z=w_1x_1&#43;w_2x_2&#43;b$</span></p>
+<p><span class="math">$\text{output}=f(z)$</span></p>
+<p>第一步是线性变换，我们不动，主要是增加了第二步：激活函数 <span class="math">$f$</span>。如果 <span class="math">$f$</span> 是非线性函数（如 ReLU、sigmoid、step 函数），整个神经元的输出就是非线性的。</p>
+<p>这些非线性函数等于是将空间进行了<strong>弯曲</strong>或者<strong>折叠</strong>，比如经典的 <span class="math">$\text{ReLU}(x) = \text{max}(0, x)$</span>，就是在将负数全部折成 <span class="math">$0$</span>，相当于把负数方向的部分空间给折叠了！</p>
+<p>在多层网络叠加之后，每一层都在把输入映射到一个新的特征空间，激活函数的非线性让这个映射能够&quot;折叠&quot;和&quot;弯曲&quot;空间，点之间的相对关系也因此得到了改变，最终让原本线性不可分的问题在新的空间里变得线性可分。</p>
+<p>这里有一个重要的结论——<strong>通用逼近定理（Universal Approximation Theorem）</strong>：</p>
+<blockquote>
+<p>神经网络是传统的逼近论中的逼近函数的一种推广。逼近理论证明，只要神经网络规模经过巧妙的设计，使用非线性函数进行组合，它可以以任意精度逼近任意一个在闭集里的连续函数。</p></blockquote>
+<p>这正是神经网络有效的根本原因：<strong>不是因为它模拟了人脑，而是因为它在数学上是一个万能的函数近似器。</strong></p>
+<p>然而反向传播的出现并没有立刻终结寒冬。1990 年代，受限于计算机算力不足、训练数据匮乏以及梯度消失等问题，神经网络的实际效果仍然不如 SVM 等传统机器学习方法，研究再次陷入低谷，迎来了<strong>第二次 AI 寒冬</strong>。</p>
+<p>直到：</p>
+<p>2006年：Hinton 提出深度信念网络，深度学习开始复苏</p>
+<p>2012年：AlexNet 在 ImageNet 大赛上以碾压性优势击败所有对手 → 深度学习时代正式开启</p>
+<p>回顾这段历史，神经网络从诞生到被否定，再到重新崛起，走了将近半个世纪。支撑它最终胜出的，正是那个朴素却深刻的数学事实：<strong>只要有非线性，叠得够深，神经网络就能拟合这个世界上几乎任何复杂的规律。</strong></p>
+<p>现在我们知道了理论上我们可以训练出一个非常庞大的神经网络，去逼近任何连续函数，从而去解决分类、回归、拟合、逼近等问题。但是一个新的问题又来了，我们具体该怎样去训练出这样一个神经网络呢？这就需要我们去理解什么是梯度下降了。</p>
+<h4 id="梯度下降">梯度下降</h4>
+<p>我想先给大家讲讲什么是梯度，这个概念非常关键，但是很多人哪怕训练了非常多的模型，其实对这个概念的理解还是很浅显。</p>
+<p>首先我们从一个最简单的神经网络来讲起：</p>
+<p>假设我们的网络只有一层，并且只有一个网络节点，权重为 <span class="math">$w$</span>，偏差为 <span class="math">$b$</span>。</p>
+<p>我们使用一个数据 <span class="math">$&lt;x, \hat{y}&gt;$</span> 来训练这个网络。此时我们的损失为 <span class="math">$loss = (y - \hat{y})^2 = (w \cdot x &#43; b - \hat{y})^2$</span></p>
+<p>下面我们给出梯度的数学定义：</p>
+<p><strong>定义</strong>　设损失函数 <span class="math">$loss$</span> 是关于 <span class="math">$n$</span> 个参数 <span class="math">$w_1,w_2,…,w_n$</span> 的可微函数，则其<strong>梯度</strong>定义为由各参数的偏导数构成的向量：
+</p>
+<span class="math">$$
+\nabla \text{loss} = \left[ 
+\dfrac{\partial \text{loss}}{\partial w_1},\ 
+\dfrac{\partial \text{loss}}{\partial w_2},\ 
+\cdots,\ 
+\dfrac{\partial \text{loss}}{\partial w_n} 
+\right]
+$$</span><p>
+其中第 <span class="math">$i$</span> 个分量 <span class="math">$\frac{\partial \text{loss}}{\partial w_i}$</span> 表示在其余参数固定不变的条件下，<span class="math">$loss$</span> 随 <span class="math">$w_i$</span> 变化的瞬时变化率。</p>
+<blockquote>
+<p>这里为了方便理解，我们把偏差参数 <span class="math">$b_1,b_2,…,b_n$</span>，也统称为参数 <span class="math">$w_i$</span></p></blockquote>
+<p>梯度具有以下两个重要性质：</p>
+<ol>
+<li><strong>梯度方向</strong>: <span class="math">$\nabla \text{loss}$</span> 是使损失函数<strong>上升最快</strong>的方向；</li>
+<li><strong>负梯度方向</strong>: <span class="math">$-\nabla \text{loss}$</span> 是使损失函数<strong>下降最快</strong>的方向。</li>
+</ol>
+<p>我们从一维角度来理解梯度的实际意义： <span class="math">$\frac{\partial \text{loss}}{\partial w}$</span> 衡量的是当 <span class="math">$w$</span> 变化一点点，<span class="math">$loss$</span> 会相应地变化多少。</p>
+<p>而我们的训练目标并不是将 <span class="math">$loss \to 0$</span>，因为可能这个损失函数最小值就是 <span class="math">$&gt;0$</span> 的。我们真正的目标是通过调整参数 <span class="math">$w_1,w_2,…,w_n$</span>,使得：
+</p>
+<span class="math">$$
+loss \to \text{min}
+$$</span><p>
+那我们怎么知道每次参数 <span class="math">$w_1,w_2,…,w_n$</span> 调整多少合适呢？因为我们刚刚算的是这个参数在当前值的瞬时变化率，我们调整一点参数大小，相应的梯度 <span class="math">$\nabla \text{loss}$</span> 就会又开始变了。</p>
+<p>于是我们引入了一个概念：<strong>学习率</strong> <span class="math">$lr$</span>。</p>
+<p>学习率一般会设置成一个很小的值比如 <span class="math">$0.01$</span>，每次将参数向负梯度方向调整 <span class="math">$lr$</span> 大小。</p>
+<p>由于负梯度方向是 <span class="math">$loss$</span> 下降最快的方向，我们每次更新参数 <span class="math">$w_{new} \to w_{old} - lr \cdot \nabla \text{loss}$</span>，然后根据新的 <span class="math">$w_{new}$</span>，重新计算梯度并更新参数 <span class="math">$w$</span>，不断重复上述操作。</p>
+<blockquote>
+<p>这里我们需要澄清一个常见的误区：<span class="math">$\nabla \text{loss} = 0 \Rightarrow \text{loss} \rightarrow \min$</span></p>
+<p>梯度 <span class="math">$\nabla \text{loss} = 0$</span> 其实有五种情况：</p>
+<ul>
+<li><strong>全局最小值</strong>: 就是我们想要的，代表着 <span class="math">$\text{loss} \rightarrow \min$</span> ✅</li>
+<li>极小值：❌</li>
+<li>最大值：❌</li>
+<li>极大值：❌</li>
+<li>以及更复杂更常见的情况<strong>鞍点</strong>：既不是极小值也不是极大值 ⚠️</li>
+</ul>
+<p><strong>鞍点</strong>是高维参数空间中非常常见的情况，比如一个 <span class="math">$1000$</span> 维参数空间,想要某个点每个方向都要同时是极小值，概率极低！更可能的情况是某些方向是极小值，某些方向还能继续下降，甚至某些方向是极大值，这就是所谓的鞍点。维度越高，鞍点也越多。</p>
+<p>因此对于神经网络的训练来说，更常见的问题是：梯度下降可能陷入局部最小值或者卡在鞍点，而<strong>找不到全局最优</strong>。</p>
+<p>当然值得庆幸的是：研究发现神经网络的 loss 曲面很特殊：</p>
+<ol>
+<li>局部最小值很少。在高维空间中，真正的局部最小值极其罕见，大多数梯度=0 的点是鞍点</li>
+<li>局部最小值和全局最小值的 loss 差距很小，因此实际效果差不多</li>
+<li>SGD 的随机性帮助逃离。每次用不同的 mini-batch，让梯度有噪声，反而帮助跳出鞍点和局部最优</li>
+</ol></blockquote>
+<p>恭喜你，看到这里，你就已经懂了什么是<strong>梯度下降</strong>了。</p>
+<p>知道了什么是梯度下降，怎么更新参数，接下来我们就得解决一个很复杂而且很数学的问题：如何计算出 <span class="math">$loss$</span> 对这些参数的<strong>微分</strong>呢？甚至我们还“痴心妄想”有没有一种方式能自动计算出任意算子的微分呢？</p>
+<h3 id="自动微分">自动微分</h3>
+<blockquote>
+<p>推荐大家阅读这篇经典综述来学习 <a href="https://arxiv.org/pdf/1502.05767" target="_blank" rel="noopener noreffer ">Automatic Differentiation in Machine Learning: a Survey</a></p></blockquote>
+<p>自动微分（Automatic Differentiation，AD）是一种对计算机程序进行高效准确求导的技术，一直被广泛应用于计算流体力学、大气科学、工业设计仿真优化等领域。</p>
+<p>近年来，机器学习技术的兴起也驱动着对自动微分技术的研究进入一个新的阶段。随着自动微分和其他微分技术研究的深入，其与编程语言、计算框架、编译器等领域的联系愈发紧密，从而衍生扩展出更通用的可微编程概念。也是作为 AI 框架核心的功能，被广泛地应用。</p>
+<p>其中对计算机程序求导的方法可以归纳为以下四种：</p>
+<ul>
+<li><strong>手动求解法(Manual Differentiation)</strong>：根据链式求导法则，手工求导并编写对应的结果程序，依据链式法则解出梯度公式，带入数值，得到梯度。</li>
+<li><strong>数值微分法(Numerical Differentiation)</strong>：利用导数的原始定义，通过有限差分近似方法完成求导，直接求解微分值。</li>
+<li><strong>符号微分法(Symbolic Differentiation)</strong>：基于数学规则和程序表达式变换完成求导。利用求导规则对表达式进行自动计算，其计算结果是导函数的表达式而非具体的数值。即，先求解析解，然后转换为程序，再通过程序计算出函数的梯度。</li>
+<li><strong>自动微分法(Automatic Differentiation)</strong>：介于数值微分和符号微分之间的方法，采用类似有向图的计算来求解微分值，也是现在大部分 AI 框架中使用的。</li>
+</ul>
+<img src="images/image-20260422191407838.png" alt="image-20260422191407838" style="zoom:39%; display: block; margin: 0 auto;" />
+<p>我们下面来详细讲讲这四种方式</p>
+<h4 id="计算机微分方式">计算机微分方式</h4>
+<p>我们假设有一个函数 <span class="math">$l_n$</span>，定义如下：</p>
+<p><span class="math">$l_1 = x$</span></p>
+<p><span class="math">$l_{n&#43;1} = 4l_n(1 - l_n)$</span></p>
+<p>我们定义一个函数 <span class="math">$f(x)$</span>,其中 <span class="math">$f(x) = l_4$</span>。我们想要计算 <span class="math">$f&#39;(x)$</span>，我们来看看用下面的方式分别怎么计算：</p>
+<h5 id="手动求解法">手动求解法</h5>
+<p>手动微分就是对每一个目标函数都需要利用求导公式<strong>手动写出求导公式</strong>，然后依照公式编写代码，带入数值，求出最终梯度。</p>
+<p>这种方法准确有效，但是不适合工程实现，因为通用性和灵活性很差，每一次我们修改算法模型，都要修改对应的梯度求解算法。如果模型复杂或者项目频繁反复迭代，那么工作量将会是巨大的。</p>
+<p>具体过程就是：</p>
+<p>拿出一张纸，开始列式子</p>
+<p><span class="math">$l_2 = 4x(1-x)$</span></p>
+<p><span class="math">$l_3 = 16x(1-x)(1-2x)^2$</span></p>
+<p><span class="math">$f(x) = l_4 = 64x(1-x)(1-2x)^2(1-8x&#43;8x^2)^2$</span></p>
+<p>根据求导公式得：</p>
+<p><span class="math">$f&#39;(x)= 128x(1-x)(-8&#43;16x)(1-2x)^2(1-8x&#43;8x^2) &#43; 64(1-x)(1-2x)^2(1-8x&#43;8x^2)^2 - 64x(1-2x)^2(1-8x&#43;8x^2)^2 - 256x(1-x)(1-2x)(1-8x&#43;8x^2)^2$</span></p>
+<p>然后就可以开开心心地把纸上的结果手动翻译成代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f_prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">            <span class="o">+</span> <span class="mi">64</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> 
+</span></span><span class="line"><span class="cl">            <span class="o">-</span> <span class="mi">64</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> 
+</span></span><span class="line"><span class="cl">            <span class="o">-</span> <span class="mi">256</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>是不是写完感觉自己好伟大！</p>
+<p>那我问你，下次又要算 <span class="math">$f(x) = l_{100}$</span> 的微分怎么办，是不是傻眼了，这得多少项？真是人能算出来的吗？</p>
+<p>所以我们开始想有没有办法用程序自动去运行求导公式去计算？</p>
+<p>所以我们引入了下面几种纯计算机实现的微分方式：</p>
+<h5 id="符号微分法">符号微分法</h5>
+<p>符号微分（Symbolic Differentiation）属符号计算的范畴，利用链式求导规则对表达式进行自动计算，其计算结果是导函数的表达式。符号计算用于求解数学中的公式解，得到的是解的表达式而非具体的数值。</p>
+<p>符号微分不是数值计算，而是对表达式进行文本替换和变换。就像你刚刚手工推导公式一样，只是让计算机来做这件事。</p>
+<p>像刚刚，我们要算 <span class="math">$f&#39;(x)$</span>，先把函数 <span class="math">$l_n$</span> 写成代码形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l</span> <span class="o">=</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">l</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">l</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">l</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后符号微分程序会将你的函数展开，得到具体的表达式形式:</p>
+<p><span class="math">$f(x) = 64x(1-x)(1-2x)^2(1-8x&#43;8x^2)^2$</span></p>
+<p>然后会将你的函数表达式转成一棵表达式树：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                ×
+</span></span><span class="line"><span class="cl">               / \
+</span></span><span class="line"><span class="cl">              ×   ^
+</span></span><span class="line"><span class="cl">             / \ / \
+</span></span><span class="line"><span class="cl">            ×  (1-8x+8x²) 2
+</span></span><span class="line"><span class="cl">           / \
+</span></span><span class="line"><span class="cl">          ×   ^
+</span></span><span class="line"><span class="cl">         / \ / \
+</span></span><span class="line"><span class="cl">        ×  (1-2x) 2
+</span></span><span class="line"><span class="cl">       / \
+</span></span><span class="line"><span class="cl">      ×  (1-x)
+</span></span><span class="line"><span class="cl">     / \
+</span></span><span class="line"><span class="cl">    64  x</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后根据一些基本求导规则（计算机存储的规则表）：</p>
+<p><span class="math">$\frac{d}{dx}(c) \rightarrow 0 \quad$</span></p>
+<p><span class="math">$\frac{d}{dx}(x) \rightarrow 1$</span></p>
+<p><span class="math">$\frac{d}{dx}(f &#43; g) \rightarrow \frac{d}{dx}f &#43; \frac{d}{dx}g$</span></p>
+<p><span class="math">$\frac{d}{dx}(f \cdot g) \rightarrow \left(\frac{d}{dx}f\right)g &#43; f\left(\frac{d}{dx}g\right)$</span></p>
+<p><span class="math">$\frac{d}{dx}(f(g(x))) \rightarrow f&#39;(g(x)) \cdot \frac{d}{dx}g$</span></p>
+<p>来将这些规则递归应用到这棵表达式树上的每一个节点，写成代码就是这样:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">diff</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 常数</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">is_constant</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 变量</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">expr</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 加法规则</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 乘法规则</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">left</span>
+</span></span><span class="line"><span class="cl">        <span class="n">g</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">right</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">g</span> <span class="o">+</span> <span class="n">f</span> <span class="o">*</span> <span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 链式法则</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;sin&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">cos</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span> <span class="o">*</span> <span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">arg</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># ... 其他规则</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这就很有编译器的味道了——定义文法规则，然后递归处理表达式。</p>
+<p>那这种符号微分有什么问题呢？显然由于是通过对每个节点递归应用求导规则（加法规则、乘法规则、链式法则），最终拼接出导函数表达式，那么必然会导致<strong>表达式随嵌套层数指数级膨胀</strong>，最终可能极其复杂，不适合求解非常多参数非常复杂的表达式（如神经网络）。</p>
+<p>那么该怎么解决这个问题呢？这就得靠自动微分了。</p>
+<h5 id="数值微分法">数值微分法</h5>
+<p>数值微分方式应该是最直接而且简单的一种自动求导方式，使用有限差分近似方法完成，其本质是根据导数的定义推导而来。</p>
+<p>我们回顾偏导数的定义：
+</p>
+<span class="math">$$
+\frac{\partial f}{\partial x_i} = \lim_{h \to 0} \frac{f(x &#43; he_i) - f(x)}{h}
+$$</span><p>
+我们其实可以考虑这里直接用一个非常小的 <span class="math">$h$</span> 来得到近似解，而不是用复杂的求导法则去求解，那么计算就直接大大简化了。</p>
+<p>对于多元函数 <span class="math">$f: \mathbb{R}^n \rightarrow \mathbb{R}$</span>，其梯度为：<span class="math">$\nabla f = \left(\frac{\partial f}{\partial x_1}, \cdots, \frac{\partial f}{\partial x_n}\right)$</span></p>
+<p>可以使用有限差分来近似：</p>
+<p><span class="math">$\frac{\partial f(x)}{\partial x_i} \approx \frac{f(x &#43; he_i) - f(x)}{h}, \quad \text{where } h &gt; 0$</span></p>
+<p>当 <span class="math">$h$</span> 取很小的数值，比如 <span class="math">$0.000001$</span> 时，导数是可以利用差分来近似计算出来的。只需要给出函数值以及自变量的差值，数值微分算法就可计算出导数值。单侧差分公式根据导数的定义直接近似计算某一点处的导数值。 观察导数的定义容易想到，当 <span class="math">$h$</span> 充分小时，可以用差商 <span class="math">$\frac{f(x&#43;h)-f(x)}{h}$</span> 近似导数结果。而近似的一部分误差（<strong>截断误差，Truncation Error</strong>）可以由泰勒公式中的二阶及二阶后的所有余项给出：
+</p>
+<span class="math">$$
+f(x \pm h)=f(x)\pm hf&#39;(x)&#43;\frac{h^2}{2!}f&#39;&#39;(x) \pm \frac{h^3}{3!}f&#39;&#39;&#39;(x) &#43; ... &#43; (\pm h)^n n!f^{(n)}(x)
+$$</span><p>
+因此数值微分中常用的三种计算方式及其对应的截断误差可以归纳为三种。</p>
+<ul>
+<li>
+<p>向前差商（Forward Difference）： <span class="math">$\frac{\delta f(x)}{\delta x} \approx \frac{f(x&#43;h)-f(x)}{h}$</span>,其中 Forward Difference 的阶段误差为 <span class="math">$O(h)$</span>。</p>
+</li>
+<li>
+<p>向后差商（Reverse Difference）：<span class="math">$\frac{\delta f(x)}{\delta x} \approx \frac{f(x)-f(x-h)}{h}$</span>,其中 Reverse Difference 的阶段误差为 <span class="math">$O(h)$</span>。</p>
+</li>
+<li>
+<p>中心差商（Center Difference）:<span class="math">$\frac{\delta f(x)}{\delta x} \approx \frac{f(x&#43;h)-f(x-h)}{2h}$</span>,其中 Center Difference 的阶段误差为 <span class="math">$O(h^2)$</span>。</p>
+</li>
+</ul>
+<p>可以看出来，数值微分中的截断误差与步长 <span class="math">$h$</span> 有关，<span class="math">$h$</span> 越小则截断误差越小，近似程度越高。</p>
+<p>但实际情况数值微分的精确度并不会随着 <span class="math">$h$</span> 的减小而无限减小，因为计算机系统中对于浮点数的运算由于其表达方式引入另外一种误差（<strong>舍入误差，Round-off Error</strong>），而舍入误差则会随着 <span class="math">$h$</span> 变小而逐渐增大。</p>
+<p>因此在截断误差和舍入误差的共同作用下，数值微分的精度将会形成一个变化的函数并在某一个 <span class="math">$h$</span> 值处达到最小值。</p>
+<img src="images/image-20260422211930524.png" alt="image-20260422211930524" style="zoom:33%; display: block; margin: 0 auto;" />
+<p>以及为了缓解截断错误，提出了中心微分近似（Center Difference Approximation），这方法仍然无法解决舍入误差，只是减少误差，但是它比单侧差分公式有更小的误差和更好的稳定性：
+</p>
+<span class="math">$$
+\frac{\delta f(x)}{\delta x} \approx \frac{f(x&#43;h)-f(x-h)}{2h}&#43;O(h^2)
+$$</span><p>
+因此数值微分的优点是：</p>
+<ul>
+<li>具有计算适用性，对大部分表达式适用；</li>
+<li>对用户显式地隐藏了求导过程；</li>
+<li>简单容易实现。</li>
+</ul>
+<p>数值微分的缺点是：</p>
+<ul>
+<li>计算量大，求解速度最慢，因为每计算一个参数的导数，都需要重新计算。</li>
+<li>引入误差，因为是数值逼近，所以会不可靠，不稳定的情况，无法获得一个相对准确的导数值。如果 <span class="math">$h$</span> 选取不当，可能会得到与符号相反的结果，导致误差增大。</li>
+<li>引入截断错误（Truncation error），在数值计算中 <span class="math">$h$</span> 无法真正取零导致的近似误差。</li>
+<li>引入舍入误差（Round-off Error），在计算过程中出现的对小数位数的不断舍入会导致求导过程中的误差不断累积。</li>
+</ul>
+<p>因此其实数值微分也不适合大规模的神经网络，我们只能去考虑使用更简洁更优雅的自动微分了。</p>
+<h5 id="自动微分法">自动微分法</h5>
+<p>其实，对于机器学习中的应用，我们不需要得到导数的表达式，而只需计算函数在某一点处的导数值，即对应神经网络、深度学习在确定层数中某个神经元的导数值。</p>
+<p>这里我们先简单介绍自动微分中的反向模式的大致流程，具体的实现将在下一节完整的讲述。</p>
+<p>以如下为例，这是原始公式：</p>
+<p><span class="math">$ y=f(g(h(x)))$</span></p>
+<p>这是一个三层复合函数，直接求导很复杂，所以我们考虑引入中间变量进行简化。</p>
+<p>自动微分以链式法则为基础，把公式中一些部分整理出来成为一些新变量，然后用这些新变量整体替换这个公式，于是得到：</p>
+<p><span class="math">$w_0=x$</span></p>
+<p><span class="math">$w_1=h(w_0)$</span></p>
+<p><span class="math">$w_2=g(w_1)$</span></p>
+<p><span class="math">$w_3=f(w_2)=y$</span></p>
+<p>这样我们就把复杂的复合函数，拆成了一系列简单操作，每一步都容易求导！</p>
+<p>然后把这些新变量作为节点，依据运算逻辑把公式整理出一张有向无环图（DAG）。即原始函数建立计算图，数据正向传播，计算出中间节点，并记录计算图中的节点依赖关系。</p>
+<div class="mermaid" id="mermaid-2">flowchart LR
+    x["x = w₀"]
+    w1["w₁"]
+    w2["w₂"]
+    y["w₃ = y"]
+
+    x -->|"h(w₀)"| w1
+    w1 -->|"g(w₁)"| w2
+    w2 -->|"f(w₂)"| y
+
+    style x fill:#f0f0f0,stroke:#333
+    style w1 fill:#dce8f5,stroke:#4a90d9
+    style w2 fill:#dce8f5,stroke:#4a90d9
+    style y fill:#d5f0d5,stroke:#4caf50</div><p>其中：</p>
+<ul>
+<li>节点：<span class="math">$w0, w1, w2, w3$</span></li>
+<li>边：表示运算关系</li>
+<li>方向：数据流动方向（正向）</li>
+<li>无环：不会循环依赖</li>
+</ul>
+<p>然后当我们进行正向计算时，比如给定 <span class="math">$x=a$</span>，那么：</p>
+<p><span class="math">$w_0=a$</span></p>
+<p><span class="math">$w_1=h(a) = b$</span>，记下具体数值 <span class="math">$b$</span></p>
+<p><span class="math">$w_2=g(w_1) = c$</span>，记下具体数值 <span class="math">$c$</span></p>
+<p><span class="math">$w_3=f(w_2)= d$</span>，记下具体数值 <span class="math">$d$</span></p>
+<p>也就是从左往右正向传播计算的时候，把每一个节点的值都记录下来，反向传播的时候要用！</p>
+<p>此时当我们要计算梯度(反向传播)时，</p>
+<p>从节点 <span class="math">$w_3$</span> 出发，往回走：</p>
+<p><span class="math">$\frac{\partial y}{\partial w_2} = f&#39;(w_2)$</span>  ← 用正向计算时存下的 <span class="math">$w_2$</span> 具体的值 <span class="math">$c$</span></p>
+<p><span class="math">$\frac{\partial y}{\partial w_1} = \frac{\partial y}{\partial w_2} \cdot \frac{\partial w_2}{\partial w_1}  = \frac{\partial y}{\partial w_2} \cdot g&#39;(w_1)$</span>  ← 复用上一步微分结果以及用正向计算时存下的 <span class="math">$w_1$</span> 具体的值 <span class="math">$b$</span></p>
+<p><span class="math">$\frac{\partial y}{\partial w_0} = \frac{\partial y}{\partial w_1} \cdot \frac{\partial w_1}{\partial w_0} = \frac{\partial y}{\partial w_1} \cdot h&#39;(w_0)$</span>  ← 复用上一步微分结果以及用正向计算时存下的 <span class="math">$w_0$</span> 具体的值 <span class="math">$a$</span></p>
+<p><span class="math">$\frac{\partial y}{\partial x} = \frac{\partial y}{\partial w_0}$</span>  ← 最终结果</p>
+<p>因此，自动微分可以被认为是将一个复杂的数学运算过程分解为一系列简单的基本运算，其中每一项基本运算都可以通过查表得出来。</p>
+<p>当然这里我们只是简单演示了<strong>标量对标量</strong>的自动微分，但神经网络是<strong>向量对向量</strong>求导，标量链式法则不够用，还需要引入雅克比矩阵等数学基础才行，下面我们来进行详细的讲解分析。</p>
+<h4 id="微分计算模式">微分计算模式</h4>
+<p>根据对分解后的基本操作求导和链式规则组合顺序的不同，自动微分可以分为两种模式：</p>
+<ul>
+<li><em>前向模式</em>（Forward Automatic Differentiation，也叫做 tangent mode AD）或者前向累计梯度（前向模式）；</li>
+<li><em>反向模式</em>（Reverse Automatic Differentiation，也叫做 adjoint mode AD）或者说反向累计梯度（反向模式）。</li>
+</ul>
+<p>假设我们需要计算的是这个式子：<span class="math">$f(x_1, x_2) = \ln(x_1) &#43; x_1 x_2 - \sin(x_2)$</span></p>
+<p>这是一个复合函数，直接计算很复杂，所以我们考虑引入中间变量进行简化。</p>
+<p>我们可以把复杂的复合函数，拆成一系列简单的“原子”操作，每一步都容易计算！通过把公式中一些部分整理出来成为一些新变量，然后用这些新变量整体替换这个公式，于是得到：
+</p>
+<span class="math">$$
+\begin{array}{lll}
+v_{-1} &amp;= x_1             \\
+v_0    &amp;= x_2 \\
+\hline
+v_1    &amp;= \ln v_{-1}  \\
+v_2    &amp;= v_{-1} \times v_0 \\
+v_3    &amp;= \sin v_0        \\
+v_4    &amp;= v_1 &#43; v_2     \\
+v_5    &amp;= v_4 - v_3    \\
+\hline
+y      &amp;= v_5        \\
+\end{array}
+$$</span><p>
+然后把这些新变量作为节点，依据运算逻辑把公式整理出一张有向无环图（DAG）。即原始函数建立计算图，数据正向传播，计算出中间节点，并记录计算图中的节点依赖关系。</p>
+<img src="images/image-20260425214427111.png" alt="image-20260425214427111" style="zoom:39%; display: block; margin: 0 auto;" />
+<p>其中：</p>
+<ul>
+<li>输入变量：自变量维度为 <span class="math">$n$</span>，这里 <span class="math">$n = 2$</span>，输入变量就是 <span class="math">$x_1$</span>,<span class="math">$x_2$</span>；</li>
+<li>中间变量：中间变量这里是 <span class="math">$v_{-1} ∼ v_5$</span>，在计算过程中，只需要针对这些中间变量做处理即可将<strong>符号微分法</strong>应用于最基本的算子，然后代入数值，保留中间结果，最后再应用于整个函数；</li>
+<li>输出变量：假设输出变量维度为 <span class="math">$m$</span>，这里 <span class="math">$m = 1$</span>，输出变量就是 <span class="math">$y_1$</span>，也就是 <span class="math">$f(x_1,x_2)$</span></li>
+</ul>
+<h5 id="前向模式">前向模式</h5>
+<p>下面我们先来看看<strong>前向模式</strong>的计算：</p>
+<p>前向模式从计算图的起点开始，沿着计算图边的方向依次向前计算，最终到达计算图的终点。它根据自变量的值计算出计算图中每个节点的值以及其导数值，并保留中间结果。一直得到整个函数的值和其导数值。整个过程对应于一元复合函数求导时从最内层逐步向外层求导。</p>
+<p>前向模式本质上就是按照上面的计算图前进的顺序进行计算，我们每次<strong>固定</strong>一个输入 <span class="math">$x_i$</span>​，一次性算出所有的输出 <span class="math">$\boldsymbol{y}$</span>​ 对这个 <span class="math">$x_i$</span>​ 的导数。</p>
+<p>根据链式求导法则展开：
+</p>
+<span class="math">$$
+\frac{\partial f}{\partial x_1} = \underbrace{\frac{\partial v_{-1}}{\partial x_1}}_{\text{公共起点}} \underbrace{\left(\frac{\partial v_1}{\partial v_{-1}} \frac{\partial v_4}{\partial v_1} &#43; \frac{\partial v_2}{\partial v_{-1}} \frac{\partial v_4}{\partial v_2}\right)}_{\text{两条路径分叉后汇合，相加}} \underbrace{\frac{\partial v_5}{\partial v_4} \frac{\partial f}{\partial v_5}}_{\text{公共终点}}
+$$</span><p>
+本质上其实就是每一步在计算 <span class="math">$\frac{\partial v_j}{\partial x_1} = \frac{\partial g(v_{i}...v_{j-1})}{\partial x_1} = \sum_{k=i}^{j-1} \frac{\partial g}{\partial v_k} \cdot \frac{\partial v_k}{\partial x_1}$</span>，而 <span class="math">$\frac{\partial v_k}{\partial x_1}$</span> 一定在这一步计算之前完成了计算，可以直接使用结果。</p>
+<blockquote>
+<p>TODO： 其实这里我一直有点疑问，就是这里的 <span class="math">$\frac{\partial g}{\partial v_k}$</span> 应该是多少呢？</p>
+<p>或者说一个更简单的形式：如果 <span class="math">$x_3 = x_1 * x_2, x_4 = x_1， y = x_4 &#43; x_3$</span>。请问 <span class="math">$\frac{\partial y}{\partial x_3} = \  ?$</span>。</p>
+<p>很多人可能立马想到，那就把 <span class="math">$x_3$</span> 当成变量，其他当成常数不就好了，直接就是 <span class="math">$\frac{\partial y}{\partial x_3} = 1$</span>。</p>
+<p>实际计算来看这个结果确实是对的，在自动微分的计算中，但是我疑惑的点是，<span class="math">$x_3$</span> 不是一个独立变量啊，<span class="math">$x_3$</span> 变化必须通过 <span class="math">$x_1$</span> 或 <span class="math">$x_2$</span> 的变化，那不就影响到 <span class="math">$x_4$</span> 了吗？也就是说 <span class="math">$\frac{\partial y}{\partial x_3}$</span> 当 <span class="math">$x_3$</span> 不是独立变量的时候这么写合法吗？</p>
+<p>感觉我对微分的定义似乎还有点问题，可能太久没学微积分了。</p></blockquote>
+<p>下面是前向模式的计算过程，左半部分是从左往右每个图节点的求值结果和计算过程，右半部分是每个节点对 <span class="math">$x_1$</span> 的求导结果和计算过程。在该示例中，我们希望计算函数在 <span class="math">$x_1=2, x_2=5$</span> 处的导数 <span class="math">$\frac{\partial y}{\partial x_1}$</span>。
+</p>
+<span class="math">$$
+\begin{array}{cc}
+% 左侧表格
+\begin{array}{l}
+\phantom{\dfrac{\partial v_i}{\partial x_1}} \\
+\begin{array}{lll}
+\hline
+v_{-1} &amp;= x_1 &amp;= 2 \\
+v_0    &amp;= x_2 &amp;= 5 \\
+\hline
+v_1 &amp;= \ln v_{-1}         &amp;= \ln 2 \\
+v_2 &amp;= v_{-1} \times v_0  &amp;= 2 \times 5 \\
+v_3 &amp;= \sin v_0            &amp;= \sin 5 \\
+v_4 &amp;= v_1 &#43; v_2           &amp;= 0.693 &#43; 10 \\
+v_5 &amp;= v_4 - v_3           &amp;= 10.693 &#43; 0.959 \\
+\hline
+y   &amp;= v_5                 &amp;= 11.652 \\
+\end{array}
+\end{array}
+&amp;
+% 右侧表格
+\begin{array}{l}
+\ \ \text{定义：} \dot{v}_i = \dfrac{\partial v_i}{\partial x_1} \qquad \dot{\boldsymbol{y}} = \dfrac{\partial \boldsymbol{y}}{\partial x_1} \\
+\begin{array}{lll}
+\hline
+\dot{v}_{-1} &amp;= \dot{x}_1 &amp;= 1 \\
+\dot{v}_0    &amp;= \dot{x}_2 &amp;= 0 \\
+\hline
+\dot{v}_1 &amp;= \dot{v}_{-1} / v_{-1}                              &amp;= 1/2 \\
+\dot{v}_2 &amp;= \dot{v}_{-1} \times v_0 &#43; \dot{v}_0 \times v_{-1} &amp;= 1 \times 5 &#43; 0 \times 2 \\
+\dot{v}_3 &amp;= \dot{v}_0 \times \cos v_0                          &amp;= 0 \times \cos 5 \\
+\dot{v}_4 &amp;= \dot{v}_1 &#43; \dot{v}_2                              &amp;= 0.5 &#43; 5 \\
+\dot{v}_5 &amp;= \dot{v}_4 - \dot{v}_3                              &amp;= 5.5 - 0 \\
+\hline
+\dot{\boldsymbol{y}} &amp;= \dot{v}_5 &amp;= \mathbf{5.5} \\
+\end{array}
+\end{array}
+\end{array}
+$$</span><p>可以看出，左侧是源程序分解后得到的基本操作集合，而右侧则是每一个基本操作根据已知的求导规则和链式法则由上至下计算的求导结果。</p>
+<blockquote>
+<p>这里的导数写法 <span class="math">$\dot{v}_i$</span> 是牛顿的记法，在物理领域这种导数写法非常常用。如 <span class="math">$\dot{x}$</span> 表示速度，<span class="math">$\ddot{x}$</span> 表示加速度。</p>
+<p>而在数学领域，莱布尼兹的写法 <span class="math">$\frac{dy}{dx}$</span> 更加常用。</p>
+<p>而自动微分最早来自控制论和物理仿真领域，因此自然沿用了牛顿记法这个传统，同时自动微分需要同时表示函数值和导数值，点号简洁对称一眼可辨。</p></blockquote>
+<h5 id="雅可比矩阵">雅可比矩阵</h5>
+<p>我们之前讲的都是单个变量的微分过程，当输入 <span class="math">$x_i$</span> 和输出 <span class="math">$y_j $</span> 的个数非常多时，逐个计算每一对变量之间的偏导数会变得极其繁琐。于是我们引入雅可比矩阵，将所有输入对所有输出的一阶偏导数以矩阵的形式统一表示，从而能够简洁、高效地描述大型神经网络中复杂的梯度计算过程。</p>
+<p>在向量微积分中，<strong>雅克比（Jacobian）矩阵</strong>是一阶偏导数以一定方式排列成的矩阵，其行列式称为 Jacobian 行列式。Jacobian 矩阵的重要性在于它体现了一个可微方程与给出点的<strong>最优线性逼近</strong>。</p>
+<p>Jacobian 矩阵表示两个向量所有可能的偏导数。它是一个向量相对于另一个向量的梯度，其实现的是 <span class="math">$n$</span> 维向量到 <span class="math">$m$</span> 维向量的映射。</p>
+<p>在矢量运算中，Jacobian 矩阵是基于函数对所有变量一阶偏导数的数值矩阵，当输入个数等于输出个数时又称为 Jacobian 行列式。</p>
+<p>对于函数 <span class="math">$\vec{y} = f(\vec{x})$</span>，其中 <span class="math">$f: \mathbb{R}^n \rightarrow \mathbb{R}^m$</span>，那么 <span class="math">$\vec{y}$</span> 中关于 <span class="math">$\vec{x}$</span> 的梯度可以表示为 Jacobian 矩阵：
+</p>
+<span class="math">$$
+J_f = \left[\frac{\partial \mathbf{y}}{\partial x_1} \quad \cdots \quad \frac{\partial \mathbf{y}}{\partial x_n}\right] = \begin{bmatrix} 
+\dfrac{\partial y_1}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial y_1}{\partial x_n} \\[10pt] 
+\vdots &amp; \ddots &amp; \vdots \\[10pt] 
+\dfrac{\partial y_m}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial y_m}{\partial x_n} 
+\end{bmatrix}
+$$</span><p>其中：</p>
+<ul>
+<li>第 <span class="math">$j$</span> 列：所有输出对 <span class="math">$x_j$</span> 的偏导数</li>
+<li>第 <span class="math">$i$</span> 行：输出 <span class="math">$y_i$</span> 对所有输入的偏导数</li>
+<li>矩阵维度：<span class="math">$m \times n$</span></li>
+</ul>
+<blockquote>
+<p>这里我们引入 Jacobian 是为了在数学上描述向量函数的导数，是描述&quot;这个计算在做什么&quot;的数学工具，是理论工具而非实现工具。</p>
+<p>实际在算梯度时用 <span class="math">$\dot{v}_i$</span>（前向）或 <span class="math">$\bar{v}_i$</span>（反向），从来不显式构建 <span class="math">$J$</span>，但结果等价于 JVP/VJP。</p></blockquote>
+<p>但是，Jacobian 矩阵在实际神经网络中可能非常大，例如输入输出各 <span class="math">$1000$</span> 维时，Jacobian 矩阵就有 <span class="math">$100$</span> 万个元素，直接计算和存储代价极高。因此我们引入 <strong>JVP</strong> 和 <strong>VJP</strong> 两种高效计算方式。</p>
+<p>我们首先看看 JVP：</p>
+<p>在前向自动微分中，每次计算时将某个输入设置为 <span class="math">$\dot{x}_i = 1$</span>，其余设置为 <span class="math">$0$</span>：</p>
+<span class="math">$$
+\vec{r} = \vec{e}_i = [0, \cdots, \underbrace{1}_{i}, \cdots, 0]^T
+$$</span><p>
+一次前向传播可以求出 Jacobian 矩阵的<strong>一列</strong>，例如设置 <span class="math">$\dot{x}_3 = 1$</span> 就可以求出第 <span class="math">$3$</span> 列。这是因为偏导数的定义就是固定其他变量只让 <span class="math">$x_i$</span> 变化，恰好对应 <span class="math">$\vec{r} = \vec{e}_i$</span> 的情况。</p>
+<p>更一般地，设置 <span class="math">$\vec{r}$</span> 为输入空间的任意方向向量：</p>
+<span class="math">$$
+\vec{r} = \left[r_1 \quad \cdots \quad r_n\right]^{\text{T}}
+$$</span><p>
+<strong>JVP（Jacobian-Vector Product）</strong> 就是函数 <span class="math">$\vec{y}$</span> 沿方向 <span class="math">$\vec{r}$</span> 的方向导数：
+</p>
+<span class="math">$$
+\boldsymbol{J} \cdot \vec{r} = \begin{bmatrix} \dfrac{\partial y_1}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial y_1}{\partial x_n} \\[10pt] \vdots &amp; \ddots &amp; \vdots \\[10pt] \dfrac{\partial y_m}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial y_m}{\partial x_n} \end{bmatrix} \cdot \begin{bmatrix} r_1 \\[10pt] \vdots \\[10pt] r_n \end{bmatrix} = \begin{bmatrix} \displaystyle\sum_{j=1}^{n}\dfrac{\partial y_1}{\partial x_j}r_j \\[10pt] \vdots \\[10pt] \displaystyle\sum_{j=1}^{n}\dfrac{\partial y_m}{\partial x_j}r_j \end{bmatrix}
+$$</span><p>
+一次 JVP 计算对应 Jacobian 矩阵的<strong>一列</strong>，想要得到完整 Jacobian 矩阵需要 <span class="math">$n$</span> 次计算，因此 JVP 适合输入维度 <span class="math">$n$</span> 较小的场景。</p>
+<p>而 VJP 我们在下面的反向模式中进行介绍。</p>
+<p>从计算过程来看，自动微分的前向模式实际上与我们在微积分里所学的求导过程一致。这种方法虽然简洁，但是其实不太适合我们神经网络的训练，原因在下面你就会明白，我们继续来看看<strong>反向模式</strong>是怎么算的？</p>
+<h5 id="反向模式">反向模式</h5>
+<p>反向自动微分同样是基于链式法则。仅需要一个前向过程和反向过程，就可以计算所有参数的导数或者梯度。</p>
+<p>因为需要结合前向和后向两个过程，因此反向自动微分会使用一个特殊的数据结构，来存储计算过程。</p>
+<p>这个特殊的数据结构本质上都是<strong>计算图</strong>，只是构建方式不同：</p>
+<ul>
+<li><strong>TensorFlow 1.x / MindSpore</strong> 采用<strong>静态计算图</strong>，先定义好完整的有向无环图（DAG），再编译执行，图在运行前已经固定；</li>
+<li><strong>PyTorch</strong> 采用<strong>动态计算图</strong>，使用 Tape 在前向传播时动态记录每一个操作，边运行边建图，反向传播时沿 Tape 倒序回放计算梯度。</li>
+</ul>
+<p>两者都表达了函数和变量的关系，区别在于静态图先定义后执行、部署更高效，动态图更灵活、调试更方便，因此在研究领域更为常用。</p>
+<p>反向模式根据从后向前计算，依次得到对每个中间变量节点的偏导数，直到到达自变量节点处，这样就得到了每个输入的偏导数。在每个节点处，根据该节点的后续节点（前向传播中的后续节点）计算其导数值。</p>
+<p>整个过程对应于多元复合函数求导时从最外层逐步向内侧求导。这样可以有效地把各个节点的梯度计算解耦开，每次只需要关注计算图中当前节点的梯度计算。</p>
+<p>从下图可以看出来，reverse mode 和 forward mode 是一对相反过程，reverse mode 从最终结果开始求导，利用最终输出对每一个节点进行求导。下图虚线就是反向模式。</p>
+<img src="images/image-20260426183614457.png" alt="image-20260426183614457" style="zoom:30%; display: block; margin: 0 auto;" />
+<p>反向模式由于是从输出向输入进行计算，所以我们每次<strong>固定</strong>一个输出 <span class="math">$y_j$</span>，一次性算出输出 <span class="math">$y_j$</span> 对所有输入 <span class="math">$\boldsymbol{x}$</span> 的导数。</p>
+<p>根据链式求导法则展开：
+</p>
+<span class="math">$$
+\frac{\partial f}{\partial \boldsymbol{x}} = \sum_{k=1}^{N} \frac{\partial f}{\partial v_k} \frac{\partial v_k}{\partial \boldsymbol{x}}
+$$</span><p>反向模式的计算过程如图所示:</p>
+<span class="math">$$
+\text{定义：} \bar{v}_i = \frac{\partial y}{\partial v_i}\\
+\begin{array}{lll}
+\hline
+\bar{v}_5 = \bar{y} &amp; &amp; = 1 \\
+\hline
+\bar{v}_4 = \bar{v}_5 \dfrac{\partial v_5}{\partial v_4}                       &amp; = \bar{v}_5 \times 1 &amp; = 1 \\[10pt]
+\bar{v}_3 = \bar{v}_5 \dfrac{\partial v_5}{\partial v_3}                       &amp; = \bar{v}_5 \times (-1) &amp; = -1 \\[10pt]
+\bar{v}_2 = \bar{v}_4 \dfrac{\partial v_4}{\partial v_2}                       &amp; = \bar{v}_4 \times 1 &amp; = 1 \\[10pt]
+\bar{v}_1 = \bar{v}_4 \dfrac{\partial v_4}{\partial v_1}                       &amp; = \bar{v}_4 \times 1 &amp; = 1 \\[10pt]
+\bar{v}_0 = \bar{v}_3 \dfrac{\partial v_3}{\partial v_0}                       &amp; = \bar{v}_3 \times \cos v_0 &amp; = -0.284 \\[10pt]
+\bar{v}_{-1} = \bar{v}_2 \dfrac{\partial v_2}{\partial v_{-1}}                 &amp; = \bar{v}_2 \times v_0 &amp; = 5 \\[10pt]
+\bar{v}_0 = \bar{v}_0 &#43; \bar{v}_2 \dfrac{\partial v_2}{\partial v_0}           &amp; = \bar{v}_0 &#43; \bar{v}_2 \times v_{-1} &amp; = 1.716 \\[10pt]
+\bar{v}_{-1} = \bar{v}_{-1} &#43; \bar{v}_1 \dfrac{\partial v_1}{\partial v_{-1}} &amp; = \bar{v}_{-1} &#43; \bar{v}_1 / v_{-1} &amp; = 5.5 \\[10pt]
+\hline
+\bar{x}_1 = \bar{v}_{-1} &amp; &amp; = \mathbf{5.5} \\
+\bar{x}_2 = \bar{v}_0    &amp; &amp; = \mathbf{1.716} \\
+\end{array}
+$$</span><p>两种自动微分模式都通过递归方式来求 <span class="math">$\frac{\partial y}{\partial x}$</span>，只不过根据链式法则展开的形式不太一样。</p>
+<p>前向梯度累积会指定从内到外的链式法则遍历路径，即先计算 <span class="math">$\frac{\partial w_1}{\partial x}$</span>，再计算 <span class="math">$\frac{\partial w_2}{\partial w_1}$</span>，最后计算 <span class="math">$\frac{\partial y}{\partial w_2}$</span>。即，前向模式是在计算图前向传播的同时计算微分。因此前向模式的一次正向传播就可以计算出输出值和导数值。
+</p>
+<span class="math">$$
+\frac{dw_i}{dx}=\frac{dw_i}{dw_{i-1}}\frac{dw_{i-1}}{dx}
+$$</span><p>
+反向梯度累积正好相反，它会先计算 <span class="math">$\frac{\partial y}{\partial w_2}$</span>，然后计算 <span class="math">$\frac{\partial w_2}{\partial w_1}$</span>，最后计算 <span class="math">$\frac{\partial w_1}{\partial x}$</span>。这是最为熟悉的反向传播模式，它非常符合<strong>沿模型误差反向传播</strong>这一直观思路。</p>
+<p>即，反向模式需要对计算图进行一次正向计算，得出输出值，再进行反向传播。反向模式需要保存正向传播的中间变量值（比如 <span class="math">$w_i$</span>），这些中间变量数值在反向传播时候被用来计算导数，所以反向模式的内存开销要大。</p>
+<p>对于函数 <span class="math">$\vec{y} = f(\vec{x})$</span>，其中 <span class="math">$f: \mathbb{R}^n \rightarrow \mathbb{R}^m$</span>，那么 <span class="math">$\vec{y}$</span> 中关于 <span class="math">$\vec{x}$</span> 的梯度可以表示为 Jacobian 矩阵：
+</p>
+<span class="math">$$
+J_f = \left[\frac{\partial \mathbf{y}}{\partial x_1} \quad \cdots \quad \frac{\partial \mathbf{y}}{\partial x_n}\right] = \begin{bmatrix} 
+\dfrac{\partial y_1}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial y_1}{\partial x_n} \\[10pt] 
+\vdots &amp; \ddots &amp; \vdots \\[10pt] 
+\dfrac{\partial y_m}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial y_m}{\partial x_n} 
+\end{bmatrix}
+$$</span><p>设置 <span class="math">$\vec{v}$</span> 是后续函数 <span class="math">$loss = g(\vec{y})$</span> 关于 <span class="math">$\vec{y}$</span> 的梯度：</p>
+<span class="math">$$
+\vec{v} = \left[\frac{\partial loss}{\partial y_1} \quad \cdots \quad \frac{\partial loss}{\partial y_m}\right]^{\text{T}}
+$$</span><p>这个向量来自后续节点的反向传播，告诉当前层 <span class="math">$loss$</span> 对每个输出 <span class="math">$y_i$</span> 有多敏感。</p>
+<p><strong>VJP（Vector-Jacobian Product）</strong> 就是函数 <span class="math">$loss$</span> 中关于所有输入 <span class="math">$\boldsymbol{x}$</span> 的梯度：
+</p>
+<span class="math">$$
+\boldsymbol{J}^{\text{T}} \cdot \vec{v} = 
+\begin{bmatrix} 
+\dfrac{\partial y_1}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial y_m}{\partial x_1} \\[10pt] 
+\vdots &amp; \ddots &amp; \vdots \\[10pt] 
+\dfrac{\partial y_1}{\partial x_n} &amp; \cdots &amp; \dfrac{\partial y_m}{\partial x_n} 
+\end{bmatrix}
+\cdot
+\begin{bmatrix} 
+\dfrac{\partial loss}{\partial y_1} \\[10pt] 
+\vdots \\[10pt] 
+\dfrac{\partial loss}{\partial y_m} 
+\end{bmatrix}
+= \begin{bmatrix} 
+\dfrac{\partial loss}{\partial x_1} \\[10pt] 
+\vdots \\[10pt] 
+\dfrac{\partial loss}{\partial x_n} 
+\end{bmatrix}
+$$</span><p>每个元素展开其实正是我们上面提到的链式法则：
+</p>
+<span class="math">$$
+\frac{\partial loss}{\partial x_i} = \sum_{j=1}^{m} \frac{\partial loss}{\partial y_j} \cdot \frac{\partial y_j}{\partial x_i}
+$$</span><p>
+我们对比一下 JVP vs VJP：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left">JVP</th>
+          <th style="text-align: left">VJP</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>公式</strong></td>
+          <td style="text-align: left"><span class="math">$J⋅\vec{r}$</span></td>
+          <td style="text-align: left"><span class="math">$J^\text{T}⋅\vec{v}$</span></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>向量含义</strong></td>
+          <td style="text-align: left">输入空间方向向量</td>
+          <td style="text-align: left"><span class="math">$loss$</span> 对输出的梯度</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>一次计算</strong></td>
+          <td style="text-align: left">Jacobian 的一列</td>
+          <td style="text-align: left">Jacobian 的一行</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>完整Jacobian</strong></td>
+          <td style="text-align: left">需要 <span class="math">$n$</span> 次</td>
+          <td style="text-align: left">需要 <span class="math">$m$</span> 次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>对应模式</strong></td>
+          <td style="text-align: left">前向自动微分</td>
+          <td style="text-align: left">反向自动微分</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>适合场景</strong></td>
+          <td style="text-align: left">输入少输出多</td>
+          <td style="text-align: left">输入多输出少</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>神经网络</strong></td>
+          <td style="text-align: left">❌ 参数量巨大</td>
+          <td style="text-align: left">✅ <span class="math">$loss$</span> 只有 <span class="math">$1$</span> 个</td>
+      </tr>
+  </tbody>
+</table>
+<h5 id="正反向模式的比较">正反向模式的比较</h5>
+<p>前向自动微分（tangent mode AD） 和后向自动微分（adjoint mode AD） 分别计算了 Jacobian 矩阵的一列和一行。</p>
+<p>前向模式和反向模式的不同之处在于矩阵相乘的起始之处不同。</p>
+<p>当输出维度小于输入维度，反向模式的乘法次数要小于前向模式。因此，当输出的维度大于输入的时候，适宜使用前向模式微分；当输出维度远远小于输入的时候，适宜使用反向模式微分。</p>
+<p>即，后向自动微分更加适合多参数的情况，多参数的时候后向自动微分的时间复杂度更低，只需要一遍 reverse mode 的计算过程，便可以求出输出对于各个输入的导数，从而轻松求取梯度用于后续优化更新。</p>
+<p>因此，目前大部分 AI 框架都会优先采用反向模式，但是也有例如 MindSpore 等 AI 框架同时支持正反向的实现模式。</p>
+<h4 id="动手实现自动微分">动手实现自动微分</h4>
+<p>上面两节我们介绍了自动微分的数学原理，这一节我们讲讲怎么动手写出一个简单的自动微分。</p>
+<p>虽然自动微分的数学原理已经明确，包括正向和反向的数学逻辑和模式。但具体的实现方法则可以有很大的差异，2018 年，Baydin 等学者在其综述论文 Automatic Differentiation in Machine Learning: a Survey 中对自动微分实现方案划分为三类：</p>
+<ul>
+<li><strong>基本表达式</strong>：基本表达式或者称元素库（Elemental Libraries），基于元素库中封装一系列基本的表达式（如：加减乘除等）及其对应的微分结果表达式，作为库函数。用户通过调用库函数构建需要被微分的程序。而封装后的库函数在运行时会记录所有的基本表达式和相应的组合关系，最后使用链式法则对上述基本表达式的微分结果进行组合完成自动微分。</li>
+<li><strong>操作符重载</strong>：操作符重载或者称运算重载（Operator Overloading，OO），利用现代语言的多态特性（例如 C++/JAVA/Python 等高级语言），使用操作符重载对语言中基本运算表达式的微分规则进行封装。同样，重载后的操作符在运行时会记录所有的操作符和相应的组合关系，最后使用链式法则对上述基本表达式的微分结果进行组合完成自动微分。</li>
+<li><strong>源代码变换</strong>：源代码变换或者叫做源码转换（Source Code Transformation，SCT）则是通过对语言预处理器、编译器或解释器的扩展，将其中程序表达（如：源码、AST 抽象语法树或编译过程中的中间表达 IR）的基本表达式微分规则进行预定义，再对程序表达进行分析得到基本表达式的组合关系，最后使用链式法则对上述基本表达式的微分结果进行组合生成对应微分结果的新程序表达，完成自动微分。</li>
+</ul>
+<p>任何 AD 实现中的一个主要考虑因素是 AD 运算时候引入的性能开销。就计算复杂性而言，AD 需要保证算术量增加不超过一个小的常数因子。另一方面，如果不小心管理 AD 算法，可能会带来很大的开销。例如，简单的分配数据结构来保存对偶数（正向运算和反向求导），将涉及每个算术运算的内存访问和分配，这通常比现代计算机上的算术运算更昂贵。同样，使用运算符重载可能会引入伴随成本的方法分派，与原始函数的原始数值计算相比，这很容易导致一个数量级的减速。</p>
+<h5 id="基本表达式">基本表达式</h5>
+<p>基本表达式法也叫做元素库（Elemental Libraries），程序中实现构成自动微分中计算的最基本的类别或者表达式，并通过调用自动微分中的库，来代替数学逻辑运算来工作。然后在函数定义中使用库公开的方法，这意味着在编写代码时，手动将任何函数分解为基本操作。</p>
+<p>这个方法从自动微分刚出现的时候就已经被广泛地使用，典型的例子是 Lawson (1971) 的 WCOMP 和 UCOMP 库，Neidinger (1989) 的 APL 库，以及 Hinkins (1994) 的工作。同样，Rich 和 Hill (1992) 使用基本表达式法在 MATLAB 中制定了他们的自动微分实现。</p>
+<p>以公式为例子：
+</p>
+<span class="math">$$
+f(x_1,x_2)=\text{ln}(x_1)&#43;x_1x_2−\text{sin}(x_2)
+$$</span><p>
+用户首先需要手动将公式 1 中的各个操作，或者叫做子函数，分解为库函数中基本表达式组合：</p>
+<p><span class="math">$t_1 = log(x)$</span></p>
+<p><span class="math">$t_3 = sin(x)$</span></p>
+<p><span class="math">$t_2 = x_1 \times x_2$</span></p>
+<p><span class="math">$t_4 = x_1 &#43; x_2$</span></p>
+<p><span class="math">$t_5 = x_1 - x_2$</span></p>
+<p>使用给定的库函数，完成上述函数的程序设计：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">//</span> <span class="n">参数为变量</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span> <span class="n">和对应的导数变量</span> <span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span><span class="n">dt</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ADAdd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="n">同理对上面的公式实现对应的函数</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ADSub</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ADMul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ADLog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ADSin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>而库函数中则定义了对应表达式的数学微分规则，和对应的链式法则:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">//</span> <span class="n">参数为变量</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span> <span class="n">和对应的导数变量</span> <span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span><span class="n">dt</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ADAdd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dt</span> <span class="o">=</span> <span class="n">dy</span> <span class="o">+</span> <span class="n">dx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="n">参数为变量</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span> <span class="n">和对应的导数变量</span> <span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span><span class="n">dt</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ADSub</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">-</span> <span class="n">dy</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="o">...</span> <span class="n">以此类推</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>针对公式 1 中基本表达式法，可以按照下面示例代码来实现正向的推理功能，反向其实也是一样，不过调用代码更复杂一点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x1</span> <span class="o">=</span> <span class="n">xxx</span>
+</span></span><span class="line"><span class="cl"><span class="n">x2</span> <span class="o">=</span> <span class="n">xxx</span>
+</span></span><span class="line"><span class="cl"><span class="n">t1</span> <span class="o">=</span> <span class="n">ADlog</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">t2</span> <span class="o">=</span> <span class="n">ADSin</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">t3</span> <span class="o">=</span> <span class="n">ADMul</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">t4</span> <span class="o">=</span> <span class="n">ADAdd</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">t5</span> <span class="o">=</span> <span class="n">ADSub</span><span class="p">(</span><span class="n">t4</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>基本表达式法的<strong>优点</strong>可以总结如下：</p>
+<ul>
+<li>实现简单，基本可在任意语言中快速地实现为库；</li>
+</ul>
+<p>基本表达式法的<strong>缺点</strong>可以总结如下：</p>
+<ul>
+<li>用户必须使用库函数进行编程，而无法使用语言原生的运算表达式；</li>
+<li>另外实现逻辑和代码也会冗余较长，依赖于开发人员较强的数学背景。</li>
+</ul>
+<p>基本表达式法在没有操作符重载 AD 的 80 到 90 年代初期，仍然是计算机中实现自动微分功能最简单和快捷的策略。</p>
+<p>基本表达式法最大的缺点就是<strong>需要用户手动拆分表达式</strong>，复杂神经网络完全不可能手写，这正是推动自动微分演进到运算符重载（OO）和 AST 变换的根本原因，让框架自动完成拆分工作</p>
+<h5 id="操作符重载">操作符重载</h5>
+<blockquote>
+<p>TODO： 由于太底层，目前先不进行学习，后续要用到的时候进行系统学习和补充</p></blockquote>
+<h3 id="计算图">计算图</h3>
 <p>计算图这个名词相信大家经常听到，似乎无处不在，但是很多人还是不知道它具体是什么？</p>
 <p>计算图在某些场景里也叫数据流图</p>
+<h2 id="大模型训推系统架构">大模型训推系统架构</h2>
 <h3 id="大模型训练">大模型训练</h3>
 <h3 id="大模型推理">大模型推理</h3>
 <h4 id="sglang">SGLang</h4>
 <p>一个专门用来学习 SGLang 框架的简化版本： <a href="https://github.com/gogongxt/nano-sglang" target="_blank" rel="noopener noreffer ">nano-sglang</a></p>
-<div class="mermaid" id="mermaid-2">sequenceDiagram
+<div class="mermaid" id="mermaid-3">sequenceDiagram
     participant 用户
     participant FastAPI as FastAPI Server
     participant Tokenizer as TokenizerManager
@@ -3789,14 +4599,17 @@ $$</span><p>
 <li id="fn:3">
 <p>这段代码我们在 GPU 一节中进行了深度剖析，讲解了 GPU 的 Tensor Core 是怎么对这种矩阵运算进行加速的。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
+<li id="fn:4">
+<p>Frank Rosenblatt（1928–1971）是美国心理学与人工智能先驱，他在 1957 年于康奈尔航空实验室提出了感知机（Perceptron） 模型，被视为早期神经网络与深度学习的重要奠基工作之一。遗憾的是感知机的局限性争议在他生前并未被解决，而他又于 1971 年（43 岁）因帆船事故早逝，未能见证 1980 年代后神经网络的复兴。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-04-20&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/b4eaba51655b9d2a5fe7f07ee80243b2fe778292" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) b4eaba51655b9d2a5fe7f07ee80243b2fe778292: feat: 优化了私人密码库页面">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b4eaba5</a></span>
+                <span>更新于 2026-04-27&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/0ca376bd2c4d0c10e9765cb64d530c3edd58ea72" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 0ca376bd2c4d0c10e9765cb64d530c3edd58ea72: content: update posts/">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>0ca376b</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

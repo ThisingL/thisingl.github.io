@@ -486,6 +486,15 @@
     .result-copy-btn:hover { background: #f9f9f9; }
     .result-copy-btn svg { flex-shrink: 0; }
 
+    /* ── 复制成功闪烁动画（与主题代码块一致） ── */
+    @keyframes copyFlash {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+    .result-password.flash-animate {
+      animation: copyFlash 1s ease-in-out;
+    }
+
     /* ── 底部信息 ── */
     .footer-info-wrapper {
       perspective: 800px;
@@ -1038,6 +1047,7 @@
 
       // 自动复制
       copyToClipboard(password);
+      flashResultArea();
       showToast('✅ 密码已生成并复制到剪贴板');
     }
 
@@ -1065,20 +1075,40 @@
       resultVisible = !resultVisible;
       var display = document.getElementById('result-password');
       var label = document.getElementById('toggle-label');
+      var eyeOff = document.getElementById('eye-off-icon');
+      var eyeOn = document.getElementById('eye-on-icon');
       if (resultVisible) {
         display.textContent = currentPassword;
         label.textContent = '隐藏';
+        eyeOff.style.display = 'none';
+        eyeOn.style.display = 'block';
       } else {
         display.textContent = '*'.repeat(currentPassword.length);
         label.textContent = '显示';
+        eyeOff.style.display = 'block';
+        eyeOn.style.display = 'none';
       }
     }
 
     function copyResult() {
       if (currentPassword) {
         copyToClipboard(currentPassword);
+        flashResultArea();
         showToast('✅ 已复制到剪贴板');
       }
+    }
+
+    // ── 复制时闪烁效果（仅密码文本） ──
+    function flashResultArea() {
+      var el = document.getElementById('result-password');
+      el.classList.remove('flash-animate');
+      // 强制回流以重新触发动画
+      void el.offsetWidth;
+      el.classList.add('flash-animate');
+      el.addEventListener('animationend', function handler() {
+        el.classList.remove('flash-animate');
+        el.removeEventListener('animationend', handler);
+      });
     }
 
     // ── 从 URL 参数恢复配置 ──

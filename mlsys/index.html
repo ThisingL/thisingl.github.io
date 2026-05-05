@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-04-27T20:53:13+08:00">
+    <meta property="article:modified_time" content="2026-05-06T01:41:12+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  62051 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-04-27T20:53:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  76525 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-05-06T01:41:12+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 62051 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 124 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 76525 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 153 分钟&nbsp;
     
 
     
@@ -177,6 +177,7 @@
             <li><a href="#网络">网络</a>
               <ul>
                 <li><a href="#rdma">RDMA</a></li>
+                <li><a href="#通信软件实现方式">通信软件实现方式</a></li>
               </ul>
             </li>
           </ul>
@@ -220,18 +221,40 @@
               </ul>
             </li>
             <li><a href="#计算图">计算图</a></li>
+            <li><a href="#分布式并行">分布式并行</a>
+              <ul>
+                <li><a href="#集合通信原语">集合通信原语</a></li>
+                <li><a href="#并行策略">并行策略</a></li>
+                <li><a href="#ai-集群服务器架构">AI 集群服务器架构</a></li>
+                <li><a href="#数据并行">数据并行</a></li>
+                <li><a href="#模型并行">模型并行</a></li>
+                <li><a href="#专家并行moe">专家并行（MoE）</a></li>
+                <li><a href="#混合并行">混合并行</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
-        <li><a href="#大模型训推系统架构">大模型训推系统架构</a>
+        <li><a href="#ai-推理">AI 推理</a>
           <ul>
-            <li><a href="#大模型训练">大模型训练</a></li>
-            <li><a href="#大模型推理">大模型推理</a>
+            <li><a href="#推理系统">推理系统</a>
+              <ul>
+                <li><a href="#nvidia-triton-server">NVIDIA Triton Server</a></li>
+              </ul>
+            </li>
+            <li><a href="#推理引擎">推理引擎</a>
+              <ul>
+                <li><a href="#模型小型化">模型小型化</a></li>
+                <li><a href="#模型压缩">模型压缩</a></li>
+              </ul>
+            </li>
+            <li><a href="#大模型推理框架">大模型推理框架</a>
               <ul>
                 <li><a href="#sglang">SGLang</a></li>
               </ul>
             </li>
           </ul>
         </li>
+        <li><a href="#ai-训练">AI 训练</a></li>
       </ul>
     </li>
   </ul>
@@ -327,6 +350,22 @@
 <img src="images/image-20260304011904388.png" alt="image-20260304011904388" style="zoom:50%; display: block; margin: 0 auto;" />
 <h3 id="芯片基础">芯片基础</h3>
 <h4 id="性能指标">性能指标</h4>
+<h5 id="吞吐量">吞吐量</h5>
+<p>只计算数据传输本身的时间：</p>
+<span class="math">$$
+\text{吞吐量} = \frac{\text{数据量}}{\text{纯传输时间}}
+$$</span><p>
+其中传输时间 = 第一个数据到达 → 最后一个数据到达，反映的是<strong>网络管道有多粗</strong>。</p>
+<hr>
+<h5 id="有效带宽">有效带宽</h5>
+<p>从请求发出开始计算，包含延迟在内的完整时间：</p>
+<span class="math">$$
+\text{有效带宽} = \frac{\text{数据量}}{\text{延迟} &#43; \text{传输时间}}
+$$</span><p>
+其中完整时间 = 发出请求 → 收到最后一个数据，反映的是<strong>应用程序实际感受到的速度</strong>。</p>
+<blockquote>
+<p>两者的关系：当传输数据量较大时，延迟占比可以忽略，我们主要看吞吐量就行；而当数据量较小时，延迟占主导，有效带宽会显著低于吞吐量，这时候我们就需要看带宽数据了。</p></blockquote>
+<hr>
 <h5 id="计算强度">计算强度</h5>
 <p>首先我们来看看什么是<strong>计算强度</strong>：
 </p>
@@ -335,6 +374,7 @@
 $$</span><p>
 假设我们 CPU 的计算能力是 <span class="math">$2000$</span> <span class="math">$\text{GFLOPS}$</span> FP64，数据带宽为 <span class="math">$200 \ \text{GB/s}$</span>，那么此时系统中的计算强度等于 <span class="math">$\frac{2000}{200/8} = 80$</span>（除以 8 是因为 FP64 每个数占 8 字节）。这意味着：理论上每加载一次数据后，需要对其进行 <span class="math">$80$</span> 次计算，才能让算力与带宽恰好达到平衡。</p>
 <p>这里我们可以理解为如果带宽很高，然后我们的算力比较小，那么计算就跟不上带宽。这个计算强度的结果代表着<strong>每字节数据做多少次浮点运算</strong>。</p>
+<hr>
 <h5 id="所需线程数">所需线程数</h5>
 <span class="math">$$
 \text{Threads Required} = \frac{\text{带宽} \times \text{时延} }{\text{单次请求数据量}}
@@ -1767,6 +1807,9 @@ $$</span><p>
 </li>
 </ul>
 <p>而 iWARP 显然是为了再更宽泛的现有网络中使用，支持了广域网，同时由于 TCP 协议支持了流量和拥塞控制，因此不需要无损传输，当然性能也是最差的</p>
+<h4 id="通信软件实现方式">通信软件实现方式</h4>
+<blockquote>
+<p>TODO: 补充 NCCL/MPI 细节</p></blockquote>
 <h2 id="云原生资源编排与调度架构">云原生资源编排与调度架构</h2>
 <h3 id="k8s">K8S</h3>
 <h2 id="ai-编译计算架构">AI 编译计算架构</h2>
@@ -3736,7 +3779,7 @@ $$</span><p>
 </ul>
 <h4 id="前端优化">前端优化</h4>
 <blockquote>
-<p>具体的优化涉及到非常多的具体的 AI 框架的知识，建议先补充 AI 框架基础再回来详细学习 AI 编译器底层是怎么优化的？</p></blockquote>
+<p>TODO：具体的优化涉及到非常多的具体的 AI 框架的知识，建议先补充 AI 框架基础再回来详细学习 AI 编译器底层是怎么优化的？</p></blockquote>
 <h4 id="后端优化">后端优化</h4>
 <h2 id="ai-框架">AI 框架</h2>
 <h3 id="ai-框架基础">AI 框架基础</h3>
@@ -4167,7 +4210,7 @@ $$</span><p>
 </ul>
 <p>假设我们需要计算的是这个式子：<span class="math">$f(x_1, x_2) = \ln(x_1) &#43; x_1 x_2 - \sin(x_2)$</span></p>
 <p>这是一个复合函数，直接计算很复杂，所以我们考虑引入中间变量进行简化。</p>
-<p>我们可以把复杂的复合函数，拆成一系列简单的“原子”操作，每一步都容易计算！通过把公式中一些部分整理出来成为一些新变量，然后用这些新变量整体替换这个公式，于是得到：
+<p>我们可以把复杂的复合函数，拆成一系列简单的<strong>基本函数</strong>，每一步都容易计算！通过把公式中一些部分整理出来成为一些新变量，然后用这些新变量整体替换这个公式，于是得到：
 </p>
 <span class="math">$$
 \begin{array}{lll}
@@ -4304,8 +4347,9 @@ $$</span><p>
 <p>两者都表达了函数和变量的关系，区别在于静态图先定义后执行、部署更高效，动态图更灵活、调试更方便，因此在研究领域更为常用。</p>
 <p>反向模式根据从后向前计算，依次得到对每个中间变量节点的偏导数，直到到达自变量节点处，这样就得到了每个输入的偏导数。在每个节点处，根据该节点的后续节点（前向传播中的后续节点）计算其导数值。</p>
 <p>整个过程对应于多元复合函数求导时从最外层逐步向内侧求导。这样可以有效地把各个节点的梯度计算解耦开，每次只需要关注计算图中当前节点的梯度计算。</p>
-<p>从下图可以看出来，reverse mode 和 forward mode 是一对相反过程，reverse mode 从最终结果开始求导，利用最终输出对每一个节点进行求导。下图虚线就是反向模式。</p>
-<img src="images/image-20260426183614457.png" alt="image-20260426183614457" style="zoom:30%; display: block; margin: 0 auto;" />
+<p>从下图可以看出来，reverse mode 和 forward mode 是一对相反过程，reverse mode 从最终结果开始求导，利用最终输出对每一个节点进行求导。下图虚线就是反向模式。从图中也可以看出来反向我们还会用到正向的中间变量的一部分内容，所以我们需要把中间变量的值也都存起来。</p>
+<img src="images/image-20260428112542096.png" alt="image-20260428112542096" style="zoom:25%; display: block; margin: 0 auto;" />
+<p>由于 DAG 图无环的特性，所以我们在反向传播的时候是在计算图上产生的新的独立的节点。</p>
 <p>反向模式由于是从输出向输入进行计算，所以我们每次<strong>固定</strong>一个输出 <span class="math">$y_j$</span>，一次性算出输出 <span class="math">$y_j$</span> 对所有输入 <span class="math">$\boldsymbol{x}$</span> 的导数。</p>
 <p>根据链式求导法则展开：
 </p>
@@ -4349,7 +4393,7 @@ J_f = \left[\frac{\partial \mathbf{y}}{\partial x_1} \quad \cdots \quad \frac{\p
 $$</span><p>设置 <span class="math">$\vec{v}$</span> 是后续函数 <span class="math">$loss = g(\vec{y})$</span> 关于 <span class="math">$\vec{y}$</span> 的梯度：</p>
 <span class="math">$$
 \vec{v} = \left[\frac{\partial loss}{\partial y_1} \quad \cdots \quad \frac{\partial loss}{\partial y_m}\right]^{\text{T}}
-$$</span><p>这个向量来自后续节点的反向传播，告诉当前层 <span class="math">$loss$</span> 对每个输出 <span class="math">$y_i$</span> 有多敏感。</p>
+$$</span><p>这个向量其实就是<strong>后一层损失函数对当前层输出的导数</strong>，告诉当前层 <span class="math">$loss$</span> 对每个输出 <span class="math">$y_i$</span> 有多敏感。</p>
 <p><strong>VJP（Vector-Jacobian Product）</strong> 就是函数 <span class="math">$loss$</span> 中关于所有输入 <span class="math">$\boldsymbol{x}$</span> 的梯度：
 </p>
 <span class="math">$$
@@ -4537,10 +4581,608 @@ $$</span><p>
 <p>TODO： 由于太底层，目前先不进行学习，后续要用到的时候进行系统学习和补充</p></blockquote>
 <h3 id="计算图">计算图</h3>
 <p>计算图这个名词相信大家经常听到，似乎无处不在，但是很多人还是不知道它具体是什么？</p>
-<p>计算图在某些场景里也叫数据流图</p>
-<h2 id="大模型训推系统架构">大模型训推系统架构</h2>
-<h3 id="大模型训练">大模型训练</h3>
-<h3 id="大模型推理">大模型推理</h3>
+<p>计算图在某些场景里也叫数据流图。</p>
+<ul>
+<li>
+<p>基本数据结构：Tensor 张量</p>
+</li>
+<li>
+<p>基本运算单元：Operator 算子</p>
+</li>
+</ul>
+<p>首先我们好好讲讲深度学习中非常重要的关键词 Tensor。</p>
+<p>张量（tensor）理论是数学的一个分支学科，在力学中有重要应用。张量这一术语起源于力学，它最初是用来表示弹性介质中各点应力状态的，后来张量理论发展成为力学和物理学的一个有力的数学工具。张量之所以重要，在于它可以满足一切物理定律必须与坐标系的选择无关的特性。张量概念是矢量概念的推广，矢量是一阶张量。</p>
+<p>在几何代数中，张量是基于向量和矩阵的推广，通俗一点理解的话，可以将标量视为零阶张量，向量视为一阶张量，矩阵视为二阶张量。在 AI 框架中，所有数据将会使用张量进行表示，例如，图像任务通常将一副图片组织成一个 3 维张量，张量的三个维度分别对应着图像的长、宽和通道数，一张长和宽分别为 H, W 的彩色的图片可以表示为一个三维张量，形状为 (C, H, W)。自然语言处理任务中，一个句子被组织成一个 2 维张量，张量的两个维度分别对应着词向量和句子的长度。</p>
+<p>一组图像或者多个句子只需要为张量再增加一个批量（batch）维度，N 张彩色图片组成的一批数据可以表示为一个四维张量，形状为 (N, C, H, W)。</p>
+<blockquote>
+<p>TODO： 计算图更深入的学习和 AI 编译器也会有关，留待后续深入学习</p></blockquote>
+<h3 id="分布式并行">分布式并行</h3>
+<p>深度学习中分布式并行的意义在于：</p>
+<p>对于我们的深度学习训练耗时：
+</p>
+<span class="math">$$
+T_{训练} = \frac{N_{数据} \times C_{单步}}{S_{计算速率}}
+$$</span><p>
+其中分子部分是模型相关的，相对固定；而分母部分就是<strong>可变因素</strong>，我们可以通过分布式并行方式进行加速:
+</p>
+<span class="math">$$
+S_{计算速率} = S_{单设备计算速率} \times N_{设备数} \times \eta_{并行效率(加速比)}
+$$</span><p>
+<span class="math">$\eta \in (0, 1]$</span> 表示多设备并行效率（加速比）:
+</p>
+<span class="math">$$
+\eta = \frac{P_n}{nP}
+$$</span><p>
+其中 <span class="math">$P$</span> 表示单设备吞吐量，<span class="math">$P_n $</span> 表示 <span class="math">$n$</span> 个设备的实际吞吐量。</p>
+<p>提升 <span class="math">$S_{单设备计算速率}$</span>：本质上就是我们单台机器怎么算的更快，我们可以从硬件和软件两方面进行优化。硬件上来看，根据 Moore 定律，芯片制程的纳米数会越来越小，也就是单块芯片上能容纳的晶体管也会越来越多，因此芯片计算性能也会越来越强。软件方面其实就是从算法层面进行优化，我们可以混合精度、算子融合以及梯度累加等方式来达到加速训练。</p>
+<p>增加 <span class="math">$N_{设备数}$</span>：设备越来越多就会慢慢变成了一个集群，我们就要去解决服务器架构的问题，通信拓扑问题以及软硬件通信问题。如果不优化通信问题，就会出现 <span class="math">$N$</span> 在增加，但是 <span class="math">$\eta$</span> 在减小的问题，整体乘积甚至会减小。</p>
+<p>提高 <span class="math">$\eta_{并行效率(加速比)}$</span>：需通过数据并行、模型并行、流水线并行等策略合理分配计算任务，同时减少通信开销，保证负载均衡。</p>
+<h4 id="集合通信原语">集合通信原语</h4>
+<p>当模型规模过大、单台机器无法容纳时，我们需要对模型进行切分，将不同部分分配到不同的机器上。此时，跨节点的数据同步就成为了必须解决的问题。</p>
+<img src="images/image-20260503204334358.png" alt="image-20260503204334358" style="zoom:26%; display: block; margin: 0 auto;" />
+<p>这些同步操作可以由一组基本的通信操作来实现，我们将其称为<strong>通信原语</strong>。通信原语是分布式系统中最基础的通信单元，就像编程语言中的加减乘除一样，是构建复杂通信模式的基础积木。借助这些原语，我们便可以灵活地完成各种数据同步需求。</p>
+<p>任何通信需求，本质上都是在回答一个问题：<strong>谁把什么数据，发给谁？</strong></p>
+<p>发送方：一个节点 or 多个节点</p>
+<p>数据：完整数据 or 切分数据 or 运算后的数据</p>
+<p>接收方：一个节点 or 多个节点</p>
+<p>然后我们按照 发送方（1或多）× 接收方（1或多）× 是否运算 的排列组合，将集合通信原语主要分为三种类型：</p>
+<ul>
+<li><strong>一对多</strong>：Scatter / Broadcast</li>
+<li><strong>多对一</strong>：Gather / Reduce</li>
+<li><strong>多对多</strong>：All-Reduce / All-Gather / Reduce-Scatter / All-to-All</li>
+</ul>
+<p>而这些集合通信原语，其实都是基于<strong>点对点通信</strong>(<strong>Send/Recv</strong>)实现的。</p>
+<p>下面我们来逐一了解这八种通信原语的具体含义与用途。</p>
+<hr>
+<h5 id="一对多">一对多</h5>
+<h6 id="broadcast">Broadcast</h6>
+<p>Broadcast（广播）是指某个节点将自身的数据完整地发送给集群中所有其他节点，使得每个节点都拥有相同的数据副本。
+</p>
+<span class="math">$$
+\text{节点}_0 \xrightarrow{\text{Broadcast}} \text{节点}_1, \text{节点}_2, \ldots, \text{节点}_{n-1}
+$$</span><p>
+在分布式机器学习中，Broadcast 常用于训练开始前的<strong>网络参数初始化</strong>，确保所有节点以相同的初始参数启动训练。</p>
+<img src="images/image-20260503230029275.png" alt="image-20260503230029275" style="zoom:25%; display: block; margin: 0 auto;" />
+<h6 id="scatter">Scatter</h6>
+<p>Scatter（散播）是指某个节点将自身的数据<strong>切分</strong>后，将不同的数据块分别发送给集群中的不同节点，每个节点只收到其中的一部分。</p>
+<span class="math">$$
+\text{节点}_0 [A, B, C, D] \xrightarrow{\text{Scatter}} \begin{cases} \text{节点}_0 \leftarrow A \\ \text{节点}_1 \leftarrow B \\ \text{节点}_2 \leftarrow C \\ \text{节点}_3 \leftarrow D \end{cases}
+$$</span><p>
+Scatter 与 Broadcast 的区别在于：Broadcast 是将<strong>相同</strong>的数据发给所有节点，而 Scatter 是将数据<strong>拆分</strong>后分发，每个节点收到的内容各不相同。在分布式训练中，Scatter 常用于将训练数据集分发给不同的 Worker 节点。</p>
+<img src="images/image-20260503231028421.png" alt="image-20260503231028421" style="zoom:25%; display: block; margin: 0 auto;" />
+<hr>
+<h5 id="多对一">多对一</h5>
+<h6 id="gather">Gather</h6>
+<p>Gather（收集）是 Scatter 的逆操作，将集群中所有节点的数据<strong>汇聚</strong>到某一个节点上，由该节点拥有所有节点的完整数据。</p>
+<span class="math">$$
+\begin{cases} \text{节点}_0 \rightarrow A \\ \text{节点}_1 \rightarrow B \\ \text{节点}_2 \rightarrow C \\ \text{节点}_3 \rightarrow D \end{cases} \xrightarrow{\text{Gather}} \text{节点}_0 [A, B, C, D]
+$$</span><p>
+在分布式训练中，Gather 常用于将各个节点的计算结果汇总到主节点，例如收集各 Worker 的预测结果进行统一评估。</p>
+<img src="images/image-20260503231911838.png" alt="image-20260503231911838" style="zoom:25%; display: block; margin: 0 auto;" />
+<h6 id="reduce">Reduce</h6>
+<p>Reduce（规约）与 Gather 类似，同样是将所有节点的数据汇聚到某一个节点，但不同的是，Reduce 在汇聚过程中会对数据进行<strong>运算</strong>（如求和、求最大值等），最终只保留运算结果而非所有原始数据。</p>
+<span class="math">$$
+\begin{cases} \text{节点}_0 \rightarrow 1 \\ \text{节点}_1 \rightarrow 2 \\ \text{节点}_2 \rightarrow 3 \\ \text{节点}_3 \rightarrow 4 \end{cases} \xrightarrow{\text{Reduce (Sum)}} \text{节点}_0 [10]
+$$</span><p>
+常见的 Reduce 操作包括：</p>
+<table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>SUM</td>
+          <td>求和</td>
+      </tr>
+      <tr>
+          <td>MAX</td>
+          <td>取最大值</td>
+      </tr>
+      <tr>
+          <td>MIN</td>
+          <td>取最小值</td>
+      </tr>
+      <tr>
+          <td>PROD</td>
+          <td>求乘积</td>
+      </tr>
+  </tbody>
+</table>
+<p>在分布式训练中，Reduce 常用于将各个节点计算得到的梯度汇总到主节点，由主节点完成参数更新。</p>
+<img src="images/image-20260503231533662.png" alt="image-20260503231533662" style="zoom:25%; display: block; margin: 0 auto;" />
+<hr>
+<h5 id="多对多">多对多</h5>
+<h6 id="all-reduce">All-Reduce</h6>
+<p>All-Reduce 可以理解为 Reduce + Broadcast 的组合：首先对所有节点的数据进行规约运算，再将结果广播给所有节点，使得<strong>每个节点都拥有相同的最终结果</strong>。</p>
+<span class="math">$$
+\begin{cases} \text{节点}_0 \rightarrow 1 \\ \text{节点}_1 \rightarrow 2 \\ \text{节点}_2 \rightarrow 3 \\ \text{节点}_3 \rightarrow 4 \end{cases} \xrightarrow{\text{All-Reduce (Sum)}} \begin{cases} \text{节点}_0 \leftarrow 10 \\ \text{节点}_1 \leftarrow 10 \\ \text{节点}_2 \leftarrow 10 \\ \text{节点}_3 \leftarrow 10 \end{cases}
+$$</span><p>
+All-Reduce 是分布式训练中<strong>最核心、最常用</strong>的通信原语。在数据并行训练中，每个节点独立计算梯度后，通过 All-Reduce 将所有节点的梯度求和并同步到所有节点，保证每个节点的参数更新一致。</p>
+<img src="images/image-20260504001801033.png" alt="image-20260504001801033" style="zoom:25%; display: block; margin: 0 auto;" />
+<p>当然如下图所示，我们实际上一般通过 Reduce-Scatter + All-Gather 来实现 All-Reduce。这样做的好处是避免单节点成为性能瓶颈，Ring All-Reduce 便是高效实现这一原语的经典算法。</p>
+<img src="images/image-20260504005215643.png" alt="image-20260504005215643" style="zoom:25%; display: block; margin: 0 auto;" />
+<h6 id="all-gather">All-Gather</h6>
+<p>All-Gather 可以理解为 Gather + Broadcast 的组合：每个节点将自己的数据广播给所有其他节点，最终<strong>每个节点都拥有所有节点的完整数据</strong>。</p>
+<span class="math">$$
+\begin{cases} \text{节点}_0 \rightarrow A \\ \text{节点}_1 \rightarrow B \\ \text{节点}_2 \rightarrow C \\ \text{节点}_3 \rightarrow D \end{cases} \xrightarrow{\text{All-Gather}} \begin{cases} \text{节点}_0 \leftarrow [A, B, C, D] \\ \text{节点}_1 \leftarrow [A, B, C, D] \\ \text{节点}_2 \leftarrow [A, B, C, D] \\ \text{节点}_3 \leftarrow [A, B, C, D] \end{cases}
+$$</span><p>
+与 All-Reduce 的区别在于：All-Reduce 汇聚后做<strong>运算</strong>，每个节点得到一个规约值；All-Gather 汇聚后<strong>不做运算</strong>，每个节点得到所有节点的原始数据拼接。在 ZeRO 优化中，All-Gather 用于在计算前将分散在各节点的参数还原成完整的模型参数。</p>
+<img src="images/image-20260504003203372.png" alt="image-20260504003203372" style="zoom:25%; display: block; margin: 0 auto;" />
+<h6 id="reduce-scatter">Reduce-Scatter</h6>
+<p>Reduce-Scatter 顾名思义是 Reduce 和 Scatter 的组合操作：首先对所有节点的数据进行规约运算，再将规约结果<strong>切分</strong>后分发给所有节点，使得每个节点只拥有最终结果的一部分。</p>
+<span class="math">$$
+\begin{cases} \text{节点}_0 \rightarrow [1, 2, 3, 4] \\ \text{节点}_1 \rightarrow [1, 2, 3, 4] \\ \text{节点}_2 \rightarrow [1, 2, 3, 4] \\ \text{节点}_3 \rightarrow [1, 2, 3, 4] \end{cases} \xrightarrow{\text{Reduce-Scatter (Sum)}} \begin{cases} \text{节点}_0 \leftarrow [4] \\ \text{节点}_1 \leftarrow [8] \\ \text{节点}_2 \leftarrow [12] \\ \text{节点}_3 \leftarrow [16] \end{cases}
+$$</span><p>
+Reduce-Scatter 在分布式训练中有着非常重要的地位，尤其体现在以下两个场景：</p>
+<ul>
+<li><strong>Ring All-Reduce 的分解</strong>：将 All-Reduce 拆解为这两个步骤，正是 Ring All-Reduce 算法高效的核心所在——每个节点的通信量均等，避免了单点瓶颈。</li>
+<li><strong>ZeRO 中的梯度同步</strong></li>
+</ul>
+<p>Reduce-Scatter 的精妙之处在于：既完成了规约运算，又天然地实现了数据分片，让每个节点只持有自己需要的那部分结果。</p>
+<img src="images/image-20260504003857151.png" alt="image-20260504003857151" style="zoom:25%; display: block; margin: 0 auto;" />
+<h6 id="all-to-all">All-to-All</h6>
+<p>All-to-All 是所有通信原语中最&quot;全面&quot;的一种：每个节点将自己的数据<strong>切分</strong>后，分别发送给所有其他节点，同时也从所有其他节点接收不同的数据块。可以理解为<strong>所有节点同时互相执行 Scatter</strong>。</p>
+<span class="math">$$
+\begin{cases} \text{节点}_0 \rightarrow [A_0, A_1, A_2, A_3] \\ \text{节点}_1 \rightarrow [B_0, B_1, B_2, B_3] \\ \text{节点}_2 \rightarrow [C_0, C_1, C_2, C_3] \\ \text{节点}_3 \rightarrow [D_0, D_1, D_2, D_3] \end{cases} \xrightarrow{\text{All-to-All}} \begin{cases} \text{节点}_0 \leftarrow [A_0, B_0, C_0, D_0] \\ \text{节点}_1 \leftarrow [A_1, B_1, C_1, D_1] \\ \text{节点}_2 \leftarrow [A_2, B_2, C_2, D_2] \\ \text{节点}_3 \leftarrow [A_3, B_3, C_3, D_3] \end{cases}
+$$</span><p>
+主要用在张量并行中的数据重分布以及 MoE 专家并行中的 Token 路由等场景</p>
+<img src="images/image-20260505003041643.png" alt="image-20260505003041643" style="zoom:29%; display: block; margin: 0 auto;" />
+<h4 id="并行策略">并行策略</h4>
+<h5 id="同步并行">同步并行</h5>
+<p>同步并行要求所有工作节点必须完成本轮计算并同步梯度后，才能统一进入下一轮迭代。</p>
+<ul>
+<li><strong>优点</strong>：计算与通信严格按顺序执行，能够保证并行训练的结果与串行训练完全一致，收敛行为稳定可预期。</li>
+<li><strong>缺点</strong>：计算较快的节点需要等待最慢的节点完成后才能继续，产生&quot;木桶效应&quot;，造成计算资源的浪费。</li>
+</ul>
+<img src="images/image-20260505002038512.png" alt="image-20260505002038512" style="zoom:30%; display: block; margin: 0 auto;" />
+<h5 id="异步并行">异步并行</h5>
+<p>异步并行中每个工作节点完成本地计算后立即与参数服务器进行通信，无需等待其他节点。</p>
+<ul>
+<li><strong>优点</strong>：执行效率高，节点之间不存在阻塞等待，硬件利用率最大化。</li>
+<li><strong>缺点</strong>：由于各节点使用的模型参数版本不一致，存在<strong>梯度过期</strong>（Stale Gradient）问题，可能导致模型训练不稳定甚至不收敛，难以在工业场景中直接使用。</li>
+</ul>
+<img src="images/image-20260505003341797.png" alt="image-20260505003341797" style="zoom:36%; display: block; margin: 0 auto;" />
+<h5 id="半同步并行">半同步并行</h5>
+<p>半同步并行介于同步与异步之间，通过动态跟踪各节点的训练进度，限制最快节点与最慢节点之间的迭代差距不超过预设阈值 <span class="math">$s$</span>，在保证一定收敛稳定性的同时避免长时间的阻塞等待。</p>
+<p>具体而言，每个节点维护一个本地时钟，每完成一轮迭代时钟 <span class="math">$&#43;1$</span>。系统持续监控所有节点的时钟状态，确保最快节点与最慢节点之间的迭代差距始终满足：
+</p>
+<span class="math">$$
+|\text{iter}_{fast} - \text{iter}_{slow}| \leq s
+$$</span><p>
+一旦差距达到阈值 <span class="math">$s$</span>，最快节点将暂停等待，直到最慢节点完成追赶、差距回落到阈值以内后再继续推进。</p>
+<img src="images/image-20260505003723286.png" alt="image-20260505003723286" style="zoom:39%; display: block; margin: 0 auto;" />
+<p>值得注意的是，阈值 <span class="math">$s$</span> 的取值决定了半同步并行的行为边界：当 <span class="math">$s = 0$</span> 时退化为同步并行，当 <span class="math">$s \to \infty$</span> 时退化为异步并行。因此，半同步并行本质上是在<strong>训练效率</strong>与<strong>收敛稳定性</strong>之间做出权衡，通过合理设置 <span class="math">$s$</span> 来兼顾两者。</p>
+<h4 id="ai-集群服务器架构">AI 集群服务器架构</h4>
+<h5 id="ps-架构">PS 架构</h5>
+<p>参数服务器（Parameter Server）架构是一种<strong>中心化</strong>的分布式训练架构，将集群中的节点分为两种角色：<strong>Server</strong> 和 <strong>Worker</strong>，两者各司其职，协同完成训练。关于 PS 架构的详细设计与理论基础，推荐大家看看当年少帅李沐发表的经典论文 <a href="/mlsys/images/Parameter_Server-paper-li_mu_%E5%8F%8C%E8%AF%AD%E7%89%88%E6%9C%AC.pdf" rel="">Scaling Distributed Machine Learning with the Parameter Server</a></p>
+<p><strong>Server 节点</strong>负责存储和维护完整的模型参数，接收来自各 Worker 的梯度并完成聚合，最终将更新后的参数下发给所有 Worker。</p>
+<p><strong>Worker 节点</strong>负责从 Server 拉取最新参数，利用本地数据进行前向传播与反向传播，计算得到梯度后推送回 Server。</p>
+<p>两者之间的交互构成了 PS 架构的核心通信模式：<strong>Push</strong>（Worker 推送梯度）与 <strong>Pull</strong>（Worker 拉取参数）。</p>
+<p>然而，PS 架构存在一个固有的性能问题：随着 Worker 数量的增加，所有节点的通信流量都集中汇聚到 Server，Server 的带宽压力随之线性增长，极易成为整个训练集群的<strong>通信瓶颈</strong>。假设集群中有 <span class="math">$N$</span> 个 Worker，每个 Worker 的梯度大小为 <span class="math">$D$</span>，则 Server 需要承受的通信量为：</p>
+<span class="math">$$
+C_{server} = 2ND
+$$</span><p>
+而每个 Worker 的通信量仅为：</p>
+<span class="math">$$
+C_{worker} = 2D
+$$</span><p>
+两者相差 <span class="math">$N$</span> 倍，Worker 数量越多，Server 的压力越大，扩展性也随之急剧下降。</p>
+<p>正是由于这一固有缺陷，PS 架构在面对现代大规模集群训练时逐渐力不从心，去中心化架构也因此应运而生。</p>
+<h5 id="去中心化架构">去中心化架构</h5>
+<p>去中心化架构彻底摒弃了 Server/Worker 的角色划分，所有节点完全对等，每个节点既负责本地计算，也直接参与梯度通信。节点之间不再通过中心节点中转，而是通过<strong>集合通信</strong>的方式直接协作完成梯度同步。</p>
+<p>这种设计从根本上解决了 PS 架构的通信瓶颈问题：每个节点的通信量均等，不存在任何单点压力，集群规模越大，通信效率的优势越明显。</p>
+<p>目前去中心化架构中最具代表性的算法是 <strong>Ring All-Reduce</strong>，其核心思想是将所有节点排列成一个逻辑环，梯度数据沿环依次传递并累加，最终每个节点都能获得完整的梯度聚合结果。每个节点的通信量为：</p>
+<span class="math">$$
+C_{node} = 2 \times \frac{N-1}{N} \times D \approx 2D
+$$</span><p>
+与节点总数 <span class="math">$N$</span> 几乎无关，彻底消除了中心节点的瓶颈，这也是现代大规模分布式训练的主流通信方案。</p>
+<blockquote>
+<p>也有人认为，这里的去中心化架构其实就是将参数服务器分布在多个 GPU，是 PS 架构的一种特殊形态。</p>
+<p>这里我们先分开来讨论。</p></blockquote>
+<h4 id="数据并行">数据并行</h4>
+<p>下面我们将围绕在 PyTorch2.0 中提供的多种分布式训练方式展开，包括并行训练，如：数据并行（Data Parallelism, DP）、模型并行（Model Parallelism, MP）、混合并行（Hybrid Parallel），可扩展的分布式训练组件，如：设备网格（Device Mesh）、RPC 分布式训练以及自定义扩展等。每种方法在特定用例中都有独特的优势。</p>
+<blockquote>
+<p>TODO：这里的并行和大模型耦合度较高，因此待学习部分 llm 知识再回来学习</p></blockquote>
+<h4 id="模型并行">模型并行</h4>
+<h5 id="张量并行">张量并行</h5>
+<h5 id="流水并行">流水并行</h5>
+<h4 id="专家并行moe">专家并行（MoE）</h4>
+<h4 id="混合并行">混合并行</h4>
+<h5 id="3d-并行">3D 并行</h5>
+<h2 id="ai-推理">AI 推理</h2>
+<p>大家肯定经常看到推理引擎、推理框架和推理系统这三个名词，感觉都差不多压根不知道有什么区别，我们首先来分清楚这三个概念：</p>
+<ul>
+<li>推理引擎管<strong>单次计算怎么快</strong></li>
+<li>推理框架管<strong>多请求怎么调度</strong></li>
+<li>推理系统管<strong>整个服务怎么稳定运行</strong></li>
+</ul>
+<p>三者从下到上层层依赖，各司其职。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>推理引擎</th>
+          <th>推理框架</th>
+          <th>推理系统</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>定义</strong></td>
+          <td>执行模型计算的核心组件</td>
+          <td>管理推理全流程的软件框架</td>
+          <td>端到端的完整服务平台</td>
+      </tr>
+      <tr>
+          <td><strong>层次</strong></td>
+          <td>最底层</td>
+          <td>中间层</td>
+          <td>最上层</td>
+      </tr>
+      <tr>
+          <td><strong>核心职责</strong></td>
+          <td>算子执行/显存管理/计算优化</td>
+          <td>调度/批处理/请求管理</td>
+          <td>服务治理/扩缩容/监控</td>
+      </tr>
+      <tr>
+          <td><strong>典型例子</strong></td>
+          <td>TensorRT、XLA、ONNX Runtime</td>
+          <td>vLLM、SGLang、TGI</td>
+          <td>Triton Server、自研推理平台</td>
+      </tr>
+      <tr>
+          <td><strong>关注点</strong></td>
+          <td>单次前向计算性能</td>
+          <td>吞吐量/延迟/并发</td>
+          <td>可用性/成本/稳定性</td>
+      </tr>
+      <tr>
+          <td><strong>硬件感知</strong></td>
+          <td>强（直接操作GPU/CPU）</td>
+          <td>中（通过引擎调用硬件）</td>
+          <td>弱（关注服务层面）</td>
+      </tr>
+      <tr>
+          <td><strong>模型格式</strong></td>
+          <td>.plan/.onnx/.xla</td>
+          <td>HuggingFace/自定义</td>
+          <td>无感知</td>
+      </tr>
+      <tr>
+          <td><strong>优化手段</strong></td>
+          <td>算子融合/量化/编译优化</td>
+          <td>连续批处理/KVCache/投机采样</td>
+          <td>负载均衡/弹性扩缩/路由</td>
+      </tr>
+      <tr>
+          <td><strong>LLM典型优化</strong></td>
+          <td>FlashAttention/CUDA Kernel</td>
+          <td>PagedAttention/Chunked Prefill</td>
+          <td>多模型调度/流量控制</td>
+      </tr>
+      <tr>
+          <td><strong>开发语言</strong></td>
+          <td>C++/CUDA</td>
+          <td>Python/C++</td>
+          <td>Go/Java/Python</td>
+      </tr>
+      <tr>
+          <td><strong>部署粒度</strong></td>
+          <td>进程内库</td>
+          <td>单机服务</td>
+          <td>集群服务</td>
+      </tr>
+  </tbody>
+</table>
+<p>推理引擎在很早就有了，CV 时代就已经存在，例如 TensorRT 早在 2017 年就被提出，核心解决的是<strong>模型如何跑得更快</strong>的问题。</p>
+<p>但随着 LLM 的兴起，人们逐渐发现 CV 模型和 LLM 的推理特性有着本质区别：</p>
+<p><strong>CV 模型推理</strong>相对简单：</p>
+<ul>
+<li>输入固定（一张图片）</li>
+<li>输出固定（分类结果/检测框）</li>
+<li>请求之间完全独立</li>
+</ul>
+<p>这种简单性使得推理引擎完全够用。</p>
+<p><strong>LLM 推理</strong>则复杂得多：</p>
+<ul>
+<li>输入长度不固定</li>
+<li>输出是自回归生成——每个 token 都需要独立推理一次</li>
+<li>KV Cache 随序列长度不断增长，显存管理压力极大</li>
+<li>多个请求之间可以共享计算，调度策略复杂</li>
+</ul>
+<p>这些新挑战已经远超推理引擎的能力边界——引擎只管&quot;算得快&quot;，但<strong>怎么调度、怎么管理 KV Cache、怎么合并请求</strong>，引擎完全不涉及。</p>
+<p>因此在 2023 年，以 vLLM 为代表的专门针对 LLM 的推理框架应运而生，专门解决这些调度和资源管理问题，填补了推理引擎在 LLM 场景下的空白。</p>
+<h3 id="推理系统">推理系统</h3>
+<p>推理系统是一个专门用于部署神经网络模型，执行推理预测任务的 AI 系统。它类似于传统的 Web 服务或移动端应用系统，但专注于 AI 模型的部署与运行。通过推理系统，可以将神经网络模型部署到云端或者边缘端，并服务和处理用户的请求。因此，推理系统也需要应对模型部署和服务生命周期中遇到的挑战和问题。</p>
+<p>在模型部署的过程中，服务化是实现模型高效应用的关键步骤。服务化指的是将模型封装成一个可以供其他系统或用户调用的服务。这种服务化可以通过多种方式实现，包括 SDK 封装、应用集成和 Web 服务。</p>
+<p>服务化的优势在于可以灵活地将模型功能暴露给不同的用户和系统，支持多种访问方式，并且可以方便地进行版本管理和更新。此外，通过 Web 服务，可以实现模型的分布式部署和负载均衡，从而提高系统的可用性和响应速度。</p>
+<p>一个早期的服务化框架是谷歌在 2016 年针对 TensorFlow 推出的 TensorFlow Serving，它能够把 TensorFlow 模型以 web 服务的方式对外暴露接口，通过网络请求方式接受来自客户端（Client）的请求数据，计算得到前向推理结果并返回。这成为了模型服务化的重要里程碑。除此之外，业界还涌现了许多其他优秀的服务化框架，如 TorchServe、Triton、BentoML、Kubeflow 和 Seldon Core 等。</p>
+<p>我们将以 Triton 为例进行介绍，因为美团内部的 MLP 就是主要借助 Triton 框架进行推理服务的部署。</p>
+<h4 id="nvidia-triton-server">NVIDIA Triton Server</h4>
+<p>NVIDIA Triton Inference Server（简称 Triton）是一个高性能、可扩展的开源推理框架，由英伟达等公司推出。Triton 旨在为用户提供云和边缘推理的部署解决方案，支持多种神经网络模型和框架。</p>
+<img src="images/image-20260501194409511.png" alt="image-20260501194409511" style="zoom:38%; display: block; margin: 0 auto;" />
+<p>我们首先来看看最上面的接入层</p>
+<h5 id="triton-接入层">Triton 接入层</h5>
+<ol>
+<li>HTTP/REST 协议支持</li>
+</ol>
+<p>HTTP/REST 是一种广泛使用的网络通信协议，它基于 HTTP 协议，使用 RESTful 架构风格。Triton 通过支持 HTTP/REST 协议，允许用户通过标准的 HTTP 请求来调用模型推理服务。</p>
+<ul>
+<li><strong>优点</strong>：
+<ul>
+<li>易于理解和实现。</li>
+<li>广泛的客户端支持。</li>
+<li>可以利用现有的 HTTP 基础设施和工具。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>相比于 gRPC，HTTP/REST 通常在性能上稍逊一筹。</li>
+<li>不如 gRPC 灵活，特别是在处理复杂数据结构时。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>gRPC 协议支持</li>
+</ol>
+<p>gRPC 是一个高性能、开源和通用的 RPC 框架，由谷歌主导开发。它使用 Protocol Buffers 为接口定义语言，支持多种编程语言。Triton 通过支持 gRPC 协议，提供了一种高效的通信机制，特别适用于需要高性能和低延迟的场景。</p>
+<ul>
+<li><strong>优点</strong>：
+<ul>
+<li>高性能和低延迟。</li>
+<li>支持流式调用，可以处理大量数据。</li>
+<li>支持多种编程语言，易于集成。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>相比于 HTTP/REST，gRPC 的学习曲线可能更陡峭。</li>
+<li>需要特定的客户端库支持。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>共享内存 IPC 通信机制</li>
+</ol>
+<p>共享内存是一种进程间通信（IPC）方式，允许多个进程共享同一块内存区域。Triton 通过支持共享内存 IPC，可以显著提高数据传输效率，特别是在高负载和大数据量的场景中。</p>
+<ul>
+<li><strong>优点</strong>：
+<ul>
+<li>极高的数据传输效率，因为避免了数据的复制。</li>
+<li>适用于高负载和大数据量的场景。</li>
+<li>可以减少 CPU 的使用，因为减少了数据传输的开销。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>实现复杂度较高，需要处理好同步和内存管理。</li>
+<li>不同操作系统和平台上的支持可能有所不同。</li>
+</ul>
+</li>
+</ul>
+<p>在实际应用中，开发者可以根据具体需求选择合适的接入方式。例如，对于需要快速开发和部署的 Web 应用，可以选择 HTTP/REST 协议；对于追求极致性能的分布式系统，可以选择 gRPC 协议；而对于需要处理大量数据的高性能计算场景，共享内存 IPC 则是最佳选择。</p>
+<h5 id="triton-模型仓库">Triton 模型仓库</h5>
+<p>Triton 的模型仓库是一个用于存储和管理机器学习模型的地方，它支持本地存储和云存储解决方案，并且可以处理多个模型以及模型编排。</p>
+<ol>
+<li>本地模型仓库</li>
+</ol>
+<p>本地模型仓库指的是将模型文件存储在物理服务器或虚拟机的磁盘上。这种方式的优点是简单、直接，并且可以提供快速的模型访问速度。</p>
+<ul>
+<li><strong>优点</strong>：
+<ul>
+<li>本地存储通常能够提供较低的延迟和较快的数据访问速度。</li>
+<li>用户对存储介质有完全的控制权，可以灵活管理存储资源。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>相比于云存储，本地存储的扩展性较差。</li>
+<li>如果物理硬件发生故障，可能会影响模型的可用性。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>云模型仓库</li>
+</ol>
+<p>云模型仓库指的是将模型文件存储在云服务提供商的存储服务上，如谷歌 Cloud Platform (GCP)的 Cloud Storage 或 Amazon Web Services (AWS) 的 S3。</p>
+<ul>
+<li><strong>优点</strong>：
+<ul>
+<li>云存储服务通常提供良好的扩展性，可以根据需要轻松调整存储容量。</li>
+<li>云服务提供商通常会提供数据备份和恢复服务，增强数据的可靠性。</li>
+<li>可以从全球任何地方通过网络访问云存储中的模型。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>长期使用云存储服务可能会产生较高的费用。</li>
+<li>网络延迟可能会影响模型的加载和访问速度。</li>
+</ul>
+</li>
+</ul>
+<h5 id="triton-模型预编排">Triton 模型预编排</h5>
+<p>Triton 模型预编排允许用户在模型部署之前，通过定义模型的执行方式，来优化模型的运行效率和资源分配，从而实现更好的性能和成本效益。</p>
+<p>模型预编排的核心在于根据请求的具体内容智能地调度和组织模型的加载、运行与资源分配。这涉及到对模型执行流程的细粒度控制，确保每个请求都能以最优路径得到处理。在 Triton 中，这一过程始于对请求 URL 的解析，通过分析请求中携带的信息，如模型名称、版本号及特定的输入参数等，预编排系统能够确定下一步的执行逻辑。</p>
+<p>Pre-Model Scheduler Queues 是模型编排的核心工作区，负责解析请求的 URL，并根据解析结果从模型仓库中查询到编排信息，然后执行模型编排。</p>
+<p><strong>Pre-Model Scheduler Queues 的工作流程</strong></p>
+<ul>
+<li><strong>请求解析</strong>：当一个推理请求到达 Triton Server 时，首先通过调度器进行初步处理。调度器会解析请求的 URL，提取出请求所指定的模型及其版本信息，这是预编排流程的起点。</li>
+<li><strong>模型编排信息查询</strong>：利用从请求中获取的信息，Triton 会在模型仓库中查找对应的模型配置。这些配置文件不仅定义了模型的结构和参数，还可能包含了预编排指令，比如模型间依赖关系、优先级设置或特定的资源分配需求。</li>
+<li><strong>执行模型编排</strong>：基于查询到的编排信息，Triton 会动态地安排模型的加载、卸载及执行顺序。例如，如果某个模型依赖于前一个模型的输出作为输入，预编排系统会确保这两个模型按正确的顺序执行。此外，它还会考虑资源利用率，尽可能并行化处理，减少等待时间。</li>
+<li><strong>资源管理和优化</strong>：预编排机制还包括了对 GPU、CPU 等硬件资源的智能分配与回收，确保高负载情况下也能维持服务的稳定性和低延迟。它能根据当前系统负载动态调整模型实例的数量，避免资源浪费或过度竞争。</li>
+</ul>
+<h5 id="triton-推理引擎">Triton 推理引擎</h5>
+<p>Triton 的一大亮点在于其高度灵活且强大的推理引擎支持体系，将 TensorFlow、TensorRT、PyTorch、ONNX Runtime 等主流框架统一整合为“Backends”。这一设计极大地促进了神经网络模型部署的标准化和效率，使得开发者能够在一个统一的平台上轻松管理多样化的模型，而无需关注底层实现细节，获得具有多后端架构的优势。</p>
+<ul>
+<li><strong>无缝迁移与混合部署</strong>：通过将不同框架的模型推理能力抽象为统一的 Backend 接口，Triton 允许用户在不修改模型代码的情况下，自由选择或切换推理引擎。这意味着，开发者可以在 TensorFlow 模型和 PyTorch 模型之间轻松迁移，甚至在同一服务中混合部署多种框架的模型，极大提升了开发效率和灵活性。</li>
+<li><strong>性能优化与硬件加速</strong>：Triton 集成的每个 Backend 都针对特定框架进行了优化，尤其是 TensorRT，作为英伟达开发的高性能推理加速库，能显著提高 GPU 上的推理速度。此外，Triton 还能自动利用硬件加速特性，如 FP16、INT8 量化，进一步提升吞吐量和降低延迟。</li>
+<li><strong>资源高效利用</strong>：多后端架构使得 Triton 能够根据模型特性和硬件资源情况智能选择最合适的推理引擎。例如，对于某些模型，使用 TensorRT 可能比原生 TensorFlow 提供更好的性能；而对于复杂的 PyTorch 模型，直接利用 PyTorch Backend 可能更为合适。这种动态适配策略有助于最大化资源利用率。</li>
+</ul>
+<ol>
+<li>启动时的模型加载与管理</li>
+</ol>
+<p>Triton 在其初始化序列中采用了一套精细且高效的模型管理机制，远超简单的模型加载范畴。这一过程深入到了模型生命周期管理的核心，确保了从模型仓库到生产环境的无缝过渡。</p>
+<p>在模型加载之前，Triton 执行详尽的验证步骤，这不仅仅局限于文件的存在性和格式正确性，还包括对模型结构的深入分析，验证模型输入输出的合规性、数据类型一致性以及模型间依赖关系的完整性。这一层次的验证是确保模型能够在生产环境中稳定运行的基础。</p>
+<p>根据模型的具体需求及系统当前的资源分配状况，Triton 采用先进的资源调度算法来决定模型的最优存放位置（内存或 GPU 显存）。此过程综合考虑了模型尺寸、预期的推理延迟要求、以及 GPU 的内存使用情况等多维度因素，力求达到资源使用的最优化。对于 GPU 密集型模型，Triton 会尝试最大化 GPU 并行度，同时考虑内存带宽限制，避免资源争抢。</p>
+<p>针对每个模型，Triton 会基于选定的 Backend 定制化创建推理引擎。这一步骤包含了模型的优化，比如图优化、算子融合、内核选择等，以及针对特定硬件的编译。特别是对于 TensorRT Backend，Triton 会利用其神经网络优化器自动执行量化、层融合、内存优化等高级策略，以减少计算和内存开销。</p>
+<p>为了加速首次推理请求的响应时间，Triton 会在模型加载后执行一系列预推理操作，即所谓的“热身”。这个过程会生成并缓存执行计划，包括计算图的优化布局、内存分配方案等，确保后续请求能够直接利用这些预计算结果，从而显著减少冷启动延迟。</p>
+<ol start="2">
+<li>动态服务与资源管理</li>
+</ol>
+<p>Triton 的动态服务能力进一步扩展了其灵活性和响应速度，使模型部署和调整成为持续优化的过程，而非一次性配置。</p>
+<ul>
+<li><strong>即时模型更新与加载</strong>：Triton 支持在线模型更新，无需中断服务即可加载新版本模型或添加全新模型。这一功能基于其动态模型发现与加载机制，使得 AI 应用能够迅速适应市场需求变化，如模型精度提升、新功能上线等。配合版本控制和滚动更新策略，可确保服务连续性不受影响。</li>
+<li><strong>资源按需调配与负载均衡</strong>：在运行时，Triton 能够根据推理请求的实时流量和复杂度动态调整资源分配。当检测到某个模型负载过重时，可以自动增加其处理能力，或将请求分流至其他可用资源，保持整体服务的高效和稳定。同时，它还能根据长期趋势预测未来资源需求，提前进行资源预留或释放，实现资源的高效循环利用。</li>
+</ul>
+<h5 id="triton-返回与监控">Triton 返回与监控</h5>
+<p>Triton 的返回与监控功能为用户提供了强大的支持，确保了模型推理服务的高效运行和稳定监控。通过 Inference Response 机制，用户可以及时准确地获取推理结果；而通过 Status/Health Metrics Export 接口与 Prometheus 的集成，用户可以方便地实现服务的监控和管理。</p>
+<ol>
+<li>Inference Response 机制</li>
+</ol>
+<p>Triton 推理响应（Inference Response）机制是连接模型推理结果与最终用户的关键环节，其设计旨在保障数据的高效、准确传递。这一过程不仅涉及结果数据的组织与封装，还融入了对性能优化和错误处理的考量。</p>
+<p>正如之前所提到的，Triton 支持多种协议，如 gRPC 和 HTTP/REST，以适应不同客户端的需求。推理完成后，模型输出会被转换成符合相应协议规定的格式，如 Protobuf 或 JSON，确保数据能够无损地跨网络传输。此外，Triton 还支持批量处理响应，允许一次请求中包含多个样本的推理结果，提高了通信效率。</p>
+<p>为了提高系统的健壮性，Triton 对推理过程中可能遇到的各种错误进行了细致的处理和分类。无论是模型内部的异常、资源不足还是数据不合规，Triton 都会生成详细的错误码和描述信息，封装进响应中返回给客户端。这种透明化的错误反馈机制有助于快速定位问题，加速故障排查。</p>
+<p>考虑到延迟敏感的应用场景，Triton 在设计推理响应流程时，特别注重减少不必要的处理延迟。通过异步 IO、批处理技术和高效的序列化/反序列化算法，即使是高并发请求也能获得快速响应。此外，对于连续的推理任务，Triton 支持会话（Session）管理，进一步减少了客户端与服务端之间的握手和认证开销。</p>
+<ol start="2">
+<li>Status/Health Metrics Export</li>
+</ol>
+<p>Triton 提供了与 Prometheus 监控系统集成的能力，通过标准化的指标导出接口，使得模型服务的健康状态、性能指标和资源使用情况变得一目了然。这一特性对于维护大规模部署尤其重要。</p>
+<p>Triton 导出的指标既包括了通用的系统级健康状态（如服务是否运行、CPU/GPU 使用率），也涵盖了模型和服务层面的详细指标，如推理请求的吞吐量、延迟、错误率等。此外，用户还可以自定义指标，以满足特定应用的监控需求。</p>
+<p>在推理过程中，通过 Prometheus 的拉取（Pull）机制，Triton 定期向 Prometheus Server 报告指标数据，使得这些数据能够被 Prometheus 的各种仪表板工具（如 Grafana）所可视化。这使得运维团队可以实时监控服务状态，快速识别性能瓶颈或故障点，并作出响应。</p>
+<p>集成 Prometheus 后，运维人员可以设置阈值告警，一旦关键指标超出预设范围，立即触发通知或自动化的修复动作。例如，当 GPU 内存使用率达到高危水平时，系统可以自动调度任务，平衡负载，或甚至动态扩展资源，保障服务稳定性。</p>
+<h3 id="推理引擎">推理引擎</h3>
+<h4 id="模型小型化">模型小型化</h4>
+<p>模型小型化主要思想是针对神经网络模型设计更高效的网络计算方式，从而使神经网络模型的参数量减少的同时，不损失网络精度，并进一步提高模型的执行效率。</p>
+<p>因此主要是模型架构算法层面的优化，侧重于算法，所以这里先略过。</p>
+<h4 id="模型压缩">模型压缩</h4>
+<p>随着神经网络模型的规模不断扩大，其对存储空间和计算资源的需求也急剧增长，部署和运行成本随之显著上升。模型压缩的目标是在尽可能保持模型性能的前提下，通过减少参数量、降低计算开销或提升计算效率，来降低模型的部署成本。具体而言，模型压缩主要追求以下三个目标：</p>
+<ol>
+<li><strong>减少模型显存占用</strong>：通过压缩模型参数或采用更高效的数值表示方式，显著降低模型在存储和运行时的内存开销。</li>
+<li><strong>加快推理速度</strong>：通过减少模型推理过程中的乘加运算次数，降低计算开销，从而实现推理加速。</li>
+<li><strong>控制精度损失</strong>：压缩不可避免地会带来一定的精度损失，需要在压缩比与模型性能之间做出细致的权衡，确保压缩后的模型仍能满足实际任务的精度要求。</li>
+</ol>
+<p>模型压缩的目标是降低表示、计算权重和中间激活的成本，这些成本占模型成本的大部分。我们根据如何降低权重和激活成本对模型压缩算法进行分类，有如下四大类别：</p>
+<ol>
+<li><strong>模型量化（Quantization）</strong>：通过减少模型参数的表示精度，来降低模型的存储空间和计算复杂度。</li>
+<li><strong>参数剪枝（Pruning）</strong>：通过删除模型中的不重要连接或参数，来减少模型的大小和计算量。</li>
+<li><strong>知识蒸馏（Knowledge Distillation）</strong>：指通过构建一个轻量化的小模型（学生模型），利用性能更好教师模型的信息来监督训练学生模型，以期达到更好的性能和精度。</li>
+<li><strong>低秩分解（low-rank factorization）</strong>：通过将模型中具体执行计算的矩阵分解为低秩的子矩阵，从而减少模型参数的数量和计算复杂度。低秩分解中，矩阵被分解为两个或多个低秩矩阵的乘积形式。</li>
+</ol>
+<p>此外，模型压缩算法分为低成本和高成本算法，与上述分类标准无关。高成本的压缩算法需要基于大型数据集进行再训练过程。因此，它们可以生成更准确的压缩模型，但需要更多的时间来压缩模型。另一方面，低成本压缩算法仅基于少量校准数据执行简单的权重调整过程，但是需要注意可能的精度损失，因此训练后量化是常用的低成本压缩算法。</p>
+<p>下面我们先来看看模型量化：</p>
+<hr>
+<h5 id="量化">量化</h5>
+<p>计算机中数值有多种表示方式，常见的有浮点类型（FP32、FP16、BF16）和整数类型（INT32、INT16、INT8）等。量化的核心思想是将高精度的浮点表示（FP32、FP16）压缩为低比特的整数表示（INT8 甚至 INT4），从而大幅降低模型的存储占用和计算开销。</p>
+<h6 id="模型量化原理">模型量化原理</h6>
+<p>模型量化是一种将连续浮点值映射到低比特离散值的技术，能够有效减少模型的参数大小、内存消耗和推理延迟。然而，量化往往伴随着一定的精度损失，且比特数越低，精度挑战越大——尤其是在极低比特（&lt; 4bit）、二值网络（1bit）或对梯度进行量化的场景下，这种挑战尤为突出。</p>
+<blockquote>
+<p><strong>注意</strong>： 训练过程中将 FP32 转换为 FP16 进行计算的方式并不是量化，而是<strong>混合精度训练</strong><sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>。两者的本质区别在于：FP32 与 FP16 同属浮点类型，数值表示范围相近，转换时无需建立映射关系；而量化是将浮点数映射到表示范围完全不同的整数空间，必须通过线性映射才能保留数值的相对关系，否则大量小数会直接被截断为零，导致模型失效。</p></blockquote>
+<p><strong>量化方法概览</strong></p>
+<p>模型量化方法可以分为以下三种：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center"><strong>量化方法</strong></th>
+          <th><strong>功能</strong></th>
+          <th><strong>经典适用场景</strong></th>
+          <th><strong>使用条件</strong></th>
+          <th><strong>易用性</strong></th>
+          <th style="text-align: center"><strong>精度损失</strong></th>
+          <th><strong>预期收益</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">量化训练 (QAT)</td>
+          <td>通过 Finetune 训练将模型量化误差降到最小</td>
+          <td>对量化敏感的场景、模型，例如目标检测、分割、OCR 等</td>
+          <td>有大量带标签数据</td>
+          <td>好</td>
+          <td style="text-align: center">极小</td>
+          <td>减少存续空间 4X，降低计算内存</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">静态离线量化 (PTQ Static)</td>
+          <td>通过少量校准数据得到量化模型</td>
+          <td>对量化不敏感的场景，例如图像分类任务</td>
+          <td>有少量无标签数据</td>
+          <td>较好</td>
+          <td style="text-align: center">较少</td>
+          <td>减少存续空间 4X，降低计算内存</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">动态离线量化 (PTQ Dynamic)</td>
+          <td>仅量化模型的可学习权重</td>
+          <td>模型体积大、访存开销大的模型，例如 BERT 模型</td>
+          <td>无</td>
+          <td>一般</td>
+          <td style="text-align: center">一般</td>
+          <td>减少存续空间 2/4X，降低计算内存</td>
+      </tr>
+  </tbody>
+</table>
+<p>总体而言，QAT 精度最高，但需要较长的量化训练时间，成本较大；PTQ 量化过程迅速，只需少量校准数据，但精度损失相对较多。实际应用中需根据精度要求和资源约束综合选择。</p>
+<hr>
+<p><strong>量化映射方法</strong></p>
+<p>模型量化的核心在于建立浮点数与定点数之间的映射关系，以较小的精度损失换取显著的存储和计算收益。以 INT8 量化为例，常见的映射方法有以下两种：</p>
+<ol>
+<li><strong>非饱和量化</strong></li>
+</ol>
+<p>非饱和量化取浮点 Tensor 中绝对值的最大值 <span class="math">$|x|_{max}$</span>，将其映射为 127，量化比例因子（Scale）为：</p>
+<span class="math">$$
+S = \frac{|x|_{max}}{127}
+$$</span><ol start="2">
+<li><strong>饱和量化</strong></li>
+</ol>
+<p>饱和量化通过 KL 散度搜索最优阈值 <span class="math">$T$</span>（<span class="math">$T \leq |x|_{max}$</span>），将 <span class="math">$[-T, T]$</span> 映射为 <span class="math">$\pm 127$</span>，超出阈值的值直接截断到 <span class="math">$\pm 127$</span>，量化比例因子为：</p>
+<span class="math">$$
+S = \frac{T}{127}
+$$</span><p>
+饱和量化主动牺牲异常值的精度，换取正常数据更高的量化精度，适合存在长尾分布或异常值的场景。</p>
+<img src="images/image-20260505213857981.png" alt="image-20260505213857981" style="zoom:25%; display: block; margin: 0 auto;" />
+<hr>
+<p><strong>线性量化原理</strong></p>
+<p>量化方法可分为线性量化和非线性量化，目前主流方案均采用线性量化。线性量化进一步分为<strong>对称量化</strong>和<strong>非对称量化</strong>，其浮点与定点数据的转换公式为：</p>
+<span class="math">$$
+x_{float} = S \times (x_{int} - Z)
+$$</span><span class="math">$$
+x_{int} = \lfloor \frac{x_{float}}{S} \rceil &#43; Z
+$$</span><p>其中 <span class="math">$x_{float}$</span> 为输入浮点数据，<span class="math">$x_{int}$</span> 为量化后的定点数据，<span class="math">$S$</span> 为缩放因子（Scale），<span class="math">$Z$</span> 为零点（Zero Point）的数值。</p>
+<blockquote>
+<p>这里的 <span class="math">$\lfloor x \rceil$</span> 代表四舍五入，本质上是为了找到<strong>最近的整数</strong>，让量化误差最小。</p></blockquote>
+<p><strong>对称量化</strong>是非对称量化在 <span class="math">$Z = 0$</span> 时的特例，量化范围关于零点对称。常用的最大绝对值量化方法将输入缩放到 INT8 范围 <span class="math">$[-127, 127]$</span>，转换公式为：</p>
+<span class="math">$$
+x_{int} = \lfloor \frac{x_{float}}{\text{threshold}} \times 127 \rceil
+$$</span><p>
+其中 <span class="math">$\text{threshold}$</span> 为 Tensor 的范围上界，即认为数据分布在 <span class="math">$[-\text{threshold}, \text{threshold}]$</span> 内。通常对激活值取 <span class="math">$\text{threshold} = |x|_{max}$</span>，对权重同理。</p>
+<p><strong>非对称量化</strong>（Affine Quantization，又称 Zero-Point Quantization）通过归一化动态范围进行缩放，再通过零点 <span class="math">$Z$</span> 进行平移，将输入分布映射到完整的整数范围（<span class="math">$[0, 255]$</span> 或 <span class="math">$[-128, 127]$</span>）。以 MinMax 方法为例，<span class="math">$S$</span> 和 <span class="math">$Z$</span> 的计算如下：
+</p>
+<span class="math">$$
+S = \frac{x_{max} - x_{min}}{q_{max} - q_{min}}
+$$</span><span class="math">$$
+Z = q_{min} - \lfloor \frac{x_{min}}{S} \rceil
+$$</span><p>其中 <span class="math">$x_{max}$</span>、<span class="math">$x_{min}$</span> 为输入浮点数据的最大值和最小值，<span class="math">$q_{max}$</span>、<span class="math">$q_{min}$</span> 为目标整数类型的范围边界（INT8 时为 <span class="math">$127/-128$</span>，UINT8 时为 <span class="math">$255/0$</span>）。</p>
+<p>通过上述公式，原始 FP32 数据量化为 INT8/UINT8 的转换为：</p>
+<span class="math">$$
+x_{int} = \text{clip}\left(\left\lfloor\frac{x_{float}}{S}\right\rceil &#43; Z,\ q_{min},\ q_{max}\right)
+$$</span><p>
+其中 <span class="math">$\text{clip}(x, a, b) = \min(\max(x, a), b)$</span>。</p>
+<p>非对称量化通过仿射变换充分利用了整数类型的所有比特位，对非对称分布（如 ReLU 激活后全为正值）的量化误差更小。</p>
+<hr>
+<h6 id="感知量化训练">感知量化训练</h6>
+<p><strong>感知量化训练</strong>(Quant Aware Training, QAT)是一种在训练期间模拟量化操作的方法，用于减少将神经网络模型从 FP32 精度量化到 INT8 时的精度损失。QAT 通过在模型中插入伪量化节点（FakeQuant）来模拟量化误差，并在训练过程中最小化这些误差，最终得到一个适应量化环境的模型。</p>
+<blockquote>
+<p>TODO：有点复杂，而且属于是训练阶段，待后续学习补充这部分内容。</p></blockquote>
+<h6 id="动态离线量化">动态离线量化</h6>
+<p><strong>动态离线量化</strong>(Post Training Quantization Dynamic, PTQ Dynamic)仅将模型中特定算子的权重从 FP32 类型映射成 INT8/INT16 类型。动态离线量化提前将模型的权重转换为 INT8，推理过程中，在真正执行计算之前根据激活输入的范围，动态地将激活即时转换为 INT8。</p>
+<p>动态量化的关键思想是根据运行时观察到的数据范围动态确定激活的比例因子。这确保了比例因子被“调整”，以便尽可能多地保留有关每个观察到的数据集的信号。</p>
+<h6 id="静态离线量化">静态离线量化</h6>
+<p><strong>静态离线量化</strong>(Post Training Quantization Static, PTQ Static)使用少量无标签校准数据，采用 KL 散度等方法计算量化比例因子。静态离线量化也是一种在训练完成后将模型参数转换为低比特表示的方法，但与动态离线量化不同的是，静态离线量化中的量化参数是在转换过程中固定的，而不是根据输入数据动态调整的。</p>
+<h3 id="大模型推理框架">大模型推理框架</h3>
 <h4 id="sglang">SGLang</h4>
 <p>一个专门用来学习 SGLang 框架的简化版本： <a href="https://github.com/gogongxt/nano-sglang" target="_blank" rel="noopener noreffer ">nano-sglang</a></p>
 <div class="mermaid" id="mermaid-3">sequenceDiagram
@@ -4587,7 +5229,8 @@ $$</span><p>
     else 非流式输出
         Tokenizer-->>FastAPI: 返回完整结果
         FastAPI-->>用户: 返回最终结果
-    end</div><div class="footnotes" role="doc-endnotes">
+    end</div><h2 id="ai-训练">AI 训练</h2>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">
@@ -4602,14 +5245,17 @@ $$</span><p>
 <li id="fn:4">
 <p>Frank Rosenblatt（1928–1971）是美国心理学与人工智能先驱，他在 1957 年于康奈尔航空实验室提出了感知机（Perceptron） 模型，被视为早期神经网络与深度学习的重要奠基工作之一。遗憾的是感知机的局限性争议在他生前并未被解决，而他又于 1971 年（43 岁）因帆船事故早逝，未能见证 1980 年代后神经网络的复兴。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
+<li id="fn:5">
+<p>我们在介绍 GPU 中的 Tensor Core 原理时提到过这种混合精度训练&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-04-27&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/0ca376bd2c4d0c10e9765cb64d530c3edd58ea72" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 0ca376bd2c4d0c10e9765cb64d530c3edd58ea72: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>0ca376b</a></span>
+                <span>更新于 2026-05-06&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/e8b309218e9c1427157e0dfa3b7ab4ff5eef9924" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) e8b309218e9c1427157e0dfa3b7ab4ff5eef9924: content(MLsys): 新增分布式并行与推理系统章节">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e8b3092</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

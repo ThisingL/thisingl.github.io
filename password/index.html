@@ -218,6 +218,18 @@
     .site-autocomplete {
       position: relative;
     }
+    .site-match-label {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: #aaa;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
     .site-dropdown {
       display: none;
       position: absolute;
@@ -632,6 +644,7 @@
             <label for="site">网站</label>
             <div class="site-autocomplete">
               <input type="text" id="site" placeholder="搜索或输入网站名称" autocomplete="off" spellcheck="false">
+              <span class="site-match-label" id="site-match-label"></span>
               <div class="site-dropdown" id="site-dropdown"></div>
             </div>
           </div>
@@ -770,18 +783,18 @@
       { name: '拼多多',         value: 'pinduoduo.com' },
       { name: '美团',           value: 'meituan.com' },
       { name: '支付宝',         value: 'alipay.com' },
-      { name: '微信 / WeChat',           value: 'weixin.qq.com' },
-      { name: 'QQ',             value: 'qq.com' },
+      { name: '微信 / WeChat',  value: 'weixin.qq.com' },
+      { name: 'QQ',            value: 'qq.com' },
       { name: '微博',           value: 'weibo.com' },
       { name: '知乎',           value: 'zhihu.com' },
-      { name: 'B站 / 哔哩哔哩', value: 'bilibili.com' },
+      { name: 'B站 / 哔哩哔哩',  value: 'bilibili.com' },
       { name: '豆瓣',           value: 'douban.com' },
       { name: '网易',           value: '163.com' },
       { name: '百度',           value: 'baidu.com' },
       { name: '飞书',           value: 'feishu.cn' },
       { name: '钉钉',           value: 'dingtalk.com' },
       { name: '小红书',         value: 'xiaohongshu.com' },
-      { name: '抖音 / TikTok',           value: 'douyin.com' },
+      { name: '抖音 / TikTok',  value: 'douyin.com' },
 
       // ── 国内银行 ──
       { name: '中国银行',       value: 'boc.cn' },
@@ -889,6 +902,7 @@
             e.preventDefault(); // 阻止 blur 先触发
             input.value = this.getAttribute('data-value');
             dropdown.classList.remove('open');
+            showMatchLabel(this.querySelector('.site-name').textContent);
             input.dispatchEvent(new Event('input')); // 触发按钮状态更新
           });
           dropdown.appendChild(item);
@@ -901,7 +915,12 @@
       });
 
       input.addEventListener('input', function() {
+        if (selectedFromDropdown) {
+          selectedFromDropdown = false;
+          return;
+        }
         renderDropdown(this.value);
+        hideMatchLabel();
       });
 
       input.addEventListener('blur', function() {
@@ -927,11 +946,26 @@
           e.stopPropagation();
           input.value = items[activeIndex].getAttribute('data-value');
           dropdown.classList.remove('open');
+          showMatchLabel(items[activeIndex].querySelector('.site-name').textContent);
           input.dispatchEvent(new Event('input'));
         } else if (e.key === 'Escape') {
           dropdown.classList.remove('open');
         }
       });
+
+      // ── 匹配标签显示/隐藏 ──
+      var matchLabel = document.getElementById('site-match-label');
+      var selectedFromDropdown = false;
+      function showMatchLabel(name) {
+        matchLabel.textContent = name;
+        matchLabel.style.opacity = '1';
+        selectedFromDropdown = true;
+      }
+      function hideMatchLabel() {
+        matchLabel.textContent = '';
+        matchLabel.style.opacity = '0';
+        selectedFromDropdown = false;
+      }
 
       function updateActive(items) {
         for (var k = 0; k < items.length; k++) {
@@ -1143,6 +1177,7 @@
 
       document.getElementById('master').type = 'password';
       document.getElementById('eye-icon').textContent = '👁';
+      hideMatchLabel();
 
       // 清除 URL 参数
       if (location.search) {

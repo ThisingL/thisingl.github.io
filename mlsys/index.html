@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-05-06T01:41:12+08:00">
+    <meta property="article:modified_time" content="2026-05-06T18:13:50+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://example.com/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/example.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  76525 ,
-        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-05-06T01:41:12+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  80920 ,
+        "url": "https:\/\/example.com\/mlsys\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-05-06T18:13:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/example.com\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MLsys</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 76525 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 153 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 80920 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 162 分钟&nbsp;
     
 
     
@@ -5078,9 +5078,24 @@ $$</span><p>
 <h5 id="量化">量化</h5>
 <p>计算机中数值有多种表示方式，常见的有浮点类型（FP32、FP16、BF16）和整数类型（INT32、INT16、INT8）等。量化的核心思想是将高精度的浮点表示（FP32、FP16）压缩为低比特的整数表示（INT8 甚至 INT4），从而大幅降低模型的存储占用和计算开销。</p>
 <h6 id="模型量化原理">模型量化原理</h6>
-<p>模型量化是一种将连续浮点值映射到低比特离散值的技术，能够有效减少模型的参数大小、内存消耗和推理延迟。然而，量化往往伴随着一定的精度损失，且比特数越低，精度挑战越大——尤其是在极低比特（&lt; 4bit）、二值网络（1bit）或对梯度进行量化的场景下，这种挑战尤为突出。</p>
+<p>模型量化是一种将连续浮点值映射到低比特离散值的技术，能够有效减少模型的参数大小、内存消耗和推理延迟。模型中需要量化的对象主要有两类：</p>
+<ul>
+<li>
+<p><strong>权重（Weight）</strong>：模型的参数矩阵，训练完成后固定不变，可以离线统计分布后一次性量化，并持久保存为低比特整数。权重是量化的<strong>核心优化对象</strong>——以 LLaMA-7B 为例，70 亿个参数从 FP16 量化为 INT8 后，显存占用直接从 14GB 降至 7GB，且需要在推理全程常驻显存，量化收益极为显著。</p>
+</li>
+<li>
+<p><strong>激活值（Activation）</strong>：每一层经过激活函数后的输出，随输入动态变化，其分布难以提前确定。与权重不同，激活值只是推理过程中的<strong>临时中间结果</strong>，每层计算完成后即可释放，同一时刻只需保存当前层的激活值，显存占用远小于权重（通常相差约 100 倍）。因此，激活值量化对显存的收益相对有限，更多是作为进一步降低计算开销的补充手段。</p>
+</li>
+</ul>
+<p>两者需要<strong>分别独立量化</strong>，各自确定 Scale 和 Zero Point，原因在于两者的数值分布差异悬殊——权重通常集中在 <span class="math">$[-0.5, 0.5]$</span> 附近，而激活值的范围因层而异、因输入而异，若共用同一个 Scale，必然导致其中一方精度严重损失。</p>
+<p>此外，激活值的量化方式也与权重有所不同：</p>
+<ul>
+<li><strong>静态量化</strong>：提前用校准数据集统计每层激活值的分布，离线确定固定的 Scale，推理时所有输入共用同一个 Scale，速度快但对分布差异大的输入精度有所损失</li>
+<li><strong>动态量化</strong>：推理时实时统计当前输入的激活值范围，动态计算 Scale，将激活值<strong>临时转换为 INT8</strong> 完成矩阵乘法后立即反量化丢弃，精度更高但引入额外计算开销</li>
+</ul>
+<p>动态量化中激活值的 INT8 表示只是计算过程中的临时状态，用完即丢，无需持久保存，也无需对历史结果进行更新。模型的最终输出（logits）仍需反量化回 FP32 供上层应用使用。</p>
 <blockquote>
-<p><strong>注意</strong>： 训练过程中将 FP32 转换为 FP16 进行计算的方式并不是量化，而是<strong>混合精度训练</strong><sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>。两者的本质区别在于：FP32 与 FP16 同属浮点类型，数值表示范围相近，转换时无需建立映射关系；而量化是将浮点数映射到表示范围完全不同的整数空间，必须通过线性映射才能保留数值的相对关系，否则大量小数会直接被截断为零，导致模型失效。</p></blockquote>
+<p><strong>注意</strong>：训练过程中将 FP32 转换为 FP16 进行计算的方式并不是量化，而是<strong>混合精度训练</strong><sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>。两者的本质区别在于：FP32 与 FP16 同属浮点类型，数值表示范围相近，转换时无需建立映射关系；而量化是将浮点数映射到表示范围完全不同的整数空间，必须通过线性映射才能保留数值的相对关系，否则大量小数会直接被截断为零，导致模型失效。</p></blockquote>
 <p><strong>量化方法概览</strong></p>
 <p>模型量化方法可以分为以下三种：</p>
 <table>
@@ -5156,9 +5171,14 @@ $$</span><p>其中 <span class="math">$x_{float}$</span> 为输入浮点数据�
 <p>这里的 <span class="math">$\lfloor x \rceil$</span> 代表四舍五入，本质上是为了找到<strong>最近的整数</strong>，让量化误差最小。</p></blockquote>
 <p><strong>对称量化</strong>是非对称量化在 <span class="math">$Z = 0$</span> 时的特例，量化范围关于零点对称。常用的最大绝对值量化方法将输入缩放到 INT8 范围 <span class="math">$[-127, 127]$</span>，转换公式为：</p>
 <span class="math">$$
-x_{int} = \lfloor \frac{x_{float}}{\text{threshold}} \times 127 \rceil
+x_{int} = \lfloor \frac{x_{float}}{T} \times 127 \rceil
 $$</span><p>
-其中 <span class="math">$\text{threshold}$</span> 为 Tensor 的范围上界，即认为数据分布在 <span class="math">$[-\text{threshold}, \text{threshold}]$</span> 内。通常对激活值取 <span class="math">$\text{threshold} = |x|_{max}$</span>，对权重同理。</p>
+其中 <span class="math">$T$</span> 为截断阈值（threshold），表示数据分布的范围上界,我们可以认为数据分布在 <span class="math">$[-T, T]$</span> 内。</p>
+<p>对权重而言，<span class="math">$T$</span> 可在训练完成后离线计算，一次确定后固定使用。而激活值随输入动态变化，其 <span class="math">$T$</span> 的确定方式取决于量化策略：</p>
+<ul>
+<li><strong>静态量化（PTQ Static）</strong>：提前用校准数据集跑一遍前向传播，统计每层激活值的分布，离线确定 <span class="math">$T$</span>，推理时固定使用</li>
+<li><strong>动态量化（PTQ Dynamic）</strong>：推理时实时统计当前激活值的 <span class="math">$\min/\max$</span>，动态计算 <span class="math">$T$</span> 和 <span class="math">$S$</span>，精度更高但引入额外计算开销</li>
+</ul>
 <p><strong>非对称量化</strong>（Affine Quantization，又称 Zero-Point Quantization）通过归一化动态范围进行缩放，再通过零点 <span class="math">$Z$</span> 进行平移，将输入分布映射到完整的整数范围（<span class="math">$[0, 255]$</span> 或 <span class="math">$[-128, 127]$</span>）。以 MinMax 方法为例，<span class="math">$S$</span> 和 <span class="math">$Z$</span> 的计算如下：
 </p>
 <span class="math">$$
@@ -5173,15 +5193,168 @@ $$</span><p>
 其中 <span class="math">$\text{clip}(x, a, b) = \min(\max(x, a), b)$</span>。</p>
 <p>非对称量化通过仿射变换充分利用了整数类型的所有比特位，对非对称分布（如 ReLU 激活后全为正值）的量化误差更小。</p>
 <hr>
-<h6 id="感知量化训练">感知量化训练</h6>
-<p><strong>感知量化训练</strong>(Quant Aware Training, QAT)是一种在训练期间模拟量化操作的方法，用于减少将神经网络模型从 FP32 精度量化到 INT8 时的精度损失。QAT 通过在模型中插入伪量化节点（FakeQuant）来模拟量化误差，并在训练过程中最小化这些误差，最终得到一个适应量化环境的模型。</p>
+<h6 id="量化感知训练qat">量化感知训练(QAT)</h6>
+<p><strong>量化感知训练</strong>(Quant Aware Training, QAT)是一种在训练期间模拟量化操作的方法，用于减少将神经网络模型从 FP32 精度量化到 INT8 时的精度损失。QAT 通过在模型中插入伪量化节点（FakeQuant）来模拟量化误差，并在训练过程中最小化这些误差，最终得到一个适应量化环境的模型。</p>
 <blockquote>
 <p>TODO：有点复杂，而且属于是训练阶段，待后续学习补充这部分内容。</p></blockquote>
-<h6 id="动态离线量化">动态离线量化</h6>
-<p><strong>动态离线量化</strong>(Post Training Quantization Dynamic, PTQ Dynamic)仅将模型中特定算子的权重从 FP32 类型映射成 INT8/INT16 类型。动态离线量化提前将模型的权重转换为 INT8，推理过程中，在真正执行计算之前根据激活输入的范围，动态地将激活即时转换为 INT8。</p>
-<p>动态量化的关键思想是根据运行时观察到的数据范围动态确定激活的比例因子。这确保了比例因子被“调整”，以便尽可能多地保留有关每个观察到的数据集的信号。</p>
-<h6 id="静态离线量化">静态离线量化</h6>
-<p><strong>静态离线量化</strong>(Post Training Quantization Static, PTQ Static)使用少量无标签校准数据，采用 KL 散度等方法计算量化比例因子。静态离线量化也是一种在训练完成后将模型参数转换为低比特表示的方法，但与动态离线量化不同的是，静态离线量化中的量化参数是在转换过程中固定的，而不是根据输入数据动态调整的。</p>
+<h6 id="动态离线量化ptq-dynamic">动态离线量化(PTQ Dynamic)</h6>
+<p><strong>动态离线量化</strong>（Post Training Quantization Dynamic，PTQ Dynamic）在离线阶段仅对模型权重进行量化，将特定算子的权重从 FP32 映射为 INT8/INT16，从而减小模型体积，并对访存瓶颈明显的模型（如 BERT）起到一定的加速效果。激活值的量化则推迟到推理阶段，根据每次输入实时统计数值范围并动态计算缩放因子。由于激活值的 Scale 无法提前确定，每次推理都需要额外的统计开销，因此动态离线量化在三种量化方法中推理性能相对最低。</p>
+<p>动态离线量化支持以下两种推理方式：</p>
+<ol>
+<li>
+<p><strong>反量化推理</strong>：推理前先将离线量化好的 INT8/FP16 权重反量化回 FP32，随后全程使用 FP32 浮点运算进行推理。该方式的优势在于精度损失极小，主要收益是<strong>减小了模型的存储体积</strong>，但推理速度与原始 FP32 模型相近。</p>
+</li>
+<li>
+<p><strong>量化推理</strong>：推理时动态计算激活值的量化参数，将输入临时转换为 INT8，基于 INT8 权重与 INT8 激活值进行整数矩阵运算，计算完成后立即反量化回浮点继续后续计算。该方式在减小模型体积的同时，还能利用整数运算的硬件加速能力，<strong>推理速度更快</strong>，是动态量化的主要使用方式。</p>
+</li>
+</ol>
+<blockquote>
+<p>这里的&quot;动态&quot;相比于静态离线量化，体现在<strong>激活值的 Scale 计算时机</strong>不同：</p>
+<ul>
+<li>静态离线量化在离线阶段通过校准数据集提前统计每层激活值的分布，将 Scale 固定下来，推理时所有输入共用同一套量化参数；</li>
+<li>动态离线量化的激活值 Scale 在每次推理时实时计算，针对当前输入动态确定，因此得名&quot;动态&quot;。</li>
+</ul>
+<p>两者的<strong>权重量化方式完全相同</strong>，区别仅在于激活值的处理方式：静态量化的激活值是预先量化好的 INT8，动态量化的激活值是推理时临时转换的 INT8，用完即丢。</p></blockquote>
+<h6 id="静态离线量化ptq-static">静态离线量化(PTQ Static)</h6>
+<p><strong>静态离线量化</strong>（Post Training Quantization Static，PTQ Static）又称校正量化或数据集量化，无需重新训练模型，仅需少量无标签校准数据即可快速完成量化。与动态离线量化的核心区别在于：激活值的 Scale 在离线阶段通过校准数据集统计确定，推理时所有输入共用同一套量化参数，无需在线计算，因此推理速度更快。</p>
+<p>静态离线量化的目标是为每层算子求取最优的量化比例因子（Scale），支持对称量化和非对称量化两种映射方式，而阈值的确定方法则有 MinMax、KL 散度、ADMM、EQ、MSE 等多种选择。</p>
+<p><strong>量化步骤</strong>如下：</p>
+<ol>
+<li>加载预训练的 FP32 模型，准备用于校准的数据加载器；</li>
+<li>输入小批量校准样本，执行前向推理，逐层收集激活值的分布信息，统计并更新各算子的量化 Scale；</li>
+<li>基于统计好的 Scale，将 FP32 模型转换为 INT8 模型并保存。</li>
+</ol>
+<img src="images/image-20260506111017206.png" alt="image-20260506111017206" style="zoom:30%; display: block; margin: 0 auto;" />
+<p><strong>常用的 Scale 计算方法</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>方法</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>AbsMax</strong></td>
+          <td>取所有激活值绝对值的最大值作为截断阈值。计算最简单，但容易受极端值影响，适用于激活值分布较均匀、极端值极少的场景</td>
+      </tr>
+      <tr>
+          <td><strong>MovingAverageAbsMax</strong></td>
+          <td>取所有样本激活值绝对值最大值的滑动平均作为阈值。在一定程度上消除样本间的分布差异，抵抗极端值干扰，整体优于 AbsMax</td>
+      </tr>
+      <tr>
+          <td><strong>KL 散度</strong></td>
+          <td>以量化前后参数分布的 KL 散度作为量化损失的衡量指标，搜索使散度最小的最优阈值。TensorRT 默认采用此方法，大多数情况下效果优于 AbsMax</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p><strong>KL 散度校准原理</strong></p>
+<p>KL 散度（相对熵）用于衡量两个概率分布之间的差异，其中 <span class="math">$p$</span> 表示原始 FP32 的真实分布，<span class="math">$q$</span> 表示量化后的近似分布：</p>
+<span class="math">$$
+D_{KL}(p \| q) = \sum_{i} p(i) \log \frac{p(i)}{q(i)}
+$$</span><p>
+KL 散度越小，说明量化前后的分布越接近，精度损失越小。校准的目标就是通过调整截断阈值 <span class="math">$T$</span>，改变量化后的分布 <span class="math">$q$</span>，使得 <span class="math">$D_{KL}(p \| q)$</span> 最小化。</p>
+<p><strong>校准流程</strong>：</p>
+<ol>
+<li>从验证集中选取具有代表性的数据作为校准集（通常 500～1000 张图片）；</li>
+<li>在 FP32 精度下对校准数据进行前向推理，对每一层：
+<ol>
+<li>收集激活值的分布直方图；</li>
+<li>枚举不同的截断阈值 <span class="math">$T$</span>，生成对应的量化分布；</li>
+<li>计算每个量化分布与原始 FP32 分布之间的 KL 散度；</li>
+<li>选取使 KL 散度最小的 <span class="math">$T$</span> 作为该层的饱和阈值。</li>
+</ol>
+</li>
+<li>以最优阈值 <span class="math">$T$</span> 计算每层的 Scale，完成模型量化。</li>
+</ol>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>校准数据需具有代表性，覆盖实际推理场景中的数据分布</li>
+<li>校准数据量无需过多（500～1000 条通常已足够），过多反而增加校准时间</li>
+<li>不同层的激活值分布差异较大，需为每层独立搜索最优阈值</li>
+</ul>
+<p>通俗地理解：算法收集每层激活值的直方图，枚举一组不同阈值对应的 INT8 量化表示，选择使 FP32 分布与 INT8 量化分布之间 KL 散度最小的阈值，从而在有限的 256 个整数刻度上最大程度地保留原始数值分布的信息。</p>
+<h6 id="量化推理部署">量化推理部署</h6>
+<p><strong>推理结构</strong></p>
+<p>端侧量化推理的结构方式主要由 3 种，分别是下图 (a) FP32 输入 FP32 输出、(b) FP32 输入 INT8 输出、(c) INT8 输入 INT32 输出</p>
+<img src="images/image-20260506112634815.png" alt="image-20260506112634815" style="zoom:25%; display: block; margin: 0 auto;" />
+<blockquote>
+<p>Conv2D 的核心计算是大量乘加累积操作（MAC）。单次 INT8 × INT8 &lt; INT16，但经过数百次累加后结果会急剧增大，远超 INT16 所能表示的上限。因此 Conv2D 的累加器必须使用 INT32 格式存储中间结果，以防止数值溢出。</p></blockquote>
+<p>实际的 INT8 卷积网络往往混合了上述三种模式，原因在于不同算子对数据格式的输入输出要求不同，需要在算子之间插入格式转换操作。由于推理时数据是实时输入的，激活值需要在线量化。整个推理过程涉及三种核心操作：</p>
+<ul>
+<li><strong>Quantize</strong>（<strong>量化</strong>）：FP32 → INT8，发生在网络入口或需要从浮点切换到整数计算的位置</li>
+<li><strong>Dequantize</strong>（<strong>反量化</strong>）：INT32 → FP32，发生在需要切换回浮点计算的位置</li>
+<li><strong>Requantize</strong>（<strong>重量化</strong>）：INT32 → INT8，发生在连续 INT8 算子之间，全程保持整数计算链路</li>
+</ul>
+<img src="images/image-20260506114044811.png" alt="image-20260506114044811" style="zoom:25%; display: block; margin: 0 auto;" />
+<blockquote>
+<p>需要注意的是，上图中第一个虚线框内的 ReQuant 节点颜色有误，应与第二个虚线框保持一致，标注为蓝色。根据上上图的颜色规范，蓝色对应 ReQuant（INT32 → INT8 重量化），绿色对应 DeQuant（INT32 → FP32 反量化），第一个虚线框对应的是模式 (b)（FP32 输入 → INT8 输出），其 ReQuant 节点理应为蓝色而非绿色。</p></blockquote>
+<hr>
+<p><strong>量化操作详解</strong></p>
+<p><strong>1. Quantize（量化）</strong></p>
+<p>将 FP32 数据转换为 INT8，发生在推理的输入阶段。离线转换工具在模型转换阶段已根据校准数据预先计算好每层的缩放因子 <span class="math">$S$</span> 和零点 <span class="math">$Z$</span>，推理时直接复用。对输入激活值 <span class="math">$x$</span> 和权重 <span class="math">$w$</span> 分别量化：</p>
+<span class="math">$$
+x_{int8} = \text{clip}\left(\left\lfloor\frac{x_{float}}{S_x}\right\rceil &#43; Z_x,\ -128,\ 127\right)
+$$</span><span class="math">$$
+w_{int8} = \text{clip}\left(\left\lfloor\frac{w_{float}}{S_w}\right\rceil &#43; Z_w,\ -128,\ 127\right)
+$$</span><p>两者独立量化，各自使用对应的 <span class="math">$S$</span> 和 <span class="math">$Z$</span>，不可混用。</p>
+<p><strong>2. Dequantize（反量化）</strong></p>
+<p>INT8 乘加运算的中间结果以 INT32 格式存储以防止数值溢出。若下一个算子需要 FP32 格式输入，则通过反量化将 INT32 结果还原为浮点值。</p>
+<p>设输入激活值 <span class="math">$x$</span> 和权重 <span class="math">$w$</span> 分别独立量化，量化参数分别为 <span class="math">$(S_x, Z_x)$</span> 和 <span class="math">$(S_w, Z_w)$</span>，则浮点矩阵乘法 <span class="math">$y_{float} = x \cdot w$</span> 的量化推导如下：</p>
+<span class="math">$$
+\begin{aligned}
+y_{float} &amp;= x \cdot w \\
+&amp;= S_x \cdot (x_{int} - Z_x) \cdot S_w \cdot (w_{int} - Z_w) \\
+&amp;= (S_x \cdot S_w) \cdot \left(x_{int} \cdot w_{int} - x_{int} \cdot Z_w - w_{int} \cdot Z_x &#43; Z_x \cdot Z_w\right)
+\end{aligned}
+$$</span><p>
+对于对称量化（<span class="math">$Z_x = Z_w = 0$</span>），后三项全部消失，上式化简为：</p>
+<span class="math">$$
+y_{float} \approx (S_x \cdot S_w) \cdot \underbrace{x_{int} \cdot w_{int}}_{INT32_{result}}
+$$</span><p>
+其中 <span class="math">$INT32_{result} = x_{int} \cdot w_{int}$</span> 为硬件实际执行的整数乘加结果。反量化仅需将其乘以两个 Scale 的乘积即可还原为浮点值，整个过程退化为一次标量乘法。</p>
+<blockquote>
+<p>这正是工程上优先采用对称量化的核心原因：<span class="math">$Z = 0$</span> 消除了所有偏移项，反量化计算极度简化，既节省了 Zero Point 的存储开销，又大幅降低了推理时的计算复杂度。</p></blockquote>
+<p>需要注意的是，反量化会将计算链路从整数域切换回浮点域，引入额外的 FP32 运算开销。因此在网络设计和量化部署时，应尽量减少反量化的插入次数，优先保持整数计算链路的连续性。</p>
+<p><strong>3. Requantize（重量化）</strong></p>
+<p>若下一层算子需要 INT8 格式输入，则无需将 INT32 结果反量化为 FP32，而是直接重量化为 INT8，全程保持整数运算。</p>
+<p>同样以矩阵乘法 <span class="math">$y = x \cdot w$</span> 为例，在对称量化条件下已知：</p>
+<span class="math">$$
+y_{float} = (S_x \cdot S_w) \cdot \text{INT32}_{result}
+$$</span><p>
+对 <span class="math">$y_{float}$</span> 直接量化到下一算子的整数域，设下一算子输入的量化参数为 <span class="math">$(S_y, Z_y)$</span>：</p>
+<span class="math">$$
+y_{int8} = \text{clip}\left(\left\lfloor\frac{y_{float}}{S_y}\right\rceil &#43; Z_y,\ -128,\ 127\right)
+$$</span><p>
+将 <span class="math">$y_{float}$</span> 展开代入：</p>
+<span class="math">$$
+y_{int8} = \text{clip}\left(\left\lfloor\frac{S_x \cdot S_w}{S_y} \cdot \text{INT32}_{result}\right\rceil &#43; Z_y,\ -128,\ 127\right)
+$$</span><p>
+其中 <span class="math">$\dfrac{S_x \cdot S_w}{S_y}$</span> 为重量化系数，可在离线阶段预先计算。因此重量化操作只需四个量化参数：当前算子输入的 <span class="math">$S_x$</span>、权重的 <span class="math">$S_w$</span>，以及下一算子的 <span class="math">$S_y$</span> 和 <span class="math">$Z_y$</span>。</p>
+<hr>
+<p><strong>训练后量化的技巧</strong></p>
+<ol>
+<li><strong>权重使用每通道（per-channel）粒度量化，激活值使用每张量（per-tensor）粒度量化</strong></li>
+</ol>
+<p>权重张量在不同通道间的数值分布差异较大，若使用单一缩放因子进行量化，会导致分布差异被平均化，精度损失明显。采用 Per-Channel 粒度后，每个通道独立计算缩放因子，能够更精确地保留各通道内的数值分布。值得注意的是，推理框架会将每通道的缩放因子预先折叠进卷积核（kernel）中，因此不会引入额外的推理计算开销。此外，由于神经网络训练时通常使用权重衰减，通道内的权重分布一般较为集中，使用 AbsMax 校准器捕捉完整动态范围进行量化即可取得较好效果。</p>
+<p>激活值在不同通道间的分布通常较为一致，但会因输入数据的差异而包含异常值。对激活值采用 Per-Tensor 粒度，配合基于直方图的校准方法，有助于抑制异常值对量化精度的影响。同时，由于激活值的缩放因子无法像权重一样预先折叠进算子，Per-Tensor 量化仅需维护一个缩放因子，能够有效降低推理时的计算开销。</p>
+<ol start="2">
+<li><strong>对残差连接单独量化</strong></li>
+</ol>
+<p>残差连接是 ResNet 等网络的核心结构，有效缓解了训练过程中的梯度消失问题。然而在量化部署时，残差连接会带来额外的挑战：TensorRT 等推理框架要求融合算子的数据类型保持一致，若残差连接与主干分支的数据类型不匹配，会阻止算子融合，导致性能下降。</p>
+<p>解决方案是将残差连接从主干网络中单独拆分出来，封装为一个独立的量化块（Quantized Block），在其中对恒等映射分支单独进行量化，再将其结果加回主干分支。通过这种方式，残差连接与其他层保持相同的数据类型，从而支持算子融合，恢复推理性能。</p>
+<ol start="3">
+<li><strong>识别敏感层并跳过量化</strong></li>
+</ol>
+<p>并非所有层都适合量化。部分层对数值精度要求较高，量化后精度损失显著，称为<strong>量化敏感层</strong>。典型的例子是目标检测模型的边界框回归层——该层需要精确预测坐标偏移量，量化后的精度损失会直接影响检测框的定位精度，通常建议保持 FP32 推理。</p>
+<p>识别敏感层的常用方法是<strong>逐层敏感性分析</strong>：依次对每一层单独进行量化，在验证集上评估量化前后的精度变化，精度下降幅度最大的层即为敏感层。通过这种逐层分析，可以有针对性地跳过少数关键层的量化，在整体推理加速与精度保持之间取得最优平衡。</p>
+<h5 id="模型剪枝">模型剪枝</h5>
+<blockquote>
+<p>TODO：属于是训练阶段，待后续学习补充这部分内容。</p></blockquote>
+<h5 id="知识蒸馏">知识蒸馏</h5>
+<blockquote>
+<p>TODO：属于是训练阶段，待后续学习补充这部分内容。</p></blockquote>
 <h3 id="大模型推理框架">大模型推理框架</h3>
 <h4 id="sglang">SGLang</h4>
 <p>一个专门用来学习 SGLang 框架的简化版本： <a href="https://github.com/gogongxt/nano-sglang" target="_blank" rel="noopener noreffer ">nano-sglang</a></p>
@@ -5254,8 +5427,8 @@ $$</span><p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-05-06&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/e8b309218e9c1427157e0dfa3b7ab4ff5eef9924" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) e8b309218e9c1427157e0dfa3b7ab4ff5eef9924: content(MLsys): 新增分布式并行与推理系统章节">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e8b3092</a></span>
+                <span>更新于 2026-05-06&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/a06be93da6c7b6b2c582ff23ac3b06fe356ed92e" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) a06be93da6c7b6b2c582ff23ac3b06fe356ed92e: docs(MLsys): 深入补充模型量化章节">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>a06be93</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

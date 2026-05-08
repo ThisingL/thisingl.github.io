@@ -614,9 +614,9 @@
       <div class="hero-content" id="hero3d">
         <h1>One key,<br>All passwords</h1>
         <p>
-          无需存储，无需同步，密码在浏览器本地实时计算生成<br>
+          无存储，不联网，密码只会在浏览器本地实时计算生成<br>
           您只需维护一个私钥，即可随时随地计算出各网站的密码<br>
-          某个网站密码被攻击，也不影响您的私钥和其他网站的安全
+          即使某个网站密码被攻击，也不会威胁您的私钥和其他网站
         </p>
       </div>
     </div>
@@ -709,7 +709,15 @@
           <!-- 结果展示（三栏式） -->
           <div class="result-area" id="result-area">
             <button class="result-toggle-btn" id="result-toggle" onclick="toggleResultVisibility()">
-              <svg id="eye-result-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- 闭眼图标（默认显示，表示密码被隐藏） -->
+              <svg id="eye-off-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+              <!-- 睁眼图标（密码可见时显示） -->
+              <svg id="eye-on-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                 <circle cx="12" cy="12" r="3"/>
               </svg>

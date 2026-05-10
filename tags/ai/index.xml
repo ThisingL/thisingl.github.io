@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AI on Thising | 自学空间</title>
-    <link>https://example.com/tags/ai/</link>
+    <link>https://thisingl.github.io/tags/ai/</link>
     <description>Recent content in AI on Thising | 自学空间</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 08 May 2026 17:17:26 +0800</lastBuildDate>
-    <atom:link href="https://example.com/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 May 2026 00:56:52 +0800</lastBuildDate>
+    <atom:link href="https://thisingl.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deep Learning</title>
-      <link>https://example.com/deep-learning/</link>
+      <link>https://thisingl.github.io/deep-learning/</link>
       <pubDate>Fri, 06 Feb 2026 15:24:36 +0800</pubDate>
-      <guid>https://example.com/deep-learning/</guid>
+      <guid>https://thisingl.github.io/deep-learning/</guid>
       <description>关于深度学习的内容</description>
     </item>
     <item>
       <title>MLsys</title>
-      <link>https://example.com/mlsys/</link>
+      <link>https://thisingl.github.io/mlsys/</link>
       <pubDate>Fri, 06 Feb 2026 15:24:36 +0800</pubDate>
-      <guid>https://example.com/mlsys/</guid>
+      <guid>https://thisingl.github.io/mlsys/</guid>
       <description>系统的梳理 MLsys 的所有内容</description>
     </item>
   </channel>

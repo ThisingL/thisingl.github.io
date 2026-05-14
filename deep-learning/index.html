@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-05-11T00:56:52+08:00">
+    <meta property="article:modified_time" content="2026-05-14T15:36:42+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://thisingl.github.io/images/logo.png">
@@ -39,7 +39,7 @@
                             "width":  3200 ,
                             "height":  2048 
                         }],"genre": "posts","keywords": "CS, AI","wordcount":  10374 ,
-        "url": "https:\/\/thisingl.github.io\/deep-learning\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-05-11T00:56:52+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/thisingl.github.io\/deep-learning\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-05-14T15:36:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/thisingl.github.io\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -440,9 +440,9 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 </span></span><span class="line"><span class="cl">│   ├── README.md                            <span class="m">951</span>  B  		<span class="c1"># 推理使用说明</span>
 </span></span><span class="line"><span class="cl">│   ├── config.json                         1.07 kB  		<span class="c1"># 推理专用配置（并行策略、显存优化等）</span>
 </span></span><span class="line"><span class="cl">│   ├── convert.py                          7.08 kB  		<span class="c1"># 权重格式转换工具</span>
-</span></span><span class="line"><span class="cl">│   ├── generate.py                          6.3  kB  	<span class="c1"># 推理生成逻辑（采样策略、KV Cache 管理）</span>
-</span></span><span class="line"><span class="cl">│   ├── kernel.py                           22.2  kB  	<span class="c1"># 底层算子（手写 Triton/CUDA kernel，MoE/MLA 专项优化）</span>
-</span></span><span class="line"><span class="cl">│   ├── model.py                            38.6  kB  	<span class="c1"># 模型结构实现（不依赖 transformers，手写 Attention/MoE）</span>
+</span></span><span class="line"><span class="cl">│   ├── generate.py                          6.3 kB  		<span class="c1"># 推理生成逻辑（采样策略、KV Cache 管理）</span>
+</span></span><span class="line"><span class="cl">│   ├── kernel.py                           22.2 kB  		<span class="c1"># 底层算子（手写 Triton/CUDA kernel，MoE/MLA 专项优化）</span>
+</span></span><span class="line"><span class="cl">│   ├── model.py                            38.6 kB  		<span class="c1"># 模型结构实现（不依赖 transformers，手写 Attention/MoE）</span>
 </span></span><span class="line"><span class="cl">│   └── requirements.txt                      <span class="m">92</span>  B  		<span class="c1"># 依赖库列表</span>
 </span></span><span class="line"><span class="cl">├── .gitattributes                          1.67 kB  <span class="c1"># Git LFS 大文件追踪配置</span>
 </span></span><span class="line"><span class="cl">├── DeepSeek_V4.pdf                         4.48 MB  <span class="c1"># 技术报告论文</span>
@@ -463,7 +463,7 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 <h3 id="权重文件">权重文件</h3>
 <p>模型权重被切分为 64 个 <code>.safetensors</code> 文件，切分方式为<strong>按参数顺序线性切割</strong>，基本等价于<strong>按层切</strong>。</p>
 <p>那么推理框架如何知道某个权重具体在哪个文件中？这就由 <code>model.safetensors.index.json</code> 负责，它是一个<strong>索引文件</strong>，记录了每个参数名与对应权重文件的映射关系：</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight"><div class="chroma" data-title="model.safetensors.index.json">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -516,55 +516,55 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 </span><span class="lnt">49
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;total_size&#34;</span><span class="p">:</span> <span class="mi">864704792696</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;weight_map&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;embed.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00001-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.hc_attn_base&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.hc_ffn_base&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.hc_attn_fn&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.hc_attn_scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.hc_ffn_fn&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.hc_ffn_scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.attn.attn_sink&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.attn.wq_a.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.attn.wq_a.scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.attn.wq_b.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.attn.wq_b.scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.attn.q_norm.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.attn.wo_a.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.ffn.gate.tid2eid&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.0.ffn.gate.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00002-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.1.hc_attn_base&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00003-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.1.hc_ffn_base&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00003-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.1.hc_attn_fn&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00003-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.1.hc_attn_scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00003-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.1.hc_ffn_fn&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00003-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.1.ffn.gate.tid2eid&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00003-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.1.ffn.gate.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00003-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.2.hc_attn_base&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00004-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.2.hc_ffn_base&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00004-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.2.hc_attn_fn&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00004-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;layers.2.hc_attn_scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00004-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">    <span class="err">...</span>
-</span></span><span class="line"><span class="cl">  	<span class="nt">&#34;mtp.0.e_proj.scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00064-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mtp.0.h_proj.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00064-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mtp.0.h_proj.scale&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00064-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mtp.0.enorm.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00064-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mtp.0.hnorm.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00064-of-00064.safetensors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mtp.0.norm.weight&#34;</span><span class="p">:</span> <span class="s2">&#34;model-00064-of-00064.safetensors&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;metadata&#34;: {
+</span></span><span class="line"><span class="cl">    &#34;total_size&#34;: 864704792696
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">  &#34;weight_map&#34;: {
+</span></span><span class="line"><span class="cl">    &#34;embed.weight&#34;: &#34;model-00001-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.hc_attn_base&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.hc_ffn_base&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.hc_attn_fn&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.hc_attn_scale&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.hc_ffn_fn&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.hc_ffn_scale&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.attn.attn_sink&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.attn.wq_a.weight&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.attn.wq_a.scale&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.attn.wq_b.weight&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.attn.wq_b.scale&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.attn.q_norm.weight&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.attn.wo_a.weight&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    &#34;layers.0.ffn.gate.tid2eid&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.0.ffn.gate.weight&#34;: &#34;model-00002-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.1.hc_attn_base&#34;: &#34;model-00003-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.1.hc_ffn_base&#34;: &#34;model-00003-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.1.hc_attn_fn&#34;: &#34;model-00003-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.1.hc_attn_scale&#34;: &#34;model-00003-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.1.hc_ffn_fn&#34;: &#34;model-00003-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    &#34;layers.1.ffn.gate.tid2eid&#34;: &#34;model-00003-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.1.ffn.gate.weight&#34;: &#34;model-00003-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.2.hc_attn_base&#34;: &#34;model-00004-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.2.hc_ffn_base&#34;: &#34;model-00004-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.2.hc_attn_fn&#34;: &#34;model-00004-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;layers.2.hc_attn_scale&#34;: &#34;model-00004-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">  	&#34;mtp.0.e_proj.scale&#34;: &#34;model-00064-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;mtp.0.h_proj.weight&#34;: &#34;model-00064-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;mtp.0.h_proj.scale&#34;: &#34;model-00064-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;mtp.0.enorm.weight&#34;: &#34;model-00064-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;mtp.0.hnorm.weight&#34;: &#34;model-00064-of-00064.safetensors&#34;,
+</span></span><span class="line"><span class="cl">    &#34;mtp.0.norm.weight&#34;: &#34;model-00064-of-00064.safetensors&#34;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></td></tr></table>
 </div>
 </div><p>定位到具体文件后，还需要知道权重在文件内的位置。<code>safetensors</code> 格式在文件头部内置了一个 JSON 索引，记录每个参数的精度、形状和字节偏移量，因此可以直接 <code>seek</code> 到对应位置读取，无需加载整个文件：</p>
 <div class="highlight"><div class="chroma">
@@ -616,7 +616,7 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 <hr>
 <h3 id="模型结构配置">模型结构配置</h3>
 <p><code>config.json</code> 负责描述模型的结构参数，指导推理框架构建计算图：</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight"><div class="chroma" data-title="config.json">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -759,7 +759,7 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 <blockquote>
 <p>你可能注意到，DeepSeek-V4-Pro 的仓库中并没有 <code>configuration_deepseek.py</code> 这个文件。这是因为 DeepSeek 系列已被 <strong>HuggingFace Transformers</strong> 库官方收录，相关实现直接内置在库中，无需随仓库分发。对于尚未被收录的新模型，仓库则必须提供该文件，用户加载时也需要显式设置 <code>trust_remote_code=True</code>。</p></blockquote>
 <p>虽然我们拿不到 V4 的这个文件，但是我们可以在 <a href="https://huggingface.co/deepseek-ai/DeepSeek-V3/blob/main/configuration_deepseek.py" target="_blank" rel="noopener noreffer ">DeepSeek-V3</a> 的仓库中找到之前版本的进行学习，其核心逻辑是将 <code>config.json</code> 中的参数解析为 <code>DeepseekV3Config</code> 对象：</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight"><div class="chroma" data-title="DeepseekV3 版本的 configuration_deepseek.py">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -1208,7 +1208,7 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 <hr>
 <h3 id="分词器">分词器</h3>
 <p>每个模型都有自己的分词规则。<code>tokenizer.json</code> 是词表文件，负责完成<strong>文字 → token ID</strong> 的映射：</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight"><div class="chroma" data-title="tokenizer.json">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1400,7 +1400,7 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 </span></span><span class="line"><span class="cl">          （词表查找）        （矩阵取行）</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>tokenizer_config.json</code> 则定义了分词器的元配置，包括特殊 token、编解码方式等：</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight"><div class="chroma" data-title="tokenizer_config.json">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1438,40 +1438,40 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;add_bos_token&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;add_eos_token&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;bos_token&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;__type&#34;</span><span class="p">:</span> <span class="s2">&#34;AddedToken&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;｜begin▁of▁sentence｜&gt;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;lstrip&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;normalized&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;rstrip&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;single_word&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;clean_up_tokenization_spaces&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;eos_token&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;__type&#34;</span><span class="p">:</span> <span class="s2">&#34;AddedToken&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;｜end▁of▁sentence｜&gt;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;lstrip&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;normalized&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;rstrip&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;single_word&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;legacy&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;model_max_length&#34;</span><span class="p">:</span> <span class="mi">1048576</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;pad_token&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;__type&#34;</span><span class="p">:</span> <span class="s2">&#34;AddedToken&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;｜end▁of▁sentence｜&gt;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;lstrip&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;normalized&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;rstrip&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;single_word&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;sp_model_kwargs&#34;</span><span class="p">:</span> <span class="p">{},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;unk_token&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tokenizer_class&#34;</span><span class="p">:</span> <span class="s2">&#34;PreTrainedTokenizerFast&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;add_bos_token&#34;: false,
+</span></span><span class="line"><span class="cl">  &#34;add_eos_token&#34;: false,
+</span></span><span class="line"><span class="cl">  &#34;bos_token&#34;: {
+</span></span><span class="line"><span class="cl">    &#34;__type&#34;: &#34;AddedToken&#34;,
+</span></span><span class="line"><span class="cl">    &#34;content&#34;: &#34;&lt;｜begin▁of▁sentence｜&gt;&#34;,
+</span></span><span class="line"><span class="cl">    &#34;lstrip&#34;: false,
+</span></span><span class="line"><span class="cl">    &#34;normalized&#34;: true,
+</span></span><span class="line"><span class="cl">    &#34;rstrip&#34;: false,
+</span></span><span class="line"><span class="cl">    &#34;single_word&#34;: false
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">  &#34;clean_up_tokenization_spaces&#34;: false,
+</span></span><span class="line"><span class="cl">  &#34;eos_token&#34;: {
+</span></span><span class="line"><span class="cl">    &#34;__type&#34;: &#34;AddedToken&#34;,
+</span></span><span class="line"><span class="cl">    &#34;content&#34;: &#34;&lt;｜end▁of▁sentence｜&gt;&#34;,
+</span></span><span class="line"><span class="cl">    &#34;lstrip&#34;: false,
+</span></span><span class="line"><span class="cl">    &#34;normalized&#34;: true,
+</span></span><span class="line"><span class="cl">    &#34;rstrip&#34;: false,
+</span></span><span class="line"><span class="cl">    &#34;single_word&#34;: false
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">  &#34;legacy&#34;: true,
+</span></span><span class="line"><span class="cl">  &#34;model_max_length&#34;: 1048576,
+</span></span><span class="line"><span class="cl">  &#34;pad_token&#34;: {
+</span></span><span class="line"><span class="cl">    &#34;__type&#34;: &#34;AddedToken&#34;,
+</span></span><span class="line"><span class="cl">    &#34;content&#34;: &#34;&lt;｜end▁of▁sentence｜&gt;&#34;,
+</span></span><span class="line"><span class="cl">    &#34;lstrip&#34;: false,
+</span></span><span class="line"><span class="cl">    &#34;normalized&#34;: true,
+</span></span><span class="line"><span class="cl">    &#34;rstrip&#34;: false,
+</span></span><span class="line"><span class="cl">    &#34;single_word&#34;: false
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">  &#34;sp_model_kwargs&#34;: {},
+</span></span><span class="line"><span class="cl">  &#34;unk_token&#34;: null,
+</span></span><span class="line"><span class="cl">  &#34;tokenizer_class&#34;: &#34;PreTrainedTokenizerFast&#34;
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="完整推理流程串联">完整推理流程串联</h3>
 <p>以下面这段推理代码为例，把前面介绍的所有文件和概念串联起来：</p>
@@ -1593,8 +1593,8 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-05-11&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/7d6fcbd6b8b1c4f041a0be1965fd9ada03b7662c" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 7d6fcbd6b8b1c4f041a0be1965fd9ada03b7662c: fix: 修复 Hugo 分类页配置并更新博客内容">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>7d6fcbd</a></span>
+                <span>更新于 2026-05-14&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/1db6d4a3fa25515e9fbb3347b437bced3ef3f46c" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) 1db6d4a3fa25515e9fbb3347b437bced3ef3f46c: docs: 为代码块添加 title 属性并修复格式问题">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>1db6d4a</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

@@ -784,6 +784,7 @@
       { name: 'Stack Overflow',  value: 'stackoverflow.com' },
       { name: 'Hacker News',    value: 'news.ycombinator.com' },
       { name: 'V2EX',           value: 'v2ex.com' },
+      { name: 'Arc浏览器',       value: 'arc.net' },
 
       // ── 国内应用 ──
       { name: '淘宝',           value: 'taobao.com' },
@@ -1069,6 +1070,7 @@
 
     // ── 生成并复制 ──
     function generate() {
+      if (document.getElementById('btn-generate').classList.contains('disabled')) return;
       var site    = document.getElementById('site').value.trim();
       var master  = document.getElementById('master').value;
       var length  = parseInt(document.getElementById('length').value) || 16;
@@ -1186,12 +1188,15 @@
 
       document.getElementById('master').type = 'password';
       document.getElementById('eye-icon').textContent = '👁';
-      hideMatchLabel();
+      // 清除匹配标签（hideMatchLabel 在 IIFE 内部，这里直接操作 DOM）
+      var ml = document.getElementById('site-match-label');
+      if (ml) { ml.textContent = ''; ml.style.opacity = '0'; }
 
       // 清除 URL 参数
       if (location.search) {
         history.replaceState(null, '', location.pathname);
       }
+
       showToast('🗑️ 已清除');
       updateBtnState();
     }

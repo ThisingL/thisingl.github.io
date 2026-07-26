@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-06T15:24:36+08:00">
-    <meta property="article:modified_time" content="2026-05-27T20:20:53+08:00">
+    <meta property="article:modified_time" content="2026-06-28T00:56:16+08:00">
     <meta property="article:tag" content="CS">
     <meta property="article:tag" content="AI">
     <meta property="og:image" content="https://thisingl.github.io/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/thisingl.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "CS, AI","wordcount":  17600 ,
-        "url": "https:\/\/thisingl.github.io\/deep-learning\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-05-27T20:20:53+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "CS, AI","wordcount":  22922 ,
+        "url": "https:\/\/thisingl.github.io\/deep-learning\/","datePublished": "2026-02-06T15:24:36+08:00","dateModified": "2026-06-28T00:56:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/thisingl.github.io\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Deep Learning</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 17600 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 36 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-06">2026-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 22922 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 46 分钟&nbsp;
     
 
     
@@ -163,6 +163,12 @@
                 <li><a href="#fnn">FNN</a></li>
                 <li><a href="#rnn">RNN</a></li>
                 <li><a href="#transformer">Transformer</a></li>
+                <li><a href="#rope">RoPE</a></li>
+              </ul>
+            </li>
+            <li><a href="#torch">Torch</a>
+              <ul>
+                <li><a href="#tensor">Tensor</a></li>
               </ul>
             </li>
           </ul>
@@ -209,7 +215,6 @@
           <ul>
             <li><a href="#从维度角度理解">从维度角度理解</a></li>
             <li><a href="#如果写成-w--x-会怎样">如果写成 W · X 会怎样？</a></li>
-            <li><a href="#原因">原因</a></li>
           </ul>
         </li>
       </ul>
@@ -313,7 +318,7 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 <p><strong>A.</strong> 我们上面知道我们的输入矩阵 <span class="math">$X \in \mathbb{R}^{n \times d_{model}}$</span> ，而 <span class="math">$Q, K, V \in \mathbb{R}^{n \times d_k}$</span>，最后的缩放点积注意力机制计算得到的结果 <span class="math">$\text{Attention}(Q, K, V) \in \mathbb{R}^{n \times d_k}$</span>。但是为了方便计算，统一中间每一层的结果维度，我们会让每一层计算得到的结果和输入的维度一致，因此我们还需要将单个缩放点积注意力机制得到的结果进行一些处理，来得到和输入矩阵 <span class="math">$X$</span> 维度相同的输出结果。</p>
 <p>最简单的方式就是使用和 <span class="math">$d_{model}$</span> 维度相同的矩阵 <span class="math">$W_Q, W_K, W_V$</span>,即 <span class="math">$d_k = d_{model}$</span>,也就是 <span class="math">$W_Q, W_K, W_V \in \mathbb{R}^{d_{model} \times d_{model}}$</span>，这样我们的矩阵 <span class="math">$Q, K, V \in \mathbb{R}^{n \times d_{model}}$</span>，最后计算得到的结果 <span class="math">$\text{Attention}(Q, K, V) \in \mathbb{R}^{n \times d_{model}}$</span>。</p>
 <p>但是实践发现，与其使用具有 <span class="math">$d_{model}$</span> 维的 <span class="math">$K, Q, V$</span> 的单个注意力函数，不如将它们线性投影 <span class="math">$h$</span> 次，分别映射到 <span class="math">$d_k, d_k, d_v$</span> 维，这样效果要好得多。</p>
-<p>也就是 <span class="math">$Q, K \in \mathbb{R}^{n \times d_k}，V \in \mathbb{R}^{n \times d_v}$</span>，最后计算得到的结果 <span class="math">$\text{Attention}(Q, K, V) \in \mathbb{R}^{n \times d_{v}}$</span>，最后我们再将这 <span class="math">$h$</span> 个 <span class="math">$\mathbb{R}^{n \times d_{v}}$</span> 结果通过一个线性层进行<strong>升维</strong>，也就是投影到 <span class="math">$d_{model}$</span> 维，这样结果又变回了我们想要的 <span class="math">$\mathbb{R}^{n \times d_{model}}$</span>。</p>
+<p>也就是 <span class="math">$Q, K \in \mathbb{R}^{n \times d_k}，V \in \mathbb{R}^{n \times d_v}$</span>，最后计算得到的结果 <span class="math">$\text{Attention}(Q, K, V) \in \mathbb{R}^{n \times d_{v}}$</span>，最后我们再将这 <span class="math">$h$</span> 个 <span class="math">$\mathbb{R}^{n \times d_{v}}$</span> 首尾相连直接拼接 (concatenate) ，得到一个  <span class="math">$d_{model}$</span> 维,最后再通过一个线性层让不同 head 的信息可以交互融合，这样结果又变回了我们想要的 <span class="math">$\mathbb{R}^{n \times d_{model}}$</span>。</p>
 <p>多头注意力块展开也就是长成这样：</p>
 <img src="images/image6.png" alt="image6" style="zoom:66%; display: block; margin: 0 auto;" />
 <p>这里使用多个注意力头也很好理解，因为可以让每个注意力头，注意到不同的部分。还拿之前的例子来举例，一部分注意力头会更关注女生外表信息，比如身高，体重，气质等，另一个注意力头更关注女生的性格。这样在大数据训练下，模型的每一个注意力头可以更加专业，更加聚焦。</p>
@@ -380,6 +385,437 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
 <img src="images/image8.png" alt="image8" style="zoom:66%; display: block; margin: 0 auto;" />
 <p>现在我们再来回头看看 Transformer 架构是如何解决串行化问题的？</p>
 <p>把 RNN 的串行递推彻底去掉，改用矩阵乘法一次性计算所有位置的注意力，这正是 <span class="math">$QK^T$</span> 矩阵乘法的意义。而不是每一个 token 并行计算，通过矩阵乘法就能自然的进行矩阵分块来实现并行计算。</p>
+<p>后续架构演进：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">原始</span> <span class="n">Transformer</span> <span class="p">(</span><span class="mi">2017</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>
+</span></span><span class="line"><span class="cl">    <span class="err">├──</span> <span class="n">去掉</span> <span class="n">Encoder</span> <span class="err">→</span> <span class="n">GPT</span> <span class="p">(</span><span class="n">Decoder</span><span class="o">-</span><span class="n">Only</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">引导</span><span class="p">:</span><span class="n">翻译有两个序列</span><span class="p">(</span><span class="n">英</span><span class="err">→</span><span class="n">中</span><span class="p">,</span><span class="n">需对齐</span><span class="p">),</span><span class="n">但</span><span class="s2">&#34;续写&#34;</span><span class="n">呢</span><span class="err">?</span><span class="s2">&#34;今天天气&#34;</span> <span class="err">→</span> <span class="s2">&#34;很好&#34;</span> <span class="err">→</span> <span class="s2">&#34;适合&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">你的洞察</span><span class="p">:</span><span class="n">只有一个序列在不断往右延伸</span><span class="p">;</span><span class="n">输入即是输出序列的前缀</span><span class="p">,</span><span class="n">没有</span><span class="s2">&#34;原文/译文&#34;</span><span class="n">边界</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">└──</span> <span class="n">结论</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">完整</span> <span class="n">Decoder</span> <span class="n">每层有</span> <span class="mi">3</span> <span class="n">个子层</span><span class="p">:</span><span class="n">Masked</span> <span class="n">Self</span><span class="o">-</span><span class="n">Attn</span> <span class="o">/</span> <span class="n">Cross</span><span class="o">-</span><span class="n">Attn</span> <span class="o">/</span> <span class="n">FFN</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">GPT</span> <span class="n">去掉</span> <span class="n">Cross</span><span class="o">-</span><span class="n">Attention</span><span class="p">(</span><span class="n">没有</span> <span class="n">Encoder</span><span class="p">,</span><span class="n">没东西可</span> <span class="n">cross</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">└──</span> <span class="n">配套机制</span><span class="p">:</span><span class="n">Causal</span> <span class="n">Mask</span> <span class="n">用</span> <span class="n">上三角</span> <span class="o">-</span><span class="err">∞</span> <span class="n">矩阵</span><span class="p">(</span><span class="n">softmax</span> <span class="n">前相加</span><span class="p">),</span><span class="n">强制</span><span class="s2">&#34;不准看右边&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>
+</span></span><span class="line"><span class="cl">    <span class="err">├──</span> <span class="n">位置编码</span> <span class="err">→</span> <span class="n">RoPE</span> <span class="p">(</span><span class="n">旋转相对位置</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">引导</span><span class="p">:</span><span class="n">训练时最大长度</span> <span class="mi">2048</span><span class="p">,</span><span class="n">推理时输入</span> <span class="mi">3000</span> <span class="n">个</span> <span class="n">token</span> <span class="n">会怎样</span><span class="err">?</span><span class="n">位置</span> <span class="mi">3000</span> <span class="n">从没见过</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">│</span>        <span class="n">注意力关心的核心是</span><span class="s2">&#34;这个词在位置 7&#34;</span><span class="p">,</span><span class="n">还是</span><span class="s2">&#34;这两个词距离为 3&#34;</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">降难度引导</span><span class="p">:</span><span class="n">二维向量里</span><span class="p">,</span><span class="n">什么变换能让内积只取决于角度差</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">│</span>        <span class="n">a</span><span class="p">(</span><span class="n">θ₁</span><span class="p">)</span><span class="err">·</span><span class="n">b</span><span class="p">(</span><span class="n">θ₂</span><span class="p">)</span><span class="o">=|</span><span class="n">a</span><span class="o">||</span><span class="n">b</span><span class="o">|</span><span class="n">cos</span><span class="p">(</span><span class="n">θ₁</span><span class="err">−</span><span class="n">θ₂</span><span class="p">),</span><span class="n">若令</span> <span class="n">θ</span> <span class="o">=</span> <span class="n">位置</span><span class="err">×</span><span class="n">常数呢</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">你的洞察</span><span class="p">:</span><span class="n">不应该改变向量大小</span><span class="p">,</span><span class="n">而是对每个</span> <span class="n">token</span> <span class="n">向量做一个角度的旋转变换</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">└──</span> <span class="n">结论</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">位置</span> <span class="n">i</span> <span class="n">转</span> <span class="n">i</span><span class="err">×</span><span class="n">α</span><span class="err">、</span><span class="n">j</span> <span class="n">转</span> <span class="n">j</span><span class="err">×</span><span class="n">α</span> <span class="err">→</span> <span class="n">内积角度差</span> <span class="p">(</span><span class="n">i</span><span class="err">−</span><span class="n">j</span><span class="p">)</span><span class="n">α</span> <span class="n">自动编码相对距离</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">旋转的是投影后的</span> <span class="n">Q</span><span class="err">、</span><span class="n">K</span><span class="p">(</span><span class="n">做内积前</span><span class="p">),</span><span class="n">V</span> <span class="n">不旋转</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="mi">512</span> <span class="n">维两两配对成</span> <span class="mi">256</span> <span class="n">个</span> <span class="mi">2</span><span class="n">D</span> <span class="n">平面</span><span class="p">,</span><span class="n">各用不同频率旋转</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">频率指数递减</span> <span class="n">αₖ</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10000</span><span class="o">^</span><span class="p">(</span><span class="mi">2</span><span class="n">k</span><span class="o">/</span><span class="n">d</span><span class="p">)(</span><span class="n">高频区分近距离</span><span class="p">,</span><span class="n">低频区分远距离</span><span class="p">,</span><span class="n">类比秒针</span><span class="o">/</span><span class="n">时针</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">不改模长</span><span class="p">:</span><span class="n">角度决定</span><span class="s2">&#34;我和谁相关&#34;</span><span class="p">,</span><span class="n">大小只由内容决定</span> <span class="err">→</span> <span class="n">关注点分离</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">└──</span> <span class="n">天然支持外推</span><span class="p">:</span><span class="n">位置</span> <span class="mi">5000</span> <span class="n">只是多转</span><span class="p">,</span><span class="n">无需训练时见过</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>
+</span></span><span class="line"><span class="cl">    <span class="err">├──</span> <span class="n">MHA</span> <span class="err">→</span> <span class="n">GQA</span> <span class="p">(</span><span class="n">共享KV</span><span class="p">,</span> <span class="n">省显存</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">引导</span><span class="p">:</span><span class="n">算</span> <span class="mi">32</span><span class="n">层</span><span class="err">×</span><span class="mi">32</span><span class="n">head</span><span class="err">×</span><span class="mi">128</span><span class="n">维</span><span class="err">×</span><span class="mi">4096</span><span class="n">长度</span><span class="err">×</span><span class="mi">2</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">)</span> <span class="n">的</span> <span class="n">KV</span> <span class="n">Cache</span> <span class="n">有多大</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">│</span>        <span class="n">Q</span> <span class="n">决定</span><span class="s2">&#34;我在找什么&#34;</span><span class="n">需多样</span><span class="p">,</span><span class="n">K</span><span class="o">/</span><span class="n">V</span> <span class="n">真的需要每个</span> <span class="n">head</span> <span class="n">都不同吗</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">你的反应</span><span class="p">:</span><span class="n">约</span> <span class="mi">1</span><span class="n">B</span> <span class="n">值</span><span class="p">(</span><span class="n">fp16</span> <span class="o">~</span><span class="mi">2</span><span class="n">GB</span><span class="o">/</span><span class="n">单用户</span><span class="p">);</span><span class="n">担心共享</span> <span class="n">KV</span> <span class="n">会掉效果</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">引导追问</span><span class="p">:</span><span class="n">MHA</span><span class="p">(</span><span class="mi">32</span><span class="n">组</span><span class="p">,</span><span class="mi">1</span><span class="n">x</span><span class="p">)</span><span class="err">↔</span> <span class="n">极端共享</span><span class="p">(</span><span class="mi">1</span><span class="n">组</span><span class="p">),</span><span class="n">能想个折中吗</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">你的决策</span><span class="p">:</span><span class="s2">&#34;1/64?那就 8 组吧,折中一下&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">└──</span> <span class="n">结论</span><span class="p">:</span><span class="n">你独立发明了</span> <span class="n">GQA</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">MHA</span><span class="p">:</span> <span class="mi">32</span><span class="n">Q</span><span class="o">/</span><span class="mi">32</span><span class="n">KV</span> <span class="err">→</span> <span class="n">效果最好</span><span class="p">,</span><span class="n">Cache</span> <span class="n">最大</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">GQA</span><span class="p">:</span> <span class="mi">32</span><span class="n">Q</span><span class="o">/</span><span class="mi">8</span><span class="n">KV</span>  <span class="err">→</span> <span class="n">每4个Q共享1组KV</span><span class="p">,</span><span class="n">Cache</span> <span class="n">缩到</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="n">效果几乎无损</span><span class="p">(</span><span class="n">LLaMA2</span><span class="o">/</span><span class="mi">3</span><span class="err">、</span><span class="n">Mistral</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">└──</span> <span class="n">MQA</span><span class="p">:</span> <span class="mi">32</span><span class="n">Q</span><span class="o">/</span><span class="mi">1</span><span class="n">KV</span>  <span class="err">→</span> <span class="n">Cache</span> <span class="n">最小</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">),</span><span class="n">效果有损</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>
+</span></span><span class="line"><span class="cl">    <span class="err">├──</span> <span class="n">ReLU</span> <span class="err">→</span> <span class="n">SwiGLU</span> <span class="p">(</span><span class="n">门控激活</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">引导</span><span class="p">:</span><span class="n">ReLU</span> <span class="n">负值全变</span> <span class="mi">0</span><span class="p">(</span><span class="n">信息丢失</span><span class="p">)</span><span class="err">。</span><span class="n">SwiGLU</span><span class="o">=</span><span class="p">(</span><span class="n">Swish</span><span class="p">(</span><span class="n">xW₁</span><span class="p">))</span><span class="err">⊙</span><span class="p">(</span><span class="n">xW₃</span><span class="p">)</span><span class="err">·</span><span class="n">W₂</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">│</span>        <span class="n">多出的逐元素乘</span> <span class="err">⊙</span> <span class="n">起什么作用</span><span class="err">?</span><span class="n">把一个分支看作</span><span class="s2">&#34;开关/阀门&#34;</span><span class="o">...</span><span class="p">(</span><span class="n">LSTM</span> <span class="n">里见过</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">你的回答</span><span class="p">:</span><span class="n">门控吗</span><span class="err">?</span><span class="n">用分支</span> <span class="n">A</span> <span class="n">来控制最后输出</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">└──</span> <span class="n">结论</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">分支</span> <span class="n">A</span><span class="p">(</span><span class="n">Swish</span><span class="p">)</span><span class="err">≈</span><span class="mi">0</span> <span class="n">关闭该维度</span><span class="p">,</span><span class="err">≈</span><span class="mi">1</span> <span class="n">放行</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">优于</span> <span class="n">ReLU</span><span class="p">:</span><span class="n">可</span> <span class="mf">0.3</span><span class="o">/</span><span class="mf">0.7</span> <span class="n">细粒度调节每个维度的信息流量</span><span class="p">(</span><span class="n">非全开</span><span class="o">/</span><span class="n">全关</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">└──</span> <span class="n">W₁</span><span class="p">(</span><span class="n">放什么过去</span><span class="p">)</span><span class="n">与</span> <span class="n">W₃</span><span class="p">(</span><span class="n">放多少过去</span><span class="p">)</span><span class="n">是两组独立参数</span><span class="p">,</span><span class="n">分别学习</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>
+</span></span><span class="line"><span class="cl">    <span class="err">├──</span> <span class="n">LayerNorm</span> <span class="err">→</span> <span class="n">RMSNorm</span> <span class="p">(</span><span class="n">更简单</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">引导</span><span class="p">:</span><span class="n">LayerNorm</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="err">−</span><span class="n">μ</span><span class="p">)</span><span class="o">/</span><span class="n">σ</span><span class="err">·</span><span class="n">γ</span><span class="o">+</span><span class="n">β</span> <span class="n">要算两个统计量</span><span class="p">(</span><span class="n">μ</span> <span class="n">和</span> <span class="n">σ</span><span class="p">)</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">│</span>        <span class="n">若实验发现</span><span class="s2">&#34;减均值&#34;</span><span class="n">对效果贡献很小</span><span class="p">,</span><span class="n">你会怎么简化</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">├──</span> <span class="n">你的回答</span><span class="p">:</span><span class="n">直接不减均值吗</span><span class="err">?</span><span class="n">也不会这么简单粗暴吧</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>     <span class="err">└──</span> <span class="n">结论</span><span class="p">:</span><span class="n">就是这么简单粗暴</span> <span class="err">→</span> <span class="n">RMSNorm</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="err">√</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">xᵢ²</span><span class="p">))</span> <span class="err">·</span> <span class="n">γ</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">去掉减均值</span><span class="err">、</span><span class="n">去掉</span> <span class="o">+</span><span class="n">β</span><span class="p">,</span><span class="n">只用均方根归一化</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">├──</span> <span class="n">实验证明减均值几乎无影响</span><span class="p">,</span><span class="n">但省了算均值</span><span class="o">/</span><span class="n">减法</span><span class="o">/</span><span class="n">参数</span> <span class="n">β</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>           <span class="err">└──</span> <span class="n">每层每个子层都做</span> <span class="n">Norm</span><span class="p">,</span><span class="n">大模型累积可观</span><span class="p">(</span><span class="n">LLaMA</span><span class="err">、</span><span class="n">GPT</span><span class="o">-</span><span class="mi">4</span> <span class="n">全用</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">│</span>
+</span></span><span class="line"><span class="cl">    <span class="err">└──</span> <span class="n">Dense</span> <span class="n">FFN</span> <span class="err">→</span> <span class="n">MoE</span> <span class="p">(</span><span class="mi">8</span><span class="n">专家选2</span><span class="p">,</span> <span class="n">大参数小计算</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="err">├──</span> <span class="n">引导</span><span class="p">:</span><span class="n">想要参数量巨大但推理成本不爆炸</span><span class="err">?</span><span class="n">FFN</span> <span class="n">设</span> <span class="mi">8</span> <span class="n">个副本</span><span class="p">(</span><span class="n">专家</span><span class="p">),</span><span class="n">每</span> <span class="n">token</span> <span class="n">只激活</span> <span class="mi">2</span> <span class="n">个</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">          <span class="err">│</span>        <span class="n">这对</span><span class="s2">&#34;知识容量&#34;</span><span class="n">和</span><span class="s2">&#34;计算量&#34;</span><span class="n">分别意味什么</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">          <span class="err">├──</span> <span class="n">你的推导</span><span class="p">:</span><span class="n">Router</span> <span class="n">其实就是更小的</span> <span class="n">线性层</span><span class="o">+</span><span class="n">softmax</span><span class="p">;</span><span class="n">进而担心</span><span class="s2">&#34;不平均,又降级回去了&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="err">└──</span> <span class="n">结论</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="err">├──</span> <span class="n">大参数</span><span class="p">(</span><span class="n">知识容量</span><span class="err">↑</span><span class="p">)</span><span class="o">+</span> <span class="n">小计算</span><span class="p">(</span><span class="n">每</span> <span class="n">token</span> <span class="n">只算</span> <span class="mi">2</span><span class="o">/</span><span class="mi">8</span> <span class="n">专家</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="err">├──</span> <span class="n">你预判到</span> <span class="n">专家坍塌</span><span class="p">(</span><span class="n">Expert</span> <span class="n">Collapse</span><span class="p">):</span><span class="n">token</span> <span class="n">涌向少数专家</span><span class="p">,</span><span class="n">其余</span><span class="s2">&#34;饿死&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="err">└──</span> <span class="n">解法</span><span class="p">:</span><span class="n">loss</span> <span class="n">加负载均衡惩罚项</span> <span class="n">L_total</span> <span class="o">=</span> <span class="n">L_LM</span> <span class="o">+</span> <span class="n">α</span><span class="err">·</span><span class="n">L_balance</span>
+</span></span><span class="line"><span class="cl">                      <span class="p">(</span><span class="n">α</span> <span class="n">太大</span><span class="err">→</span><span class="n">模型不敢有偏好</span><span class="p">;</span><span class="n">太小</span><span class="err">→</span><span class="n">又回到坍塌</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>思考题：</p>
+<p>Q1： 如果序列长度从 4096 翻倍到 8192，Self-Attention 的计算量变为原来的几倍？为什么？</p>
+<p>Q2： KV Cache 在 MoE 模型中会变大还是变小？为什么？</p>
+<p>Q3： 如果去掉残差连接但保留所有其他组件，模型会出什么问题？给出两个层面的解释（训练层面 + 语义层面）。</p>
+<p>A1:</p>
+<p>我们假设输入为 <span class="math">$n$</span>，隐藏层维度为 <span class="math">$d$</span>，注意力头为 <span class="math">$32$</span>，GQA 中的 group 为 8。</p>
+<p>首先我们知道，对于矩阵运算 <span class="math">$\mathbb{R}^{a \times b} \times \mathbb{R}^{b \times c} = \mathbb{R}^{a \times c}$</span> 的计算量为 <span class="math">$abc$</span>（因为对于结果矩阵 <span class="math">$\mathbb{R}^{a \times c}$</span>，每一个元素都需要计算 <span class="math">$b$</span> 次 <span class="math">$\text{MAC}$</span> 操作）</p>
+<p>首先我们计算投影权重：</p>
+<ul>
+<li>
+<p><span class="math">$Q = X · W_Q$</span>，总计算量为 <span class="math">$nd^2$</span></p>
+</li>
+<li>
+<p><span class="math">$K = X · W_K$</span>，总计算量为 <span class="math">$\frac{nd^2}{4}$</span></p>
+</li>
+<li>
+<p><span class="math">$V = X · W_V$</span>，总计算量为 <span class="math">$\frac{nd^2}{4}$</span></p>
+</li>
+</ul>
+<p>所以我们计算所有注意力头的投影权重 <span class="math">$Q、K、V$</span> 矩阵的总计算量为 <span class="math">$\frac{3}{2}nd^2$</span></p>
+<p>对于注意力机制计算 <span class="math">$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$</span>：</p>
+<p>每一个注意力头都有：</p>
+<ul>
+<li><span class="math">$QK^T$</span> 计算量为 <span class="math">$n^2 · \frac{d}{32}$</span></li>
+<li><span class="math">$\frac{QK^T}{\sqrt{d_k}}$</span> 计算量为 <span class="math">$n^2$</span></li>
+<li><span class="math">$\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)$</span> 计算量为 <span class="math">$n^2$</span></li>
+<li><span class="math">$\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$</span> 计算量为 <span class="math">$n^2 · \frac{d}{32}$</span></li>
+</ul>
+<p>上述过程加起来可得 32 个注意力头总计算量为 <span class="math">$n^2(2d &#43; 64)$</span></p>
+<p>最后还有一个 output 的线性层计算： <span class="math">$nd^2$</span></p>
+<p>所以整个 Self-Attention 的计算量可以把上面的结果加起来也就是 <span class="math">$n^2(2d &#43; 64)&#43;\frac{5}{2}nd^2$</span>。</p>
+<p>这是一个关于 <span class="math">$n$</span> 的多项式，有 <span class="math">$n 、 n^2$</span>，我们把 <span class="math">$n$</span> 当成自变量就可以看作是:
+</p>
+<span class="math">$$
+\text{Cost} \approx O(n^2 \cdot d) &#43; O(n \cdot d^2)
+$$</span><p>
+可以简单认为如果序列长度从 4096 翻倍到 8192，Self-Attention 的计算量变为原来的 <span class="math">$4$</span> 倍。</p>
+<p>A2：</p>
+<p>MOE 模型我的理解是对 FNN 层有变化，对 Attention 层没有影响，因此是不变的</p>
+<p>A3:</p>
+<p>我认为在训练层面看来会出现梯度爆炸或者梯度消失的问题，对于模型层数的增加。因为随着层的增加。</p>
+<p>而对于语义层面，我们得到的注意力计算结果可以理解为加上了前面的 token 信息的糅合的结果，对本身的 token 信息会稀释，所以需要再做一次加上来加深。</p>
+<p>补充一点：没有残差时，经过 12 层注意力&quot;混合&quot;，所有 token 的表示会趋向相同（信息被反复平均化）。残差保证每个 token 始终保有自己的&quot;底色&quot;。</p>
+<p>长上下文总结：</p>
+<ul>
+<li>问题1: O(n²) 计算量太大
+<ul>
+<li>滑动窗口注意力 (大部分层局部，少数层全局)</li>
+<li>FlashAttention (不降计算量，优化内存搬运)</li>
+</ul>
+</li>
+<li>问题2: 位置外推 (RoPE 没见过超长位置)
+<ul>
+<li>Position Interpolation (统一压缩，简单但损失近距离分辨率)</li>
+<li>NTK-aware / YaRN (高频不动，低频缩放，保持近距离精度)</li>
+</ul>
+</li>
+</ul>
+<h4 id="rope">RoPE</h4>
+<p>Transformer 原版论文中使用的是绝对位置编码，它的问题是对于序列更长的时候，模型无法很好的外推，以及对模型来说似乎两个词之间的距离比位置本身的意义更大，因此旋转位置编码应运而生：<a href="/deep-learning/images/rope_dual.pdf" rel="">RoFormer: Enhanced Transformer with Rotary Position Embedding</a></p>
+<p>我们从直觉开始讲起，方便理解</p>
+<p>从矩阵视角来说，注意力机制公式是：
+</p>
+<span class="math">$$
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$</span><p>
+我们把视角拉小点，拉到向量视角，对于 <span class="math">$\text{token}_i$</span> 来说，它有自己的 <span class="math">$\vec{q_i},\vec{k_i},\vec{v_i}$</span> <strong>行向量</strong>，如果我们要算另一个 <span class="math">$token_j$</span> 对他的影响，也就是计算两个 token 之间的 <span class="math">$\langle \vec{q_i}, \vec{k_j} \rangle$</span> 的内积：
+</p>
+<span class="math">$$
+\langle q_i, k_j \rangle = q_i k_j^T
+$$</span><p>
+直接这样算内积没有引入 PE（位置编码），也就是无法建立对两个 token 之间位置距离 <span class="math">$j-i$</span> 的感知。同时我们只需要对 <span class="math">$q$</span> 和 <span class="math">$k$</span> 向量引入位置编码即可。</p>
+<p>为便于讨论，我们假设 <span class="math">$q$</span> 和 <span class="math">$k$</span> 为二维行向量。</p>
+<p>也就是我们想引入一个映射 <span class="math">$f$</span>，让 <span class="math">$q_i^{RoPE} = f(q_i)，k_i^{RoPE} = f(k_i)$</span></p>
+<p>首先我们先回忆一下一种神奇的矩阵，旋转矩阵 <span class="math">$R(\theta)$</span>：
+</p>
+<span class="math">$$
+R(\theta) = \begin{bmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{bmatrix}
+$$</span><p>
+对于任意的二维行向量 <span class="math">$\vec{v}$</span> 来说，变换 <span class="math">$\vec{v}&#39; = \vec{v} \cdot R(\theta)$</span> 等价于将向量 <span class="math">$\vec{v}$</span> 逆时针旋转 <span class="math">$\theta$</span> 度</p>
+<p>旋转矩阵 <span class="math">$R(\theta)$</span> 还有一些特殊的性质：
+</p>
+<span class="math">$$
+R(\theta)^T = R(-\theta) \\
+R(\theta_1)R(\theta_2) = R(\theta_1 &#43; \theta_2)
+$$</span><p>
+因此：
+</p>
+<span class="math">$$
+\begin{align*}
+\langle q_i&#39;, k_j&#39; \rangle
+&amp;= \langle q_i R(i\theta),\; k_j R(j\theta) \rangle \\
+&amp;= q_i R(i\theta) R(j\theta)^T k_j^T \\
+&amp;= q_i R(i\theta) R(-j\theta) k_j^T \\
+&amp;= q_i R((i-j)\theta) k_j^T
+\end{align*}
+$$</span><p>
+我们想要的 <span class="math">$j-i$</span> 的形式这不就来了吗！</p>
+<p>现在我们需要将 <span class="math">$q$</span> 和 <span class="math">$k$</span> 扩展到 <span class="math">$n$</span> 维行向量</p>
+<p>为了将我们在二维中的结果推广到任意 <span class="math">$x_i \in \mathbb{R}^d$</span>，其中 <span class="math">$d$</span> 是偶数，我们将 <span class="math">$d$</span> 维空间划分为 <span class="math">$d/2$</span> 个子空间，并利用内积的线性特性将它们组合起来，将 <span class="math">$f_{\{q,k\}}$</span> 转换为：
+</p>
+<span class="math">$$
+f_{\{q,k\}}(x_m, m) = x_m \, W_{\{q,k\}} \, R_{\Theta,m}^d
+$$</span><p>
+其中旋转矩阵 <span class="math">$R_{\Theta,m}^d$</span> 是一个 <span class="math">$d \times d$</span> 的分块对角矩阵：
+</p>
+<span class="math">$$
+R_{\Theta,m}^d = 
+\begin{pmatrix}
+\cos m\theta_1 &amp; -\sin m\theta_1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\
+\sin m\theta_1 &amp; \cos m\theta_1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; \cos m\theta_2 &amp; -\sin m\theta_2 &amp; \cdots &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; \sin m\theta_2 &amp; \cos m\theta_2 &amp; \cdots &amp; 0 &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \cos m\theta_{d/2} &amp; -\sin m\theta_{d/2} \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \sin m\theta_{d/2} &amp; \cos m\theta_{d/2}
+\end{pmatrix}
+$$</span><p>
+等价地，也可以用分块矩阵简洁表示为：
+</p>
+<span class="math">$$
+R_{\Theta,m}^d = 
+\begin{pmatrix}
+R_{m\theta_1} &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; R_{m\theta_2} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; R_{m\theta_{d/2}}
+\end{pmatrix}, \quad
+\text{其中 } R_{m\theta_i} = 
+\begin{pmatrix}
+\cos m\theta_i &amp; -\sin m\theta_i \\
+\sin m\theta_i &amp; \cos m\theta_i
+\end{pmatrix}
+$$</span><p>
+旋转矩阵的预定义参数为：
+</p>
+<span class="math">$$
+\Theta = \left\{ \theta_i = 10000^{\frac{-2(i-1)}{d}} \,\middle|\, i = 1, 2, \ldots, \frac{d}{2} \right\}
+$$</span><p>
+将 RoPE 应用于我们的自注意力，我们得到：
+</p>
+<span class="math">$$
+\langle q_m, k_n \rangle = q_m k_n^T = (x_m W_{q}  R_{\Theta,m}^d) (x_n W_{k} R_{\Theta,n}^d)^T = x_m W_{q}  R_{\Theta,m - n}^d W_{k} x_{n}^T
+$$</span><p>
+需要注意的是，这里的 <span class="math">$R_{\Theta}^d$</span> 是一个正交矩阵，这确保了在进行位置编码过程中的稳定性。</p>
+<blockquote>
+<p>为什么这里的 <span class="math">$R_{\Theta}^d$</span> 是一个正交矩阵，确保了在进行位置编码过程中的稳定性？</p>
+<p><strong>正交矩阵</strong> <span class="math">$R$</span> 满足 <span class="math">$R^T R = R R^T = I$</span>（即转置等于逆矩阵）。</p>
+<p>由此带来的核心性质是：<strong>它乘以任何向量，都不会改变向量的长度（范数）</strong>。</p>
+<p>用公式表示就是：</p>
+<span class="math">$$\| R x \|_2 = \| x \|_2$$</span><p>因此这里的 RoPE 位置编码实际上是对 <span class="math">$q$</span> 和 <span class="math">$k$</span> 向量做了一个旋转 <span class="math">$( q_i R(\alpha))$</span>，这本质上是<strong>保距变换</strong>。</p>
+<p>在 Transformer 的注意力机制中，我们计算的是内积 <span class="math">$\langle q_i&#39;, k_j&#39; \rangle$</span>。如果不做旋转（或旋转矩阵不正交），向量在经过多次变换后<strong>范数可能会爆炸或消失</strong>（指数级增长或衰减），这会导致：</p>
+<table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>后果</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>范数爆炸</strong></td>
+          <td>内积变得极大，Softmax 输出趋近于 one-hot，梯度趋近于 0，模型无法训练</td>
+      </tr>
+      <tr>
+          <td><strong>范数消失</strong></td>
+          <td>内积趋近于 0，所有 token 的注意力权重均等，模型失去区分能力</td>
+      </tr>
+  </tbody>
+</table>
+<p>而因为 <span class="math">$R_{\Theta}^d$</span> 是<strong>正交矩阵</strong>，旋转后的 <span class="math">$q_i&#39;$</span> 和 <span class="math">$k_j&#39;$</span> 的范数跟旋转前完全一致：</p>
+<span class="math">$$\| q_i&#39; \| = \| q_i R \| = \| q_i \|, \quad \| k_j&#39; \| = \| k_j R \| = \| k_j \|$$</span><p>所以内积的数值范围被严格控制住了：
+</p>
+<span class="math">$$|\langle q_i&#39;, k_j&#39; \rangle| \le \| q_i&#39; \| \cdot \| k_j&#39; \| = \| q_i \| \cdot \| k_j \|$$</span><p>也就是说，<strong>位置编码（旋转）只是改变了方向，没有改变大小</strong>。这就不会引入额外的数值不稳定性，训练时梯度也更平滑。</p></blockquote>
+<p>此外由于 <span class="math">$R_{\Theta}^d$</span> 的稀疏性，直接按照上述注意力公式的矩阵乘法进行 <span class="math">$R_{\Theta}^d$</span> 和 <span class="math">$x \in \mathbb{R}^d$</span> 的乘积运算效率太低，因此我们需要用一种更高效的计算方式：
+</p>
+<span class="math">$$
+R_{\Theta,m}^d x = 
+\begin{pmatrix}
+x_1 \\ x_2 \\ x_3 \\ x_4 \\ \vdots \\ x_{d-1} \\ x_d
+\end{pmatrix}
+\odot
+\begin{pmatrix}
+\cos m\theta_1 \\
+\cos m\theta_1 \\
+\cos m\theta_2 \\
+\cos m\theta_2 \\
+\vdots \\
+\cos m\theta_{d/2} \\
+\cos m\theta_{d/2}
+\end{pmatrix}
+&#43;
+\begin{pmatrix}
+-x_2 \\
+x_1 \\
+-x_4 \\
+x_3 \\
+\vdots \\
+-x_d \\
+x_{d-1}
+\end{pmatrix}
+\odot
+\begin{pmatrix}
+\sin m\theta_1 \\
+\sin m\theta_1 \\
+\sin m\theta_2 \\
+\sin m\theta_2 \\
+\vdots \\
+\sin m\theta_{d/2} \\
+\sin m\theta_{d/2}
+\end{pmatrix}
+$$</span><p>此时便可将原先矩阵乘法的 <span class="math">$O(d^2)$</span> 的时间复杂度降低到逐元素相乘的 <span class="math">$O(d)$</span>。</p>
+<p>证明很简单，我们取第 <span class="math">$i$</span> 块的旋转矩阵 <span class="math">$R_{m\theta_i}$</span>：
+</p>
+<span class="math">$$
+R_{m\theta_i} = 
+\begin{pmatrix}
+\cos m\theta_i &amp; -\sin m\theta_i \\
+\sin m\theta_i &amp; \cos m\theta_i
+\end{pmatrix}
+$$</span><p>
+我们需要计算:
+</p>
+<span class="math">$$
+\begin{align*}
+R_{m\theta_i} \begin{pmatrix} x_{2i-1} \\ x_{2i} \end{pmatrix}
+&amp;= \begin{pmatrix}
+   \cos m\theta_i &amp; -\sin m\theta_i \\
+   \sin m\theta_i &amp; \cos m\theta_i
+   \end{pmatrix}
+   \begin{pmatrix} x_{2i-1} \\ x_{2i} \end{pmatrix} \\[8pt]
+&amp;= \begin{pmatrix}
+   x_{2i-1} \cos m\theta_i - x_{2i} \sin m\theta_i \\
+   x_{2i-1}\sin m\theta_i &#43; x_{2i}\cos m\theta_i
+   \end{pmatrix} \\[8pt]
+&amp;= \begin{pmatrix} x_{2i-1} \\ x_{2i} \end{pmatrix}
+   \odot
+   \begin{pmatrix} \cos m\theta_i \\ \cos m\theta_i \end{pmatrix}
+   &#43;
+   \begin{pmatrix} -x_{2i} \\ x_{2i-1} \end{pmatrix}
+   \odot
+   \begin{pmatrix} \sin m\theta_i \\ \sin m\theta_i \end{pmatrix}
+\end{align*}
+$$</span><p>以及在当前主流 GPT 的实现中，对于这里的 <span class="math">$R_{\Theta}^d$</span> 实际上有两种常见的实现约定：</p>
+<ol>
+<li><strong>交错式（interleaved）</strong> —— 即原始 RoPE 论文中的方式</li>
+</ol>
+<p>​	配对方式为：<span class="math">$(x_0, x_1), (x_2, x_3), (x_4, x_5), \dots$</span>，也就是相邻两个维度组成一个子空间进行旋转。</p>
+<ol start="2">
+<li><strong>半分式（rotate_half）</strong> —— 即 Hugging Face 和 GPT-J 等实现中采用的方式</li>
+</ol>
+<p>​	配对方式为：<span class="math">$(x_0, x_{d/2}), (x_1, x_{d/2&#43;1}), \dots$</span>，即前一半维度和后一半维度对应位置配对。这也是现在主流的开源模型如 Qwen3 中所采用的实现方式。</p>
+<p>​	这种方式的好处在于方便 GPU 的拆分和计算。</p>
+<p>需要注意的是：具体用哪种,必须和在训练阶段的使用方式一致。</p>
+<h3 id="torch">Torch</h3>
+<p>神经网络中最常用的框架就是 PyTorch，因此我们这里就介绍一些 Torch 的语法</p>
+<h4 id="tensor">Tensor</h4>
+<h5 id="广播">广播</h5>
+<p>从<strong>最后一维</strong>开始对齐，大小为 <strong>1</strong> 的维度可以自动扩展到任意大小。</p>
+<p><strong>规则很简单</strong>：</p>
+<ul>
+<li>将两个 shape 右对齐，缺失的维度自动补 1，然后逐位比较：</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">情况</th>
+          <th style="text-align: left">结果</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">两维大小相同</td>
+          <td style="text-align: left">直接运算</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">其中一个为 1</td>
+          <td style="text-align: left">扩展到另一个的大小</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">都不为 1 且不相等</td>
+          <td style="text-align: left">报错 ❌</td>
+      </tr>
+  </tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[3, 1] 和 [3, 4096]  →  广播成 [3, 4096]  ✅
+</span></span><span class="line"><span class="cl">[3]    和 [3, 4096]  →  等价于 [1, 3] 和 [3, 4096]，维度不对齐  ❌
+</span></span><span class="line"><span class="cl">[1]    和 [3, 4096]  →  等价于 [1, 1] 和 [3, 4096],广播成 [3, 4096]  ✅</span></span></code></pre></td></tr></table>
+</div>
+</div><p>标量会被自动&quot;扩展复制&quot;到与张量相同的形状，再进行逐元素运算。</p>
+<blockquote>
+<p><strong>为什么是从右边对齐？</strong></p>
+<p>对齐时从<strong>右侧</strong>开始匹配维度，而非左侧。这是因为最右边对应最低维——最后几维通常表示&quot;数据内容&quot;（如 <code>hidden_size</code>），倒数第二维通常表示&quot;样本数量&quot;（如 <code>num_tokens</code>）。</p>
+<p>从右对齐，使得&quot;同一组权重作用于所有样本&quot;这类最常见的操作能够自然、正确地运行。</p></blockquote>
 <h1 id="附录">附录</h1>
 <h2 id="怎么读论文">怎么读论文</h2>
 <blockquote>
@@ -3083,7 +3519,10 @@ $$</span><p>现在我们再来看看上面 Transformer 架构图上的 <strong>E
       </tr>
   </tbody>
 </table>
-<p>所以 <span class="math">$Y = X · W$</span> 的维度是：</p>
+<blockquote>
+<p>因为数据本质上都在 excel 表格中，表格中的数据都是按照行向量来存的，这也符合我们使用的直觉</p></blockquote>
+<p>所以 <span class="math">$Y = X · W$</span> 的维度是：
+</p>
 <span class="math">$$
 \underbrace{X}_{\mathbb{R}^{N \times d_{\text{in}}}} \cdot \underbrace{W}_{\mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}}  =  \underbrace{Y}_{\mathbb{R}^{N \times d_{\text{out}}}}
 $$</span><p>
@@ -3100,28 +3539,18 @@ $$</span><p>此时：</p>
 <li>不符合&quot;行优先&quot;的数据存储习惯</li>
 <li>代码和理解上都更绕</li>
 </ul>
-<hr>
-<h3 id="原因">原因</h3>
-<p>虽然矩阵乘法本身<strong>不关心内存是行优先还是列优先存储</strong>，本质上就是：</p>
-<span class="math">$$
-Y_{ij} = \sum_k X_{ik} \cdot W_{kj}
-$$</span><p>纯粹是数学运算，和内存布局无关。</p>
-<p>但是<strong>数据的组织习惯：一条样本 = 一个行向量</strong></p>
-<p>也就是说：</p>
-<span class="math">$$
-X \in \mathbb{R}^{N \times d_{\text{in}}}
-$$</span><p>这是一个<strong>约定俗成的数据格式</strong>，和存储方式无关。既然 X 的形状定了是 <span class="math">$(N, d_{\text{in}})$</span>，那么 <span class="math">$Y = X \cdot W$</span> 的维度自然就对齐了，写成 <span class="math">$W \cdot X$</span> 反而需要额外转置，徒增麻烦。</p>
-<p>以及最终在底层性能优化时，行优先存储也会有性能优势：</p>
-<ul>
-<li><strong>逐元素操作（Element-wise）</strong>：如 broadcasting、激活函数等，此时内存连续性会影响缓存命中率和计算效率</li>
-<li><strong>底层 CUDA kernel 的优化</strong>：比如矩阵转置、内存对齐等底层实现</li>
-</ul>
+<blockquote>
+<p>这里需要说明的是：PyTorch 里实际使用的是 <span class="math">$xW^T$</span> 这个版本</p>
+<p>这是因为 PyTorch 里 nn.Linear(in, out) 的权重矩阵形状是 [out_features, in_features]，前向计算写作：</p>
+<span class="math">$$y = x W^T$$</span><p>那为什么要做这么一个看似多余的&quot;翻转&quot;呢？归根到底，是为了访存连续——这是一个相当优雅的<strong>工程优化</strong>。</p>
+<p>我们知道，矩阵乘法的每一步本质上都是一个行向量和一个列向量做内积。而取列向量这个动作会破坏访存的连续性：因为底层默认是<strong>行优先（row-major）</strong> 存储，同一列的元素在内存里是跳着排布的，缓存很不友好。</p>
+<p>于是 PyTorch 的做法是：一开始就把 <span class="math">$W$</span> 按转置后的布局存下来，前向计算时再算 <span class="math">$xW^T$</span>。这样一来，底层并不会真的对 <span class="math">$W$</span> 做一次物理转置（那是额外开销），而是在每次内积时，从 <span class="math">$W$</span> 中直接取出一整行参与运算。最终变成了两个行向量的内积——两个操作数都是连续访存，速度最优。</p></blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-05-27&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/e8600ff22d1ba314294ee94ef3b3277794d89da7" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) e8600ff22d1ba314294ee94ef3b3277794d89da7: docs(Deep Learning): 新增读论文方法与深入解析模型实现">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e8600ff</a></span>
+                <span>更新于 2026-06-28&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/b5d61b5812c66bed3a1855c3d18f7e9670514f74" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) b5d61b5812c66bed3a1855c3d18f7e9670514f74: docs: 补充 MLsys 与 Deep Learning 多篇技术内容">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b5d61b5</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

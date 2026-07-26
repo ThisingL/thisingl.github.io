@@ -3,9 +3,25 @@
         <title>Thising | 自学空间</title>
         <link>https://thisingl.github.io/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 May 2026 00:25:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 20 Jul 2026 10:18:36 &#43;0800</lastBuildDate>
             <atom:link href="https://thisingl.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>AI Agent</title>
+    <link>https://thisingl.github.io/ai-agent/</link>
+    <pubDate>Mon, 20 Jul 2026 10:18:36 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://thisingl.github.io/ai-agent/</guid>
+    <description><![CDATA[补一下 Agent 基础，正好最近半年 Agent 发展变化了非常多]]></description>
+</item>
+<item>
+    <title>LaTeX</title>
+    <link>https://thisingl.github.io/latex/</link>
+    <pubDate>Sat, 11 Jul 2026 20:48:36 &#43;0800</pubDate>
+    <author>Thising</author>
+    <guid>https://thisingl.github.io/latex/</guid>
+    <description><![CDATA[想要学习一下 LaTeX，用来写毕业论文和数学笔记，一直感觉 LaTeX 写出来的排版太漂亮了！]]></description>
+</item>
+<item>
     <title>Jupyter常用命令</title>
     <link>https://thisingl.github.io/jupyter%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
     <pubDate>Mon, 11 May 2026 00:25:00 &#43;0800</pubDate>
@@ -19,7 +35,7 @@
     <pubDate>Sat, 07 Mar 2026 22:21:30 &#43;0800</pubDate>
     <author>Thising</author>
     <guid>https://thisingl.github.io/vibe-coding-%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
-    <description><![CDATA[整理了我平时使用 AI 进行项目学习、开发等等工作流]]></description>
+    <description><![CDATA[整理了我平时使用 AI 进行项目学习、开发等等工作流，现在都已经做成 skill 了]]></description>
 </item>
 <item>
     <title>Go学习笔记</title>
@@ -68,22 +84,6 @@
     <author>Thising</author>
     <guid>https://thisingl.github.io/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/</guid>
     <description><![CDATA[自己在找实习和秋招期间准备的面经总结，包含高频面经考点和实际面试中遇到的题目，还在更新中&hellip;]]></description>
-</item>
-<item>
-    <title>开发机常用配置</title>
-    <link>https://thisingl.github.io/%E5%BC%80%E5%8F%91%E6%9C%BA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</link>
-    <pubDate>Thu, 11 Dec 2025 19:42:22 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://thisingl.github.io/%E5%BC%80%E5%8F%91%E6%9C%BA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</guid>
-    <description><![CDATA[由于在公司的电脑上分配了一台新的内网开发机，就顺便记录了一下如何通过源码安装外部工具（内网环境没法访问外网），以及如何通过配置外部工具来美化命令行]]></description>
-</item>
-<item>
-    <title>vscode常用配置</title>
-    <link>https://thisingl.github.io/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</link>
-    <pubDate>Wed, 10 Dec 2025 19:18:20 &#43;0800</pubDate>
-    <author>Thising</author>
-    <guid>https://thisingl.github.io/vscode%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</guid>
-    <description><![CDATA[记录一些vscode类编辑器的常用插件和设置，方便换电脑时快速复刻就环境]]></description>
 </item>
 </channel>
 </rss>

@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-12-09T21:25:20+08:00">
-    <meta property="article:modified_time" content="2026-02-01T23:26:28+08:00">
+    <meta property="article:modified_time" content="2026-07-26T22:05:42+08:00">
     <meta property="article:tag" content="算法">
     <meta property="article:tag" content="编程">
     <meta property="og:image" content="https://thisingl.github.io/images/logo.png">
@@ -38,8 +38,8 @@
                             "url": "https:\/\/thisingl.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "算法, 编程","wordcount":  53155 ,
-        "url": "https:\/\/thisingl.github.io\/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90\/","datePublished": "2024-12-09T21:25:20+08:00","dateModified": "2026-02-01T23:26:28+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "算法, 编程","wordcount":  55020 ,
+        "url": "https:\/\/thisingl.github.io\/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%87%AA%E7%94%A8%E6%9D%BF%E5%AD%90\/","datePublished": "2024-12-09T21:25:20+08:00","dateModified": "2026-07-26T22:05:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Thising","logo": "https:\/\/thisingl.github.io\/images\/logo.png"},"author": {
                 "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法学习自用板子</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><img src="/images/logo.png" class="author-avatar" alt="Thising" aria-hidden="true">Thising</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-09">2024-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 53155 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 107 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-09">2024-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 55020 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 110 分钟&nbsp;
     
 
     
@@ -724,7 +724,20 @@
     <li><a href="#第四章-数学知识">第四章 数学知识</a>
       <ul>
         <li><a href="#质数">质数</a></li>
-        <li><a href="#约数">约数</a></li>
+        <li><a href="#约数">约数</a>
+          <ul>
+            <li><a href="#acwing-808-最大公约数">AcWing 808. 最大公约数</a>
+              <ul>
+                <li><a href="#题目描述-30">题目描述</a></li>
+                <li><a href="#输入格式-28">输入格式</a></li>
+                <li><a href="#输出格式-28">输出格式</a></li>
+                <li><a href="#数据范围-27">数据范围</a></li>
+                <li><a href="#算法设计-30">算法设计</a></li>
+                <li><a href="#完整-c-代码-28">完整 C++ 代码</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
         <li><a href="#中国剩余定理">中国剩余定理</a></li>
         <li><a href="#求组合数">求组合数</a></li>
         <li><a href="#容斥原理">容斥原理</a></li>
@@ -738,14 +751,14 @@
           <ul>
             <li><a href="#acwing-1018-最低通行费">AcWing 1018. 最低通行费</a>
               <ul>
-                <li><a href="#题目描述-30">题目描述</a></li>
-                <li><a href="#输入格式-28">输入格式</a></li>
-                <li><a href="#输出格式-28">输出格式</a></li>
-                <li><a href="#数据范围-27">数据范围</a></li>
+                <li><a href="#题目描述-31">题目描述</a></li>
+                <li><a href="#输入格式-29">输入格式</a></li>
+                <li><a href="#输出格式-29">输出格式</a></li>
+                <li><a href="#数据范围-28">数据范围</a></li>
                 <li><a href="#输入样例-25">输入样例：</a></li>
                 <li><a href="#输出样例-25">输出样例：</a></li>
-                <li><a href="#算法设计-30">算法设计</a></li>
-                <li><a href="#完整-c-代码-28">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-31">算法设计</a></li>
+                <li><a href="#完整-c-代码-29">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -754,13 +767,13 @@
           <ul>
             <li><a href="#acwing-895-最长上升子序列">AcWing 895. 最长上升子序列</a>
               <ul>
-                <li><a href="#题目描述-31">题目描述</a></li>
-                <li><a href="#输入格式-29">输入格式</a></li>
-                <li><a href="#输出格式-29">输出格式</a></li>
-                <li><a href="#数据范围-28">数据范围</a></li>
+                <li><a href="#题目描述-32">题目描述</a></li>
+                <li><a href="#输入格式-30">输入格式</a></li>
+                <li><a href="#输出格式-30">输出格式</a></li>
+                <li><a href="#数据范围-29">数据范围</a></li>
                 <li><a href="#输入样例-26">输入样例：</a></li>
                 <li><a href="#输出样例-26">输出样例：</a></li>
-                <li><a href="#算法设计-31">算法设计</a></li>
+                <li><a href="#算法设计-32">算法设计</a></li>
                 <li><a href="#完整c-代码-2">完整C++ 代码</a></li>
               </ul>
             </li>
@@ -770,56 +783,56 @@
           <ul>
             <li><a href="#acwing-2-01背包问题">AcWing 2. 01背包问题</a>
               <ul>
-                <li><a href="#题目描述-32">题目描述</a></li>
+                <li><a href="#题目描述-33">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#2-01背包问题">2. 01背包问题</a>
               <ul>
-                <li><a href="#输入格式-30">输入格式</a></li>
-                <li><a href="#输出格式-30">输出格式</a></li>
-                <li><a href="#数据范围-29">数据范围</a></li>
-                <li><a href="#输入样例-27">输入样例：</a></li>
-                <li><a href="#算法设计-32">算法设计</a></li>
-                <li><a href="#完整-c-代码-29">完整 C++ 代码</a></li>
-              </ul>
-            </li>
-            <li><a href="#acwing-3-完全背包问题">AcWing 3. 完全背包问题</a>
-              <ul>
-                <li><a href="#题目描述-33">题目描述</a></li>
-              </ul>
-            </li>
-            <li><a href="#3-完全背包问题">3. 完全背包问题</a>
-              <ul>
                 <li><a href="#输入格式-31">输入格式</a></li>
                 <li><a href="#输出格式-31">输出格式</a></li>
                 <li><a href="#数据范围-30">数据范围</a></li>
-                <li><a href="#输入样例-28">输入样例：</a></li>
+                <li><a href="#输入样例-27">输入样例：</a></li>
                 <li><a href="#算法设计-33">算法设计</a></li>
                 <li><a href="#完整-c-代码-30">完整 C++ 代码</a></li>
               </ul>
             </li>
-            <li><a href="#acwing-4-多重背包问题-i">AcWing 4. 多重背包问题 I</a>
+            <li><a href="#acwing-3-完全背包问题">AcWing 3. 完全背包问题</a>
               <ul>
                 <li><a href="#题目描述-34">题目描述</a></li>
+              </ul>
+            </li>
+            <li><a href="#3-完全背包问题">3. 完全背包问题</a>
+              <ul>
                 <li><a href="#输入格式-32">输入格式</a></li>
                 <li><a href="#输出格式-32">输出格式</a></li>
                 <li><a href="#数据范围-31">数据范围</a></li>
-                <li><a href="#输入样例-29">输入样例：</a></li>
-                <li><a href="#输出样例-29">输出样例：</a></li>
+                <li><a href="#输入样例-28">输入样例：</a></li>
                 <li><a href="#算法设计-34">算法设计</a></li>
                 <li><a href="#完整-c-代码-31">完整 C++ 代码</a></li>
               </ul>
             </li>
-            <li><a href="#acwing-5-多重背包问题-ii">AcWing 5. 多重背包问题 II</a>
+            <li><a href="#acwing-4-多重背包问题-i">AcWing 4. 多重背包问题 I</a>
               <ul>
                 <li><a href="#题目描述-35">题目描述</a></li>
                 <li><a href="#输入格式-33">输入格式</a></li>
                 <li><a href="#输出格式-33">输出格式</a></li>
                 <li><a href="#数据范围-32">数据范围</a></li>
-                <li><a href="#输入样例-30">输入样例：</a></li>
-                <li><a href="#输出样例-30">输出样例：</a></li>
+                <li><a href="#输入样例-29">输入样例：</a></li>
+                <li><a href="#输出样例-29">输出样例：</a></li>
                 <li><a href="#算法设计-35">算法设计</a></li>
                 <li><a href="#完整-c-代码-32">完整 C++ 代码</a></li>
+              </ul>
+            </li>
+            <li><a href="#acwing-5-多重背包问题-ii">AcWing 5. 多重背包问题 II</a>
+              <ul>
+                <li><a href="#题目描述-36">题目描述</a></li>
+                <li><a href="#输入格式-34">输入格式</a></li>
+                <li><a href="#输出格式-34">输出格式</a></li>
+                <li><a href="#数据范围-33">数据范围</a></li>
+                <li><a href="#输入样例-30">输入样例：</a></li>
+                <li><a href="#输出样例-30">输出样例：</a></li>
+                <li><a href="#算法设计-36">算法设计</a></li>
+                <li><a href="#完整-c-代码-33">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -828,13 +841,13 @@
           <ul>
             <li><a href="#acwing-1058-股票买卖-v">AcWing 1058. 股票买卖 V</a>
               <ul>
-                <li><a href="#题目描述-36">题目描述</a></li>
-                <li><a href="#输入格式-34">输入格式</a></li>
-                <li><a href="#输出格式-34">输出格式</a></li>
-                <li><a href="#数据范围-33">数据范围</a></li>
+                <li><a href="#题目描述-37">题目描述</a></li>
+                <li><a href="#输入格式-35">输入格式</a></li>
+                <li><a href="#输出格式-35">输出格式</a></li>
+                <li><a href="#数据范围-34">数据范围</a></li>
                 <li><a href="#输入样例-31">输入样例：</a></li>
                 <li><a href="#输出样例-31">输出样例：</a></li>
-                <li><a href="#算法设计-36">算法设计</a></li>
+                <li><a href="#算法设计-37">算法设计</a></li>
                 <li><a href="#完整c-代码-3">完整C++ 代码</a></li>
               </ul>
             </li>
@@ -844,35 +857,35 @@
           <ul>
             <li><a href="#acwing-1064-小国王">AcWing 1064. 小国王</a>
               <ul>
-                <li><a href="#题目描述-37">题目描述</a></li>
+                <li><a href="#题目描述-38">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#1064-小国王-1">1064. 小国王</a>
               <ul>
-                <li><a href="#输入格式-35">输入格式</a></li>
-                <li><a href="#输出格式-35">输出格式</a></li>
-                <li><a href="#数据范围-34">数据范围</a></li>
+                <li><a href="#输入格式-36">输入格式</a></li>
+                <li><a href="#输出格式-36">输出格式</a></li>
+                <li><a href="#数据范围-35">数据范围</a></li>
                 <li><a href="#输入样例-32">输入样例：</a></li>
                 <li><a href="#输出样例-32">输出样例：</a></li>
-                <li><a href="#算法设计-37">算法设计</a></li>
+                <li><a href="#算法设计-38">算法设计</a></li>
                 <li><a href="#暴力做法-c-代码">暴力做法 C++ 代码</a></li>
                 <li><a href="#优化版本-c-代码">优化版本 C++ 代码</a></li>
               </ul>
             </li>
             <li><a href="#acwing-91-最短hamilton路径">AcWing 91. 最短Hamilton路径</a>
               <ul>
-                <li><a href="#题目描述-38">题目描述</a></li>
+                <li><a href="#题目描述-39">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#91-最短hamilton路径">91. 最短Hamilton路径</a>
               <ul>
-                <li><a href="#输入格式-36">输入格式</a></li>
-                <li><a href="#输出格式-36">输出格式</a></li>
-                <li><a href="#数据范围-35">数据范围</a></li>
+                <li><a href="#输入格式-37">输入格式</a></li>
+                <li><a href="#输出格式-37">输出格式</a></li>
+                <li><a href="#数据范围-36">数据范围</a></li>
                 <li><a href="#输入样例-33">输入样例：</a></li>
                 <li><a href="#输出样例-33">输出样例：</a></li>
-                <li><a href="#算法设计-38">算法设计</a></li>
-                <li><a href="#完整-c-代码-33">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-39">算法设计</a></li>
+                <li><a href="#完整-c-代码-34">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -881,41 +894,41 @@
           <ul>
             <li><a href="#acwing-282-石子合并">AcWing 282. 石子合并</a>
               <ul>
-                <li><a href="#题目描述-39">题目描述</a></li>
+                <li><a href="#题目描述-40">题目描述</a></li>
                 <li><a href="#282-石子合并">282. 石子合并</a></li>
-                <li><a href="#输入格式-37">输入格式</a></li>
-                <li><a href="#输出格式-37">输出格式</a></li>
-                <li><a href="#数据范围-36">数据范围</a></li>
+                <li><a href="#输入格式-38">输入格式</a></li>
+                <li><a href="#输出格式-38">输出格式</a></li>
+                <li><a href="#数据范围-37">数据范围</a></li>
                 <li><a href="#输入样例-34">输入样例：</a></li>
-                <li><a href="#算法设计-39">算法设计</a></li>
+                <li><a href="#算法设计-40">算法设计</a></li>
                 <li><a href="#完整c-代码-4">完整C++ 代码</a></li>
                 <li><a href="#拓展-2">拓展</a></li>
               </ul>
             </li>
             <li><a href="#320-能量项链">320. 能量项链</a>
               <ul>
-                <li><a href="#题目描述-40">题目描述</a></li>
-                <li><a href="#输入格式-38">输入格式</a></li>
-                <li><a href="#输出格式-38">输出格式</a></li>
-                <li><a href="#数据范围-37">数据范围</a></li>
+                <li><a href="#题目描述-41">题目描述</a></li>
+                <li><a href="#输入格式-39">输入格式</a></li>
+                <li><a href="#输出格式-39">输出格式</a></li>
+                <li><a href="#数据范围-38">数据范围</a></li>
                 <li><a href="#输入样例-35">输入样例：</a></li>
                 <li><a href="#输出样例-35">输出样例：</a></li>
-                <li><a href="#算法设计-40">算法设计</a></li>
+                <li><a href="#算法设计-41">算法设计</a></li>
                 <li><a href="#完整c代码">完整C++代码</a></li>
               </ul>
             </li>
             <li><a href="#acwing-479-加分二叉树">AcWing 479. 加分二叉树</a>
               <ul>
-                <li><a href="#题目描述-41">题目描述</a></li>
+                <li><a href="#题目描述-42">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#479-加分二叉树">479. 加分二叉树</a>
               <ul>
-                <li><a href="#输入格式-39">输入格式</a></li>
-                <li><a href="#输出格式-39">输出格式</a></li>
-                <li><a href="#数据范围-38">数据范围</a></li>
+                <li><a href="#输入格式-40">输入格式</a></li>
+                <li><a href="#输出格式-40">输出格式</a></li>
+                <li><a href="#数据范围-39">数据范围</a></li>
                 <li><a href="#输入样例-36">输入样例：</a></li>
-                <li><a href="#算法设计-41">算法设计</a></li>
+                <li><a href="#算法设计-42">算法设计</a></li>
                 <li><a href="#完整c-代码-5">完整C++ 代码</a></li>
               </ul>
             </li>
@@ -925,30 +938,30 @@
           <ul>
             <li><a href="#acwing-1072-树的最长路径">AcWing 1072. 树的最长路径</a>
               <ul>
-                <li><a href="#题目描述-42">题目描述</a></li>
+                <li><a href="#题目描述-43">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#1072-树的最长路径">1072. 树的最长路径</a>
               <ul>
-                <li><a href="#输入格式-40">输入格式</a></li>
-                <li><a href="#输出格式-40">输出格式</a></li>
-                <li><a href="#数据范围-39">数据范围</a></li>
+                <li><a href="#输入格式-41">输入格式</a></li>
+                <li><a href="#输出格式-41">输出格式</a></li>
+                <li><a href="#数据范围-40">数据范围</a></li>
                 <li><a href="#输入样例-37">输入样例：</a></li>
                 <li><a href="#输出样例-37">输出样例：</a></li>
-                <li><a href="#算法设计-42">算法设计</a></li>
-                <li><a href="#完整-c-代码-34">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-43">算法设计</a></li>
+                <li><a href="#完整-c-代码-35">完整 C++ 代码</a></li>
                 <li><a href="#拓展-3">拓展</a></li>
               </ul>
             </li>
             <li><a href="#1073-树的中心">1073. 树的中心</a>
               <ul>
-                <li><a href="#输入格式-41">输入格式</a></li>
-                <li><a href="#输出格式-41">输出格式</a></li>
-                <li><a href="#数据范围-40">数据范围</a></li>
+                <li><a href="#输入格式-42">输入格式</a></li>
+                <li><a href="#输出格式-42">输出格式</a></li>
+                <li><a href="#数据范围-41">数据范围</a></li>
                 <li><a href="#输入样例-38">输入样例：</a></li>
                 <li><a href="#输出样例-38">输出样例：</a></li>
-                <li><a href="#算法设计-43">算法设计</a></li>
-                <li><a href="#完整-c-代码-35">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-44">算法设计</a></li>
+                <li><a href="#完整-c-代码-36">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -957,18 +970,18 @@
           <ul>
             <li><a href="#acwing-1082-数字游戏">AcWing 1082. 数字游戏</a>
               <ul>
-                <li><a href="#题目描述-43">题目描述</a></li>
+                <li><a href="#题目描述-44">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#1082-数字游戏">1082. 数字游戏</a>
               <ul>
-                <li><a href="#输入格式-42">输入格式</a></li>
-                <li><a href="#输出格式-42">输出格式</a></li>
-                <li><a href="#数据范围-41">数据范围</a></li>
+                <li><a href="#输入格式-43">输入格式</a></li>
+                <li><a href="#输出格式-43">输出格式</a></li>
+                <li><a href="#数据范围-42">数据范围</a></li>
                 <li><a href="#输入样例-39">输入样例：</a></li>
                 <li><a href="#输出样例-39">输出样例：</a></li>
-                <li><a href="#算法设计-44">算法设计</a></li>
-                <li><a href="#完整-c-代码-36">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-45">算法设计</a></li>
+                <li><a href="#完整-c-代码-37">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -977,18 +990,18 @@
           <ul>
             <li><a href="#acwing-901-滑雪">AcWing 901. 滑雪</a>
               <ul>
-                <li><a href="#题目描述-44">题目描述</a></li>
+                <li><a href="#题目描述-45">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#901-滑雪">901. 滑雪</a>
               <ul>
-                <li><a href="#输入格式-43">输入格式</a></li>
-                <li><a href="#输出格式-43">输出格式</a></li>
-                <li><a href="#数据范围-42">数据范围</a></li>
+                <li><a href="#输入格式-44">输入格式</a></li>
+                <li><a href="#输出格式-44">输出格式</a></li>
+                <li><a href="#数据范围-43">数据范围</a></li>
                 <li><a href="#输入样例-40">输入样例：</a></li>
                 <li><a href="#输出样例-40">输出样例：</a></li>
-                <li><a href="#算法设计-45">算法设计</a></li>
-                <li><a href="#完整-c-代码-37">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-46">算法设计</a></li>
+                <li><a href="#完整-c-代码-38">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -1001,34 +1014,34 @@
           <ul>
             <li><a href="#acwing-905-区间选点">AcWing 905. 区间选点</a>
               <ul>
-                <li><a href="#题目描述-45">题目描述</a></li>
+                <li><a href="#题目描述-46">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#905-区间选点">905. 区间选点</a>
               <ul>
-                <li><a href="#输入格式-44">输入格式</a></li>
-                <li><a href="#输出格式-44">输出格式</a></li>
-                <li><a href="#数据范围-43">数据范围</a></li>
+                <li><a href="#输入格式-45">输入格式</a></li>
+                <li><a href="#输出格式-45">输出格式</a></li>
+                <li><a href="#数据范围-44">数据范围</a></li>
                 <li><a href="#输入样例-41">输入样例：</a></li>
                 <li><a href="#输出样例-41">输出样例：</a></li>
-                <li><a href="#算法设计-46">算法设计</a></li>
-                <li><a href="#完整-c-代码-38">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-47">算法设计</a></li>
+                <li><a href="#完整-c-代码-39">完整 C++ 代码</a></li>
               </ul>
             </li>
             <li><a href="#acwing-906-区间分组">AcWing 906. 区间分组</a>
               <ul>
-                <li><a href="#题目描述-46">题目描述</a></li>
+                <li><a href="#题目描述-47">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#906-区间分组">906. 区间分组</a>
               <ul>
-                <li><a href="#输入格式-45">输入格式</a></li>
-                <li><a href="#输出格式-45">输出格式</a></li>
-                <li><a href="#数据范围-44">数据范围</a></li>
+                <li><a href="#输入格式-46">输入格式</a></li>
+                <li><a href="#输出格式-46">输出格式</a></li>
+                <li><a href="#数据范围-45">数据范围</a></li>
                 <li><a href="#输入样例-42">输入样例：</a></li>
                 <li><a href="#输出样例-42">输出样例：</a></li>
-                <li><a href="#算法设计-47">算法设计</a></li>
-                <li><a href="#完整-c-代码-39">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-48">算法设计</a></li>
+                <li><a href="#完整-c-代码-40">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -1037,18 +1050,18 @@
           <ul>
             <li><a href="#acwing-125-耍杂技的牛">AcWing 125. 耍杂技的牛</a>
               <ul>
-                <li><a href="#题目描述-47">题目描述</a></li>
+                <li><a href="#题目描述-48">题目描述</a></li>
               </ul>
             </li>
             <li><a href="#125-耍杂技的牛">125. 耍杂技的牛</a>
               <ul>
-                <li><a href="#输入格式-46">输入格式</a></li>
-                <li><a href="#输出格式-46">输出格式</a></li>
-                <li><a href="#数据范围-45">数据范围</a></li>
+                <li><a href="#输入格式-47">输入格式</a></li>
+                <li><a href="#输出格式-47">输出格式</a></li>
+                <li><a href="#数据范围-46">数据范围</a></li>
                 <li><a href="#输入样例-43">输入样例：</a></li>
                 <li><a href="#输出样例-43">输出样例：</a></li>
-                <li><a href="#算法设计-48">算法设计</a></li>
-                <li><a href="#完整-c-代码-40">完整 C++ 代码</a></li>
+                <li><a href="#算法设计-49">算法设计</a></li>
+                <li><a href="#完整-c-代码-41">完整 C++ 代码</a></li>
               </ul>
             </li>
           </ul>
@@ -1406,9 +1419,22 @@ $$</span><p>
 <p>这里我们引入<a href="https://space.bilibili.com/206214" target="_blank" rel="noopener noreffer ">灵茶山艾府</a>灵神的写法来作参考，因为这种写法和c++中STL中给出的<code>lower_bound()</code>和<code>upper_bound()</code>的思想一致，应用了循环不变量的核心思想。</p>
 <p>下面我们先看看如何找到满足 <span class="math">$≥$</span>target的第一次出现的元素下标：</p>
 <p><strong>关键：</strong> 循环不变量</p>
-<p><span class="math">$L-1$</span> 始终是<em>红色</em>(＜target)</p>
-<p><span class="math">$R&#43;1$</span> 始终是<em>蓝色</em>(≥target)</p>
+<p><span class="math">$L-1$</span> 始终是<em>红色</em>(<span class="math">$&lt;$</span> target)</p>
+<p><span class="math">$R&#43;1$</span> 始终是<em>蓝色</em>(<span class="math">$\ge$</span> target)</p>
 <img src="images/image-20250218163439860.png" alt="image-20250218163439860" style="zoom:25%;" />
+<p>首先这里为什么不变量说的是 <span class="math">$L-1$</span> 和 <span class="math">$R&#43;1$</span>,而不是 <span class="math">$L$</span> 和 <span class="math">$R$</span> 自己?</p>
+<p>因为 <span class="math">$L$</span> 和 <span class="math">$R$</span> 是未知区的两个端点——它们本身还没被检查,凭什么断定它们是红是蓝?不能，如果这样假设的话那么初始值就不满足这个循环不变量。但紧挨着未知区外面的 <span class="math">$L-1$</span> 和 <span class="math">$R&#43;1$</span>,是我们已经检查并染过色的。所以不变量只能对&quot;已确认&quot;的部分做承诺,也就是:</p>
+<ul>
+<li><span class="math">$L-1$</span> 及其左边全是红(都 <span class="math">$&lt;$</span> target)</li>
+<li><span class="math">$R&#43;1$</span> 及其右边全是蓝(都 <span class="math">$\ge$</span> target)</li>
+</ul>
+<p>换句话说,不变量不是随便挑 <span class="math">$L-1$</span>、<span class="math">$R&#43;1$</span> 的,而是&quot;<strong>已知红区的最右边界&quot;和&quot;已知蓝区的最左边界&quot;恰好就是这两个位置</strong>。区间在中间缩小,红蓝从两头往中间长。</p>
+<p>那么为什么一开始 <span class="math">$L-1 = -1$</span>、<span class="math">$R&#43;1 = n$</span> 都不存在,为什么还说它们红/蓝?</p>
+<p>答案是:这是一种&quot;<strong>空承诺&quot;(vacuously true,空真)</strong>。一开始红区是空的、蓝区是空的,不变量说&quot;<span class="math">$L-1$</span> 左边全红&quot;——可 <span class="math">$L$</span> 左边一个元素都没有,那这句话没有反例,所以自动成立。同理 <span class="math">$R&#43;1 = n$</span> 右边也没元素,蓝的承诺也空成立。</p>
+<p>这个设计很巧妙:它让不变量从循环开始前就成立,而不用特殊照顾边界。</p>
+<p>那么显然如果我们发现 <code>nums[mid] &lt; target</code>，这不是说明 mid 一定是红色区域？同时由于数组的单调性，那么 mid 左边也一定是红色？因此也就是说 <span class="math">$L-1=mid$</span></p>
+<p>另一种情况 <code>nums[mid] &gt;= target</code>，同理可得 <span class="math">$R &#43; 1 = mid$</span>。</p>
+<p>因此理解了上面，翻译成代码也就不难了：</p>
 <p><code>lower_bound()</code>模板如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1430,15 +1456,15 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 找到第一个≥target的下标
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">lower_bound</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 闭区间:[l, r]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span>         <span class="c1">// 区间不为空
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">r</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// 区间缩小为[mid + 1, r]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>                      <span class="c1">// 区间缩小为[l, mid - 1]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">// 闭区间:[l, r]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span>         <span class="c1">// 区间不为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">r</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// 区间缩小为[mid + 1, r]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>         <span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>                      <span class="c1">// 区间缩小为[l, mid - 1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>根据循环不变量， <span class="math">$R&#43;1$</span> 是我们要找的答案，又由于循环终止条件 <span class="math">$L=R&#43;1$</span>，故答案也可以直接用 <span class="math">$L$</span> 表示。</p>
@@ -7450,6 +7476,122 @@ $$</span><p>
 <h1 id="第四章-数学知识">第四章 数学知识</h1>
 <h2 id="质数">质数</h2>
 <h2 id="约数">约数</h2>
+<h3 id="acwing-808-最大公约数">AcWing 808. 最大公约数</h3>
+<h4 id="题目描述-30">题目描述</h4>
+<blockquote>
+<p>输入两个整数 <span class="math">$a$</span> 和 <span class="math">$b$</span>，请你编写一个函数，<code>int gcd(int a, int b)</code>, 计算并输出 <span class="math">$a$</span> 和 <span class="math">$b$</span> 的最大公约数。</p>
+<h4 id="输入格式-28">输入格式</h4>
+<p>共一行，包含两个整数 <span class="math">$a$</span> 和 <span class="math">$b$</span>。</p>
+<h4 id="输出格式-28">输出格式</h4>
+<p>共一行，包含一个整数，表示 <span class="math">$a$</span> 和 <span class="math">$b$</span> 的最大公约数。</p>
+<h4 id="数据范围-27">数据范围</h4>
+<p><span class="math">$1 \le a, b \le 1000$</span></p>
+<p>输入样例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">12 16</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出样例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h4 id="算法设计-30">算法设计</h4>
+<p>暴力的 <span class="math">$O(n)$</span> 解法非常简单，但我们能否做到 <span class="math">$O(\log n)$</span> 呢？</p>
+<p>答案是肯定的——<strong>欧几里得算法</strong>（又称<strong>辗转相除法</strong>）就是这样一个经典算法。</p>
+<hr>
+<p>先回顾暴力思路：从大到小逐一枚举每个可能的公约数，效率显然不高。</p>
+<p>那么，能不能每次不只是移动 <span class="math">$1$</span>，而是<strong>成批地跳过</strong>不可能的数，从而快速缩小搜索范围？</p>
+<p>关键观察来了：对于 <span class="math">$a$</span> 和 <span class="math">$b$</span> 的任意公约数 <span class="math">$d$</span>，它也一定是 <span class="math">$a - b$</span> 的公约数（证明略，但很简单）。于是有：
+</p>
+<span class="math">$$
+\text{gcd}(a, b) = \text{gcd}(a, a-b)
+$$</span><p>这样每步可以向前跳 <span class="math">$b$</span> 个数，但仍然不够。考虑 <span class="math">$\gcd(1000, 2)$</span>，我们需要连续减 <span class="math">$500$</span> 次，效率依然很低。</p>
+<p>怎么优化这里的“反复减法”呢？</p>
+<p>把操作展开：「从 <span class="math">$a$</span> 中反复减 <span class="math">$b$</span>，直到结果小于 <span class="math">$b$</span>」——这本质上就是<strong>取模运算</strong>。</p>
+<p>于是公式升级为：
+</p>
+<span class="math">$$
+\text{gcd}(a, b) = \text{gcd}(a \bmod b, b)
+$$</span><p>又因为 <span class="math">$a \bmod b &lt; b$</span>，为了保持循环不变式（左边第一个数不小于第二个数），我们交换顺序：
+</p>
+<span class="math">$$
+\text{gcd}(a, b) = \text{gcd}(b, a \bmod b)
+$$</span><p>由于右边两个数每一轮都严格变小且非负，算法必然在有限步内终止。</p>
+<p>终止条件也很自然：<span class="math">$\gcd(a, 0) = a$</span>。</p>
+<p>于是递归代码就水到渠成了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>恭喜！你独立探索出了两千年前欧几里得的智慧。</p>
+<hr>
+<p>接下来，我们来证明其时间复杂度为 <span class="math">$O(\log n)$</span>。</p>
+<p>先看一个例子：
+</p>
+<span class="math">$$
+\gcd(100, 60) = \gcd(60, 40) = \gcd(40, 20) = \gcd(20, 0) = 20
+$$</span><p>直觉上，<span class="math">$\gcd(a, b) \le \min(a, b)$</span>，看起来每一步似乎只是从 <span class="math">$60$</span> 到 <span class="math">$40$</span>，缩小了 <span class="math">$20$</span>，并没有像二分那样稳减一半。</p>
+<p>但如果看两步：</p>
+<ul>
+<li><span class="math">$\gcd(100, 60) \le 60$</span></li>
+<li>两步后 <span class="math">$\gcd(40, 20) \le 20$</span></li>
+</ul>
+<p>从 <span class="math">$60$</span> 到 <span class="math">$20$</span>，缩小了 <span class="math">$40$</span>，<strong>超过了一半</strong>。</p>
+<p>这暗示了一个关键事实：<strong>每两步，规模至少减半</strong>。</p>
+<p>我们来严格证明：</p>
+<p>设 <span class="math">$a \ge b$</span>：
+</p>
+<span class="math">$$
+\gcd(a, b) = \gcd(b, a \bmod b) = \gcd(a \bmod b,\ b \bmod (a \bmod b))
+$$</span><p>分两种情况：</p>
+<ul>
+<li>若 <span class="math">$a \bmod b \le \frac{b}{2}$</span>，则第一步后规模 <span class="math">$a \bmod b$</span> 就已经不超过 <span class="math">$b/2$</span>。</li>
+<li>若 <span class="math">$a \bmod b &gt; \frac{b}{2}$</span>，则第二步中的 <span class="math">$b \bmod (a \bmod b) = b - (a \bmod b) &lt; \frac{b}{2}$</span>，所以两步后规模一定不超过 <span class="math">$b/2$</span>。</li>
+</ul>
+<p>因此，每两步 <span class="math">$b$</span> 至少减半，迭代次数为 <span class="math">$O(\log b)$</span>，也就是 <span class="math">$O(\log(\min(a, b)))$</span>。</p>
+<hr>
+<p>更进一步，我们思考一个有趣的问题：</p>
+<blockquote>
+<p>什么样的输入能让欧几里得算法的迭代次数达到理论上限？</p></blockquote>
+<p>假设 <span class="math">$a = k_1 b &#43; k_2$</span>（<span class="math">$k_1 \ge 1,\ 0 \le k_2 &lt; b$</span>），则 <span class="math">$a \bmod b = k_2$</span>。</p>
+<p>每一轮缩小的量为：
+</p>
+<span class="math">$$
+a - (a \bmod b) = k_1 b
+$$</span><p>为了让迭代次数尽可能多，缩小的量要尽可能小，因此令 <span class="math">$k_1 = 1$</span>。</p>
+<p>于是 <span class="math">$a = b &#43; k_2$</span>，递推变成：
+</p>
+<span class="math">$$
+\gcd(a, b) = \gcd(b, k_2)
+$$</span><p>逆推回去，为了能让算法继续跑下去，上一轮的两个数必须是<strong>前两轮之和</strong>。</p>
+<p>这正是斐波那契数列的递推形式：
+</p>
+<span class="math">$$
+F_{i&#43;2} = F_{i&#43;1} &#43; F_i
+$$</span><p>边界条件取最小的正整数 <span class="math">$F_1 = F_2 = 1$</span>，得到：
+</p>
+<span class="math">$$
+1, 1, 2, 3, 5, 8, 13, 21, \dots
+$$</span><p>因此，<strong>用相邻两项斐波那契数 <span class="math">$(F_{k&#43;1}, F_k)$</span> 作为输入</strong>，每一步的商都为 <span class="math">$1$</span>，迭代次数达到最大值，即 <span class="math">$\log_{\varphi} n$</span>。</p>
+<p>这就是欧几里得算法的最坏情况，也是它精妙之处的完美体现。</p>
+<h4 id="完整-c-代码-28">完整 C++ 代码</h4>
 <h2 id="中国剩余定理">中国剩余定理</h2>
 <h2 id="求组合数">求组合数</h2>
 <h2 id="容斥原理">容斥原理</h2>
@@ -7564,7 +7706,7 @@ $$</span><p>
 <blockquote>
 <p>数字三角形模型应该算是dp中最简单的模型了</p></blockquote>
 <h3 id="acwing-1018-最低通行费">AcWing 1018. 最低通行费</h3>
-<h4 id="题目描述-30">题目描述</h4>
+<h4 id="题目描述-31">题目描述</h4>
 <blockquote>
 <p>一个商人穿过一个 <span class="math">$N×N$</span> 的正方形的网格，去参加一个非常重要的商务活动。</p>
 <p>他要从网格的左上角进，右下角出。</p>
@@ -7574,12 +7716,12 @@ $$</span><p>
 <p>这个商人期望在规定时间内用最少费用穿越出去。</p>
 <p>请问至少需要多少费用？</p>
 <p>注意：不能对角穿越各个小方格（即，只能向上下左右四个方向移动且不能离开网格）。</p>
-<h4 id="输入格式-28">输入格式</h4>
+<h4 id="输入格式-29">输入格式</h4>
 <p>第一行是一个整数，表示正方形的宽度 <span class="math">$N$</span>。</p>
 <p>后面 <span class="math">$N$</span> 行，每行 <span class="math">$N$</span> 个不大于 <span class="math">$100$</span> 的正整数，为网格上每个小方格的费用。</p>
-<h4 id="输出格式-28">输出格式</h4>
+<h4 id="输出格式-29">输出格式</h4>
 <p>输出一个整数，表示至少需要的费用。</p>
-<h4 id="数据范围-27">数据范围</h4>
+<h4 id="数据范围-28">数据范围</h4>
 <p><span class="math">$0&lt;N≤100$</span></p>
 <h4 id="输入样例-25">输入样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -7608,9 +7750,9 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">109</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-30">算法设计</h4>
+<h4 id="算法设计-31">算法设计</h4>
 <p>这题说的看起来很复杂，商人必须在 <span class="math">$(2N−1)$</span> 个单位时间穿越出去，其实用贪心发现最快方式也就是每次只往右或者下走，时间正好是 <span class="math">$(2N−1)$</span> 所以这题其实就是一道数字三角形的简单模板</p>
-<h4 id="完整-c-代码-28">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-29">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -7669,15 +7811,15 @@ $$</span><p>
 </div><hr>
 <h2 id="最长上升子序列模型">最长上升子序列模型</h2>
 <h3 id="acwing-895-最长上升子序列">AcWing 895. 最长上升子序列</h3>
-<h4 id="题目描述-31">题目描述</h4>
+<h4 id="题目描述-32">题目描述</h4>
 <blockquote>
 <p>给定一个长度为 <span class="math">$N$</span> 的数列，求数值严格单调递增的子序列的长度最长是多少。</p>
-<h4 id="输入格式-29">输入格式</h4>
+<h4 id="输入格式-30">输入格式</h4>
 <p>第一行包含整数 <span class="math">$N$</span>。</p>
 <p>第二行包含 <span class="math">$N$</span> 个整数，表示完整序列。</p>
-<h4 id="输出格式-29">输出格式</h4>
+<h4 id="输出格式-30">输出格式</h4>
 <p>输出一个整数，表示最大长度。</p>
-<h4 id="数据范围-28">数据范围</h4>
+<h4 id="数据范围-29">数据范围</h4>
 <p><span class="math">$0&lt;N≤1000$</span></p>
 <p><span class="math">$−10^9≤$</span> 数列中的数 <span class="math">$≤109$</span></p>
 <h4 id="输入样例-26">输入样例：</h4>
@@ -7699,7 +7841,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-31">算法设计</h4>
+<h4 id="算法设计-32">算法设计</h4>
 <p><span class="math">$f_i$</span> 表示所有以第 <span class="math">$i$</span> 个数结尾的上升子序列中的最大值</p>
 <h4 id="完整c-代码-2">完整C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -7758,19 +7900,19 @@ $$</span><p>
 </div><hr>
 <h2 id="背包模型">背包模型</h2>
 <h3 id="acwing-2-01背包问题">AcWing 2. 01背包问题</h3>
-<h4 id="题目描述-32">题目描述</h4>
+<h4 id="题目描述-33">题目描述</h4>
 <blockquote>
 <h3 id="2-01背包问题">2. 01背包问题</h3>
 <p>有 <span class="math">$N$</span> 件物品和一个容量是 <span class="math">$V$</span> 的背包，每件物品只能使用一次。</p>
 <p>第 <span class="math">$i$</span> 件物品的体积是 <span class="math">$v_i$</span>，价值是 <span class="math">$w_i$</span>。</p>
 <p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
 <p>输出最大价值。</p>
-<h4 id="输入格式-30">输入格式</h4>
+<h4 id="输入格式-31">输入格式</h4>
 <p>第一行两个整数, <span class="math">$N$</span>，<span class="math">$V$</span>，用空格隔开，分别表示物品数量和背包容积。</p>
 <p>接下来有 <span class="math">$N$</span> 行，每行两个整数 <span class="math">$v_i$</span>,<span class="math">$w_i$</span>，用空格隔开，分别表示第 <span class="math">$i$</span> 件物品的体积和价值。</p>
-<h4 id="输出格式-30">输出格式</h4>
+<h4 id="输出格式-31">输出格式</h4>
 <p>输出一个整数，表示最大价值。</p>
-<h4 id="数据范围-29">数据范围</h4>
+<h4 id="数据范围-30">数据范围</h4>
 <p><span class="math">$0&lt;N,V≤1000$</span>
 <span class="math">$0&lt;v_i,w_i≤1000$</span></p>
 <h4 id="输入样例-27">输入样例：</h4>
@@ -7798,9 +7940,9 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-32">算法设计</h4>
+<h4 id="算法设计-33">算法设计</h4>
 <p>背一下01背包的代码模板就行</p>
-<h4 id="完整-c-代码-29">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-30">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -7864,19 +8006,19 @@ $$</span><p>
 </div>
 </div><hr>
 <h3 id="acwing-3-完全背包问题">AcWing 3. 完全背包问题</h3>
-<h4 id="题目描述-33">题目描述</h4>
+<h4 id="题目描述-34">题目描述</h4>
 <blockquote>
 <h3 id="3-完全背包问题">3. 完全背包问题</h3>
 <p>有 <span class="math">$N$</span> 件物品和一个容量是 <span class="math">$V$</span> 的背包，每种物品都有无限件可用。</p>
 <p>第 <span class="math">$i$</span> 件物品的体积是 <span class="math">$v_i$</span>，价值是 <span class="math">$w_i$</span>。</p>
 <p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
 <p>输出最大价值。</p>
-<h4 id="输入格式-31">输入格式</h4>
+<h4 id="输入格式-32">输入格式</h4>
 <p>第一行两个整数, <span class="math">$N$</span>，<span class="math">$V$</span>，用空格隔开，分别表示物品数量和背包容积。</p>
 <p>接下来有 <span class="math">$N$</span> 行，每行两个整数 <span class="math">$v_i$</span>,<span class="math">$w_i$</span>，用空格隔开，分别表示第 <span class="math">$i$</span> 件物品的体积和价值。</p>
-<h4 id="输出格式-31">输出格式</h4>
+<h4 id="输出格式-32">输出格式</h4>
 <p>输出一个整数，表示最大价值。</p>
-<h4 id="数据范围-30">数据范围</h4>
+<h4 id="数据范围-31">数据范围</h4>
 <p><span class="math">$0&lt;N,V≤1000$</span>
 <span class="math">$0&lt;v_i,w_i≤1000$</span></p>
 <h4 id="输入样例-28">输入样例：</h4>
@@ -7904,9 +8046,9 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-33">算法设计</h4>
+<h4 id="算法设计-34">算法设计</h4>
 <p>背一下完全背包的代码模板就行</p>
-<h4 id="完整-c-代码-30">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-31">完整 C++ 代码</h4>
 <p>暴力版本 <span class="math">$O(n^3)$</span></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -8039,18 +8181,18 @@ $$</span><p>
 </div>
 </div><hr>
 <h3 id="acwing-4-多重背包问题-i">AcWing 4. 多重背包问题 I</h3>
-<h4 id="题目描述-34">题目描述</h4>
+<h4 id="题目描述-35">题目描述</h4>
 <blockquote>
 <p>有 <span class="math">$N$</span> 种物品和一个容量是 <span class="math">$V$</span> 的背包。</p>
 <p>第 <span class="math">$i$</span> 种物品最多有 <span class="math">$s_i$</span> 件，每件体积是 <span class="math">$v_i$</span>，价值是 <span class="math">$w_i$</span>。</p>
 <p>求解将哪些物品装入背包，可使物品体积总和不超过背包容量，且价值总和最大。</p>
 <p>输出最大价值。</p>
-<h4 id="输入格式-32">输入格式</h4>
+<h4 id="输入格式-33">输入格式</h4>
 <p>第一行两个整数，<span class="math">$N$</span>, <span class="math">$V$</span>，用空格隔开，分别表示物品种数和背包容积。</p>
 <p>接下来有 <span class="math">$N$</span> 行，每行三个整数 <span class="math">$v_i$</span>, <span class="math">$w_i$</span>, <span class="math">$s_i$</span>，用空格隔开，分别表示第 <span class="math">$i$</span> 种物品的体积、价值和数量。</p>
-<h4 id="输出格式-32">输出格式</h4>
+<h4 id="输出格式-33">输出格式</h4>
 <p>输出一个整数，表示最大价值。</p>
-<h4 id="数据范围-31">数据范围</h4>
+<h4 id="数据范围-32">数据范围</h4>
 <p><span class="math">$0&lt;N,V≤100$</span>
 <span class="math">$0&lt;v_i, w_i, s_i≤100$</span></p>
 <h4 id="输入样例-29">输入样例：</h4>
@@ -8078,9 +8220,9 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-34">算法设计</h4>
+<h4 id="算法设计-35">算法设计</h4>
 <p>背一下完全背包的代码模板就行，这题的数据来看时间复杂度 <span class="math">$O(n^3)$</span> 就可以ac</p>
-<h4 id="完整-c-代码-31">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-32">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -8144,18 +8286,18 @@ $$</span><p>
 </div>
 </div><hr>
 <h3 id="acwing-5-多重背包问题-ii">AcWing 5. 多重背包问题 II</h3>
-<h4 id="题目描述-35">题目描述</h4>
+<h4 id="题目描述-36">题目描述</h4>
 <blockquote>
 <p>有 <span class="math">$N$</span> 种物品和一个容量是 <span class="math">$V$</span> 的背包。</p>
 <p>第 <span class="math">$i$</span> 种物品最多有 <span class="math">$s_i$</span> 件，每件体积是 <span class="math">$v_i$</span>，价值是 <span class="math">$w_i$</span>。</p>
 <p>求解将哪些物品装入背包，可使物品体积总和不超过背包容量，且价值总和最大。</p>
 <p>输出最大价值。</p>
-<h4 id="输入格式-33">输入格式</h4>
+<h4 id="输入格式-34">输入格式</h4>
 <p>第一行两个整数，<span class="math">$N$</span>, <span class="math">$V$</span>，用空格隔开，分别表示物品种数和背包容积。</p>
 <p>接下来有 <span class="math">$N$</span> 行，每行三个整数 <span class="math">$v_i$</span>, <span class="math">$w_i$</span>, <span class="math">$s_i$</span>，用空格隔开，分别表示第 <span class="math">$i$</span> 种物品的体积、价值和数量。</p>
-<h4 id="输出格式-33">输出格式</h4>
+<h4 id="输出格式-34">输出格式</h4>
 <p>输出一个整数，表示最大价值。</p>
-<h4 id="数据范围-32">数据范围</h4>
+<h4 id="数据范围-33">数据范围</h4>
 <p><span class="math">$0&lt;N≤1000$</span>
 <span class="math">$0&lt;V≤2000$</span>
 <span class="math">$0&lt;v_i, w_i, s_i≤2000$</span></p>
@@ -8186,12 +8328,12 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-35">算法设计</h4>
+<h4 id="算法设计-36">算法设计</h4>
 <p>一个非常简洁的二进制优化自用板子</p>
 <p>根据y总讲的AcWing7. 混合背包问题整理的板子，相当简洁还省空间</p>
 <p>空间复杂度无需<span class="math">$O(n \log n)$</span>,降为<span class="math">$O(max(n, log s))$</span></p>
 <p>时间复杂度还是<span class="math">$O(n^2log n)$</span></p>
-<h4 id="完整-c-代码-32">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-33">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -8264,7 +8406,7 @@ $$</span><p>
 </div><hr>
 <h2 id="状态机模型">状态机模型</h2>
 <h3 id="acwing-1058-股票买卖-v">AcWing 1058. 股票买卖 V</h3>
-<h4 id="题目描述-36">题目描述</h4>
+<h4 id="题目描述-37">题目描述</h4>
 <blockquote>
 <p>给定一个长度为 <span class="math">$N$</span> 的数组，数组中的第 <span class="math">$i$</span> 个数字表示一个给定股票在第 <span class="math">$i$</span> 天的价格。</p>
 <p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
@@ -8272,12 +8414,12 @@ $$</span><p>
 <li>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</li>
 <li>卖出股票后，你无法在第二天买入股票 (即冷冻期为 <span class="math">$1$</span> 天)。</li>
 </ul>
-<h4 id="输入格式-34">输入格式</h4>
+<h4 id="输入格式-35">输入格式</h4>
 <p>第一行包含整数 <span class="math">$N$</span>，表示数组长度。</p>
 <p>第二行包含 <span class="math">$N$</span> 个不超过 <span class="math">$10000$</span> 的正整数，表示完整的数组。</p>
-<h4 id="输出格式-34">输出格式</h4>
+<h4 id="输出格式-35">输出格式</h4>
 <p>输出一个整数，表示最大利润。</p>
-<h4 id="数据范围-33">数据范围</h4>
+<h4 id="数据范围-34">数据范围</h4>
 <p><span class="math">$1≤N≤10^5$</span></p>
 <h4 id="输入样例-31">输入样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -8298,7 +8440,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-36">算法设计</h4>
+<h4 id="算法设计-37">算法设计</h4>
 <p>状态分为：1. 手中有货，2. 手中无货的第 <span class="math">$1$</span> 天，3. 手中无货的第 <span class="math">$\ge2$</span> 天</p>
 <h4 id="完整c-代码-3">完整C++ 代码</h4>
 <div class="highlight"><div class="chroma">
@@ -8361,15 +8503,15 @@ $$</span><p>
 </div><hr>
 <h2 id="状态压缩dp">状态压缩DP</h2>
 <h3 id="acwing-1064-小国王">AcWing 1064. 小国王</h3>
-<h4 id="题目描述-37">题目描述</h4>
+<h4 id="题目描述-38">题目描述</h4>
 <blockquote>
 <h3 id="1064-小国王-1">1064. 小国王</h3>
 <p>在 <span class="math">$n×n$</span> 的棋盘上放 <span class="math">$k$</span> 个国王，国王可攻击相邻的 <span class="math">$8$</span> 个格子，求使它们无法互相攻击的方案总数。</p>
-<h4 id="输入格式-35">输入格式</h4>
+<h4 id="输入格式-36">输入格式</h4>
 <p>共一行，包含两个整数 <span class="math">$n$</span> 和 <span class="math">$k$</span> 。</p>
-<h4 id="输出格式-35">输出格式</h4>
+<h4 id="输出格式-36">输出格式</h4>
 <p>共一行，表示方案总数，若不能够放置则输出<span class="math">$0$</span>。</p>
-<h4 id="数据范围-34">数据范围</h4>
+<h4 id="数据范围-35">数据范围</h4>
 <p><span class="math">$1 \le n \le10$</span>,
 <span class="math">$0 \le k \le n^2$</span></p>
 <h4 id="输入样例-32">输入样例：</h4>
@@ -8390,7 +8532,7 @@ $$</span><p>
 </div>
 </div></blockquote>
 <hr>
-<h4 id="算法设计-37">算法设计</h4>
+<h4 id="算法设计-38">算法设计</h4>
 <p>这是收录的一道经典的**连通性状态压缩 <span class="math">$\text{DP}$</span> **。</p>
 <p>这里的状态压缩，其实指的就是二进制状态压缩，是指将一个长度为 <span class="math">$m$</span> 的 <span class="math">$\text{bool}$</span> 数组只需要用一个 <span class="math">$m$</span> 位的二进制整数表示并存储即可。这里当 <span class="math">$m &lt; 32$</span> 时，可以直接用一个 <span class="math">$\text{int}$</span> 来存储，如果 <span class="math">$m$</span> 较大，就需要使用 <span class="math">$\text{int}$</span> 数组或者 <span class="math">$\text{C&#43;&#43;\ STL}$</span> 提供的 <span class="math">$\text{bitset}$</span>。</p>
 <p><span class="math">$f(i,j,s)$</span>:所有只摆在前<span class="math">$i$</span>行，已经摆了<span class="math">$j$</span>个国王，并且第<span class="math">$i$</span>行摆放的状态是<span class="math">$s$</span>的所有方案的集合。</p>
@@ -8696,18 +8838,18 @@ $$</span><p>
 </div>
 </div><hr>
 <h3 id="acwing-91-最短hamilton路径">AcWing 91. 最短Hamilton路径</h3>
-<h4 id="题目描述-38">题目描述</h4>
+<h4 id="题目描述-39">题目描述</h4>
 <blockquote>
 <h3 id="91-最短hamilton路径">91. 最短Hamilton路径</h3>
 <p>给定一张 <span class="math">$n$</span> 个点的带权无向图，点从 <span class="math">$0∼n−1$</span> 标号，求起点 <span class="math">$0$</span> 到终点 <span class="math">$n−1$</span> 的最短 Hamilton 路径。</p>
 <p>Hamilton 路径的定义是从 <span class="math">$0$</span> 到 <span class="math">$n−1$</span> 不重不漏地经过每个点恰好一次。</p>
-<h4 id="输入格式-36">输入格式</h4>
+<h4 id="输入格式-37">输入格式</h4>
 <p>第一行输入整数 <span class="math">$n$</span>。</p>
 <p>接下来 <span class="math">$n$</span> 行每行 <span class="math">$n$</span> 个整数，其中第 <span class="math">$i$</span> 行第 <span class="math">$j$</span> 个整数表示点 <span class="math">$i$</span> 到 <span class="math">$j$</span> 的距离（记为 <span class="math">$a[i,j]$</span>）。</p>
 <p>对于任意的 <span class="math">$x,y,z$</span>，数据保证 <span class="math">$a[x,x]=0，a[x,y]=a[y,x]$</span> 并且 <span class="math">$a[x,y]&#43;a[y,z]≥a[x,z]$</span>。</p>
-<h4 id="输出格式-36">输出格式</h4>
+<h4 id="输出格式-37">输出格式</h4>
 <p>输出一个整数，表示最短 Hamilton 路径的长度。</p>
-<h4 id="数据范围-35">数据范围</h4>
+<h4 id="数据范围-36">数据范围</h4>
 <p><span class="math">$1≤n≤20$</span>
 <span class="math">$0≤a[i,j]≤10^7$</span></p>
 <h4 id="输入样例-33">输入样例：</h4>
@@ -8737,9 +8879,9 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">18</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-38">算法设计</h4>
+<h4 id="算法设计-39">算法设计</h4>
 <p>这是收录的一道经典的<strong>集合类状态压缩 <span class="math">$\text{DP}$</span></strong>。</p>
-<h4 id="完整-c-代码-33">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-34">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
@@ -8749,7 +8891,7 @@ $$</span><p>
 </div><hr>
 <h2 id="区间dp">区间DP</h2>
 <h3 id="acwing-282-石子合并">AcWing 282. 石子合并</h3>
-<h4 id="题目描述-39">题目描述</h4>
+<h4 id="题目描述-40">题目描述</h4>
 <blockquote>
 <h4 id="282-石子合并">282. 石子合并</h4>
 <p>设有 <span class="math">$N$</span> 堆石子排成一排，其编号为 <span class="math">$1,2,3,…,N$</span>。</p>
@@ -8758,12 +8900,12 @@ $$</span><p>
 <p>例如有 <span class="math">$4$</span> 堆石子分别为 <code>1 3 5 2</code>， 我们可以先合并 <span class="math">$1、2$</span> 堆，代价为 <span class="math">$4$</span>，得到 <code>4 5 2</code>， 又合并 <span class="math">$1、2$</span> 堆，代价为 <span class="math">$9$</span>，得到 <code>9 2</code> ，再合并得到 <span class="math">$11$</span>，总代价为 <span class="math">$4&#43;9&#43;11=24$</span>；</p>
 <p>如果第二步是先合并 <span class="math">$2、3$</span>堆，则代价为 <span class="math">$7$</span>，得到 <code>4 7</code>，最后一次合并代价为 <span class="math">$11$</span>，总代价为 <span class="math">$4&#43;7&#43;11=22$</span>。</p>
 <p>问题是：找出一种合理的方法，使总的代价最小，输出最小代价。</p>
-<h4 id="输入格式-37">输入格式</h4>
+<h4 id="输入格式-38">输入格式</h4>
 <p>第一行一个数 <span class="math">$N$</span> 表示石子的堆数 <span class="math">$N$</span>。</p>
 <p>第二行 <span class="math">$N$</span> 个数，表示每堆石子的质量(均不超过 <span class="math">$1000$</span>)。</p>
-<h4 id="输出格式-37">输出格式</h4>
+<h4 id="输出格式-38">输出格式</h4>
 <p>输出一个整数，表示最小代价。</p>
-<h4 id="数据范围-36">数据范围</h4>
+<h4 id="数据范围-37">数据范围</h4>
 <p><span class="math">$1≤n≤300$</span></p>
 <h4 id="输入样例-34">输入样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -8785,7 +8927,7 @@ $$</span><p>
 </div>
 </div></blockquote>
 <hr>
-<h4 id="算法设计-39">算法设计</h4>
+<h4 id="算法设计-40">算法设计</h4>
 <p>这是区间 <span class="math">$\text{DP}$</span> 的一道经典的模板题，一般有两种解法：</p>
 <ul>
 <li>迭代式：适合对于一维的情况</li>
@@ -8911,7 +9053,7 @@ $$</span><p>
 <p>本题其实是还有一道变式</p>
 <blockquote>
 <h3 id="320-能量项链">320. 能量项链</h3>
-<h4 id="题目描述-40">题目描述</h4>
+<h4 id="题目描述-41">题目描述</h4>
 <p>在 <span class="math">$\text{Mars}$</span> 星球上，每个 <span class="math">$\text{Mars}$</span> 人都随身佩带着一串能量项链，在项链上有 <span class="math">$N$</span> 颗能量珠。</p>
 <p>能量珠是一颗有头标记与尾标记的珠子，这些标记对应着某个正整数。</p>
 <p>并且，对于相邻的两颗珠子，前一颗珠子的尾标记一定等于后一颗珠子的头标记。</p>
@@ -8922,13 +9064,13 @@ $$</span><p>
 <p>例如：设 <span class="math">$N=4$</span>，<span class="math">$4$</span> 颗珠子的头标记与尾标记依次为 <span class="math">$(2，3)(3，5)(5，10)(10，2)$</span>。</p>
 <p>我们用记号 <span class="math">$⊕$</span> 表示两颗珠子的聚合操作，<span class="math">$(j⊕k)$</span> 表示第 <span class="math">$j$</span>，<span class="math">$k$</span> 两颗珠子聚合后所释放的能量。则第 <span class="math">$4、1$</span> 两颗珠子聚合后释放的能量为：<span class="math">$(4⊕1)=10×2×3=60$</span>。</p>
 <p>这一串项链可以得到最优值的一个聚合顺序所释放的总能量为 <span class="math">$((4⊕1)⊕2)⊕3)=10×2×3&#43;10×3×5&#43;10×5×10=710$</span>。</p>
-<h4 id="输入格式-38">输入格式</h4>
+<h4 id="输入格式-39">输入格式</h4>
 <p>输入的第一行是一个正整数 <span class="math">$N$</span>，表示项链上珠子的个数。</p>
 <p>第二行是 <span class="math">$N$</span> 个用空格隔开的正整数，所有的数均不超过 <span class="math">$1000$</span>，第 <span class="math">$i$</span> 个数为第 <span class="math">$i$</span> 颗珠子的头标记，当 <span class="math">$i&lt;N$</span> 时，第 <span class="math">$i$</span> 颗珠子的尾标记应该等于第 <span class="math">$i&#43;1$</span> 颗珠子的头标记，第 <span class="math">$N$</span> 颗珠子的尾标记应该等于第 <span class="math">$1$</span> 颗珠子的头标记。</p>
 <p>至于珠子的顺序，你可以这样确定：将项链放到桌面上，不要出现交叉，随意指定第一颗珠子，然后按顺时针方向确定其他珠子的顺序。</p>
-<h4 id="输出格式-38">输出格式</h4>
+<h4 id="输出格式-39">输出格式</h4>
 <p>输出只有一行，是一个正整数 <span class="math">$E$</span>，为一个最优聚合顺序所释放的总能量。</p>
-<h4 id="数据范围-37">数据范围</h4>
+<h4 id="数据范围-38">数据范围</h4>
 <p><span class="math">$4≤N≤100$</span>,
 <span class="math">$1≤E≤2.1×10^9$</span></p>
 <h4 id="输入样例-35">输入样例：</h4>
@@ -8950,7 +9092,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">710</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h4 id="算法设计-40">算法设计</h4>
+<h4 id="算法设计-41">算法设计</h4>
 <p>这题主要的变化在两个部分：</p>
 <ol>
 <li>环形合并</li>
@@ -9053,7 +9195,7 @@ $$</span><p>
 </div></blockquote>
 <hr>
 <h3 id="acwing-479-加分二叉树">AcWing 479. 加分二叉树</h3>
-<h4 id="题目描述-41">题目描述</h4>
+<h4 id="题目描述-42">题目描述</h4>
 <blockquote>
 <h3 id="479-加分二叉树">479. 加分二叉树</h3>
 <p>设一个 <span class="math">$n$</span> 个节点的二叉树 tree 的中序遍历为（<span class="math">$1,2,3,…,n$</span>），其中数字 <span class="math">$1,2,3,…,n$</span> 为节点编号。</p>
@@ -9065,13 +9207,13 @@ $$</span><p>
 <p>要求输出： </p>
 <p>（1）tree 的最高加分 </p>
 <p>（2）tree 的前序遍历</p>
-<h4 id="输入格式-39">输入格式</h4>
+<h4 id="输入格式-40">输入格式</h4>
 <p>第 <span class="math">$1$</span> 行：一个整数 <span class="math">$n$</span>，为节点个数。 </p>
 <p>第 <span class="math">$2$</span> 行：<span class="math">$n$</span> 个用空格隔开的整数，为每个节点的分数（<span class="math">$0&lt;$</span>分数<span class="math">$&lt;100$</span>）。</p>
-<h4 id="输出格式-39">输出格式</h4>
+<h4 id="输出格式-40">输出格式</h4>
 <p>第 <span class="math">$1$</span> 行：一个整数，为最高加分（结果不会超过<code>int</code>范围）。     </p>
 <p>第 <span class="math">$2$</span> 行：<span class="math">$n$</span> 个用空格隔开的整数，为该树的前序遍历。如果存在多种方案，则输出字典序最小的方案。</p>
-<h4 id="数据范围-38">数据范围</h4>
+<h4 id="数据范围-39">数据范围</h4>
 <p><span class="math">$n&lt;30$</span></p>
 <h4 id="输入样例-36">输入样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -9094,7 +9236,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">3 1 2 4 5</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-41">算法设计</h4>
+<h4 id="算法设计-42">算法设计</h4>
 <p>这里选这题作为模板是因为这是一道求区间 <span class="math">$\text{DP}$</span> 具体方案的题目，和之前的石子合并求最大最小代价是不一样的。</p>
 <p>求区间 <span class="math">$\text{DP}$</span> 具体方案的通用做法是：</p>
 <p>通过使用 <span class="math">$g_{i,j}$</span> 记录区间 <span class="math">$[i,j]$</span> 中最大价值时的划分点 <span class="math">$d$</span> ，在使用完区间合并模板后，只需要使用一次 <span class="math">$\text{dfs}$</span> 即可找到每一次最大价值的划分点。</p>
@@ -9217,19 +9359,19 @@ $$</span><p>
 </div><hr>
 <h2 id="树形dp">树形DP</h2>
 <h3 id="acwing-1072-树的最长路径">AcWing 1072. 树的最长路径</h3>
-<h4 id="题目描述-42">题目描述</h4>
+<h4 id="题目描述-43">题目描述</h4>
 <blockquote>
 <h3 id="1072-树的最长路径">1072. 树的最长路径</h3>
 <p>给定一棵树，树中包含 <span class="math">$n$</span> 个结点（编号<span class="math">$1∼n$</span>）和 <span class="math">$n−1$</span> 条无向边，每条边都有一个权值。</p>
 <p>现在请你找到树中的一条最长路径。</p>
 <p>换句话说，要找到一条路径，使得使得路径两端的点的距离最远。</p>
 <p>注意：路径中可以只包含一个点。</p>
-<h4 id="输入格式-40">输入格式</h4>
+<h4 id="输入格式-41">输入格式</h4>
 <p>第一行包含整数 <span class="math">$n$</span>。</p>
 <p>接下来 <span class="math">$n−1$</span> 行，每行包含三个整数 <span class="math">$a_i,b_i,c_i$</span>，表示点 <span class="math">$a_i$</span> 和 <span class="math">$b_i$</span> 之间存在一条权值为 <span class="math">$c_i$</span> 的边。</p>
-<h4 id="输出格式-40">输出格式</h4>
+<h4 id="输出格式-41">输出格式</h4>
 <p>输出一个整数，表示树的最长路径的长度。</p>
-<h4 id="数据范围-39">数据范围</h4>
+<h4 id="数据范围-40">数据范围</h4>
 <p><span class="math">$1≤n≤10000$</span>,
 <span class="math">$1≤ai,bi≤n$</span>,
 <span class="math">$−10^5≤ci≤10^5$</span></p>
@@ -9260,7 +9402,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">22</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-42">算法设计</h4>
+<h4 id="算法设计-43">算法设计</h4>
 <p>首先我们先来证明图论中的一个经典结论：<strong>对于没有负边权的树，如何找树的直径？</strong></p>
 <ol>
 <li>任取一点作为起点，找到距离该点最远的一个点 <span class="math">$u$</span>。</li>
@@ -9289,7 +9431,7 @@ $$</span><p>
 <li>如果每次算出来的 <span class="math">$d &lt; m_1$</span>，但是 <span class="math">$d &gt;m_2$</span>，我们就令 <span class="math">$m_2=d$</span>。</li>
 </ol>
 <p>以及这里使用了 <span class="math">$\text{st}$</span> 数组来确保每个点只走一次，有种 DP 减少重复计算的味道在里面。</p>
-<h4 id="完整-c-代码-34">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-35">完整 C++ 代码</h4>
 <p>这里我们可以通过每次 dfs 的时候传入一个 father 来避免递归回节点本身，下面代码便是这种写法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -9522,12 +9664,12 @@ $$</span><p>
 <h3 id="1073-树的中心">1073. 树的中心</h3>
 <p>给定一棵树，树中包含 n 个结点（编号11~nn）和 n−1n−1 条无向边，每条边都有一个权值。</p>
 <p>请你在树中找到一个点，使得该点到树中其他结点的最远距离最近。</p>
-<h4 id="输入格式-41">输入格式</h4>
+<h4 id="输入格式-42">输入格式</h4>
 <p>第一行包含整数 nn。</p>
 <p>接下来 n−1n−1 行，每行包含三个整数 ai,bi,ciai,bi,ci，表示点 aiai 和 bibi 之间存在一条权值为 cici 的边。</p>
-<h4 id="输出格式-41">输出格式</h4>
+<h4 id="输出格式-42">输出格式</h4>
 <p>输出一个整数，表示所求点到树中其他结点的最远距离。</p>
-<h4 id="数据范围-40">数据范围</h4>
+<h4 id="数据范围-41">数据范围</h4>
 <p>1≤n≤100001≤n≤10000,
 1≤ai,bi≤n1≤ai,bi≤n,
 1≤ci≤1051≤ci≤105</p>
@@ -9556,9 +9698,9 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h4 id="算法设计-43">算法设计</h4>
+<h4 id="算法设计-44">算法设计</h4>
 <p>y总在树形依赖 DP 这一块讲的不太行。我在知乎上也看到了有人说教材选自2017年的蓝书有点落伍了，一次这里的解法有点落后了，所以就不进行更新了，以后有时间再看看其他更新的视频来更新这里【<strong>插个眼</strong>】</p>
-<h4 id="完整-c-代码-35">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-36">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
@@ -9569,19 +9711,19 @@ $$</span><p>
 <hr>
 <h2 id="数位dp">数位DP</h2>
 <h3 id="acwing-1082-数字游戏">AcWing 1082. 数字游戏</h3>
-<h4 id="题目描述-43">题目描述</h4>
+<h4 id="题目描述-44">题目描述</h4>
 <blockquote>
 <h3 id="1082-数字游戏">1082. 数字游戏</h3>
 <p>科协里最近很流行数字游戏。</p>
 <p>某人命名了一种不降数，这种数字必须满足从左到右各位数字呈非下降关系，如 <span class="math">$123$</span>，<span class="math">$446$</span>。</p>
 <p>现在大家决定玩一个游戏，指定一个整数闭区间 <span class="math">$[a,b]$</span>，问这个区间内有多少个不降数。</p>
 <p>**注意：**不降数不能包含前导零。</p>
-<h4 id="输入格式-42">输入格式</h4>
+<h4 id="输入格式-43">输入格式</h4>
 <p>输入包含多组测试数据。</p>
 <p>每组数据占一行，包含两个整数 <span class="math">$a$</span> 和 <span class="math">$b$</span>。</p>
-<h4 id="输出格式-42">输出格式</h4>
+<h4 id="输出格式-43">输出格式</h4>
 <p>每行给出一组测试数据的答案，即 <span class="math">$[a,b]$</span> 之间有多少不降数。</p>
-<h4 id="数据范围-41">数据范围</h4>
+<h4 id="数据范围-42">数据范围</h4>
 <p><span class="math">$1≤a≤b≤2^{31}−1$</span></p>
 <h4 id="输入样例-39">输入样例：</h4>
 <div class="highlight"><div class="chroma">
@@ -9604,7 +9746,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">18</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-44">算法设计</h4>
+<h4 id="算法设计-45">算法设计</h4>
 <p>数位 <span class="math">$\text{DP}$</span> 常用思考方式：</p>
 <ol>
 <li>利用前缀的思想：<span class="math">$[x,y] = f_y-f_{x-1}$</span></li>
@@ -9707,7 +9849,7 @@ $$</span><p>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="完整-c-代码-36">完整 C++ 代码</h4>
+</div><h4 id="完整-c-代码-37">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -9822,7 +9964,7 @@ $$</span><p>
 </div><hr>
 <h2 id="记忆化搜索">记忆化搜索</h2>
 <h3 id="acwing-901-滑雪">AcWing 901. 滑雪</h3>
-<h4 id="题目描述-44">题目描述</h4>
+<h4 id="题目描述-45">题目描述</h4>
 <blockquote>
 <h3 id="901-滑雪">901. 滑雪</h3>
 <p>给定一个 <span class="math">$R$</span> 行 <span class="math">$C$</span> 列的矩阵，表示一个矩形网格滑雪场。</p>
@@ -9856,12 +9998,12 @@ $$</span><p>
 </div><p>在给定矩阵中，一条可行的滑行轨迹为 <span class="math">$24−17−2−1$</span>。</p>
 <p>在给定矩阵中，最长的滑行轨迹为 <span class="math">$25−24−23−…−3−2−1$</span>，沿途共经过 <span class="math">$25$</span> 个区域。</p>
 <p>现在给定你一个二维矩阵表示滑雪场各区域的高度，请你找出在该滑雪场中能够完成的最长滑雪轨迹，并输出其长度(可经过最大区域数)。</p>
-<h4 id="输入格式-43">输入格式</h4>
+<h4 id="输入格式-44">输入格式</h4>
 <p>第一行包含两个整数 <span class="math">$R$</span> 和 <span class="math">$C$</span>。</p>
 <p>接下来 <span class="math">$R$</span> 行，每行包含 <span class="math">$C$</span> 个整数，表示完整的二维矩阵。</p>
-<h4 id="输出格式-43">输出格式</h4>
+<h4 id="输出格式-44">输出格式</h4>
 <p>输出一个整数，表示可完成的最长滑雪长度。</p>
-<h4 id="数据范围-42">数据范围</h4>
+<h4 id="数据范围-43">数据范围</h4>
 <p><span class="math">$1≤R,C≤300$</span>,
 <span class="math">$0≤$</span>矩阵中整数<span class="math">$≤10000$</span></p>
 <h4 id="输入样例-40">输入样例：</h4>
@@ -9891,10 +10033,10 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">25</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-45">算法设计</h4>
+<h4 id="算法设计-46">算法设计</h4>
 <p>此题是记忆化搜索的一道模板题，这道题用常规的迭代式 dp 写法，会发现状态转移不好写，也就是所有状态的起点不知道在哪。</p>
 <p>当遇到这种情况或者循环太复杂如 <span class="math">$f_{i,j,k,m,n}$</span>，常规情况需要写五层循环转移状态，会发现很不好写，如果用记忆化搜索来写会发现会很容易翻译成代码。记忆化搜索其实就是递归式的 dp 写法。</p>
-<h4 id="完整-c-代码-37">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-38">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -9992,18 +10134,18 @@ $$</span><p>
 <h1 id="第六章-贪心">第六章 贪心</h1>
 <h2 id="区间问题">区间问题</h2>
 <h3 id="acwing-905-区间选点">AcWing 905. 区间选点</h3>
-<h4 id="题目描述-45">题目描述</h4>
+<h4 id="题目描述-46">题目描述</h4>
 <blockquote>
 <h3 id="905-区间选点">905. 区间选点</h3>
 <p>给定 <span class="math">$N$</span> 个闭区间 <span class="math">$[a_i,b_i]$</span>，请你在数轴上选择尽量少的点，使得每个区间内至少包含一个选出的点。</p>
 <p>输出选择的点的最小数量。</p>
 <p>位于区间端点上的点也算作区间内。</p>
-<h4 id="输入格式-44">输入格式</h4>
+<h4 id="输入格式-45">输入格式</h4>
 <p>第一行包含整数 <span class="math">$N$</span>，表示区间数。</p>
 <p>接下来 <span class="math">$N$</span> 行，每行包含两个整数 <span class="math">$a_i,b_i$</span>，表示一个区间的两个端点。</p>
-<h4 id="输出格式-44">输出格式</h4>
+<h4 id="输出格式-45">输出格式</h4>
 <p>输出一个整数，表示所需的点的最小数量。</p>
-<h4 id="数据范围-43">数据范围</h4>
+<h4 id="数据范围-44">数据范围</h4>
 <p><span class="math">$1≤N≤10^5,$</span>
 <span class="math">$−10^9≤a_i≤b_i≤10^9$</span></p>
 <h4 id="输入样例-41">输入样例：</h4>
@@ -10029,7 +10171,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-46">算法设计</h4>
+<h4 id="算法设计-47">算法设计</h4>
 <p><strong>贪心问题</strong>一般有一个很简单的套路：通过每一步选取<em>局部最优</em>，最终得到的就是<em>全局最优</em>。然后我们只需要去证明这个做法得到的是最优解就可以了。</p>
 <p>我们可以通过构造一个特殊的情况，在这种情况下也得满足最优，所以我们可以先从这种情况下的局部最优出发，寻找猜想。</p>
 <blockquote>
@@ -10049,7 +10191,7 @@ $$</span><p>
 <li>如果这两个区间没交点，那么按照我的做法需要两个点才可以满足条件，但是理论上不可能有小于两个点的做法，所以我们的做法得出来的点数一定小于等于最优解。</li>
 </ul>
 <p>所以综上所述，我们的贪心做法就是最优解。</p>
-<h4 id="完整-c-代码-38">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-39">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -10125,17 +10267,17 @@ $$</span><p>
 </div>
 </div><hr>
 <h3 id="acwing-906-区间分组">AcWing 906. 区间分组</h3>
-<h4 id="题目描述-46">题目描述</h4>
+<h4 id="题目描述-47">题目描述</h4>
 <blockquote>
 <h3 id="906-区间分组">906. 区间分组</h3>
 <p>给定 <span class="math">$N$</span> 个闭区间 <span class="math">$[a_i,b_i]$</span>，请你将这些区间分成若干组，使得每组内部的区间两两之间（包括端点）没有交集，并使得组数尽可能小。</p>
 <p>输出最小组数。</p>
-<h4 id="输入格式-45">输入格式</h4>
+<h4 id="输入格式-46">输入格式</h4>
 <p>第一行包含整数 <span class="math">$N$</span>，表示区间数。</p>
 <p>接下来 <span class="math">$N$</span> 行，每行包含两个整数 <span class="math">$a_i,b_i$</span>，表示一个区间的两个端点。</p>
-<h4 id="输出格式-45">输出格式</h4>
+<h4 id="输出格式-46">输出格式</h4>
 <p>输出一个整数，表示最小组数。</p>
-<h4 id="数据范围-44">数据范围</h4>
+<h4 id="数据范围-45">数据范围</h4>
 <p><span class="math">$1≤N≤10^5,$</span>
 <span class="math">$−10^9≤a_i≤b_i≤10^9$</span></p>
 <h4 id="输入样例-42">输入样例：</h4>
@@ -10161,7 +10303,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-47">算法设计</h4>
+<h4 id="算法设计-48">算法设计</h4>
 <p>这题一开始的想法很简单，既然是贪心，那我就套用 <a href="https://www.acwing.com/problem/content/910/" target="_blank" rel="noopener noreffer ">AcWing 908. 最大不相交区间数量</a> 的做法，使用局部最优的思想，首先在所有区间上找到最大不相交区间，然后把这部分区间删除，再在剩余区间上重复上面操作，最后的最大不相交区间就是重复上面操作最终将所有区间都删除的操作次数。</p>
 <p>但是 <span class="math">$\text{unluckily}$</span>，上面的贪心做法不是最优解，下面我给出一组反例：</p>
 <p><span class="math">$[1,3],[1,4],[5,6],[4,7]$</span>。</p>
@@ -10187,7 +10329,7 @@ $$</span><p>
 <p>我们可以把所有开始时间和结束时间排序，一个活动开始时，分配一间教室，一个活动结束时，释放一间教室，这样所需的教室数量上下浮动，而浮动过程中的最大值就是所需教室数量的最小值</p>
 <p>没结束就不释放，结束了就把对应的教室释放，不用管释放的是哪一间教室</p></blockquote>
 <p>这种解法的思想其实也是可以理解为按照我们上面的做法做的，这里的每间教室就对应了每一组。</p>
-<h4 id="完整-c-代码-39">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-40">完整 C++ 代码</h4>
 <p>暴力解法代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -10353,7 +10495,7 @@ $$</span><p>
 </div><hr>
 <h2 id="推公式">推公式</h2>
 <h3 id="acwing-125-耍杂技的牛">AcWing 125. 耍杂技的牛</h3>
-<h4 id="题目描述-47">题目描述</h4>
+<h4 id="题目描述-48">题目描述</h4>
 <blockquote>
 <h3 id="125-耍杂技的牛">125. 耍杂技的牛</h3>
 <p>农民约翰的 <span class="math">$N$</span> 头奶牛（编号为 <span class="math">$1\dots N$</span>）计划逃跑并加入马戏团，为此它们决定练习表演杂技。</p>
@@ -10363,12 +10505,12 @@ $$</span><p>
 <p>这 <span class="math">$N$</span> 头奶牛中的每一头都有着自己的重量 <span class="math">$W_i$</span> 以及自己的强壮程度 <span class="math">$S_i$</span>。</p>
 <p>一头牛支撑不住的可能性取决于它头上所有牛的总重量（不包括它自己）减去它的身体强壮程度的值，现在称该数值为风险值，风险值越大，这只牛撑不住的可能性越高。</p>
 <p>您的任务是确定奶牛的排序，使得所有奶牛的风险值中的最大值尽可能的小。</p>
-<h4 id="输入格式-46">输入格式</h4>
+<h4 id="输入格式-47">输入格式</h4>
 <p>第一行输入整数 <span class="math">$N$</span>，表示奶牛数量。</p>
 <p>接下来 <span class="math">$N$</span> 行，每行输入两个整数，表示牛的重量和强壮程度，第 <span class="math">$i$</span> 行表示第 <span class="math">$i$</span> 头牛的重量 <span class="math">$W_i$</span> 以及它的强壮程度 <span class="math">$S_i$</span>。</p>
-<h4 id="输出格式-46">输出格式</h4>
+<h4 id="输出格式-47">输出格式</h4>
 <p>输出一个整数，表示最大风险值的最小可能值。</p>
-<h4 id="数据范围-45">数据范围</h4>
+<h4 id="数据范围-46">数据范围</h4>
 <p><span class="math">$1≤N≤50000$</span>,
 <span class="math">$1≤W_i≤10,000$</span>,
 <span class="math">$1≤S_i≤1,000,000,000$</span></p>
@@ -10395,7 +10537,7 @@ $$</span><p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h4 id="算法设计-48">算法设计</h4>
+<h4 id="算法设计-49">算法设计</h4>
 <p>我们首先将牛进行堆叠，从上往下进行依次编号，定义第 <span class="math">$i$</span> 头牛的重量为 <span class="math">$W_i$</span>，强壮程度为 <span class="math">$S_i$</span>。</p>
 <table>
   <thead>
@@ -10470,7 +10612,7 @@ $$</span><p>
 <p>下面我们对上面的结论进行证明：</p>
 <p>假设我们贪心得到的做法不是最优解，那么将牛进行堆叠，一定存在某一次操作，最优解是需要将更小的 <span class="math">$w_i &#43;  s_i $</span>  堆在更大的 <span class="math">$w_{i&#43;1} &#43;s_{i&#43;1}$</span> 下面，那么如果此时我们将牛 <span class="math">$i$</span> 和 <span class="math">$i&#43;1$</span> 进行交换，那么由之前的证明可知，一定会增加这两头牛的风险值中的最大值，那么此时最优解得到的最大值一定大于我们贪心得到的最大值，故与最优解的定义矛盾。</p>
 <p>综上可得将牛按照 <span class="math">$w_i &#43;  s_i $</span> 排序后堆叠是最优解。</p>
-<h4 id="完整-c-代码-40">完整 C++ 代码</h4>
+<h4 id="完整-c-代码-41">完整 C++ 代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -10636,8 +10778,8 @@ $$</span><p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2026-02-01&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/42a1005ee502c8bd8bd24a9b73297505d2e11195" target="_blank" title="commit by JarVis(2055543978@qq.com) 42a1005ee502c8bd8bd24a9b73297505d2e11195: content: update posts/">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>42a1005</a></span>
+                <span>更新于 2026-07-26&nbsp;<a class="git-hash" href="https://github.com/ThisingL/thisingl.github.io/commit/ad12fc3261d135c56693f107c4b55e65935d29a8" target="_blank" title="commit by Thisingl_Meituan_MacBookPro(thisingl@qq.com) ad12fc3261d135c56693f107c4b55e65935d29a8: docs: 补充 MLsys nano-vllm 解析与算法板子，新增 LaTeX 笔记和 AI Agent 笔记">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ad12fc3</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

@@ -7,14 +7,14 @@
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 27 May 2026 20:20:53 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2026 00:56:16 +0800</lastBuildDate>
     <atom:link href="https://thisingl.github.io/categories/cs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vibe Coding 工作流</title>
       <link>https://thisingl.github.io/vibe-coding-%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
       <pubDate>Sat, 07 Mar 2026 22:21:30 +0800</pubDate>
       <guid>https://thisingl.github.io/vibe-coding-%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
-      <description>整理了我平时使用 AI 进行项目学习、开发等等工作流</description>
+      <description>整理了我平时使用 AI 进行项目学习、开发等等工作流，现在都已经做成 skill 了</description>
     </item>
     <item>
       <title>分布式系统</title>
